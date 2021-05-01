@@ -7,6 +7,7 @@ public class OpenGame : MonoBehaviour
 {
     public void ChangeScene(int sceneNum)
     {
+        //print("it`s fine");
         SceneManager.LoadScene(sceneNum);
     }
 }

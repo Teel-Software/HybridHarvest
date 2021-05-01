@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: f342da700a7bd684ab8475ecefbf94cd
+  - enabled: 1
+    path: Assets/Scenes/Field.unity
+    guid: 4cec066c414e0004bb91b52d2d3eff87
+  - enabled: 1
+    path: Assets/Scenes/Lab.unity
+    guid: ff794aad47bd8a44abb3bf537aed9ea9
+  - enabled: 1
+    path: Assets/Scenes/TESla.unity
+    guid: 53710b903812abd47adb161a6b549ed1
   m_configObjects: {}
