@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BackGroundCreation
     - OpenGame
+    - VolumeControl
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -31,6 +32,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/Field.unity:
@@ -225,10 +227,16 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 1486}
+    - Class: 114
+      Script: {instanceID: 1654}
     - Class: 114
       Script: {instanceID: 2072}
     - Class: 114
@@ -245,6 +253,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3072}
     - Class: 114
       Script: {instanceID: 3352}
+    - Class: 114
+      Script: {instanceID: 22126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -847,6 +857,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: ff7dec6e67989c1097bf267995a9a394
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: VolumeControl
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
