@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
+    - Packages.Rider.Editor.RiderScriptEditorData
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -33,6 +34,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
@@ -60,23 +62,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1486}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2462}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2610}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2780}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2992}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -117,25 +119,25 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1486}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2462}
     - Class: 114
-      Script: {instanceID: 2518}
+      Script: {instanceID: 2536}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2610}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2780}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2992}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -176,23 +178,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1486}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2462}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2610}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2780}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2992}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -237,29 +239,31 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1486}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 1654}
+      Script: {instanceID: 1672}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 1702}
     - Class: 114
-      Script: {instanceID: 2244}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2262}
     - Class: 114
-      Script: {instanceID: 2518}
+      Script: {instanceID: 2462}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2536}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2610}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2780}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 2992}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3094}
+    - Class: 114
+      Script: {instanceID: 3374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -300,23 +304,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1486}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2090}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2462}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2610}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2780}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2992}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -881,4 +885,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Field.unity
   - Assets/Scenes/Lab.unity
   - Assets/Scenes/TESla.unity
-  playerPath: D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj/HybridHarvest.apk
+  playerPath: D:/Unity Projects/HybridHarvest/HybridHarvestProj/HybridHarvestIndev.apk
