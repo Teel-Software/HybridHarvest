@@ -9,7 +9,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -21,7 +20,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
-    - Packages.Rider.Editor.RiderScriptEditorData
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -62,23 +60,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2460}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2804}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -119,25 +117,25 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2460}
     - Class: 114
-      Script: {instanceID: 2536}
+      Script: {instanceID: 2534}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2804}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -178,23 +176,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2460}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2804}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -239,31 +237,31 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 1672}
+      Script: {instanceID: 1670}
     - Class: 114
-      Script: {instanceID: 1702}
+      Script: {instanceID: 1700}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2262}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2460}
     - Class: 114
-      Script: {instanceID: 2536}
+      Script: {instanceID: 2534}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2804}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -279,6 +277,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 331
       Script: {instanceID: 0}
     Assets/Scenes/TESla.unity:
     - Class: 1
@@ -304,23 +304,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2460}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2780}
+      Script: {instanceID: 2778}
     - Class: 114
-      Script: {instanceID: 2804}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -885,4 +885,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Field.unity
   - Assets/Scenes/Lab.unity
   - Assets/Scenes/TESla.unity
-  playerPath: D:/Unity Projects/HybridHarvest/HybridHarvestProj/HybridHarvestIndev.apk
+  playerPath: D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj/HybridHarvest.apk
