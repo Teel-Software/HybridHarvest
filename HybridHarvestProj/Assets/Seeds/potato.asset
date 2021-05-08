@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Potato
   price: 10
-  image: {fileID: 21300000, guid: 6fc396de39c6b4b4b85576b9a723ea44, type: 3}
+  image: {fileID: 21300000, guid: e4881c7fe8ebad44196dc5bf18a1ad10, type: 3}
