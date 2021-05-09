@@ -6,7 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public class Seed : ScriptableObject
 {
-    public string name;
-    public int price;
-    public Sprite image;
+    public string Name;
+    public int Price;
+    public Sprite MyImage;
+
+    public Seed(string name, int price, Sprite image)
+    {
+        Name = name;
+        Price = price;
+        MyImage = image;
+    }
 }
