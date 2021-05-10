@@ -33,6 +33,7 @@ public class Drawinventory : MonoBehaviour
             //icon.GetComponent<Rigidbody2D>().gravityScale = 0;
             icon.AddComponent<Image>().sprite = item.MyImage;
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
+            
             icon.GetComponent<Button>().onClick.AddListener(PointerDown);
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
