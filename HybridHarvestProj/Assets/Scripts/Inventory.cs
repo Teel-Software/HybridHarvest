@@ -49,6 +49,6 @@ public class Inventory : MonoBehaviour
 
     void RedrawInfo()
     {
-        Info.text = $"Money: {Money}   Reputation: {Reputation}";
+        Info.text = $"Деньги: {Money}   Репутация: {Reputation}";
     }
 }
