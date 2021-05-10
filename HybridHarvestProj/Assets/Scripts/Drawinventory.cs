@@ -27,6 +27,7 @@ public class Drawinventory : MonoBehaviour
         for(var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var item = targetInventory.Elements[i];
+            //Debug.Log(item.MyImage);
             var icon = new GameObject(i.ToString(), typeof(Button));
             //icon.AddComponent<BoxCollider2D>();
             //icon.AddComponent<Rigidbody2D>();

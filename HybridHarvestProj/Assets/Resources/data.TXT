@@ -1,0 +1,9 @@
+-369
+12
+apple|15|appl
+potato|10|potato
+apple|15|appl
+apple|15|appl
+apple|15|appl
+apple|15|appl
+apple|15|appl

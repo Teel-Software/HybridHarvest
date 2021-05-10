@@ -10,10 +10,19 @@ public class Seed : ScriptableObject
     public int Price;
     public Sprite MyImage;
 
-    public Seed(string name, int price, Sprite image)
+    public Seed(string name, int price, string image)
     {
         Name = name;
         Price = price;
-        MyImage = image;
+        MyImage =  Resources.Load<Sprite>("SeedsIcons\\"+image);
+        //if (MyImage == null)
+           // Debug.Log("not ok 1");
+        //if (Resources.Load("SeedsIcons\\appl") == null)
+        //    Debug.Log("not ok 2");
+    }
+
+    public override string ToString()
+    {
+        return Name +"|"+Price.ToString()+"|"+MyImage.name;
     }
 }

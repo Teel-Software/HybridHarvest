@@ -8,7 +8,9 @@ public class CheckInventory : MonoBehaviour
      public void AddOneMore(int price)
     {
         var seed =(Seed) Resources.Load("Seeds\\apple");
-        targetInventory.AddItem(seed);
+        //targetInventory.AddItem(seed);
         targetInventory.ChangeMoney(-price);
+        targetInventory.AddItem(seed);
+        //targetInventory.SaveData();
     }
 }
