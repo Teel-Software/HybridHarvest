@@ -10,6 +10,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/BackGroundCreation.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
+    </changedPaths>
+  </component>
   <component name="ProjectId" id="1s7KQqFCGU7H7rjxUAdOCmRBLli" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -57,6 +63,7 @@
       <updated>1620218184852</updated>
       <workItem from="1620218198004" duration="38000" />
       <workItem from="1620222983722" duration="46000" />
+      <workItem from="1620644511028" duration="675000" />
     </task>
     <servers />
   </component>

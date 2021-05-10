@@ -48,6 +48,6 @@ public class Inventory : MonoBehaviour
 
     void RedrawInfo()
     {
-        Info.text = "Money: " + Money.ToString() + " Reputation:" + Reputation.ToString();
+        Info.text = "Money: " + Money + " | " + "Reputation: " + Reputation;
     }
 }
