@@ -18,14 +18,19 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Info.text = "started";
+        //SaveData();
+       // Info.text = "data saved";
         CollectData();
+        Info.text = "data collected";
         RedrawInfo();
+        Info.text = "redrawn";
     }
 
     public void AddItem(Seed newSeed)
     {
         Elements.Add(newSeed);
-        SaveData();
+        //SaveData();
         onItemAdded?.Invoke();
     }
 
@@ -49,7 +54,7 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(int index)
     {
         Elements.RemoveAt(index);
-        SaveData();
+       // SaveData();
     }
 
     void RedrawInfo()
@@ -69,12 +74,19 @@ public class Inventory : MonoBehaviour
 
     private void CollectData()
     {
-        var data = File.ReadAllLines("Assets\\Resources\\data.TXT");
+        //var data = File.ReadAllLines("Assets\\Resources\\data.TXT");
+        var data = Resources.Load<TextAsset>("data").text.Split('\n');
         Money = int.Parse(data[0]);
         Reputation = int.Parse(data[1]);
-        for(var i =2; i< data.Length; i++)
+        Debug.Log(data[2]);
+        for (var i =2; i< data.Length; i++)
         {
+            if (data[i] == "")
+                return;
             var parameters = data[i].Split('|');
+            Debug.Log(parameters[2].Length);
+            // Debug.Log(parameters[2][4]);
+            parameters[2] = parameters[2].Substring(0, parameters[2].Length - 1);
             Elements.Add(new Seed ( parameters[0],int.Parse(parameters[1]), parameters[2]));
         }
     }

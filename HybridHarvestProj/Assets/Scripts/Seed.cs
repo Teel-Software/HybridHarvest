@@ -15,10 +15,10 @@ public class Seed : ScriptableObject
         Name = name;
         Price = price;
         MyImage =  Resources.Load<Sprite>("SeedsIcons\\"+image);
-        //if (MyImage == null)
-           // Debug.Log("not ok 1");
-        //if (Resources.Load("SeedsIcons\\appl") == null)
-        //    Debug.Log("not ok 2");
+        if (MyImage == null)
+            Debug.Log("not ok 1");
+        if (Resources.Load("SeedsIcons\\appl") == null)
+            Debug.Log("not ok 2");
     }
 
     public override string ToString()
