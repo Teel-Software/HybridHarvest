@@ -59,6 +59,7 @@ public class Inventory : MonoBehaviour
 
     void RedrawInfo()
     {
+        if(Info!= null)
         Info.text = $"Деньги: {Money}   Репутация: {Reputation}";
     }
 
@@ -76,6 +77,7 @@ public class Inventory : MonoBehaviour
         for (var i=0;i<Elements.Count; i++)
         {
             PlayerPrefs.SetString(i.ToString(),Elements[i].ToString());
+            //print(Elements[i].ToString());
         }
     }
 
@@ -101,8 +103,9 @@ public class Inventory : MonoBehaviour
         var i = PlayerPrefs.GetInt("amo");
         for (var j =0; j < i; j++)
         {
-            var parameters = PlayerPrefs.GetString(j.ToString()).Split('|');
-            Elements.Add(new Seed(parameters[0], int.Parse(parameters[1]), parameters[2]));
+            var parameters = PlayerPrefs.GetString(j.ToString());
+            //print(parameters);
+            Elements.Add(new Seed(parameters));
         }
     }
 }
