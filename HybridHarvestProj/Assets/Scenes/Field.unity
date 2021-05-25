@@ -924,8 +924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e775e4a3f022941a198e2a3b2cdd70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tyt: {fileID: 1303954218}
-  Place: {fileID: 1407888802}
+  Patch: {fileID: 1303954218}
+  InventoryFrame: {fileID: 1407888802}
+  time: 0
 --- !u!1 &1367097610
 GameObject:
   m_ObjectHideFlags: 0

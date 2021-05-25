@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Drawinventory : MonoBehaviour
 {
-    [SerializeField] Inventory targetInventory;
+    [SerializeField]public Inventory targetInventory;
     [SerializeField] RectTransform Place;
     //[SerializeField] Dropdown Choice;
     public Button GrowPlace { get; set; }

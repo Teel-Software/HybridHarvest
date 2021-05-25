@@ -3,99 +3,100 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Timers;
+using UnityEngine.EventSystems;
 
 public class SignalPlanted : MonoBehaviour
 {
-    //[SerializeField] Drawinventory maiObj;
-    [SerializeField] Button tyt;
-    [SerializeField] RectTransform Place;
+    [SerializeField] Button Patch;
+    [SerializeField] RectTransform InventoryFrame;
     bool isOccupied;
-    bool timePassed;
+    bool timerNeeded;
     Seed nowGrows;
-    Timer timer = new Timer();
+    public double time;
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt(tyt.name + "occupied") == 1)
+        if (PlayerPrefs.GetInt(Patch.name + "occupied") == 1)
+        {
             isOccupied = true;
+            timerNeeded = true;
+        }
         else
             isOccupied = false;
+        //Debug.Log(isOccupied);
         if (isOccupied)
         {
-            print("zanyato");
-            nowGrows = new Seed(PlayerPrefs.GetString(tyt.name + "grows"));
-            tyt.GetComponentInChildren<Text>().text = "planted" + nowGrows.ToString();
-            //timer = new Timer();
-            timer.Interval = nowGrows.GrowTime*100;
-            timer.Elapsed += TickTack;
-            timer.Start();
-            // tyt.gameObject.SetActive( false);
-            tyt.interactable = false;
-            //tyt.gameObject.SetActive(true);
-            
-            //Debug.Log("timer ok");
+            nowGrows = new Seed(PlayerPrefs.GetString(Patch.name + "grows"));
+            //Debug.Log(nowGrows);
+            time = PlayerPrefs.GetInt(Patch.name + "time");
+            //Debug.Log(timerNeeded);
+            //Debug.Log(time);
+            Patch.GetComponentInChildren<Text>().text = "planted" + nowGrows.ToString();
+            Patch.interactable = false;
         }
     }
 
-    //private void Update()
-   // {
-        //tyt.GetComponentInChildren<Text>().text =
-   // }
-
-    public void TickTack(object source, ElapsedEventArgs e)
+    private void Update()
     {
-        timer.Stop();
-       // Debug.Log("timer stop");
-        //timer.Stop();
-        timePassed = true;
-       // Debug.Log(timePassed);
-        //Debug.Log(tyt == null);
-        tyt.interactable = true;
-        tyt.GetComponentInChildren<Text>().text = "harvest";
-        //Debug.Log(tyt.gameObject == null);
-        //Debug.Log(tyt.IsActive());
-        // tyt.gameObject.SetActive(true);
-        //Debug.Log("help");
-        // tyt.GetComponent<Button>().enabled = true;
-        // Debug.Log("button ok");
-        // print("tip vse");
-        //timer.Stop();
+        if (timerNeeded)
+        {
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+                Patch.GetComponentInChildren<Text>().text = time.ToString();
+            }
+            else
+                TickTack();
+        }
+    }
+
+    void OnDestroy()
+    {
+        PlayerPrefs.SetInt(Patch.name +"time", (int)time);
+        //Debug.Log("it saved");
+    }
+
+    public void TickTack()
+    {
+       // Debug.Log("TickTack");
+        timerNeeded = false;
+        Patch.interactable = true;
+        Patch.GetComponentInChildren<Text>().text = "harvest time";
     }
 
     public void PlantIt(Seed seed)
     {
-       // print(tyt == null);
-        //print(tyt.gameObject.GetComponent<Text>() == null);
-        //print(seed.ToString());
-        tyt.GetComponentInChildren<Text>().text = "planted" +seed.ToString();
+       // Debug.Log("PlantIt");
+        Patch.GetComponentInChildren<Text>().text = "planted" +seed.ToString();
+        Patch.interactable = false;
         isOccupied = true;
         nowGrows = seed;
-        PlayerPrefs.SetInt(tyt.name+"occupied", isOccupied ? 1 : 0);
-        PlayerPrefs.SetString(tyt.name + "grows", seed.ToString());
-
-        timer.Interval = nowGrows.GrowTime * 100;
-        timer.Elapsed += TickTack;
-        timer.Start();
-        tyt.interactable = false;
+       // Debug.Log(nowGrows);
+        PlayerPrefs.SetInt(Patch.name+"occupied", isOccupied ? 1 : 0);
+        PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
+        time = seed.GrowTime;
+        timerNeeded = true;
     }
 
     public void Clicked()
     {
-        Debug.Log(timePassed);
-        if (!timePassed)
+       // Debug.Log(timerNeeded);
+        if (!(time<0))
         {
-            Place.GetComponent<Drawinventory>().GrowPlace = tyt;
-            Place.gameObject.SetActive(true);
+            InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
+            InventoryFrame.gameObject.SetActive(true);
         }
         else
         {
             isOccupied = false;
+            //nowGrows = null;
+            time = 1;
+           // Debug.Log(nowGrows);
+            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
+            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             nowGrows = null;
-            timePassed = false;
-            PlayerPrefs.SetInt(tyt.name + "occupied", isOccupied ? 1 : 0);
+            PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+            Patch.GetComponentInChildren<Text>().text = "free place";
         }
-       // maiObj.GrowPlace = tyt;
-
     }
 }
