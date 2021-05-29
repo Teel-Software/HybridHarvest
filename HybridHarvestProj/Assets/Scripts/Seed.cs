@@ -32,6 +32,6 @@ public class Seed : ScriptableObject
 
     public override string ToString()
     {
-        return Name +"|"+Price.ToString()+"|"+MyImage.name+"|"+GrowTime;
+        return Name+"|"+Price+"|"+MyImage.name+"|"+GrowTime;
     }
 }
