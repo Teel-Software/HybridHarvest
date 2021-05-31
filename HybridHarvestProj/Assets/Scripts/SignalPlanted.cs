@@ -26,13 +26,32 @@ public class SignalPlanted : MonoBehaviour
         //Debug.Log(isOccupied);
         if (isOccupied)
         {
+           // Debug.Log("Occupied");
             nowGrows = new Seed(PlayerPrefs.GetString(Patch.name + "grows"));
             //Debug.Log(nowGrows);
-            time = PlayerPrefs.GetInt(Patch.name + "time");
+            DateTime oldDate;
+            //try
+           // {
+                //Debug.Log(PlayerPrefs.GetString(Patch.name + "timeStart"));
+                oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
+            //}
+           //catch {
+            //    oldDate = DateTime.Now;
+            //}
+            var timePassed = DateTime.Now - oldDate;
+            var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
+            time = PlayerPrefs.GetInt(Patch.name + "time") - timeSpan.TotalSeconds;
+           // Debug.Log(time);
+            Patch.interactable = false;
+            if (time <= 0)
+            {
+                //timerNeeded = false;
+                TickTack();
+            }
             //Debug.Log(timerNeeded);
             //Debug.Log(time);
-            Patch.GetComponentInChildren<Text>().text = "planted" + nowGrows.ToString();
-            Patch.interactable = false;
+            //Patch.GetComponentInChildren<Text>().text = "planted" + nowGrows.ToString();
+            //Patch.interactable = false;
         }
     }
 
@@ -53,6 +72,7 @@ public class SignalPlanted : MonoBehaviour
     void OnDestroy()
     {
         PlayerPrefs.SetInt(Patch.name +"time", (int)time);
+        PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
         //Debug.Log("it saved");
     }
 
