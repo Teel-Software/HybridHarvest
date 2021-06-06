@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class VolumeControl : MonoBehaviour
 {
     public Slider Slide;
-    public AudioSource Music;
+    public GameObject GameMusic;
 
     public void Start()
     {
-        Slide.value = Music.volume;
+        GameMusic = GameObject.FindGameObjectWithTag("GameMusic");
+        var audioSource = GameMusic.GetComponent<AudioSource>();
+        Slide.value = audioSource.volume;
     }
 
     public void ChangeVolume()
     {
-        Music.volume = Slide.value;
+        GameMusic = GameObject.FindGameObjectWithTag("GameMusic");
+        var audioSource = GameMusic.GetComponent<AudioSource>();
+        audioSource.volume = Slide.value;
     }
 }
