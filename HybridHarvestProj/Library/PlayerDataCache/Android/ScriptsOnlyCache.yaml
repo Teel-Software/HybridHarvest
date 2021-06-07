@@ -15,7 +15,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -249,11 +248,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1564}
-    - Class: 114
       Script: {instanceID: 1566}
     - Class: 114
       Script: {instanceID: 1568}
+    - Class: 114
+      Script: {instanceID: 1758}
     - Class: 114
       Script: {instanceID: 2492}
     - Class: 114
@@ -267,8 +266,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5996}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -449,11 +446,11 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1564}
-    - Class: 114
       Script: {instanceID: 1566}
     - Class: 114
       Script: {instanceID: 1568}
+    - Class: 114
+      Script: {instanceID: 1758}
     - Class: 114
       Script: {instanceID: 2492}
     - Class: 114
@@ -467,8 +464,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5996}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -953,7 +948,7 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
-      Hash: 82dbb97f51a1cf23aaede08917cd67db
+      Hash: 3a18643c64f4f6ca1e938f0cc44b3858
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Inventory
@@ -971,7 +966,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 4864036e48fbfe6578b3124d659e91c8
+      Hash: 928acad1be1e6ad8f5df1a21c905ac71
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Seed
@@ -1097,7 +1092,7 @@ ScriptsOnlyBuild:
     className: VolumeComponent
   - hash:
       serializedVersion: 2
-      Hash: ff7dec6e67989c1097bf267995a9a394
+      Hash: 1c2727091d133ad8c35207c0a6f7c3b2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: VolumeControl

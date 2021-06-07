@@ -15,6 +15,7 @@ public class Seed : ScriptableObject
     public int Taste;
     public Sprite MyImage;
     public Gen GrowTimeGen;
+    public int Amount;
     [SerializeField] public int GrowTime;
 
     public Seed(string name, int price, string image)
@@ -35,6 +36,7 @@ public class Seed : ScriptableObject
         GabitusGen = (Gen)int.Parse(parameters[6]);
         Taste = int.Parse(parameters[7]);
         TasteGen = (Gen)int.Parse(parameters[8]);
+        Amount = int.Parse(parameters[9]);
     }
 
     public override string ToString()
@@ -42,7 +44,8 @@ public class Seed : ScriptableObject
         return Name+"|"+Price.ToString()+"|"+MyImage.name+"|"+
             GrowTime.ToString() + "|"  + ((int)GrowTimeGen).ToString() +"|" +
             Gabitus.ToString() + "|" + ((int)GabitusGen).ToString()+"|"+
-            Taste.ToString() + "|" + ((int)TasteGen).ToString();
+            Taste.ToString() + "|" + ((int)TasteGen).ToString()+"|"+
+            Amount.ToString();
     }
 }
 

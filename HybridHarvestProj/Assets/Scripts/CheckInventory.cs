@@ -14,6 +14,7 @@ public class CheckInventory : MonoBehaviour
         seed.GabitusGen = Gen.Mixed;
         seed.Taste = 10;
         seed.TasteGen = Gen.Mixed;
+        seed.Amount = 10;
         targetInventory.ChangeMoney(-price);
         targetInventory.AddItem(seed);
     }
