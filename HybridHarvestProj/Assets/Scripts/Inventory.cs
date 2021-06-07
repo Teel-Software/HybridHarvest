@@ -31,12 +31,13 @@ public class Inventory : MonoBehaviour
 
     public void ChangeMoney(int changingAmount)
     {
-        Money += changingAmount > 0
-            ? changingAmount / Devider
-            : changingAmount;
-        if (Money <= -100 && changingAmount < 0
-            || changingAmount > 0)
-            Reputation += changingAmount / Devider;
+        //Money += changingAmount > 0
+        //    ? changingAmount/* / Devider*/
+        //    : changingAmount;
+        //if (Money <= -100 && changingAmount < 0
+        //    || changingAmount > 0)
+        //    Reputation += changingAmount / Devider;
+        Money += changingAmount;
         RedrawInfo();
     }
 

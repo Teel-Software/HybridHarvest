@@ -5,17 +5,33 @@ using UnityEngine;
 public class CheckInventory : MonoBehaviour
 {
     [SerializeField] Inventory targetInventory;
-     public void AddOneMore(int price)
+    public void AddOneMore(int item)
     {
-        var seed =(Seed) Resources.Load("Seeds\\apple");
-        seed.GrowTime = 10;
-        seed.GrowTimeGen = Gen.Mixed;
-        seed.Gabitus = 10;
-        seed.GabitusGen = Gen.Mixed;
-        seed.Taste = 10;
-        seed.TasteGen = Gen.Mixed;
-        seed.Amount = 10;
-        targetInventory.ChangeMoney(-price);
-        targetInventory.AddItem(seed);
+        //var seed =(Seed) Resources.Load("Seeds\\apple");
+        //seed.GrowTime = 10;
+        //seed.GrowTimeGen = Gen.Mixed;
+        //seed.Gabitus = 10;
+        //seed.GabitusGen = Gen.Mixed;
+        //seed.Taste = 10;
+        //seed.TasteGen = Gen.Mixed;
+        //seed.Amount = 10;
+        switch (item) 
+        {
+            case 1:
+            var seed = (Seed)Resources.Load("Seeds\\Cucumber");
+            targetInventory.ChangeMoney(-seed.Price);
+            targetInventory.AddItem(seed);
+                break;
+            case 2:
+                var seed1 = (Seed)Resources.Load("Seeds\\Tomato");
+                targetInventory.ChangeMoney(-seed1.Price);
+                targetInventory.AddItem(seed1);
+                break;
+            case 3:
+                var seed2 = (Seed)Resources.Load("Seeds\\Carrot");
+                targetInventory.ChangeMoney(-seed2.Price);
+                targetInventory.AddItem(seed2);
+                break;
+        }
     }
 }

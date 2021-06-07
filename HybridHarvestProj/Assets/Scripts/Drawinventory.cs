@@ -104,6 +104,7 @@ public class Drawinventory : MonoBehaviour
         {
             a = int.Parse(item.name);
             targetInventory.ChangeMoney(targetInventory.Elements[a].Price);
+            targetInventory.ChangeReputation(targetInventory.Elements[a].Gabitus);
             targetInventory.RemoveItem(int.Parse(item.name));
             Redraw();
         }
