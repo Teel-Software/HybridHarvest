@@ -7,18 +7,9 @@ public class DontDestroy : MonoBehaviour
 {
     void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
-        //GameObject obj = GameObject.Find("player");
-        //if (!obj.Equals(this.gameObject))
-        //    GameObject.Destroy(obj); (scene.buildIndex == 0)
-        DontDestroyOnLoad(this.gameObject);
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("GameMusic");
+        if (obj.Length > 1)
+            Destroy(this.gameObject);
+        DontDestroyOnLoad(this?.gameObject);
     }
-
-    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    GameObject obj = GameObject.Find("player");
-    //    if ((scene.buildIndex == 0)&& (!obj.Equals(this.gameObject)))
-    //        GameObject.Destroy(obj);
-    //}
 }
