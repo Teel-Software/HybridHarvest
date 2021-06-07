@@ -9,7 +9,8 @@ using System.IO;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<Seed> Elements = new List<Seed>();
-    [SerializeField] public Text Info;
+    [SerializeField] public Text MoneyInfo;
+    [SerializeField] public Text ReputationInfo;
     private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
@@ -59,8 +60,8 @@ public class Inventory : MonoBehaviour
 
     void RedrawInfo()
     {
-        if(Info!= null)
-        Info.text = $"Деньги: {Money}   Репутация: {Reputation}";
+        if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
+        if (ReputationInfo != null) ReputationInfo.text = Reputation.ToString();
     }
 
     public void SaveData()
