@@ -271,7 +271,7 @@ RectTransform:
   - {fileID: 1971671888}
   - {fileID: 74445845}
   m_Father: {fileID: 1054157851}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -629,7 +629,7 @@ RectTransform:
   - {fileID: 1451225636}
   - {fileID: 1933751480}
   m_Father: {fileID: 1054157851}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 447174292}
   - component: {fileID: 447174291}
   m_Layer: 5
-  m_Name: Close
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,7 +1329,7 @@ RectTransform:
   m_Children:
   - {fileID: 1539583566}
   m_Father: {fileID: 1054157851}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 739003692}
   - component: {fileID: 739003690}
   m_Layer: 5
-  m_Name: Market
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,17 +1444,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 60
-    m_Right: 60
-    m_Top: 60
-    m_Bottom: 60
+    m_Left: 360
+    m_Right: 0
+    m_Top: 135
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 40, y: 38}
+  m_CellSize: {x: 70, y: 70}
+  m_Spacing: {x: 40, y: 50}
   m_Constraint: 0
-  m_ConstraintCount: 2
+  m_ConstraintCount: 5
 --- !u!114 &739003692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 258a473d14649cd4db2313e92a1c578e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c18dfae738407ae409b1ce3737442ea2, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1504,7 +1504,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0004543, y: 1.0004543, z: 1.0004543}
   m_Children:
-  - {fileID: 1311772758}
   - {fileID: 1896705638}
   m_Father: {fileID: 1054157851}
   m_RootOrder: 8
@@ -2230,6 +2229,7 @@ RectTransform:
   - {fileID: 2125174236}
   - {fileID: 1727909673}
   - {fileID: 739003694}
+  - {fileID: 1311772758}
   - {fileID: 654561914}
   - {fileID: 55368895}
   - {fileID: 229205578}
@@ -2651,12 +2651,12 @@ GameObject:
   - component: {fileID: 1311772760}
   - component: {fileID: 1311772759}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: ShopBackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1311772758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2668,12 +2668,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 739003694}
-  m_RootOrder: 0
+  m_Father: {fileID: 1054157851}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90.79999, y: -79.2}
+  m_AnchoredPosition: {x: 60, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311772759
@@ -2736,6 +2736,30 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 739003689}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 229205577}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1311772757}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -3601,7 +3625,7 @@ GameObject:
   - component: {fileID: 1554585033}
   - component: {fileID: 1554585036}
   m_Layer: 5
-  m_Name: Market
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3696,6 +3720,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 229205577}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1311772757}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1554585034
 MonoBehaviour:
@@ -4526,11 +4574,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739003694}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 228.6, y: -79.2}
+  m_AnchoredPosition: {x: 250, y: -110}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896705639
@@ -5628,7 +5676,7 @@ GameObject:
   - component: {fileID: 2125174238}
   - component: {fileID: 2125174237}
   m_Layer: 5
-  m_Name: FieldLabel (1)
+  m_Name: QuantumLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
