@@ -8,10 +8,13 @@ public class CheckInventory : MonoBehaviour
      public void AddOneMore(int price)
     {
         var seed =(Seed) Resources.Load("Seeds\\apple");
-        //targetInventory.AddItem(seed);
         seed.GrowTime = 10;
+        seed.GrowTimeGen = Gen.Mixed;
+        seed.Gabitus = 10;
+        seed.GabitusGen = Gen.Mixed;
+        seed.Taste = 10;
+        seed.TasteGen = Gen.Mixed;
         targetInventory.ChangeMoney(-price);
         targetInventory.AddItem(seed);
-        //targetInventory.SaveData();
     }
 }

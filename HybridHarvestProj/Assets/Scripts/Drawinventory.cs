@@ -12,14 +12,13 @@ public class Drawinventory : MonoBehaviour
     //[SerializeField] Dropdown Choice;
     public Button GrowPlace { get; set; }
     List<GameObject> alreadyDrawn = new List<GameObject>();
-    // Start is called before the first frame update
+
     void Start()
     {
         targetInventory.onItemAdded += Redraw;
         Redraw();
     }
 
-    // Update is called once per frame
     void Redraw()
     {
         for(var i=0; i < alreadyDrawn.Count; i++)
@@ -30,11 +29,7 @@ public class Drawinventory : MonoBehaviour
         for(var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var item = targetInventory.Elements[i];
-            //Debug.Log(item.MyImage);
             var icon = new GameObject(i.ToString(), typeof(Button));
-            //icon.AddComponent<BoxCollider2D>();
-            //icon.AddComponent<Rigidbody2D>();
-            //icon.GetComponent<Rigidbody2D>().gravityScale = 0;
             icon.AddComponent<Image>().sprite = item.MyImage;
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             
@@ -44,31 +39,6 @@ public class Drawinventory : MonoBehaviour
             
         }
     }
-
-    //public void OnPointerDown(PointerEventData eventData)
-    //{
-    //    Debug.Log("ok1");
-    //    var item = (GameObject)eventData.pointerPress;
-    //    if (item == null)
-    //    {
-    //        Debug.Log("not ok");
-    //        return;
-    //    }
-    //    //Debug.Log(item.name);
-    //    print("ok2");
-    //    int a;
-    //    if (int.TryParse(item.name, out a))
-    //    {
-    //        targetInventory.RemoveItem(int.Parse(item.name));
-    //        print("ok2.5");
-    //        //targetInventory.RemoveItem(0);
-    //        print("ok3");
-    //        Redraw();
-    //        print("Grando finale");
-    //    }
-    //    else
-    //        Debug.Log(item.name);
-    //}
 
     public void PointerDown()
     {
@@ -127,16 +97,6 @@ public class Drawinventory : MonoBehaviour
         //Sell(item);
     }
 
-    //private void Se(int option)
-    //{
-    //    switch (option)
-    //    {
-    //        case 0:
-    //            Sell();
-    //            break;
-    //    }
-    //}
-
     private void Sell(GameObject item)
     {
         int a;
@@ -155,17 +115,11 @@ public class Drawinventory : MonoBehaviour
         if (int.TryParse(item.name, out a))
         {
             a = int.Parse(item.name);
-            //targetInventory.ChangeMoney(targetInventory.Elements[a].Price);
-            //targetInventory.RemoveItem(int.Parse(item.name));
-            //print("planted");
             Seed toPlant = targetInventory.Elements[int.Parse(item.name)];
-            //print(toPlant.ToString());
-            //print(GrowPlace.)
             GrowPlace.GetComponent<SignalPlanted>().PlantIt(toPlant);
             targetInventory.RemoveItem(int.Parse(item.name));
             Redraw();
             Place.gameObject.SetActive(false);
-            //targetInventory.RemoveItem(int.Parse(item.name));
         }
     }
 }

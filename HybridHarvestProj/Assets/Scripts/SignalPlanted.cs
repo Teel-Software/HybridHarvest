@@ -23,35 +23,19 @@ public class SignalPlanted : MonoBehaviour
         }
         else
             isOccupied = false;
-        //Debug.Log(isOccupied);
         if (isOccupied)
         {
-           // Debug.Log("Occupied");
             nowGrows = new Seed(PlayerPrefs.GetString(Patch.name + "grows"));
-            //Debug.Log(nowGrows);
             DateTime oldDate;
-            //try
-           // {
-                //Debug.Log(PlayerPrefs.GetString(Patch.name + "timeStart"));
                 oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
-            //}
-           //catch {
-            //    oldDate = DateTime.Now;
-            //}
             var timePassed = DateTime.Now - oldDate;
             var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
             time = PlayerPrefs.GetInt(Patch.name + "time") - timeSpan.TotalSeconds;
-           // Debug.Log(time);
             Patch.interactable = false;
             if (time <= 0)
             {
-                //timerNeeded = false;
                 TickTack();
             }
-            //Debug.Log(timerNeeded);
-            //Debug.Log(time);
-            //Patch.GetComponentInChildren<Text>().text = "planted" + nowGrows.ToString();
-            //Patch.interactable = false;
         }
     }
 
@@ -73,12 +57,10 @@ public class SignalPlanted : MonoBehaviour
     {
         PlayerPrefs.SetInt(Patch.name +"time", (int)time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
-        //Debug.Log("it saved");
     }
 
     public void TickTack()
     {
-       // Debug.Log("TickTack");
         timerNeeded = false;
         Patch.interactable = true;
         Patch.GetComponentInChildren<Text>().text = "harvest time";
@@ -86,12 +68,10 @@ public class SignalPlanted : MonoBehaviour
 
     public void PlantIt(Seed seed)
     {
-       // Debug.Log("PlantIt");
         Patch.GetComponentInChildren<Text>().text = "planted" +seed.ToString();
         Patch.interactable = false;
         isOccupied = true;
         nowGrows = seed;
-       // Debug.Log(nowGrows);
         PlayerPrefs.SetInt(Patch.name+"occupied", isOccupied ? 1 : 0);
         PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
         time = seed.GrowTime;
@@ -100,7 +80,6 @@ public class SignalPlanted : MonoBehaviour
 
     public void Clicked()
     {
-       // Debug.Log(timerNeeded);
         if (!(time<0))
         {
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
@@ -109,9 +88,7 @@ public class SignalPlanted : MonoBehaviour
         else
         {
             isOccupied = false;
-            //nowGrows = null;
             time = 1;
-           // Debug.Log(nowGrows);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             nowGrows = null;
