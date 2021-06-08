@@ -89,11 +89,33 @@ public class SignalPlanted : MonoBehaviour
         {
             isOccupied = false;
             time = 1;
-            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
-            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
+            for (var i = 0; i < nowGrows.Amount; i++)
+            {
+                var newSeed = MutateSeed(nowGrows, i);
+                InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
+            }
+            //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             nowGrows = null;
             PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
             Patch.GetComponentInChildren<Text>().text = "free place";
         }
+    }
+
+    public Seed MutateSeed(Seed oldSeed, int i) 
+    {
+        var procentage =  UnityEngine.Random.value;
+        var newSeed = new Seed(oldSeed.ToString());
+        var plusAmount = UnityEngine.Random.value;
+        if (procentage < 0.5 && newSeed.Gabitus<=100)
+            newSeed.Gabitus += (int)(plusAmount * 5+1);
+        else
+        {
+            if (newSeed.Taste <= 100)
+            {
+                newSeed.Taste += (int)(plusAmount * 5 + 1);
+                newSeed.Price += (int)(plusAmount * 5 + 1);
+            }
+        }
+        return newSeed;
     }
 }

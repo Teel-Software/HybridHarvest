@@ -21,4 +21,4 @@ MonoBehaviour:
   MyImage: {fileID: 21300000, guid: 414daf9ee66390f479ac7bd44522e04c, type: 3}
   GrowTimeGen: 1
   Amount: 6
-  GrowTime: 18
+  GrowTime: 5
