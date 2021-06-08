@@ -1,1109 +1,135 @@
 Using pre-set license
 Built from '2020.3/release' branch; Version is '2020.3.2f1 (8fd9074bf66c) revision 9427207'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Pro; OS build 19041.985; Version 2004; 64bit' Language: 'ru' Physical Memory: 16316 MB
+OS: 'Windows 10 Pro; OS build 18363.1316; Version 1909; 64bit' Language: 'ru' Physical Memory: 16308 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.2f1\Editor\Unity.exe
+D:\Unity\Editor\2020.3.2f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj
+D:/Unity Projects/HybridHarvest/HybridHarvestProj
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-54967
-Successfully changed project path to: D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj
-D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj
+55414
+Successfully changed project path to: D:/Unity Projects/HybridHarvest/HybridHarvestProj
+D:/Unity Projects/HybridHarvest/HybridHarvestProj
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 65.19 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 67.57 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.2f1 (8fd9074bf66c)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Unity projects/HybridHarvest/HybridHarvest/HybridHarvestProj/Assets
+[Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Unity Projects/HybridHarvest/HybridHarvestProj/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1050 Ti (ID=0x1c82)
+    Renderer: Radeon RX 580 Series (ID=0x67df)
     Vendor:   
-    VRAM:     4018 MB
-    Driver:   27.21.14.6079
+    VRAM:     8171 MB
+    Driver:   27.20.15003.1004
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56292
+Mono path[0] = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56940
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002777 seconds.
+Register platform support module: D:/Unity/Editor/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001293 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 70.95 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 69.61 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.030 seconds
+- Completed reload, in  2.014 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001823 seconds.
+Registered in 0.001837 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 62.16 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 78.95 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.250 seconds
+- Completed reload, in  1.356 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
+Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 126.6 MB.
 System memory in use after: 126.7 MB.
 
 Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 3359.
-Total: 2.802400 ms (FindLiveObjects: 0.372500 ms CreateObjectMapping: 0.085400 ms MarkObjects: 2.206600 ms  DeleteObjects: 0.136900 ms)
+Total: 3.054700 ms (FindLiveObjects: 0.280200 ms CreateObjectMapping: 0.135200 ms MarkObjects: 2.486600 ms  DeleteObjects: 0.151100 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b329defa130326cae895d5707784ae3f') in 0.036152 seconds
-  Import took 0.041007 seconds .
+  path: Assets/Scenes/Field.unity
+  artifactKey: Guid(4cec066c414e0004bb91b52d2d3eff87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Field.unity using Guid(4cec066c414e0004bb91b52d2d3eff87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1f6671cbfbc79af53589b40bb4d455a') in 0.021334 seconds
+  Import took 0.028900 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/Scenes/MainMenu.unity
+  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MainMenu.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd23b2507431dff70e7115066580da69f') in 0.003764 seconds
+  Import took 0.010995 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/Scenes/Lab.unity
+  artifactKey: Guid(ff794aad47bd8a44abb3bf537aed9ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Lab.unity using Guid(ff794aad47bd8a44abb3bf537aed9ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4ccb8b0e3b34e111079cd9604663ac6') in 0.010142 seconds
+  Import took 0.019264 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.434074 seconds.
+  path: Assets/Scenes/Choice.unity
+  artifactKey: Guid(f342da700a7bd684ab8475ecefbf94cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Choice.unity using Guid(f342da700a7bd684ab8475ecefbf94cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '673ece499beed4e019e4ba74505334c8') in 0.007805 seconds
+  Import took 0.014561 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.038860 seconds.
+Registered in 0.002039 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 1.14 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.044 seconds
+- Completed reload, in  1.133 seconds
 Platform modules already initialized, skipping
 Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.8 MB.
-System memory in use after: 119.9 MB.
+System memory in use before: 119.9 MB.
+System memory in use after: 120.0 MB.
 
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3363.
-Total: 2.852100 ms (FindLiveObjects: 0.333200 ms CreateObjectMapping: 0.076000 ms MarkObjects: 2.318400 ms  DeleteObjects: 0.122900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 92.825872 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001328 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005864 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.018543 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000253 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004348 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117661 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000248 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004369 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115953 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000343 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006491 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121102 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000346 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006900 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115924 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000243 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004385 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117162 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000274 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005060 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016994 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000248 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004418 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.112707 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000236 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004600 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017480 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000247 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004308 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119305 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000280 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004736 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016452 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000270 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004679 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119874 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000335 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006536 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116878 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000408 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006720 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.114215 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000330 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006012 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.018304 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000251 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004581 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118317 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000362 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006821 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.122026 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000240 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004259 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120002 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000351 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006957 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120396 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000346 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006422 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.123853 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000323 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006417 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119677 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000343 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006429 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.113560 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000272 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004783 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.123944 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000259 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004641 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015653 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000262 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004731 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.122707 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000436 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.007073 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117249 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000281 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005743 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.123580 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000302 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005025 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.022081 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000338 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006116 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117793 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000374 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006856 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115658 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000262 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004322 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115002 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000365 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006109 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116935 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000253 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004381 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121205 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000358 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.007186 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117067 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000329 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006583 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117089 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000297 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005102 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115978 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000289 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004653 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118078 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000267 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004475 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.114478 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000251 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004537 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.124427 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000244 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004506 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.114724 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000263 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005110 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116409 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000348 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006217 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121429 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000316 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005339 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120168 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000241 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004626 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119144 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000349 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006962 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118959 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000241 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004532 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116691 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000255 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004713 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.122430 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000292 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005895 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120797 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000336 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005374 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119916 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000300 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005032 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.020442 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000289 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004692 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.114876 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000276 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004877 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120921 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000269 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004464 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015308 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000247 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004305 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.122157 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000347 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006628 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118429 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000256 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005299 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119589 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000249 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004571 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117460 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000323 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005488 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121391 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000273 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005550 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121925 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000249 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004526 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.124455 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000249 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004573 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120880 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000355 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006854 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118655 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000347 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005987 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.125856 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000341 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006118 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117544 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000231 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004248 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015207 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000281 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004686 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116344 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000286 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004752 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.019798 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000282 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004698 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115782 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000261 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004532 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119672 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000253 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004556 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120435 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000258 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004611 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120416 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000238 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004536 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.120256 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000267 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004703 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.123737 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000255 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004517 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.121611 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000237 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004569 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119528 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000252 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004484 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119560 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000274 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004681 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115504 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000349 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005961 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.129152 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000267 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004814 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.114481 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000253 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004421 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115601 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000255 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004459 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017508 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000284 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004643 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.113920 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000269 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004443 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119342 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000273 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004741 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115445 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000276 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004771 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.126149 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000255 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004563 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015372 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000266 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004752 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.118119 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000349 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.006795 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115552 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000284 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005121 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.117381 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000258 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005090 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.115073 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000278 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004942 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.020056 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000254 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004699 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.116889 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000239 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.004500 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.123526 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000304 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.005083 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.119471 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000496 seconds
-  ERROR: Build asset version error: assets/scripts/seed.cs in SourceAssetDB has modification time of '2021-06-07T17:13:52.5600847Z' while content on disk has modification time of '2021-06-07T17:14:15.7191129Z'
-  Import took 0.008422 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001795 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.040 seconds
-Platform modules already initialized, skipping
-Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.8 MB.
-System memory in use after: 119.9 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3367.
-Total: 2.760500 ms (FindLiveObjects: 0.322200 ms CreateObjectMapping: 0.078900 ms MarkObjects: 2.235400 ms  DeleteObjects: 0.122200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 4.942013 seconds.
-  path: Assets/Scripts/Seed.cs
-  artifactKey: Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Seed.cs using Guid(a112785622812904490495f4cb0851a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c51fd9b882d387d22ba20c1facb5a95f') in 0.011267 seconds
-  Import took 0.016376 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001826 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.084 seconds
-Platform modules already initialized, skipping
-Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.9 MB.
-System memory in use after: 120.0 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3371.
-Total: 2.795500 ms (FindLiveObjects: 0.325800 ms CreateObjectMapping: 0.079500 ms MarkObjects: 2.252300 ms  DeleteObjects: 0.136800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002176 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.074 seconds
-Platform modules already initialized, skipping
-Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.9 MB.
-System memory in use after: 120.0 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3375.
-Total: 2.765900 ms (FindLiveObjects: 0.339600 ms CreateObjectMapping: 0.077300 ms MarkObjects: 2.216100 ms  DeleteObjects: 0.131700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001761 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.073 seconds
-Platform modules already initialized, skipping
-Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.9 MB.
-System memory in use after: 120.0 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3379.
-Total: 2.933100 ms (FindLiveObjects: 0.322200 ms CreateObjectMapping: 0.077700 ms MarkObjects: 2.397600 ms  DeleteObjects: 0.134200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001892 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.091 seconds
-Platform modules already initialized, skipping
-Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2856 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.9 MB.
-System memory in use after: 120.0 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3383.
-Total: 2.964100 ms (FindLiveObjects: 0.405800 ms CreateObjectMapping: 0.139600 ms MarkObjects: 2.290000 ms  DeleteObjects: 0.127300 ms)
+Total: 4.363500 ms (FindLiveObjects: 1.423900 ms CreateObjectMapping: 0.303400 ms MarkObjects: 2.365900 ms  DeleteObjects: 0.122500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
