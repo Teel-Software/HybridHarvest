@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GeneCrossing : MonoBehaviour
 {
+    [SerializeField] RectTransform InventoryFrame;
+    [SerializeField] Button button1;
+    [SerializeField] Button button2;
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    public void ContactToInventory() 
     {
         
     }
