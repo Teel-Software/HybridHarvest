@@ -97,7 +97,7 @@ public class SignalPlanted : MonoBehaviour
             //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             nowGrows = null;
             PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
-            Patch.GetComponentInChildren<Text>().text = "free place";
+            Patch.GetComponentInChildren<Text>().text = "";
         }
     }
 

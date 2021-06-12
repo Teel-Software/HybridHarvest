@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameMusic
   - GameSFX
+  - ExitButton
   layers:
   - Default
   - TransparentFX
