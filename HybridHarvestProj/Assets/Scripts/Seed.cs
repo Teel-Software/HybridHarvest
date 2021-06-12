@@ -9,13 +9,16 @@ public class Seed : ScriptableObject
 {
     public string Name;
     public int Price;
+    public Sprite MyImage;
+    public int Amount;
+    
     public Gen GabitusGen;
     public int Gabitus;
+    
     public Gen TasteGen;
     public int Taste;
-    public Sprite MyImage;
+    
     public Gen GrowTimeGen;
-    public int Amount;
     [SerializeField] public int GrowTime;
 
     public Seed(string name, int price, string image)
@@ -41,10 +44,10 @@ public class Seed : ScriptableObject
 
     public override string ToString()
     {
-        return Name + "|" + Price.ToString() + "|" + MyImage.name + "|" +
-               GrowTime.ToString() + "|" + ((int) GrowTimeGen).ToString() + "|" +
-               Gabitus.ToString() + "|" + ((int) GabitusGen).ToString() + "|" +
-               Taste.ToString() + "|" + ((int) TasteGen).ToString() + "|" +
+        return Name + "|" + Price + "|" + MyImage.name + "|" +
+               GrowTime+ "|" + (int)GrowTimeGen + "|" +
+               Gabitus + "|" + (int)GabitusGen + "|" +
+               Taste + "|" + (int)TasteGen + "|" +
                Amount;
     }
 }
