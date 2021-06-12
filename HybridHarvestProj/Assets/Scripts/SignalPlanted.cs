@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Unity.Mathematics;
 using UnityEngine.EventSystems;
 
 public class SignalPlanted : MonoBehaviour
@@ -27,15 +28,14 @@ public class SignalPlanted : MonoBehaviour
         {
             nowGrows = new Seed(PlayerPrefs.GetString(Patch.name + "grows"));
             DateTime oldDate;
-                oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
+            oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
             var timePassed = DateTime.Now - oldDate;
             var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
             time = PlayerPrefs.GetInt(Patch.name + "time") - timeSpan.TotalSeconds;
             Patch.interactable = false;
+            
             if (time <= 0)
-            {
                 TickTack();
-            }
         }
     }
 
@@ -46,7 +46,7 @@ public class SignalPlanted : MonoBehaviour
             if (time > 0)
             {
                 time -= Time.deltaTime;
-                Patch.GetComponentInChildren<Text>().text = time.ToString();
+                Patch.GetComponentInChildren<Text>().text = math.round(time).ToString();
             }
             else
                 TickTack();
@@ -68,7 +68,7 @@ public class SignalPlanted : MonoBehaviour
 
     public void PlantIt(Seed seed)
     {
-        Patch.GetComponentInChildren<Text>().text = "planted" +seed.ToString();
+        Patch.GetComponentInChildren<Text>().text = "planted" + seed;
         Patch.interactable = false;
         isOccupied = true;
         nowGrows = seed;

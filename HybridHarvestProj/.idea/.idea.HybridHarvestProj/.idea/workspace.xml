@@ -2,53 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7322e2-4c18-4359-95c1-68a27770a070" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HybridHarvestProj/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HybridHarvestProj/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HybridHarvestProj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HybridHarvestProj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Field.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Field.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/LabelLong.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures (raw)/LabelLong.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/quantum.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/quantum.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Seed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Seed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/Back6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/BackButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/BackButton.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/BackButton2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/BackButton2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/FwdButton2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/FwdButton2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/WoodenFrame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/WoodenFrame.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/WoodenFrame2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/WoodenFrame2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/backarrow3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures (raw)/pot.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures (raw)/pot.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/15/15c8af113894761ee0dcfac54795e15e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/17/17e84b4292f594823d2f2465639240cb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/26/2663bbb9008ecac1d4edc6a0d313c694" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/29/292b1d7d1e2ef38121a996204c3b967c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/2e/2edb42fa3f5ed9deacfb246604ba10d6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/2f/2f693d498d7bc84486554a8ea8004dfb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/38/387ba7ff2584eb9f6b83539e6999e242" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/45/45dc23b274aae48729c5fc5d89e225c9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/4f/4f3dcc1e44be3b00aa3da251e897c292" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/50/50e29e69cab00ee0a69908dbe8570923" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/55/55bb91dcee0f17520a2af2646ce0fcb2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/59/594d33b309ccb0759bc383bbcfda724f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/5b/5bcf1dedd0e63963fd87a0050873b927" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/5e/5ea281191a196d483cbd489c8126eedc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/60/608382ed979b0543ed00ed64152a9987" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/62/628ac934a17237c044b8f1cfb8e74972" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/6c/6cfc39cf3afdd58afd3c9f1c31721f06" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/78/78f41d70603ea0776fefff010cfd9145" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/92/9204fc582ce0439795e32236402c26e0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/97/9755e38f9f79ba7cccbb941e4f03d6e1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/97/97d24ed9c9f438c1b9670b8e34a45e2e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/9e/9e59666ac278094688bdb506df0aab44" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/b5/b522c3cc1aaa18b1bbdfc022a5e63b53" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/bc/bc6a0d7407075f678ca55cd057e3b2c5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/bf/bf96f4980aac2ba402a64ed5b1e64d39" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/c0/c0e51f66f2aa073a632b701599519ac2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/d0/d0c970e4f985cbf3afb0c0897828971d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/e0/e063211d645ead1aef072aa767f3a6e7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Artifacts/ff/ff5aca21215d76c085091e775291a761" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/CurrentLayout-default.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/CurrentLayout-default.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Artifacts/10/1027a35689add1e0c50b349610743413" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Artifacts/17/177a63f60bc708206f3b2e07d09518e3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Artifacts/2e/2efe7a202e4e2f7dc1f387ec9fb51249" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/PackageCache/com.unity.ide.vscode@1.2.3/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PackageCache/com.unity.ide.vscode@1.2.3/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/PackageManager/ProjectCache" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PackageManager/ProjectCache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/PackageManager/ProjectCache.md5" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PackageManager/ProjectCache.md5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/SourceAssetDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/SourceAssetDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/StateCache/MainStageHierarchy/4d/4d2a36d9faf65734f0bbefb3ee623532.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/MainStageHierarchy/4d/4d2a36d9faf65734f0bbefb3ee623532.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/StateCache/SceneView/8c/8cd7c613bf844de3b80696e27a479d5e.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/SceneView/8c/8cd7c613bf844de3b80696e27a479d5e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +61,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlaySound.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/BackGroundCreation.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Seed.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/VolumeControl.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Seed.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlaySound.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1s7KQqFCGU7H7rjxUAdOCmRBLli" />
@@ -120,6 +128,7 @@
       <workItem from="1622982545783" duration="355000" />
       <workItem from="1622983054806" duration="722000" />
       <workItem from="1623066682434" duration="1005000" />
+      <workItem from="1623484710829" duration="7322000" />
     </task>
     <servers />
   </component>
@@ -128,6 +137,17 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
+    public string ObjectTag;
     void Awake()
     {
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("GameMusic");
+        GameObject[] obj = GameObject.FindGameObjectsWithTag(ObjectTag);
         if (obj.Length > 1)
-            Destroy(this.gameObject);
-        DontDestroyOnLoad(this?.gameObject);
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 }

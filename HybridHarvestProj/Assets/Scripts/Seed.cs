@@ -41,11 +41,11 @@ public class Seed : ScriptableObject
 
     public override string ToString()
     {
-        return Name+"|"+Price.ToString()+"|"+MyImage.name+"|"+
-            GrowTime.ToString() + "|"  + ((int)GrowTimeGen).ToString() +"|" +
-            Gabitus.ToString() + "|" + ((int)GabitusGen).ToString()+"|"+
-            Taste.ToString() + "|" + ((int)TasteGen).ToString()+"|"+
-            Amount.ToString();
+        return Name + "|" + Price.ToString() + "|" + MyImage.name + "|" +
+               GrowTime.ToString() + "|" + ((int) GrowTimeGen).ToString() + "|" +
+               Gabitus.ToString() + "|" + ((int) GabitusGen).ToString() + "|" +
+               Taste.ToString() + "|" + ((int) TasteGen).ToString() + "|" +
+               Amount;
     }
 }
 
