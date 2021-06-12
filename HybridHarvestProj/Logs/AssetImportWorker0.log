@@ -1,447 +1,615 @@
 Using pre-set license
 Built from '2020.3/release' branch; Version is '2020.3.2f1 (8fd9074bf66c) revision 9427207'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Pro; OS build 18363.1316; Version 1909; 64bit' Language: 'ru' Physical Memory: 16308 MB
+OS: 'Windows 10 Enterprise LTSC 2019; OS build 17763.1339; Version 1809; 64bit' Language: 'ru' Physical Memory: 5996 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-D:\Unity\Editor\2020.3.2f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020.3.2f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/Unity Projects/HybridHarvest/HybridHarvestProj
+C:/Users/Trixter/Documents/GitHub/HybridHarvest/HybridHarvestProj
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62443
-Successfully changed project path to: D:/Unity Projects/HybridHarvest/HybridHarvestProj
-D:/Unity Projects/HybridHarvest/HybridHarvestProj
+1077
+Successfully changed project path to: C:/Users/Trixter/Documents/GitHub/HybridHarvest/HybridHarvestProj
+C:/Users/Trixter/Documents/GitHub/HybridHarvest/HybridHarvestProj
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 58.50 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 117.36 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.2f1 (8fd9074bf66c)
-[Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Unity Projects/HybridHarvest/HybridHarvestProj/Assets
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Trixter/Documents/GitHub/HybridHarvest/HybridHarvestProj/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: Radeon RX 580 Series (ID=0x67df)
+    Renderer: NVIDIA GeForce MX250 (ID=0x1d13)
     Vendor:   
-    VRAM:     8171 MB
-    Driver:   27.20.15003.1004
+    VRAM:     1983 MB
+    Driver:   27.21.14.6677
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Initialize mono
-Mono path[0] = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/Managed'
-Mono path[1] = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'D:/Unity/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56576
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56720
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: D:/Unity/Editor/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000947 seconds.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.007927 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 64.95 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 81.05 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.195 seconds
+- Completed reload, in  2.171 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001437 seconds.
+Registered in 0.004631 seconds.
 Begin MonoManager ReloadAssembly
+Symbol file data-0000025176187020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002516FFA91A0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251701A7050 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170220FC0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517033B040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517082E030 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170841240 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170841240 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170509010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175FD3040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251749CD020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170841240 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174FBC010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174FE9A20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251749D5030 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251749D5030 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174FE9A20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170D07CE0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251761A6430 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025148D9BD50 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517549E020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170849C50 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175FD3040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517033B040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251754AFC30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175CF3020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251705E1750 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174FFAE30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175411010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251754AFC30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251754AFC30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174D39030 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517035EE80 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517033B040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517033B040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174BAB010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517546EC20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251705D9710 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517033B040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175582E20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175476630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174BD0E20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251754AFC30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 61.73 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 89.80 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.172 seconds
+- Completed reload, in  1.831 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
-Refreshing native plugins compatible for Editor in 0.92 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2917 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 126.7 MB.
-System memory in use after: 126.9 MB.
+System memory in use before: 126.6 MB.
+System memory in use after: 126.8 MB.
 
 Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 3368.
-Total: 3.159800 ms (FindLiveObjects: 0.460400 ms CreateObjectMapping: 0.299100 ms MarkObjects: 2.372200 ms  DeleteObjects: 0.027000 ms)
+Total: 3.213500 ms (FindLiveObjects: 0.374700 ms CreateObjectMapping: 0.241400 ms MarkObjects: 2.557100 ms  DeleteObjects: 0.038700 ms)
 
 ========================================================================
 Received Import Request.
   path: Assets/Textures (raw)/Settings2.png
   artifactKey: Guid(bb9df18633a96d54b88cfbb0d5a8d459) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Settings2.png using Guid(bb9df18633a96d54b88cfbb0d5a8d459) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75d28d75cf58898436f5b83dcf705028') in 0.116541 seconds
-  Import took 0.122944 seconds .
+Start importing Assets/Textures (raw)/Settings2.png using Guid(bb9df18633a96d54b88cfbb0d5a8d459) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e668fe3ab1274da6485ecfbdb040687d') in 0.126156 seconds
+  Import took 0.132898 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000285 seconds.
+  path: Assets/Textures (raw)/SidePanel3.png
+  artifactKey: Guid(4edc69f56f81a814798c3c6eb89984cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/SidePanel3.png using Guid(4edc69f56f81a814798c3c6eb89984cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99a922601adb24b1c393f6f0a6a7b0de') in 0.015697 seconds
+  Import took 0.024127 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000236 seconds.
+  path: Assets/Textures (raw)/WoodTexture.png
+  artifactKey: Guid(28a6183a0ee313849a7583bce9d6a8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/WoodTexture.png using Guid(28a6183a0ee313849a7583bce9d6a8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfea3c7c742fa0226950e98227aa16fd') in 0.018070 seconds
+  Import took 0.026028 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000278 seconds.
+  path: Assets/Textures (raw)/Reputation.png
+  artifactKey: Guid(b2e6408a58ba00741bd1348dabc16a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Reputation.png using Guid(b2e6408a58ba00741bd1348dabc16a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11d6a38e7702f658b83da2254359baf0') in 0.016576 seconds
+  Import took 0.025178 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/Resources/SeedsIcons/cucumber.jpg
+  artifactKey: Guid(9747c8b44bff2b24a8471d4105a66e91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/SeedsIcons/cucumber.jpg using Guid(9747c8b44bff2b24a8471d4105a66e91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79a1ff8f28e64e6ae295105cc357f1c4') in 0.030370 seconds
+  Import took 0.039521 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000302 seconds.
+  path: Assets/Textures (raw)/main menu title.png
+  artifactKey: Guid(8e1066a304f1d4e4592b0838b6ab84fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/main menu title.png using Guid(8e1066a304f1d4e4592b0838b6ab84fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25feed5bf2877b64f1b9b7c15a31a5e4') in 0.015688 seconds
+  Import took 0.023366 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000364 seconds.
+  path: Assets/Textures (raw)/Money.png
+  artifactKey: Guid(42d2ab6b3dc7d6f49b33a6bcb695b0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Money.png using Guid(42d2ab6b3dc7d6f49b33a6bcb695b0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fdd0d0fe41f78a54600a4fbbd1081d9') in 0.014663 seconds
+  Import took 0.022284 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/Textures (raw)/WoodenFrame3.png
+  artifactKey: Guid(1933a8801966f304e88a5dc5d4d3a5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/WoodenFrame3.png using Guid(1933a8801966f304e88a5dc5d4d3a5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '478929838f6fc0a87d0ef7b2873c1a17') in 0.029171 seconds
+  Import took 0.037084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000233 seconds.
+  path: Assets/Resources/SeedsIcons/carrot.jpg
+  artifactKey: Guid(326503a3a6ca23646beb01231a430118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/SeedsIcons/carrot.jpg using Guid(326503a3a6ca23646beb01231a430118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a47f826d7a3f679c1caf9c48b20cdcf0') in 0.023752 seconds
+  Import took 0.032318 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000308 seconds.
+  path: Assets/Textures (raw)/FarmGround.png
+  artifactKey: Guid(6158e8322ee22c143a39cddd0425a7ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/FarmGround.png using Guid(6158e8322ee22c143a39cddd0425a7ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15542df51c42b41a33ca23401ab88416') in 0.013806 seconds
+  Import took 0.026201 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000268 seconds.
+  path: Assets/Textures (raw)/FarmField.png
+  artifactKey: Guid(3a6065d8e637db144a3753a59f59249d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/FarmField.png using Guid(3a6065d8e637db144a3753a59f59249d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9632ab89527ad4eb340dc30cdc224c0') in 0.018399 seconds
+  Import took 0.024953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/Textures (raw)/start button.png
+  artifactKey: Guid(8c080867a960a674899d66cd9f4910fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/start button.png using Guid(8c080867a960a674899d66cd9f4910fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '997de15e6d15b9d31f49a56c61539c88') in 0.014601 seconds
+  Import took 0.025660 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000372 seconds.
+  path: Assets/Textures (raw)/LabLamp.png
+  artifactKey: Guid(6d27e2e6ec1f6844181c6765bb3c4be2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/LabLamp.png using Guid(6d27e2e6ec1f6844181c6765bb3c4be2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d1521040bf92739aa835c789591e90f') in 0.016451 seconds
+  Import took 0.023960 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/Textures (raw)/pot.png
+  artifactKey: Guid(906d27e133ceb8148924f23303d4dd08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/pot.png using Guid(906d27e133ceb8148924f23303d4dd08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1dec5b55b756e29d7d4abe80320c898') in 0.016882 seconds
+  Import took 0.027172 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/Textures (raw)/tape2.png
+  artifactKey: Guid(8070bfb841ee6084caae4fa24ecd0d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/tape2.png using Guid(8070bfb841ee6084caae4fa24ecd0d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19c69f1c002112f75be9f47ceccee951') in 0.014047 seconds
+  Import took 0.021990 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/Textures (raw)/CarrotSprout.png
+  artifactKey: Guid(68e03dae26aa1034ca40d7ab91fe06ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/CarrotSprout.png using Guid(68e03dae26aa1034ca40d7ab91fe06ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a18881d41e25b30bd1220331debf415d') in 0.013373 seconds
+  Import took 0.022210 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000516 seconds.
+  path: Assets/Textures (raw)/FarmFieldPreview.png
+  artifactKey: Guid(e8832939033c02e43b908bd12d6d78c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/FarmFieldPreview.png using Guid(e8832939033c02e43b908bd12d6d78c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e72176c759e944749c06246dc381713') in 0.021375 seconds
+  Import took 0.028637 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000277 seconds.
+  path: Assets/Textures (raw)/StatsBG.png
+  artifactKey: Guid(280bcb2df56332642826aa2f1deb7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/StatsBG.png using Guid(280bcb2df56332642826aa2f1deb7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b7862be6fda7ba8bf6552756b1eaa41') in 0.021304 seconds
+  Import took 0.031616 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000280 seconds.
+  path: Assets/Textures (raw)/WoodTexture2.png
+  artifactKey: Guid(4678f10911c15f2478f31f2272f49fa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/WoodTexture2.png using Guid(4678f10911c15f2478f31f2272f49fa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2add03e1a2aa4ae12d118edfb08eee10') in 0.017389 seconds
+  Import took 0.025373 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Textures (raw)/Lab.png
+  artifactKey: Guid(ffce60b32a8471d409bcd286cde691e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Lab.png using Guid(ffce60b32a8471d409bcd286cde691e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b8faeb6e114eead467d28bb9deaa4ec') in 0.015222 seconds
+  Import took 0.023939 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000408 seconds.
+  path: Assets/Textures (raw)/XButton.png
+  artifactKey: Guid(3ccbfdf207ee85d4ea0b7ca4de1030cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/XButton.png using Guid(3ccbfdf207ee85d4ea0b7ca4de1030cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69973087d1e54e166be852cfb8d4382e') in 0.012430 seconds
+  Import took 0.023732 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000406 seconds.
+  path: Assets/Textures (raw)/tape.png
+  artifactKey: Guid(52e6e56e7c796174e8ecf166970ee9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/tape.png using Guid(52e6e56e7c796174e8ecf166970ee9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebe6e8e63443fde6d5588a5ba7839c6d') in 0.018758 seconds
+  Import took 0.031386 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000296 seconds.
+  path: Assets/Textures (raw)/Shop.png
+  artifactKey: Guid(c18dfae738407ae409b1ce3737442ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Shop.png using Guid(c18dfae738407ae409b1ce3737442ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3edf9e18d1741efb0dbc195aa98075f') in 0.025841 seconds
+  Import took 0.037288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/Textures (raw)/Label.png
+  artifactKey: Guid(02220292c3e77d34c8fbdf4ce9f75faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Label.png using Guid(02220292c3e77d34c8fbdf4ce9f75faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1f3cd49ba3a4ba2e59bebfc1daa943a') in 0.027574 seconds
+  Import took 0.038946 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000430 seconds.
+  path: Assets/Textures (raw)/Back7.png
+  artifactKey: Guid(62a05c2b09962a74c9b24acf6083c8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/Back7.png using Guid(62a05c2b09962a74c9b24acf6083c8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34fd82bc440c7cfb82991221d4f8cd11') in 0.020588 seconds
+  Import took 0.029916 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/Textures (raw)/ExpandBtn.png
+  artifactKey: Guid(534ec77331ecc424998ec02ac9c71963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures (raw)/ExpandBtn.png using Guid(534ec77331ecc424998ec02ac9c71963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8df5f83e0bc1b074bbd9ae9e4edbbdf6') in 0.016705 seconds
+  Import took 0.028953 seconds .
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000274 seconds.
-  path: Assets/Textures (raw)/SidePanel3.png
-  artifactKey: Guid(4edc69f56f81a814798c3c6eb89984cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/SidePanel3.png using Guid(4edc69f56f81a814798c3c6eb89984cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fb23d472bae1609eb6e8cbaae3af046') in 0.022795 seconds
-  Import took 0.029700 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000194 seconds.
-  path: Assets/Textures (raw)/InvFrameAdd.png
-  artifactKey: Guid(d6f6c46fc5b98dc4c99578abc318bd9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/InvFrameAdd.png using Guid(d6f6c46fc5b98dc4c99578abc318bd9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acb8344a628c8839f3e0596bb9bb1323') in 0.018811 seconds
-  Import took 0.024800 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000232 seconds.
-  path: Assets/Textures (raw)/WoodTexture.png
-  artifactKey: Guid(28a6183a0ee313849a7583bce9d6a8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/WoodTexture.png using Guid(28a6183a0ee313849a7583bce9d6a8fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42c30a9e9ba069acdd36bd9eb5e0b2f4') in 0.016924 seconds
-  Import took 0.024747 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000205 seconds.
-  path: Assets/Textures (raw)/Reputation.png
-  artifactKey: Guid(b2e6408a58ba00741bd1348dabc16a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Reputation.png using Guid(b2e6408a58ba00741bd1348dabc16a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1030e8b7508ee769b145fa3cff2d018') in 0.015572 seconds
-  Import took 0.021843 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000177 seconds.
-  path: Assets/Textures (raw)/main menu title.png
-  artifactKey: Guid(8e1066a304f1d4e4592b0838b6ab84fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/main menu title.png using Guid(8e1066a304f1d4e4592b0838b6ab84fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '543d534532f9586c2d58a6a18ba4b9c8') in 0.017508 seconds
-  Import took 0.023559 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001324 seconds.
-  path: Assets/Textures (raw)/Money.png
-  artifactKey: Guid(42d2ab6b3dc7d6f49b33a6bcb695b0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Money.png using Guid(42d2ab6b3dc7d6f49b33a6bcb695b0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c2715ce844e40226ed1390c550ab555') in 0.015013 seconds
-  Import took 0.021494 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000184 seconds.
-  path: Assets/Textures (raw)/WoodenFrame3.png
-  artifactKey: Guid(1933a8801966f304e88a5dc5d4d3a5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/WoodenFrame3.png using Guid(1933a8801966f304e88a5dc5d4d3a5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d9879096659de63c95b39340ffda014') in 0.021365 seconds
-  Import took 0.027197 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000075 seconds.
-  path: Assets/Textures (raw)/FarmGround.png
-  artifactKey: Guid(6158e8322ee22c143a39cddd0425a7ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/FarmGround.png using Guid(6158e8322ee22c143a39cddd0425a7ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5f321f6b433e8a71322c70c6599a52b') in 0.016263 seconds
-  Import took 0.022701 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000160 seconds.
-  path: Assets/Textures (raw)/tape.png
-  artifactKey: Guid(52e6e56e7c796174e8ecf166970ee9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/tape.png using Guid(52e6e56e7c796174e8ecf166970ee9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed1795a10353315d96715384df690334') in 0.017548 seconds
-  Import took 0.023037 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000161 seconds.
-  path: Assets/Textures (raw)/FarmField.png
-  artifactKey: Guid(3a6065d8e637db144a3753a59f59249d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/FarmField.png using Guid(3a6065d8e637db144a3753a59f59249d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d60df2d3bafe1acfc1e933e64ae6040') in 0.026402 seconds
-  Import took 0.031904 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000160 seconds.
-  path: Assets/Textures (raw)/start button.png
-  artifactKey: Guid(8c080867a960a674899d66cd9f4910fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/start button.png using Guid(8c080867a960a674899d66cd9f4910fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b36c38a74342193066be98322f54942f') in 0.019901 seconds
-  Import took 0.027139 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000168 seconds.
-  path: Assets/Textures (raw)/LabLamp.png
-  artifactKey: Guid(6d27e2e6ec1f6844181c6765bb3c4be2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/LabLamp.png using Guid(6d27e2e6ec1f6844181c6765bb3c4be2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb675d96b2746ec7943f9e871e6db5f3') in 0.015399 seconds
-  Import took 0.021312 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000149 seconds.
-  path: Assets/Textures (raw)/pot.png
-  artifactKey: Guid(906d27e133ceb8148924f23303d4dd08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/pot.png using Guid(906d27e133ceb8148924f23303d4dd08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75a39a015d2e98f542453672246f947') in 0.015757 seconds
-  Import took 0.021341 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000146 seconds.
-  path: Assets/Textures (raw)/tape2.png
-  artifactKey: Guid(8070bfb841ee6084caae4fa24ecd0d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/tape2.png using Guid(8070bfb841ee6084caae4fa24ecd0d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87fc2c3c006e1dd15e6587b68297f536') in 0.016684 seconds
-  Import took 0.023356 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000157 seconds.
-  path: Assets/Textures (raw)/CarrotSprout.png
-  artifactKey: Guid(68e03dae26aa1034ca40d7ab91fe06ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/CarrotSprout.png using Guid(68e03dae26aa1034ca40d7ab91fe06ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53a8bb4337bfd9f8c0e55e8d78915219') in 0.019702 seconds
-  Import took 0.025626 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000176 seconds.
-  path: Assets/Textures (raw)/FarmFieldPreview.png
-  artifactKey: Guid(e8832939033c02e43b908bd12d6d78c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/FarmFieldPreview.png using Guid(e8832939033c02e43b908bd12d6d78c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c761f5db77cfa7b1fc08927c2b291b01') in 0.018404 seconds
-  Import took 0.025080 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000167 seconds.
-  path: Assets/Textures (raw)/StatsBG.png
-  artifactKey: Guid(280bcb2df56332642826aa2f1deb7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/StatsBG.png using Guid(280bcb2df56332642826aa2f1deb7ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b712fbcded538c8e5b23b7cbd4b903a0') in 0.018681 seconds
-  Import took 0.024193 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000154 seconds.
-  path: Assets/Textures (raw)/WoodTexture2.png
-  artifactKey: Guid(4678f10911c15f2478f31f2272f49fa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/WoodTexture2.png using Guid(4678f10911c15f2478f31f2272f49fa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8f2829ef8d802c51555f6bb9d8e3874') in 0.017325 seconds
-  Import took 0.023452 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000181 seconds.
-  path: Assets/Textures (raw)/Lab.png
-  artifactKey: Guid(ffce60b32a8471d409bcd286cde691e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Lab.png using Guid(ffce60b32a8471d409bcd286cde691e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25d280fd3cb584ee82e55b02c0af2667') in 0.015876 seconds
-  Import took 0.023485 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000182 seconds.
-  path: Assets/Textures (raw)/XButton.png
-  artifactKey: Guid(3ccbfdf207ee85d4ea0b7ca4de1030cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/XButton.png using Guid(3ccbfdf207ee85d4ea0b7ca4de1030cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ade8a97b98eaecb2962d13f02f17fac8') in 0.016679 seconds
-  Import took 0.024451 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/Textures (raw)/Shop.png
-  artifactKey: Guid(c18dfae738407ae409b1ce3737442ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Shop.png using Guid(c18dfae738407ae409b1ce3737442ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2374235192fdca8ac0d836aaf7c244e0') in 0.018769 seconds
-  Import took 0.024806 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000180 seconds.
-  path: Assets/Textures (raw)/Label.png
-  artifactKey: Guid(02220292c3e77d34c8fbdf4ce9f75faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Label.png using Guid(02220292c3e77d34c8fbdf4ce9f75faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d3983bd981c8c6c169bfa39b3f9185d') in 0.041959 seconds
-  Import took 0.048109 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000217 seconds.
-  path: Assets/Textures (raw)/Back7.png
-  artifactKey: Guid(62a05c2b09962a74c9b24acf6083c8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Back7.png using Guid(62a05c2b09962a74c9b24acf6083c8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dee8d3b4f75c74db9e9047848bf65a1') in 0.017942 seconds
-  Import took 0.024934 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000189 seconds.
-  path: Assets/Textures (raw)/ExpandBtn.png
-  artifactKey: Guid(534ec77331ecc424998ec02ac9c71963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/ExpandBtn.png using Guid(534ec77331ecc424998ec02ac9c71963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dae915d8b1f9b0fc53b36ab1e26a8b97') in 0.019955 seconds
-  Import took 0.025374 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000164 seconds.
   path: Assets/Textures (raw)/Label3.png
   artifactKey: Guid(60267c3ab56dcab488edc3bbe5cd5a8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Label3.png using Guid(60267c3ab56dcab488edc3bbe5cd5a8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2c8ee43fcff6f6cf27da5f8a4e32d1a') in 0.015444 seconds
-  Import took 0.020974 seconds .
+Start importing Assets/Textures (raw)/Label3.png using Guid(60267c3ab56dcab488edc3bbe5cd5a8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2e0fb8122439b2292b834d1e1027a5d') in 0.014619 seconds
+  Import took 0.022023 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001430 seconds.
+  Time since last request: 0.000303 seconds.
   path: Assets/Textures (raw)/pin.png
   artifactKey: Guid(615bf06f194897a4fa88fa6b8853b64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/pin.png using Guid(615bf06f194897a4fa88fa6b8853b64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92fd814a91837650dbed0e9577110ecd') in 0.014832 seconds
-  Import took 0.020697 seconds .
+Start importing Assets/Textures (raw)/pin.png using Guid(615bf06f194897a4fa88fa6b8853b64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb7f0cf534563f084e7056a1e8c3c9e7') in 0.014356 seconds
+  Import took 0.023549 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000160 seconds.
+  Time since last request: 0.000312 seconds.
   path: Assets/Textures (raw)/LabelLong.png
   artifactKey: Guid(4818027497e7e0546894921c4aa09e74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/LabelLong.png using Guid(4818027497e7e0546894921c4aa09e74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a5558ba6cab058712faf53f150b9a82') in 0.019124 seconds
-  Import took 0.025015 seconds .
+Start importing Assets/Textures (raw)/LabelLong.png using Guid(4818027497e7e0546894921c4aa09e74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ae6d12b46cd79e24460b90e69229753') in 0.018202 seconds
+  Import took 0.026249 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000184 seconds.
+  Time since last request: 0.000230 seconds.
+  path: Assets/Resources/SeedsIcons/potato.png
+  artifactKey: Guid(9be7f7c7fa3558547aec6ac8df1ef823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/SeedsIcons/potato.png using Guid(9be7f7c7fa3558547aec6ac8df1ef823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73e0688c1a6622c5a5fe92b3d164bb5c') in 0.022096 seconds
+  Import took 0.030624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000528 seconds.
   path: Assets/Textures (raw)/InventoryBG.png
   artifactKey: Guid(258a473d14649cd4db2313e92a1c578e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/InventoryBG.png using Guid(258a473d14649cd4db2313e92a1c578e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ef24b6f52ed453a054bc6ccb84bcded') in 0.028259 seconds
-  Import took 0.034220 seconds .
+Start importing Assets/Textures (raw)/InventoryBG.png using Guid(258a473d14649cd4db2313e92a1c578e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35233468ca1eb5690829c6ce105940a2') in 0.013726 seconds
+  Import took 0.025732 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000175 seconds.
+  Time since last request: 0.000230 seconds.
   path: Assets/Textures (raw)/MainMenuBG.png
   artifactKey: Guid(89998ef44274e58429dd2215ea11fb51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/MainMenuBG.png using Guid(89998ef44274e58429dd2215ea11fb51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca53bfb2c4a6d037ac39ba3118b025df') in 0.025851 seconds
-  Import took 0.035990 seconds .
+Start importing Assets/Textures (raw)/MainMenuBG.png using Guid(89998ef44274e58429dd2215ea11fb51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65c8315f7f424c574071ddd515a0af27') in 0.018803 seconds
+  Import took 0.026199 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000176 seconds.
+  Time since last request: 0.000267 seconds.
   path: Assets/Textures (raw)/SidePanel2.png
   artifactKey: Guid(ea0999354a020074abd6f18e8ccf2b2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/SidePanel2.png using Guid(ea0999354a020074abd6f18e8ccf2b2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0c15179788e42ff382b506fe1a497af') in 0.016699 seconds
-  Import took 0.021982 seconds .
+Start importing Assets/Textures (raw)/SidePanel2.png using Guid(ea0999354a020074abd6f18e8ccf2b2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c0920c214864383556105031f474d6a') in 0.015818 seconds
+  Import took 0.024986 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000181 seconds.
+  Time since last request: 0.000241 seconds.
   path: Assets/Textures (raw)/Quantum.png
   artifactKey: Guid(89b531cccc48d0d4591c2180ea996599) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Quantum.png using Guid(89b531cccc48d0d4591c2180ea996599) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a2b4c1e9ea2ca6e45a9e1359810b25e') in 0.020918 seconds
-  Import took 0.026482 seconds .
+Start importing Assets/Textures (raw)/Quantum.png using Guid(89b531cccc48d0d4591c2180ea996599) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc1c9dd874241d8d7b4c360ec11767fe') in 0.016612 seconds
+  Import took 0.024309 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000444 seconds.
+  Time since last request: 0.000259 seconds.
+  path: Assets/Resources/SeedsIcons/tomato.jpg
+  artifactKey: Guid(414daf9ee66390f479ac7bd44522e04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/SeedsIcons/tomato.jpg using Guid(414daf9ee66390f479ac7bd44522e04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6c0d5be754fc66e2c8e4cee4a9b6822') in 0.021787 seconds
+  Import took 0.032094 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000323 seconds.
   path: Assets/Textures (raw)/QuantumEmpty.png
   artifactKey: Guid(0bb0a078197afb54f86e9eb4073994c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/QuantumEmpty.png using Guid(0bb0a078197afb54f86e9eb4073994c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '519ec2a1d50b82a648366e99f141c144') in 0.017524 seconds
-  Import took 0.023822 seconds .
+Start importing Assets/Textures (raw)/QuantumEmpty.png using Guid(0bb0a078197afb54f86e9eb4073994c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '944468ebd9ec053e9096336c6b28b385') in 0.019871 seconds
+  Import took 0.032147 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000202 seconds.
+  Time since last request: 0.000340 seconds.
+  path: Assets/Resources/SeedsIcons/Apple.png
+  artifactKey: Guid(61b37c789dea2f346989dd8b9295f9ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/SeedsIcons/Apple.png using Guid(61b37c789dea2f346989dd8b9295f9ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a424cec12ea40d5903228b340f7eda74') in 0.020163 seconds
+  Import took 0.032317 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000261 seconds.
   path: Assets/Textures (raw)/LabPreview.png
   artifactKey: Guid(69a1233bcde943d43b2e6dcf6cf65c8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/LabPreview.png using Guid(69a1233bcde943d43b2e6dcf6cf65c8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f06a4d862c4df66a7603616881857ef') in 0.019949 seconds
-  Import took 0.028182 seconds .
+Start importing Assets/Textures (raw)/LabPreview.png using Guid(69a1233bcde943d43b2e6dcf6cf65c8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f02e701816d5ccebd9a44f639ef385a6') in 0.015041 seconds
+  Import took 0.024520 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000195 seconds.
+  Time since last request: 0.000215 seconds.
   path: Assets/Textures (raw)/Label2.png
   artifactKey: Guid(0ef581af082220b4da64fb443def2968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/Label2.png using Guid(0ef581af082220b4da64fb443def2968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c60637c6812aaefaab078e5bfd982f24') in 0.015827 seconds
-  Import took 0.022013 seconds .
+Start importing Assets/Textures (raw)/Label2.png using Guid(0ef581af082220b4da64fb443def2968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3c9e200cddcc63b8de726d7ccaee065') in 0.014996 seconds
+  Import took 0.022081 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000175 seconds.
+  Time since last request: 0.000235 seconds.
   path: Assets/Textures (raw)/CollapseBtn.png
   artifactKey: Guid(140996e986daaa34c8eb43b56b7ee7e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/CollapseBtn.png using Guid(140996e986daaa34c8eb43b56b7ee7e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eac2597fc11c80858ef31fac4bb10c9c') in 0.014032 seconds
-  Import took 0.019692 seconds .
+Start importing Assets/Textures (raw)/CollapseBtn.png using Guid(140996e986daaa34c8eb43b56b7ee7e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '352731fd2271ee188ce38f3bc90e299a') in 0.012766 seconds
+  Import took 0.020773 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000162 seconds.
+  Time since last request: 0.000723 seconds.
   path: Assets/Textures (raw)/QuantumPreview.png
   artifactKey: Guid(ca5eda333f3c61d4a9c56bc4dea89f63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures (raw)/QuantumPreview.png using Guid(ca5eda333f3c61d4a9c56bc4dea89f63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '235dc21f5e6b19d9fe10c1bc8df38f92') in 0.017791 seconds
-  Import took 0.026478 seconds .
+Start importing Assets/Textures (raw)/QuantumPreview.png using Guid(ca5eda333f3c61d4a9c56bc4dea89f63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7039d66a19fbb7b8a8b782b05948da86') in 0.028630 seconds
+  Import took 0.037978 seconds .
 
 ========================================================================
-Received Import Request.
-  Time since last request: 29.951374 seconds.
-  path: Assets/Sound/snd_MenuStart.wav
-  artifactKey: Guid(5df601a83330bcb468d3135e2bce5109) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sound/snd_MenuStart.wav using Guid(5df601a83330bcb468d3135e2bce5109) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6b1c7e712ca937ea9618a635794d176') in 0.060217 seconds
-  Import took 0.065567 seconds .
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 8.61 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 67.7 MB.
+System memory in use after: 67.9 MB.
 
-========================================================================
-Received Import Request.
-  Time since last request: 1.202852 seconds.
-  path: Assets/Scenes/MainMenu.unity
-  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/MainMenu.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '460c0b9a596ed4645c381e3c6fc331b5') in 0.009642 seconds
-  Import took 0.016414 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.002131 seconds.
-  path: Assets/Scenes/MainMenu.unity
-  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/MainMenu.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '460c0b9a596ed4645c381e3c6fc331b5') in 0.003512 seconds
-  Import took 0.018694 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.545936 seconds.
-  path: Assets/Scenes/Lab.unity
-  artifactKey: Guid(ff794aad47bd8a44abb3bf537aed9ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Lab.unity using Guid(ff794aad47bd8a44abb3bf537aed9ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30e9a0f5ac4dbc99d2aa0c891d1bae76') in 0.011558 seconds
-  Import took 0.018497 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.895831 seconds.
-  path: Assets/Scenes/Field.unity
-  artifactKey: Guid(4cec066c414e0004bb91b52d2d3eff87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Field.unity using Guid(4cec066c414e0004bb91b52d2d3eff87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d0450f45bd8ea16dad035ccacff6ae2') in 0.008583 seconds
-  Import took 0.014791 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.437038 seconds.
-  path: Assets/Scenes/Choice.unity
-  artifactKey: Guid(f342da700a7bd684ab8475ecefbf94cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Choice.unity using Guid(f342da700a7bd684ab8475ecefbf94cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1240dd19100c379679f074cee9ed4b72') in 0.008590 seconds
-  Import took 0.014561 seconds .
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3420.
+Total: 7.848400 ms (FindLiveObjects: 0.545400 ms CreateObjectMapping: 0.305200 ms MarkObjects: 6.956700 ms  DeleteObjects: 0.037800 ms)
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.001735 seconds.
+Registered in 0.005694 seconds.
 Begin MonoManager ReloadAssembly
+Symbol file data-0000025176254020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025178345A50 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175E38020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179292790 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179E44030 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025175F42020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170CF8410 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251705DA980 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170A3D350 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251702EA250 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170A9E010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251760FDC20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025176281A30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170D07CE0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174FF3020 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002519C9E4D10 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025177757010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170D07CE0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251705DA980 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179B8D150 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025177701010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170AAF420 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025174AA4010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025176281A30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251772CD040 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025177701010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025177701010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251701D0010 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251703526E0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179B8CF50 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179B8CB50 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251777B7FF0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025176EC0080 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025179F49E20 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025170D07CE0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000025176281A30 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000251761BBCA0 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002517089A630 doesn't match image C:\Users\Trixter\Documents\GitHub\HybridHarvest\HybridHarvestProj\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.67 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.062 seconds
+- Completed reload, in  1.460 seconds
 Platform modules already initialized, skipping
 Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.67 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2855 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 122.4 MB.
-System memory in use after: 122.6 MB.
+System memory in use before: 122.3 MB.
+System memory in use after: 122.5 MB.
 
-Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 3427.
-Total: 3.258200 ms (FindLiveObjects: 0.271500 ms CreateObjectMapping: 0.120600 ms MarkObjects: 2.834900 ms  DeleteObjects: 0.030100 ms)
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 3424.
+Total: 3.314400 ms (FindLiveObjects: 0.366700 ms CreateObjectMapping: 0.214200 ms MarkObjects: 2.708300 ms  DeleteObjects: 0.023300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
