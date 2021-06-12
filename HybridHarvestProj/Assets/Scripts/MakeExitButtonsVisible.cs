@@ -18,7 +18,7 @@ public class MakeExitButtonsVisible : MonoBehaviour
         ExitButton.SetActive(gameObject.activeSelf);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         ExitButton.SetActive(false);
     }
