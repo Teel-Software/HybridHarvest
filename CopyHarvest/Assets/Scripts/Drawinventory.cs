@@ -57,7 +57,7 @@ public class Drawinventory : MonoBehaviour
                 Plant(item);
                 break;
             case 3:
-                Plant(item);
+                Select(item);
                 break;
         }
         //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
@@ -122,6 +122,20 @@ public class Drawinventory : MonoBehaviour
             Seed toPlant = targetInventory.Elements[int.Parse(item.name)];
             GrowPlace.GetComponent<SignalPlanted>().PlantIt(toPlant);
             targetInventory.RemoveItem(int.Parse(item.name));
+            Redraw();
+            Place.gameObject.SetActive(false);
+        }
+    }
+
+    private void Select(GameObject item)
+    {
+        int a;
+        if (int.TryParse(item.name, out a))
+        {
+            a = int.Parse(item.name);
+            Seed toPlant = targetInventory.Elements[a];
+            GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
+            targetInventory.RemoveItem(a);
             Redraw();
             Place.gameObject.SetActive(false);
         }

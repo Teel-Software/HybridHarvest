@@ -452,7 +452,6 @@ GameObject:
   - component: {fileID: 316308802}
   - component: {fileID: 316308801}
   - component: {fileID: 316308800}
-  - component: {fileID: 316308799}
   - component: {fileID: 316308798}
   m_Layer: 5
   m_Name: BackButton
@@ -495,19 +494,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -3.06}
   m_UseGraphicAlpha: 1
---- !u!114 &316308799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316308796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2d0c8a8d5be5841901eb238442c762, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectTag: 
 --- !u!114 &316308800
 MonoBehaviour:
   m_ObjectHideFlags: 0

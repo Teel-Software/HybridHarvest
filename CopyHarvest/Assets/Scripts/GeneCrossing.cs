@@ -8,15 +8,20 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] Button button1;
     [SerializeField] Button button2;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Sprite defaultSprite;
 
-    public void ContactToInventory() 
+    public void Clicked() 
     {
-        
+        var seed1 = button1.GetComponent<LabButton>().NowSelected;
+        var seed2 = button2.GetComponent<LabButton>().NowSelected;
+        if (seed1 == null || seed2 == null)
+            return;
+        var newSeed = MixTwoParents(seed1, seed2);
+        InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
+        button1.GetComponent<LabButton>().NowSelected = null;
+        button2.GetComponent<LabButton>().NowSelected = null;
+        button1.GetComponent<Image>().sprite = defaultSprite; 
+        button2.GetComponent<Image>().sprite = defaultSprite;
     }
 
     public Seed MixTwoParents(Seed first, Seed second) 

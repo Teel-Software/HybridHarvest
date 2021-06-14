@@ -8,9 +8,12 @@ public class DontDestroy : MonoBehaviour
     public string ObjectTag;
     void Awake()
     {
-        GameObject[] obj = GameObject.FindGameObjectsWithTag(ObjectTag);
-        if (obj.Length > 1)
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (ObjectTag != null)
+        {
+            GameObject[] obj = GameObject.FindGameObjectsWithTag(ObjectTag);
+            if (obj.Length > 1)
+                Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
