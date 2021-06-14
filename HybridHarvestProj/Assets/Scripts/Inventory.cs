@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public List<Seed> Elements = new List<Seed>();
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
-    private const int Devider = 5;
+    private const int Divider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Carrot
   Price: 70
+  Amount: 5
+  PlantSprite: {fileID: 21300000, guid: 326503a3a6ca23646beb01231a430118, type: 3}
+  SproutSprite: {fileID: 21300000, guid: 68e03dae26aa1034ca40d7ab91fe06ff, type: 3}
   GabitusGen: 1
   Gabitus: 50
   TasteGen: 1
   Taste: 70
-  MyImage: {fileID: 21300000, guid: 326503a3a6ca23646beb01231a430118, type: 3}
   GrowTimeGen: 1
-  Amount: 5
   GrowTime: 5

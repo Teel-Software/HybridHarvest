@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 360
+    m_Left: 380
     m_Right: 0
     m_Top: 135
     m_Bottom: 0
@@ -1686,8 +1686,9 @@ GameObject:
   - component: {fileID: 779985268}
   - component: {fileID: 779985267}
   - component: {fileID: 779985266}
+  - component: {fileID: 779985270}
   m_Layer: 5
-  m_Name: AddTomato
+  m_Name: BuyTomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1801,7 +1802,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 414daf9ee66390f479ac7bd44522e04c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aaa25c15472b0a64f90baa442d8ea995, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1819,6 +1820,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779985264}
   m_CullTransparentMesh: 1
+--- !u!114 &779985270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779985264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -2.05}
+  m_UseGraphicAlpha: 1
 --- !u!1 &796896446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,8 +2015,9 @@ GameObject:
   - component: {fileID: 865680273}
   - component: {fileID: 865680272}
   - component: {fileID: 865680271}
+  - component: {fileID: 865680275}
   m_Layer: 5
-  m_Name: AddCarrot
+  m_Name: BuyCarrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2114,7 +2131,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 326503a3a6ca23646beb01231a430118, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ce71405e055cb047998516247baa1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2132,6 +2149,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865680269}
   m_CullTransparentMesh: 1
+--- !u!114 &865680275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865680269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -2.05}
+  m_UseGraphicAlpha: 1
 --- !u!1 &873637375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,9 +5013,10 @@ GameObject:
   - component: {fileID: 1896705642}
   - component: {fileID: 1896705641}
   - component: {fileID: 1896705640}
+  - component: {fileID: 1896705644}
   - component: {fileID: 1896705639}
   m_Layer: 5
-  m_Name: BuyApple
+  m_Name: BuyCucumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5021,7 +5054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 0, y: -3.06}
+  m_EffectDistance: {x: 0, y: -2.05}
   m_UseGraphicAlpha: 1
 --- !u!114 &1896705640
 MonoBehaviour:
@@ -5067,7 +5100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1554585036}
+      - m_Target: {fileID: 1896705644}
         m_TargetAssemblyTypeName: CheckInventory, Assembly-CSharp
         m_MethodName: AddOneMore
         m_Mode: 3
@@ -5099,7 +5132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9747c8b44bff2b24a8471d4105a66e91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11fb007728b39604c90a528be9483bfb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5117,6 +5150,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896705637}
   m_CullTransparentMesh: 1
+--- !u!114 &1896705644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896705637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864d4c45f268f8d469b0de1d638d7c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInventory: {fileID: 1871862018}
 --- !u!1 &1927474703
 GameObject:
   m_ObjectHideFlags: 0

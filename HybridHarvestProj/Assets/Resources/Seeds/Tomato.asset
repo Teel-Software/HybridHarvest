@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Tomato
   Price: 40
+  Amount: 6
+  PlantSprite: {fileID: 21300000, guid: 414daf9ee66390f479ac7bd44522e04c, type: 3}
+  SproutSprite: {fileID: 21300000, guid: 68e03dae26aa1034ca40d7ab91fe06ff, type: 3}
   GabitusGen: 1
   Gabitus: 60
   TasteGen: 1
   Taste: 40
-  MyImage: {fileID: 21300000, guid: 414daf9ee66390f479ac7bd44522e04c, type: 3}
   GrowTimeGen: 1
-  Amount: 6
   GrowTime: 5

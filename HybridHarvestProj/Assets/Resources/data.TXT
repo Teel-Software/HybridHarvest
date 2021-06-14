@@ -1,7 +1,0 @@
--147
-6
-apple|15|appl
-apple|15|appl
-apple|15|appl
-apple|15|appl
-apple|15|appl

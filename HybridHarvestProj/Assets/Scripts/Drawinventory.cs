@@ -30,7 +30,7 @@ public class Drawinventory : MonoBehaviour
         {
             var item = targetInventory.Elements[i];
             var icon = new GameObject(i.ToString(), typeof(Button));
-            icon.AddComponent<Image>().sprite = item.MyImage;
+            icon.AddComponent<Image>().sprite = item.PlantSprite;
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             
             icon.GetComponent<Button>().onClick.AddListener(PointerDown);

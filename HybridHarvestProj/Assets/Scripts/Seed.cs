@@ -9,8 +9,11 @@ public class Seed : ScriptableObject
 {
     public string Name;
     public int Price;
-    public Sprite MyImage;
     public int Amount;
+    
+    public Sprite PlantSprite;
+    public Sprite SproutSprite;
+    public Sprite GrownSprite;
     
     public Gen GabitusGen;
     public int Gabitus;
@@ -25,29 +28,31 @@ public class Seed : ScriptableObject
     {
         Name = name;
         Price = price;
-        MyImage =  Resources.Load<Sprite>("SeedsIcons\\"+image);
+        PlantSprite =  Resources.Load<Sprite>("SeedsIcons\\"+image);
     }
     public Seed(string data)
     {
         var parameters = data.Split('|');
         Name = parameters[0];
-            Price = int.Parse(parameters[1]);
-        MyImage = Resources.Load<Sprite>("SeedsIcons\\" + parameters[2]);
-        GrowTime = int.Parse(parameters[3]);
-        GrowTimeGen = (Gen)int.Parse(parameters[4]);
-        Gabitus = int.Parse(parameters[5]);
-        GabitusGen = (Gen)int.Parse(parameters[6]);
-        Taste = int.Parse(parameters[7]);
-        TasteGen = (Gen)int.Parse(parameters[8]);
-        Amount = int.Parse(parameters[9]);
+        Price = int.Parse(parameters[1]);
+        GrowTime = int.Parse(parameters[2]);
+        GrowTimeGen = (Gen)int.Parse(parameters[3]);
+        Gabitus = int.Parse(parameters[4]);
+        GabitusGen = (Gen)int.Parse(parameters[5]);
+        Taste = int.Parse(parameters[6]);
+        TasteGen = (Gen)int.Parse(parameters[7]);
+        Amount = int.Parse(parameters[8]);
+        PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
+        SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
+        GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
     }
 
     public override string ToString()
     {
-        return Name + "|" + Price + "|" + MyImage.name + "|" +
-               GrowTime+ "|" + (int)GrowTimeGen + "|" +
-               Gabitus + "|" + (int)GabitusGen + "|" +
-               Taste + "|" + (int)TasteGen + "|" +
+        return Name + "|" + Price + "|" +
+               GrowTime + "|" + (int) GrowTimeGen + "|" +
+               Gabitus + "|" + (int) GabitusGen + "|" +
+               Taste + "|" + (int) TasteGen + "|" +
                Amount;
     }
 }
