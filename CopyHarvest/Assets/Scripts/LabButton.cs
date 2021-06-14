@@ -17,6 +17,6 @@ public class LabButton : MonoBehaviour
     public void ChosenSeed(Seed seed)
     {
         NowSelected = seed;
-        Patch.GetComponent<Image>().sprite = seed.MyImage;
+        Patch.GetComponent<Image>().sprite = seed.PlantSprite;
     }
 }
