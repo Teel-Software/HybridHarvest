@@ -56,7 +56,9 @@ public class Inventory : MonoBehaviour
     void RedrawInfo()
     {
         if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
+        else MoneyInfo.text = "0";
         if (ReputationInfo != null) ReputationInfo.text = Reputation.ToString();
+        else ReputationInfo.text = "0";
     }
 
     public void SaveData()
