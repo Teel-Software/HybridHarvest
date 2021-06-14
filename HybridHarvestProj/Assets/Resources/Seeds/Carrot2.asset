@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Carrot2
+  m_EditorClassIdentifier: Assembly-CSharp::Seed
+  Name: Carrot
+  Price: 70
+  Amount: 5
+  PlantSprite: {fileID: 21300000, guid: 9ce71405e055cb047998516247baa1ff, type: 3}
+  SproutSprite: {fileID: 21300000, guid: 68e03dae26aa1034ca40d7ab91fe06ff, type: 3}
+  GrownSprite: {fileID: 21300000, guid: e8de23cc4f2337943ac5091cbf8b3c57, type: 3}
+  GabitusGen: 1
+  Gabitus: 50
+  TasteGen: 1
+  Taste: 70
+  GrowTimeGen: 1
+  GrowTime: 5

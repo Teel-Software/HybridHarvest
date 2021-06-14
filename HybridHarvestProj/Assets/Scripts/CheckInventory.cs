@@ -18,17 +18,17 @@ public class CheckInventory : MonoBehaviour
         switch (item) 
         {
             case 1:
-                var seed = (Seed)Resources.Load("Seeds\\Cucumber");
+                var seed = (Seed)Resources.Load("Seeds\\Cucumber2");
                 targetInventory.ChangeMoney(-seed.Price);
                 targetInventory.AddItem(seed);
                 break;
             case 2:
-                var seed1 = (Seed)Resources.Load("Seeds\\Tomato");
+                var seed1 = (Seed)Resources.Load("Seeds\\Tomato2");
                 targetInventory.ChangeMoney(-seed1.Price);
                 targetInventory.AddItem(seed1);
                 break;
             case 3:
-                var seed2 = (Seed)Resources.Load("Seeds\\Carrot");
+                var seed2 = (Seed)Resources.Load("Seeds\\Carrot2");
                 targetInventory.ChangeMoney(-seed2.Price);
                 targetInventory.AddItem(seed2);
                 break;
