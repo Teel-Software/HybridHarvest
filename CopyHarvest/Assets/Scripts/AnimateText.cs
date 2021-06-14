@@ -8,6 +8,10 @@ public class AnimateText : MonoBehaviour
     [SerializeField] Text TextPanel;
     [SerializeField] GameObject CurrentSlide;
     [SerializeField] GameObject NextSlide;
+    [SerializeField] GameObject Title_LastSlide;
+    [SerializeField] GameObject StartLabel_LastSlide;
+    [SerializeField] GameObject StartButton_LastSlide;
+    [SerializeField] GameObject Options_LastSlide;
 
     string currentText;
     int frame, frequency;
@@ -17,7 +21,7 @@ public class AnimateText : MonoBehaviour
     {
         currentText = TextPanel.text;
         TextPanel.text = "";
-        frequency = 15;
+        frequency = 10;
     }
 
     // Update is called once per frame
@@ -41,6 +45,13 @@ public class AnimateText : MonoBehaviour
             CurrentSlide.SetActive(false);
             if (NextSlide != null)
                 NextSlide.SetActive(true);
+            else
+            {
+                Title_LastSlide.SetActive(true);
+                StartLabel_LastSlide.SetActive(true);
+                StartButton_LastSlide.SetActive(true);
+                Options_LastSlide.SetActive(true);
+            }
         }
     }
 
