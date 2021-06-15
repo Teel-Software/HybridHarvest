@@ -10,6 +10,8 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Sprite defaultSprite;
+    public int[] Chances = new int[3];
+    int chancesIterator;
 
     public void Clicked()
     {
@@ -23,20 +25,19 @@ public class GeneCrossing : MonoBehaviour
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
-        //button1.GetComponent<LabButton>().NowSelected = null;
-        //button2.GetComponent<LabButton>().NowSelected = null;
-        //button1.GetComponent<Image>().sprite = defaultSprite; 
-        //button2.GetComponent<Image>().sprite = defaultSprite;
     }
 
     public Seed MixTwoParents(Seed first, Seed second)
     {
+        chancesIterator = 0;
         var newSeed = ScriptableObject.CreateInstance<Seed>();
         newSeed.SetValues(first.ToString());
         (newSeed.Taste, newSeed.TasteGen) =
             CountParameter(first.Taste, first.TasteGen, second.Taste, second.TasteGen);
+        chancesIterator++;
         (newSeed.Gabitus, newSeed.GabitusGen) =
             CountParameter(first.Gabitus, first.GabitusGen, second.Gabitus, second.GabitusGen);
+        chancesIterator++;
         (newSeed.GrowTime, newSeed.GrowTimeGen) =
             CountParameter(first.GrowTime, first.GrowTimeGen, second.GrowTime, second.GrowTimeGen);
         newSeed.Price = newSeed.Taste;
@@ -48,6 +49,7 @@ public class GeneCrossing : MonoBehaviour
     {
         var dominant = Mathf.Min(value1, value2);
         var recessive = Mathf.Max(value1, value2);
+        Chances[chancesIterator] = 100;
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
         {
             return (dominant, gen1);
@@ -60,6 +62,7 @@ public class GeneCrossing : MonoBehaviour
         {
             return (dominant, Gen.Mixed);
         }
+        Chances[chancesIterator] = 50;
         if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
         {
             return (GetNewValueByPossibility(value1, 50, value2),
@@ -69,6 +72,7 @@ public class GeneCrossing : MonoBehaviour
         {
             return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
         }
+        Chances[chancesIterator] = 75;
         Gen newGen;
         var possibility = (int)Random.value * 100;
         if (possibility <= 25) newGen = Gen.Dominant;
