@@ -11,7 +11,7 @@ public class OpenGame : MonoBehaviour
     public void ChangeScene(int sceneNum)
     {
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
-            InitializeBeginning(sceneNum);
+            InitializeBeginning();
         else
         {
             if (sceneNum == 0)
@@ -23,7 +23,7 @@ public class OpenGame : MonoBehaviour
         }
     }
 
-    private void InitializeBeginning(int sceneNum)
+    private void InitializeBeginning()
     {
         RewatchButton.GetComponent<Button>().onClick.Invoke();
     }
