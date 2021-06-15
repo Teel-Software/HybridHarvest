@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365002237
 RectTransform:
   m_ObjectHideFlags: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0f1beb0fd397440ba51f78ba4719a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentPot: {fileID: 0}
   InventoryFrame: {fileID: 1622652212}
   button1: {fileID: 1817888070}
   button2: {fileID: 438944657}
@@ -596,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7328ecf8348d6646ba89ec6efa6b5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Patch: {fileID: 438944657}
+  SelectButton: {fileID: 438944657}
   InventoryFrame: {fileID: 1622652212}
   NowSelected: {fileID: 0}
 --- !u!1 &1061172990
@@ -635,7 +636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 235.26, y: -24.08}
+  m_AnchoredPosition: {x: 235.26, y: -24.080002}
   m_SizeDelta: {x: 42.94, y: 47.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061172992
@@ -856,12 +857,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2015314885}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -23.999996}
+  m_SizeDelta: {x: -123.91, y: -60.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219360020
 MonoBehaviour:
@@ -1655,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7328ecf8348d6646ba89ec6efa6b5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Patch: {fileID: 1817888070}
+  SelectButton: {fileID: 1817888070}
   InventoryFrame: {fileID: 1622652212}
   NowSelected: {fileID: 0}
 --- !u!1 &1870327352
@@ -1704,6 +1705,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1929367864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929367865}
+  - component: {fileID: 1929367867}
+  - component: {fileID: 1929367866}
+  m_Layer: 5
+  m_Name: Plant
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1929367865
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929367864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4281.078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2015314885}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.036, y: 65.401}
+  m_SizeDelta: {x: 58.392, y: 78.692}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1929367866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929367864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bdd8acf71c416f04db987272854b704a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1929367867
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929367864}
+  m_CullTransparentMesh: 1
 --- !u!1 &1980301941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1871,7 @@ GameObject:
   - component: {fileID: 2015314888}
   - component: {fileID: 2015314887}
   - component: {fileID: 2015314886}
+  - component: {fileID: 2015314889}
   m_Layer: 5
   m_Name: Pot1
   m_TagString: Untagged
@@ -1813,6 +1890,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1929367865}
   - {fileID: 1219360019}
   m_Father: {fileID: 1775937274}
   m_RootOrder: 2
@@ -1866,17 +1944,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365002236}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2015314889}
+        m_TargetAssemblyTypeName: LabGrowth, Assembly-CSharp
+        m_MethodName: Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2015314887
 MonoBehaviour:
@@ -1916,6 +1994,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015314884}
   m_CullTransparentMesh: 1
+--- !u!114 &2015314889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015314884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3b2287aff7d9f4cb39b9f85258af9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pot: {fileID: 2015314886}
+  CrossingPerformer: {fileID: 391753906}
+  InventoryFrame: {fileID: 1622652212}
+  CrossingMenue: {fileID: 365002237}
+  time: 0
 --- !u!1 &2066156358
 GameObject:
   m_ObjectHideFlags: 0

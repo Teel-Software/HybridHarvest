@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GeneCrossing : MonoBehaviour
 {
+    [SerializeField] public Button CurrentPot;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] Button button1;
     [SerializeField] Button button2;
@@ -17,7 +18,7 @@ public class GeneCrossing : MonoBehaviour
         if (seed1 == null || seed2 == null)
             return;
         var newSeed = MixTwoParents(seed1, seed2);
-        InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
+        CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
         button1.GetComponent<LabButton>().NowSelected = null;
         button2.GetComponent<LabButton>().NowSelected = null;
         button1.GetComponent<Image>().sprite = defaultSprite; 
