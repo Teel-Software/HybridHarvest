@@ -19,10 +19,12 @@ public class GeneCrossing : MonoBehaviour
             return;
         var newSeed = MixTwoParents(seed1, seed2);
         CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
-        button1.GetComponent<LabButton>().NowSelected = null;
-        button2.GetComponent<LabButton>().NowSelected = null;
-        button1.GetComponent<Image>().sprite = defaultSprite; 
-        button2.GetComponent<Image>().sprite = defaultSprite;
+        button2.GetComponent<LabButton>().ClearButton();
+        button1.GetComponent<LabButton>().ClearButton();
+        //button1.GetComponent<LabButton>().NowSelected = null;
+        //button2.GetComponent<LabButton>().NowSelected = null;
+        //button1.GetComponent<Image>().sprite = defaultSprite; 
+        //button2.GetComponent<Image>().sprite = defaultSprite;
     }
 
     public Seed MixTwoParents(Seed first, Seed second) 

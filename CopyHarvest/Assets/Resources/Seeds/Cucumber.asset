@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Cucumber
   m_EditorClassIdentifier: 
   Name: Cucumber
+  NameInRussian: "\u041E\u0433\u0443\u0440\u0435\u0446"
+  NameInLatin: Cucumis sativus
   Price: 20
   Amount: 8
   PlantSprite: {fileID: 21300000, guid: 11fb007728b39604c90a528be9483bfb, type: 3}
