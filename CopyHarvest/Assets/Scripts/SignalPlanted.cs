@@ -14,9 +14,17 @@ public class SignalPlanted : MonoBehaviour
     bool timerNeeded;
     Seed growingSeed;
     public double time;
-
+    private Image plantImage;
+    private Image textBGImage;
+    private Text growthText;
+    
     private void Start()
     {
+        var imagesInChildren = Patch.GetComponentsInChildren<Image>();
+        plantImage = imagesInChildren[1];
+        textBGImage = imagesInChildren[2];
+        growthText = Patch.GetComponentInChildren<Text>();
+        
         if (PlayerPrefs.GetInt(Patch.name + "occupied") == 1)
         {
             isOccupied = true;
@@ -25,10 +33,11 @@ public class SignalPlanted : MonoBehaviour
         else
         {
             isOccupied = false;
+            textBGImage.enabled = false;
         }
         if (!isOccupied) return;
-
-        growingSeed = growingSeed = ScriptableObject.CreateInstance<Seed>();
+        
+        growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
 
         DateTime oldDate;
@@ -41,7 +50,7 @@ public class SignalPlanted : MonoBehaviour
         if (time <= 0)
             EndGrowthCycle();
         else
-            Patch.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+            plantImage.sprite = growingSeed.GrownSprite;
     }
 
     private void Update()
@@ -51,9 +60,10 @@ public class SignalPlanted : MonoBehaviour
             if (time > 0)
             {
                 if (time < (double)growingSeed.GrowTime / 2)
-                    Patch.GetComponentsInChildren<Image>()[1].sprite = growingSeed.SproutSprite;
+                    plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-                Patch.GetComponentInChildren<Text>().text = math.round(time).ToString();
+                growthText.text = math.round(time).ToString();
+                textBGImage.enabled = true;
             }
             else
                 EndGrowthCycle();
@@ -70,8 +80,9 @@ public class SignalPlanted : MonoBehaviour
     {
         timerNeeded = false;
         Patch.interactable = true;
-        Patch.GetComponentInChildren<Text>().text = "";
-        Patch.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+        plantImage.sprite = growingSeed.GrownSprite;
+        textBGImage.enabled = true;
+        growthText.text = "ГОТОВО";
     }
 
     public void PlantIt(Seed seed)
@@ -94,7 +105,9 @@ public class SignalPlanted : MonoBehaviour
         }
         else
         {
-            Patch.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>("Transparent");
+            plantImage.sprite = Resources.Load<Sprite>("Transparent");
+            textBGImage.enabled = false;
+            growthText.text = "";
             isOccupied = false;
             time = 1;
             for (var i = 0; i < growingSeed.Amount; i++)
@@ -105,7 +118,6 @@ public class SignalPlanted : MonoBehaviour
             //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
             growingSeed = null;
             PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
-            Patch.GetComponentInChildren<Text>().text = "";
         }
     }
 
@@ -117,13 +129,10 @@ public class SignalPlanted : MonoBehaviour
         var plusAmount = UnityEngine.Random.value;
         if (procentage < 0.5 && newSeed.Gabitus <= 100)
             newSeed.Gabitus += (int)(plusAmount * 5 + 1);
-        else
+        else if (newSeed.Taste <= 100)
         {
-            if (newSeed.Taste <= 100)
-            {
-                newSeed.Taste += (int)(plusAmount * 5 + 1);
-                newSeed.Price += (int)(plusAmount * 5 + 1);
-            }
+            newSeed.Taste += (int)(plusAmount * 5 + 1);
+            newSeed.Price += (int)(plusAmount * 5 + 1);
         }
         return newSeed;
     }

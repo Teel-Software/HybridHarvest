@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af111735-2c14-4713-ac91-b96915b1347e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Textures (raw)/FieldPreview1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures (raw)/FieldPreview1.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Field.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Field.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,7 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/AdjustGridSize.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1twqQei8jX7laOO3xaFd8MX8WVH" />
@@ -44,10 +46,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="11876">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16608">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="11876" />
+      <option name="pid" value="16608" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -74,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1623690491668</updated>
       <workItem from="1623690503162" duration="39000" />
-      <workItem from="1623741662965" duration="4626000" />
+      <workItem from="1623741662965" duration="8819000" />
     </task>
     <servers />
   </component>
