@@ -21,6 +21,7 @@ public class GeneCrossing : MonoBehaviour
         CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
+        button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
         //button1.GetComponent<LabButton>().NowSelected = null;
         //button2.GetComponent<LabButton>().NowSelected = null;
         //button1.GetComponent<Image>().sprite = defaultSprite; 
