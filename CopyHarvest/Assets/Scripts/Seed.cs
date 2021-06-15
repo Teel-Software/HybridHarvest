@@ -8,6 +8,8 @@ using UnityEngine;
 public class Seed : ScriptableObject
 {
     public string Name;
+    public string NameInRussian;
+    public string NameInLatin;
     public int Price;
     public int Amount;
 
@@ -45,6 +47,8 @@ public class Seed : ScriptableObject
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
+        NameInRussian = parameters[9];
+        NameInLatin = parameters[10];
     }
 
     public override string ToString()
@@ -53,7 +57,7 @@ public class Seed : ScriptableObject
                GrowTime + "|" + (int)GrowTimeGen + "|" +
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
-               Amount;
+               Amount + "|" + NameInRussian + "|" + NameInLatin;
     }
 }
 
