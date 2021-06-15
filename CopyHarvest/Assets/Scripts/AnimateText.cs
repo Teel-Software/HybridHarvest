@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AnimateText : MonoBehaviour
 {
@@ -42,16 +43,22 @@ public class AnimateText : MonoBehaviour
         }
         else
         {
-            CurrentSlide.SetActive(false);
             if (NextSlide != null)
                 NextSlide.SetActive(true);
-            else
+            else if (PlayerPrefs.HasKey("GameInitialised"))
             {
                 Title_LastSlide.SetActive(true);
                 StartLabel_LastSlide.SetActive(true);
                 StartButton_LastSlide.SetActive(true);
                 Options_LastSlide.SetActive(true);
             }
+
+            if (NextSlide == null && !PlayerPrefs.HasKey("GameInitialised"))
+            {
+                PlayerPrefs.SetInt("GameInitialised", 1);
+                SceneManager.LoadScene(1);
+            }
+            else CurrentSlide.SetActive(false);
         }
     }
 
