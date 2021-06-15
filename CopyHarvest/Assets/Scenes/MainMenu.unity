@@ -1518,6 +1518,7 @@ GameObject:
   - component: {fileID: 675252896}
   - component: {fileID: 675252895}
   - component: {fileID: 675252898}
+  - component: {fileID: 675252899}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1600,6 +1601,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 675252899}
+        m_TargetAssemblyTypeName: ClearGameData, Assembly-CSharp
+        m_MethodName: DisableRewatchButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &675252896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,6 +1666,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -3.74}
   m_UseGraphicAlpha: 1
+--- !u!114 &675252899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675252893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewatchButton: {fileID: 1451378043}
 --- !u!1 &759578860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,3 +3539,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RewatchButton: {fileID: 0}

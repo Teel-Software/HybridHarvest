@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
 {
+    [SerializeField] GameObject RewatchButton;
+
     public void ClearInventory()
     {
         PlayerPrefs.SetInt("mony", 0);
@@ -14,5 +16,11 @@ public class ClearGameData : MonoBehaviour
     public void UndoGameInitialization()
     {
         PlayerPrefs.DeleteKey("GameInitialised");
+    }
+
+    public void DisableRewatchButton()
+    {
+        if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
+            RewatchButton.SetActive(false);
     }
 }
