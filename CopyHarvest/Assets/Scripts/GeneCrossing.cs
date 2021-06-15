@@ -46,17 +46,19 @@ public class GeneCrossing : MonoBehaviour
 
     public (int, Gen) CountParameter(int value1, Gen gen1, int value2, Gen gen2)
     {
+        var dominant = Mathf.Min(value1, value2);
+        var recessive = Mathf.Max(value1, value2);
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
         {
-            return (Mathf.Min(value1, value2), gen1);
+            return (dominant, gen1);
         }
         if (gen1 == Gen.Recessive && gen2 == Gen.Recessive)
         {
-            return (Mathf.Max(value1, value2), gen1);
+            return (recessive, gen1);
         }
         if (gen1 == Gen.Dominant && gen2 == Gen.Recessive || gen1 == Gen.Recessive && gen2 == Gen.Dominant)
         {
-            return (Mathf.Min(value1, value2), Gen.Mixed);
+            return (dominant, Gen.Mixed);
         }
         if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
         {
@@ -65,15 +67,15 @@ public class GeneCrossing : MonoBehaviour
         }
         if (gen1 == Gen.Dominant && gen2 == Gen.Mixed || gen2 == Gen.Dominant && gen1 == Gen.Mixed)
         {
-            return (Mathf.Min(value1, value2), (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
+            return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
         }
         Gen newGen;
         var possibility = (int)Random.value * 100;
         if (possibility <= 25) newGen = Gen.Dominant;
         else if (possibility < 75) newGen = Gen.Mixed;
         else newGen = Gen.Recessive;
-        return (GetNewValueByPossibility(Mathf.Min(value1, value2), 75,
-                Mathf.Max(value1, value2)), newGen);
+        return (GetNewValueByPossibility(dominant, 75,
+                recessive), newGen);
     }
 
     public int GetNewValueByPossibility(int value1, int value1Chance, int value2)
