@@ -59,6 +59,9 @@ public class Drawinventory : MonoBehaviour
             case 3:
                 Select(item);
                 break;
+            case 4:
+                Select(item);
+                break;
         }
         //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
         //var choice = new GameObject("dropdown", typeof(Dropdown));

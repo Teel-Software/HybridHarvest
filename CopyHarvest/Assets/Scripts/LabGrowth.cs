@@ -87,6 +87,17 @@ public class LabGrowth : MonoBehaviour
         timerNeeded = true;
     }
 
+    public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
+    {
+       // Pot.interactable = false;
+        isOccupied = true;
+        growingSeed = seed;
+        PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
+        PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
+        time = 0.5;
+        timerNeeded = true;
+    }
+
     public void Clicked()
     {
         if (!(time < 0))

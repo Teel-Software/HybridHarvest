@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GeneCrossing : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GeneCrossing : MonoBehaviour
         if (seed1 == null || seed2 == null)
             return;
         var newSeed = MixTwoParents(seed1, seed2);
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+            CurrentPot.GetComponent<LabGrowth>().ApplyLightning(newSeed);
+        else
         CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
@@ -49,7 +53,11 @@ public class GeneCrossing : MonoBehaviour
     {
         var dominant = Mathf.Min(value1, value2);
         var recessive = Mathf.Max(value1, value2);
-        Chances[chancesIterator] = 100;
+        if (SceneManager.GetActiveScene().buildIndex == 4) 
+        {
+            (dominant, recessive) = (recessive, dominant);
+        }
+            Chances[chancesIterator] = 100;
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
         {
             return (dominant, gen1);
