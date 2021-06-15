@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using Unity.Mathematics;
 
-public class LabGrowth : MonoBehaviour
+public class QuantumGrowth : MonoBehaviour
 {
     [SerializeField] Button Pot;
     [SerializeField] Button CrossingPerformer;
@@ -16,9 +16,12 @@ public class LabGrowth : MonoBehaviour
     bool timerNeeded;
     Seed growingSeed;
     public double time;
-
+    
+    private Image plantImage;
     private void Start()
     {
+        var imagesInChildren = Pot.GetComponentsInChildren<Image>();
+        plantImage = imagesInChildren[1];
         if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
         {
             isOccupied = true;
@@ -43,7 +46,7 @@ public class LabGrowth : MonoBehaviour
         if (time <= 0)
             EndGrowthCycle();
         else
-            Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+            plantImage.sprite = growingSeed.PlantSprite;
     }
 
     private void Update()
@@ -52,8 +55,6 @@ public class LabGrowth : MonoBehaviour
         {
             if (time > 0)
             {
-                if (time < (double)growingSeed.GrowTime / 2)
-                    Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
                 Pot.GetComponentInChildren<Text>().text = math.round(time).ToString();
             }
@@ -73,7 +74,7 @@ public class LabGrowth : MonoBehaviour
         timerNeeded = false;
         Pot.interactable = true;
         Pot.GetComponentInChildren<Text>().text = "";
-        Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+        plantImage.sprite = growingSeed.PlantSprite;
     }
 
     public void PlantIt(Seed seed)
@@ -87,7 +88,7 @@ public class LabGrowth : MonoBehaviour
         timerNeeded = true;
     }
 
-    public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
+    public void ApplyLightning(Seed seed)//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     { 
         //Pot.interactable = false;
         isOccupied = true;
@@ -107,7 +108,7 @@ public class LabGrowth : MonoBehaviour
         }
         else
         {
-            Pot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>("Transparent");
+            plantImage.sprite = Resources.Load<Sprite>("Transparent");
             isOccupied = false;
             time = 1;
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);

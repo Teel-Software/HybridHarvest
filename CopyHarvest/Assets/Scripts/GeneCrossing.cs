@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GeneCrossing : MonoBehaviour
 {
@@ -13,7 +15,8 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Sprite defaultSprite;
     public int[] Chances = new int[3];
     int chancesIterator;
-
+    
+    private Image textBGImage;
     public void Clicked()
     {
         var seed1 = button1.GetComponent<LabButton>().NowSelected;
@@ -21,10 +24,12 @@ public class GeneCrossing : MonoBehaviour
         if (seed1 == null || seed2 == null)
             return;
         var newSeed = MixTwoParents(seed1, seed2);
+        
         if (SceneManager.GetActiveScene().buildIndex == 4)
-            CurrentPot.GetComponent<LabGrowth>().ApplyLightning(newSeed);
+            CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
         else
-        CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
+            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
+        
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
@@ -53,11 +58,10 @@ public class GeneCrossing : MonoBehaviour
     {
         var dominant = Mathf.Min(value1, value2);
         var recessive = Mathf.Max(value1, value2);
-        if (SceneManager.GetActiveScene().buildIndex == 4) 
-        {
+        if (SceneManager.GetActiveScene().buildIndex == 4)
             (dominant, recessive) = (recessive, dominant);
-        }
-            Chances[chancesIterator] = 100;
+            
+        Chances[chancesIterator] = 100;
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
         {
             return (dominant, gen1);
@@ -80,6 +84,7 @@ public class GeneCrossing : MonoBehaviour
         {
             return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
         }
+        
         Chances[chancesIterator] = 75;
         Gen newGen;
         var possibility = (int)Random.value * 100;

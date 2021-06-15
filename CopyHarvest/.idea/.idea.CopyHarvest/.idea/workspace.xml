@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af111735-2c14-4713-ac91-b96915b1347e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Textures (raw)/FieldPreview1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures (raw)/FieldPreview1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Choice.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Field.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Field.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneCrossing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneCrossing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,12 +20,16 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AdjustGridSize.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/10564ED1-54D6-47E1-94BE-F4AEF8878649/85/a7cc4cc6/020001D9.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuantumGrowth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10564ED1-54D6-47E1-94BE-F4AEF8878649/1f/0456f03f/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/AdjustGridSize.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GeneCrossing.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/QuantumGrowth.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1twqQei8jX7laOO3xaFd8MX8WVH" />
@@ -98,5 +102,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/QuantumGrowth.cs</url>
+          <line>72</line>
+          <properties documentPath="D:\Unity Projects\HybridHarvest\CopyHarvest\Assets\Scripts\QuantumGrowth.cs" initialLine="69" containingFunctionPresentation="method 'EndGrowthCycle'">
+            <startOffsets>
+              <option value="2050" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2051" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 6466562}
   - component: {fileID: 6466561}
   m_Layer: 5
-  m_Name: Pot1
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6466559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3b2287aff7d9f4cb39b9f85258af9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a3bba963351ad43b25e947ff760ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Pot: {fileID: 6466562}
@@ -226,7 +226,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6466561}
-        m_TargetAssemblyTypeName: LabGrowth, Assembly-CSharp
+        m_TargetAssemblyTypeName: QuantumGrowth, Assembly-CSharp
         m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 71379298}
   - component: {fileID: 71379297}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartCrossing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1326,8 +1326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.036, y: 65.401}
-  m_SizeDelta: {x: 58.392, y: 78.692}
+  m_AnchoredPosition: {x: 0, y: 22.9}
+  m_SizeDelta: {x: 75.1, y: 78.692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &999062269
 MonoBehaviour:
@@ -1351,7 +1351,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: bdd8acf71c416f04db987272854b704a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
