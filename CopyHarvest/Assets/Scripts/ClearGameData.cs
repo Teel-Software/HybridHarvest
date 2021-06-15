@@ -23,4 +23,9 @@ public class ClearGameData : MonoBehaviour
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
             RewatchButton.SetActive(false);
     }
+
+    public void QuitApplication() 
+    {
+        Application.Quit();
+    }
 }
