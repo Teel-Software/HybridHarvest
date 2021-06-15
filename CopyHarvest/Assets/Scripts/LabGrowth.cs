@@ -30,7 +30,9 @@ public class LabGrowth : MonoBehaviour
         }
         if (!isOccupied) return;
 
-        growingSeed = new Seed(PlayerPrefs.GetString(Pot.name + "grows"));
+        growingSeed = ScriptableObject.CreateInstance<Seed>();
+        growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
+
         DateTime oldDate;
         oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
@@ -97,7 +99,7 @@ public class LabGrowth : MonoBehaviour
             Pot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>("Transparent");
             isOccupied = false;
             time = 1;
-                InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
+            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
             growingSeed = null;
             PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
             Pot.GetComponentInChildren<Text>().text = "";

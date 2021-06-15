@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LabButton : MonoBehaviour
 {
     [SerializeField] Button SelectButton;
-    [SerializeField]public Button PlaceForResult;
+    [SerializeField] public Button PlaceForResult;
     [SerializeField] Button SecondButton;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] Sprite defaultSprite;
@@ -31,7 +31,7 @@ public class LabButton : MonoBehaviour
         PlaceForResult.gameObject.SetActive(true);
     }
 
-    public void ClearButton() 
+    public void ClearButton()
     {
         gameObject.GetComponent<LabButton>().NowSelected = null;
         gameObject.GetComponent<Image>().sprite = defaultSprite;

@@ -28,7 +28,9 @@ public class SignalPlanted : MonoBehaviour
         }
         if (!isOccupied) return;
 
-        growingSeed = new Seed(PlayerPrefs.GetString(Patch.name + "grows"));
+        growingSeed = growingSeed = ScriptableObject.CreateInstance<Seed>();
+        growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
+
         DateTime oldDate;
         oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
@@ -110,7 +112,8 @@ public class SignalPlanted : MonoBehaviour
     public Seed MutateSeed(Seed oldSeed, int i)
     {
         var procentage = UnityEngine.Random.value;
-        var newSeed = new Seed(oldSeed.ToString());
+        var newSeed = ScriptableObject.CreateInstance<Seed>();
+        newSeed.SetValues(oldSeed.ToString());
         var plusAmount = UnityEngine.Random.value;
         if (procentage < 0.5 && newSeed.Gabitus <= 100)
             newSeed.Gabitus += (int)(plusAmount * 5 + 1);

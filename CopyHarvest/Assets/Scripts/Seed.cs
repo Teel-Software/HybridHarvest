@@ -26,13 +26,7 @@ public class Seed : ScriptableObject
     public Gen GrowTimeGen;
     [SerializeField] public int GrowTime;
 
-    public Seed(string name, int price, string image)
-    {
-        Name = name;
-        Price = price;
-        PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + image);
-    }
-    public Seed(string data)
+    public void SetValues(string data)
     {
         var parameters = data.Split('|');
         Name = parameters[0];

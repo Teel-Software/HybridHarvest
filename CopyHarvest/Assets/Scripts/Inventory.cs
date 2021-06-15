@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public List<Seed> Elements = new List<Seed>();
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
+
     private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
@@ -66,9 +67,9 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("mony", Money);
         PlayerPrefs.SetInt("repa", Reputation);
         PlayerPrefs.SetInt("amo", Elements.Count);
-        for (var i=0;i<Elements.Count; i++)
+        for (var i = 0; i < Elements.Count; i++)
         {
-            PlayerPrefs.SetString(i.ToString(),Elements[i].ToString());
+            PlayerPrefs.SetString(i.ToString(), Elements[i].ToString());
         }
     }
 
@@ -77,10 +78,12 @@ public class Inventory : MonoBehaviour
         Money = PlayerPrefs.GetInt("mony");
         Reputation = PlayerPrefs.GetInt("repa");
         var i = PlayerPrefs.GetInt("amo");
-        for (var j =0; j < i; j++)
+        for (var j = 0; j < i; j++)
         {
             var parameters = PlayerPrefs.GetString(j.ToString());
-            Elements.Add(new Seed(parameters));
+            var newSeed = ScriptableObject.CreateInstance<Seed>();
+            newSeed.SetValues(parameters);
+            Elements.Add(newSeed);
         }
     }
 }
