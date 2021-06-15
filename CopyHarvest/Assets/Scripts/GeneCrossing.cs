@@ -22,6 +22,7 @@ public class GeneCrossing : MonoBehaviour
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
+        button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
         //button1.GetComponent<LabButton>().NowSelected = null;
         //button2.GetComponent<LabButton>().NowSelected = null;
         //button1.GetComponent<Image>().sprite = defaultSprite; 
