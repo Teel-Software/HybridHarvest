@@ -49,8 +49,6 @@ public class SignalPlanted : MonoBehaviour
 
         if (time <= 0)
             EndGrowthCycle();
-        else
-            plantImage.sprite = growingSeed.GrownSprite;
     }
 
     private void Update()
@@ -98,27 +96,25 @@ public class SignalPlanted : MonoBehaviour
 
     public void Clicked()
     {
-        if (!(time < 0))
+        if (time > 0) return;
+        if (!isOccupied)
         {
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
             InventoryFrame.gameObject.SetActive(true);
         }
-        else
+        plantImage.sprite = Resources.Load<Sprite>("Transparent");
+        textBGImage.enabled = false;
+        growthText.text = "";
+        isOccupied = false;
+        if (growingSeed == null) return;
+        for (var i = 0; i < growingSeed.Amount; i++)
         {
-            plantImage.sprite = Resources.Load<Sprite>("Transparent");
-            textBGImage.enabled = false;
-            growthText.text = "";
-            isOccupied = false;
-            time = 1;
-            for (var i = 0; i < growingSeed.Amount; i++)
-            {
-                var newSeed = MutateSeed(growingSeed, i);
-                InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
-            }
-            //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
-            growingSeed = null;
-            PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+            var newSeed = MutateSeed(growingSeed, i);
+            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
         }
+        //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
+        growingSeed = null;
+        PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
     }
 
     public Seed MutateSeed(Seed oldSeed, int i)
