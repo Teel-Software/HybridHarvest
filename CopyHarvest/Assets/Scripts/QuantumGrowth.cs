@@ -24,7 +24,7 @@ public class QuantumGrowth : MonoBehaviour
     {
         var imagesInChildren = Pot.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
-        textBGImage = imagesInChildren[2];
+        //textBGImage = imagesInChildren[2];
         growthText = Pot.GetComponentInChildren<Text>();
         if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
         {
@@ -49,8 +49,6 @@ public class QuantumGrowth : MonoBehaviour
 
         if (time <= 0)
             EndGrowthCycle();
-        else
-            plantImage.sprite = growingSeed.PlantSprite;
     }
 
     private void Update()
@@ -105,20 +103,18 @@ public class QuantumGrowth : MonoBehaviour
 
     public void Clicked()
     {
-        if (!(time < 0))
+        if (time > 0) return;
+        if (!isOccupied)
         {
             CrossingPerformer.GetComponent<GeneCrossing>().CurrentPot = Pot;
             CrossingMenue.gameObject.SetActive(true);
         }
-        else
-        {
-            plantImage.sprite = Resources.Load<Sprite>("Transparent");
-            isOccupied = false;
-            time = 1;
+        plantImage.sprite = Resources.Load<Sprite>("Transparent");
+        isOccupied = false;
+        if (growingSeed != null)
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
-            growingSeed = null;
-            PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
-            growthText.text = "";
-        }
+        growingSeed = null;
+        PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
+        growthText.text = "";
     }
 }
