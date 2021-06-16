@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="af111735-2c14-4713-ac91-b96915b1347e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +24,9 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/AdjustGridSize.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneCrossing.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/QuantumGrowth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SignalPlanted.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LabGrowth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/QuantumGrowth.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1twqQei8jX7laOO3xaFd8MX8WVH" />
@@ -79,7 +78,7 @@
       <updated>1623690491668</updated>
       <workItem from="1623690503162" duration="39000" />
       <workItem from="1623741662965" duration="8819000" />
-      <workItem from="1623816523420" duration="3507000" />
+      <workItem from="1623816523420" duration="4484000" />
     </task>
     <servers />
   </component>
