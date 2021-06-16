@@ -18,10 +18,14 @@ public class QuantumGrowth : MonoBehaviour
     public double time;
     
     private Image plantImage;
+    private Image textBGImage;
+    private Text growthText;
     private void Start()
     {
         var imagesInChildren = Pot.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
+        textBGImage = imagesInChildren[2];
+        growthText = Pot.GetComponentInChildren<Text>();
         if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
         {
             isOccupied = true;
@@ -56,7 +60,7 @@ public class QuantumGrowth : MonoBehaviour
             if (time > 0)
             {
                 time -= Time.deltaTime;
-                Pot.GetComponentInChildren<Text>().text = math.round(time).ToString();
+                //growthText.text = math.round(time).ToString();
             }
             else
                 EndGrowthCycle();
@@ -73,7 +77,7 @@ public class QuantumGrowth : MonoBehaviour
     {
         timerNeeded = false;
         Pot.interactable = true;
-        Pot.GetComponentInChildren<Text>().text = "";
+        growthText.text = "";
         plantImage.sprite = growingSeed.PlantSprite;
     }
 
@@ -88,7 +92,7 @@ public class QuantumGrowth : MonoBehaviour
         timerNeeded = true;
     }
 
-    public void ApplyLightning(Seed seed)//��� ������� ������ ������� �� �������� ������
+    public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
     { 
         //Pot.interactable = false;
         isOccupied = true;
@@ -114,7 +118,7 @@ public class QuantumGrowth : MonoBehaviour
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
             growingSeed = null;
             PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
-            Pot.GetComponentInChildren<Text>().text = "";
+            growthText.text = "";
         }
     }
 }

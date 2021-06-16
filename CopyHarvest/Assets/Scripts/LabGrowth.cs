@@ -16,9 +16,16 @@ public class LabGrowth : MonoBehaviour
     bool timerNeeded;
     Seed growingSeed;
     public double time;
-
+    
+    private Image plantImage;
+    private Image textBGImage;
+    private Text growthText;
     private void Start()
     {
+        var imagesInChildren = Pot.GetComponentsInChildren<Image>();
+        plantImage = imagesInChildren[1];
+        textBGImage = imagesInChildren[2];
+        growthText = Pot.GetComponentInChildren<Text>();
         if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
         {
             isOccupied = true;
@@ -27,6 +34,7 @@ public class LabGrowth : MonoBehaviour
         else
         {
             isOccupied = false;
+            textBGImage.enabled = false;
         }
         if (!isOccupied) return;
 
@@ -43,7 +51,7 @@ public class LabGrowth : MonoBehaviour
         if (time <= 0)
             EndGrowthCycle();
         else
-            Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+            plantImage.sprite = growingSeed.GrownSprite;
     }
 
     private void Update()
@@ -53,9 +61,10 @@ public class LabGrowth : MonoBehaviour
             if (time > 0)
             {
                 if (time < (double)growingSeed.GrowTime / 2)
-                    Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.SproutSprite;
+                    plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-                Pot.GetComponentInChildren<Text>().text = math.round(time).ToString();
+                growthText.text = math.round(time).ToString();
+                textBGImage.enabled = true;
             }
             else
                 EndGrowthCycle();
@@ -72,8 +81,9 @@ public class LabGrowth : MonoBehaviour
     {
         timerNeeded = false;
         Pot.interactable = true;
-        Pot.GetComponentInChildren<Text>().text = "";
-        Pot.GetComponentsInChildren<Image>()[1].sprite = growingSeed.GrownSprite;
+        textBGImage.enabled = true;
+        growthText.text = "ГОТОВО";
+        plantImage.sprite = growingSeed.GrownSprite;
     }
 
     public void PlantIt(Seed seed)
@@ -87,17 +97,6 @@ public class LabGrowth : MonoBehaviour
         timerNeeded = true;
     }
 
-    public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
-    { 
-        //Pot.interactable = false;
-        isOccupied = true;
-        growingSeed = seed;
-        PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
-        PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
-        time = 0.5;
-        timerNeeded = true;
-    }
-
     public void Clicked()
     {
         if (!(time < 0))
@@ -107,7 +106,8 @@ public class LabGrowth : MonoBehaviour
         }
         else
         {
-            Pot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load<Sprite>("Transparent");
+            plantImage.sprite = Resources.Load<Sprite>("Transparent");
+            textBGImage.enabled = false;
             isOccupied = false;
             time = 1;
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
