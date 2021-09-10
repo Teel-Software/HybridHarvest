@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af111735-2c14-4713-ac91-b96915b1347e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CopyHarvest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lab.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Quantum.unity" afterDir="false" />
-    </list>
+    <list default="true" id="af111735-2c14-4713-ac91-b96915b1347e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +74,7 @@
       <updated>1623690491668</updated>
       <workItem from="1623690503162" duration="39000" />
       <workItem from="1623741662965" duration="8819000" />
-      <workItem from="1623816523420" duration="4484000" />
+      <workItem from="1623816523420" duration="4490000" />
     </task>
     <servers />
   </component>
