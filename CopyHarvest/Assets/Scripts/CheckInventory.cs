@@ -15,12 +15,12 @@ public class CheckInventory : MonoBehaviour
         //seed.Taste = 10;
         //seed.TasteGen = Gen.Mixed;
         //seed.Amount = 10;
-        switch (item) 
+        switch (item)
         {
             case 1:
-            var seed = (Seed)Resources.Load("Seeds\\Cucumber");
-            targetInventory.ChangeMoney(-seed.Price);
-            targetInventory.AddItem(seed);
+                var seed = (Seed)Resources.Load("Seeds\\Cucumber");
+                targetInventory.ChangeMoney(-seed.Price);
+                targetInventory.AddItem(seed);
                 break;
             case 2:
                 var seed1 = (Seed)Resources.Load("Seeds\\Tomato");

@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Drawinventory : MonoBehaviour
 {
-    [SerializeField]public Inventory targetInventory;
+    [SerializeField] public Inventory targetInventory;
     [SerializeField] RectTransform Place;
+    [SerializeField] GameObject CurrentInventoryParent;
+
     //[SerializeField] Dropdown Choice;
     public Button GrowPlace { get; set; }
     List<GameObject> alreadyDrawn = new List<GameObject>();
@@ -21,22 +23,22 @@ public class Drawinventory : MonoBehaviour
 
     void Redraw()
     {
-        for(var i=0; i < alreadyDrawn.Count; i++)
+        for (var i = 0; i < alreadyDrawn.Count; i++)
         {
             Destroy(alreadyDrawn[i]);
         }
         alreadyDrawn.Clear();
-        for(var i = 0; i < targetInventory.Elements.Count; i++)
+        for (var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var item = targetInventory.Elements[i];
             var icon = new GameObject(i.ToString(), typeof(Button));
             icon.AddComponent<Image>().sprite = item.PlantSprite;
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            
+
             icon.GetComponent<Button>().onClick.AddListener(PointerDown);
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
-            
+
         }
     }
 
@@ -126,7 +128,7 @@ public class Drawinventory : MonoBehaviour
             GrowPlace.GetComponent<SignalPlanted>().PlantIt(toPlant);
             targetInventory.RemoveItem(int.Parse(item.name));
             Redraw();
-            Place.gameObject.SetActive(false);
+            CurrentInventoryParent.SetActive(false);
         }
     }
 
@@ -140,7 +142,7 @@ public class Drawinventory : MonoBehaviour
             GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
             targetInventory.RemoveItem(a);
             Redraw();
-            Place.gameObject.SetActive(false);
+            CurrentInventoryParent.SetActive(false);
         }
     }
 }
