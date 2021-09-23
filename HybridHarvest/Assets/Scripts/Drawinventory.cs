@@ -11,7 +11,7 @@ public class Drawinventory : MonoBehaviour
     [SerializeField] RectTransform Place;
     [SerializeField] GameObject CurrentInventoryParent;
 
-    //[SerializeField] Dropdown Choice;
+    [SerializeField] Dropdown Choice;
     public Button GrowPlace { get; set; }
     List<GameObject> alreadyDrawn = new List<GameObject>();
 
@@ -50,21 +50,23 @@ public class Drawinventory : MonoBehaviour
             return;
         }
         var scene = SceneManager.GetActiveScene().buildIndex;
-        switch (scene)
-        {
-            case 1:
-                Sell(item);
-                break;
-            case 2:
-                Plant(item);
-                break;
-            case 3:
-                Select(item);
-                break;
-            case 4:
-                Select(item);
-                break;
-        }
+        //DropDownMaker(item);
+        DropDownRevealer(item);
+        /* switch (scene)
+         {
+             case 1:
+                 Sell(item);
+                 break;
+             case 2:
+                 Plant(item);
+                 break;
+             case 3:
+                 Select(item);
+                 break;
+             case 4:
+                 Select(item);
+                 break;
+         }*/
         //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
         //var choice = new GameObject("dropdown", typeof(Dropdown));
         //choice.gameObject.transform.position = new Vector3(item.transform.position.x, item.transform.position.y,10);
@@ -105,7 +107,34 @@ public class Drawinventory : MonoBehaviour
         //Sell(item);
     }
 
-    private void Sell(GameObject item)
+    private void DropDownMaker(GameObject item) {
+        var c = new GameObject();
+        c.gameObject.name = "dropPLS";
+        //var c = new GameObject("dropdown", typeof(Dropdown));
+        c.gameObject.AddComponent<Dropdown>();
+        c.gameObject.GetComponent<Dropdown>().AddOptions(new List<Dropdown.OptionData>());
+        Debug.Log(c.gameObject.transform.position.z);
+        //c.gameObject.transform.SetPositionAndRotation(item.transform.position, item.transform.rotation);
+        c.transform.SetParent(Place);
+        Debug.Log(c.gameObject.transform.position.z);
+        c.gameObject.GetComponent<RectTransform>().position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
+        c.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
+        Debug.Log(c.gameObject.transform.position.z);
+        c.transform.localScale = new Vector3(1,1,1);
+        c.AddComponent<Image>();
+        //var c2 = Instantiate(c);
+        c.SetActive(true);
+        c.gameObject.GetComponent<Dropdown>().enabled = true; 
+        Debug.Log(c.transform.position.z);
+        Debug.Log(c.GetComponent<RectTransform>().position.y);
+    }
+
+    private void DropDownRevealer(GameObject item)
+    {
+        Choice.gameObject.SetActive(true);
+    }
+
+        private void Sell(GameObject item)
     {
         int a;
         if (int.TryParse(item.name, out a))
