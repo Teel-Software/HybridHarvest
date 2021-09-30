@@ -2839,6 +2839,7 @@ MonoBehaviour:
   targetInventory: {fileID: 1199887181}
   Place: {fileID: 478625235}
   CurrentInventoryParent: {fileID: 1407888801}
+  Choice: {fileID: 0}
 --- !u!114 &1407888805
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1044,8 +1044,9 @@ GameObject:
   - component: {fileID: 561603082}
   - component: {fileID: 561603081}
   - component: {fileID: 561603080}
+  - component: {fileID: 561603083}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,6 +1127,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 561603083}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561603081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,6 +1177,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561603078}
   m_CullTransparentMesh: 1
+--- !u!114 &561603083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561603078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2889f2936ff24444ea5eb07457d02de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickSound: {fileID: 8300000, guid: 93e797c4c3b942f48bef8c03ed0ad57b, type: 3}
 --- !u!1 &562580065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,7 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2889f2936ff24444ea5eb07457d02de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClickSound: {fileID: 8300000, guid: 5ceffaa2aa22ac645b54e4a5413bd192, type: 3}
+  ClickSound: {fileID: 8300000, guid: 93e797c4c3b942f48bef8c03ed0ad57b, type: 3}
 --- !u!1 &759578860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,7 +2306,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f47cd4973126cc4e82cd6b2f7891705, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8300368dc39b1c445af5fe4c453063dc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.304
   m_Pitch: 1
