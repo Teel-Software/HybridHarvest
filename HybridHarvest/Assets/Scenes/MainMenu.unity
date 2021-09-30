@@ -1553,6 +1553,7 @@ GameObject:
   - component: {fileID: 675252895}
   - component: {fileID: 675252898}
   - component: {fileID: 675252899}
+  - component: {fileID: 675252900}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1647,6 +1648,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 675252900}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &675252896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1726,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RewatchButton: {fileID: 1451378043}
+--- !u!114 &675252900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675252893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2889f2936ff24444ea5eb07457d02de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickSound: {fileID: 8300000, guid: 5ceffaa2aa22ac645b54e4a5413bd192, type: 3}
 --- !u!1 &759578860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,7 +2151,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 13.477215
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2223,10 +2249,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286040355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2d0c8a8d5be5841901eb238442c762, type: 3}
+  m_Script: {fileID: 11500000, guid: b8ecf9edc49248b5b19de3588b07462f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectTag: GameSFX
 --- !u!1 &1312396169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2291,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 16.81837
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2349,7 +2374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312396169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3162032, y: 0.32387823, z: -1823.4207}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2367,7 +2392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2d0c8a8d5be5841901eb238442c762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectTag: GameMusic
 --- !u!1 &1319921955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,6 +3849,7 @@ GameObject:
   - component: {fileID: 2058056534}
   - component: {fileID: 2058056533}
   - component: {fileID: 2058056537}
+  - component: {fileID: 2058056538}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3971,3 +3996,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RewatchButton: {fileID: 0}
+--- !u!114 &2058056538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058056531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2889f2936ff24444ea5eb07457d02de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickSound: {fileID: 0}

@@ -7,7 +7,7 @@ public class PlaySound : MonoBehaviour
 {
     public AudioClip ClickSound;
     
-    public void PlayClickSound()
+    public void Click() 
     {
         var source = GameObject.FindGameObjectWithTag("GameSFX").GetComponent<AudioSource>();
         source.PlayOneShot(ClickSound);
