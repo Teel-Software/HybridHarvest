@@ -51,8 +51,8 @@ public class Drawinventory : MonoBehaviour
         }
         var scene = SceneManager.GetActiveScene().buildIndex;
         //DropDownMaker(item);
-        DropDownRevealer(item);
-        /* switch (scene)
+        //DropDownRevealer(item);
+         switch (scene)
          {
              case 1:
                  Sell(item);
@@ -66,7 +66,7 @@ public class Drawinventory : MonoBehaviour
              case 4:
                  Select(item);
                  break;
-         }*/
+         }
         //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
         //var choice = new GameObject("dropdown", typeof(Dropdown));
         //choice.gameObject.transform.position = new Vector3(item.transform.position.x, item.transform.position.y,10);
