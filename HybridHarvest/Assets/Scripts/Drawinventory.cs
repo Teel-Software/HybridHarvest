@@ -21,7 +21,7 @@ public class Drawinventory : MonoBehaviour
         Redraw();
     }
 
-    void Redraw()
+     public void Redraw()
     {
         for (var i = 0; i < alreadyDrawn.Count; i++)
         {
@@ -52,21 +52,26 @@ public class Drawinventory : MonoBehaviour
         var scene = SceneManager.GetActiveScene().buildIndex;
         //DropDownMaker(item);
         //DropDownRevealer(item);
-         switch (scene)
-         {
-             case 1:
-                 Sell(item);
-                 break;
-             case 2:
-                 Plant(item);
-                 break;
-             case 3:
-                 Select(item);
-                 break;
-             case 4:
-                 Select(item);
-                 break;
-         }
+        switch (scene)
+        {
+            case 1:
+                DropDownRevealer(item);
+                //Sell(item);
+                //var opt  = Choice.options.ToArray();
+                //for(var i =1; i<opt.Length;i++)
+                   
+                break;
+            case 2:
+                Plant(item);
+                break;
+            case 3:
+                Select(item);
+                break;
+            case 4:
+                Select(item);
+                break;
+        }
+
         //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
         //var choice = new GameObject("dropdown", typeof(Dropdown));
         //choice.gameObject.transform.position = new Vector3(item.transform.position.x, item.transform.position.y,10);
@@ -107,7 +112,8 @@ public class Drawinventory : MonoBehaviour
         //Sell(item);
     }
 
-    private void DropDownMaker(GameObject item) {
+    private void DropDownMaker(GameObject item)
+    {
         var c = new GameObject();
         c.gameObject.name = "dropPLS";
         //var c = new GameObject("dropdown", typeof(Dropdown));
@@ -120,21 +126,24 @@ public class Drawinventory : MonoBehaviour
         c.gameObject.GetComponent<RectTransform>().position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
         c.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
         Debug.Log(c.gameObject.transform.position.z);
-        c.transform.localScale = new Vector3(1,1,1);
+        c.transform.localScale = new Vector3(1, 1, 1);
         c.AddComponent<Image>();
         //var c2 = Instantiate(c);
         c.SetActive(true);
-        c.gameObject.GetComponent<Dropdown>().enabled = true; 
+        c.gameObject.GetComponent<Dropdown>().enabled = true;
         Debug.Log(c.transform.position.z);
         Debug.Log(c.GetComponent<RectTransform>().position.y);
     }
 
     private void DropDownRevealer(GameObject item)
     {
+        Choice.value = 0;
+        Choice.RefreshShownValue();
         Choice.gameObject.SetActive(true);
+        Choice.GetComponent<DropDownBehavior>().item = item;
     }
 
-        private void Sell(GameObject item)
+    private void Sell(GameObject item)
     {
         int a;
         if (int.TryParse(item.name, out a))

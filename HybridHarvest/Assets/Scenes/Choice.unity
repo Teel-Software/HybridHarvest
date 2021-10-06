@@ -3149,6 +3149,7 @@ GameObject:
   - component: {fileID: 863150861}
   - component: {fileID: 863150860}
   - component: {fileID: 863150859}
+  - component: {fileID: 863150862}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -3227,15 +3228,27 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: Title option
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: Sell
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: lol not work
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 863150862}
+        m_TargetAssemblyTypeName: DropDownBehavior, Assembly-CSharp
+        m_MethodName: DropdownValueChanged
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 863150859}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Dropdown, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &863150860
 MonoBehaviour:
@@ -3275,6 +3288,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863150857}
   m_CullTransparentMesh: 1
+--- !u!114 &863150862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863150857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0cf8dd0e5eedf49a7b9df50eb7359a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  drawinventory: {fileID: 654561917}
+  targetInventory: {fileID: 1871862018}
 --- !u!1 &873637375
 GameObject:
   m_ObjectHideFlags: 0
@@ -8280,7 +8308,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: Title option
 --- !u!222 &1985539024
 CanvasRenderer:
   m_ObjectHideFlags: 0
