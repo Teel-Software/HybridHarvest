@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using Unity.Mathematics;
+using System;
 
 public class SignalPlanted : MonoBehaviour
 {
@@ -102,6 +102,7 @@ public class SignalPlanted : MonoBehaviour
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
             InventoryFrame.gameObject.SetActive(true);
         }
+        //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
         textBGImage.enabled = false;
         growthText.text = "";
