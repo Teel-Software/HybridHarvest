@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class AnimateText : MonoBehaviour
 {
@@ -15,31 +14,37 @@ public class AnimateText : MonoBehaviour
     [SerializeField] GameObject Options_LastSlide;
 
     string currentText;
-    int frame, frequency;
+    int index, freqMilliseconds;
+    DateTime lastFrameTime;
 
     // Start is called before the first frame update
     void Start()
     {
         currentText = TextPanel.text;
         TextPanel.text = "";
-        frequency = 10;
+        index = 0;
+        lastFrameTime = DateTime.MinValue;
+        freqMilliseconds = 25; // врем€ между показом символов в миллисекундах
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (frame % frequency == 0 && frame / frequency < currentText.Length)
-            TextPanel.text += $"{currentText[frame / frequency]}";
-        if (frame != int.MaxValue)
-            frame++;
+        if ((DateTime.Now - lastFrameTime).TotalMilliseconds > freqMilliseconds)
+        {
+            lastFrameTime = DateTime.Now;
+
+            if (index < currentText.Length)
+                TextPanel.text += $"{currentText[index++]}";
+        }
     }
 
     public void SkipText()
     {
-        if (frame / frequency < currentText.Length)
+        if (index < currentText.Length)
         {
             TextPanel.text = currentText;
-            frame = int.MaxValue;
+            index = int.MaxValue;
         }
         else
         {
@@ -64,7 +69,8 @@ public class AnimateText : MonoBehaviour
 
     void OnDisable()
     {
-        frame = 0;
+        index = 0;
         TextPanel.text = "";
+        lastFrameTime = DateTime.MinValue;
     }
 }
