@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CheckInventory : MonoBehaviour
+public class ShopLogic : MonoBehaviour
 {
     [SerializeField] Inventory targetInventory;
     public string item;

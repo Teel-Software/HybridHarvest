@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
 
-public class SignalPlanted : MonoBehaviour
+public class PatchGrowth : MonoBehaviour
 {
     [SerializeField] Button Patch;
     [SerializeField] RectTransform InventoryFrame;
@@ -18,6 +18,9 @@ public class SignalPlanted : MonoBehaviour
     private Image textBGImage;
     private Text growthText;
     
+    /// <summary>
+    /// Organizes plants on patch.
+    /// </summary>
     private void Start()
     {
         var imagesInChildren = Patch.GetComponentsInChildren<Image>();
@@ -34,8 +37,8 @@ public class SignalPlanted : MonoBehaviour
         {
             isOccupied = false;
             textBGImage.enabled = false;
+            return;
         }
-        if (!isOccupied) return;
         
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
@@ -51,6 +54,9 @@ public class SignalPlanted : MonoBehaviour
             EndGrowthCycle();
     }
 
+    /// <summary>
+    /// Used as Timer.
+    /// </summary>
     private void Update()
     {
         if (timerNeeded)
@@ -68,12 +74,18 @@ public class SignalPlanted : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves data when window closed
+    /// </summary>
     void OnDestroy()
     {
         PlayerPrefs.SetInt(Patch.name + "time", (int)time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
     }
 
+    /// <summary>
+    /// States that plant is ripe
+    /// </summary>
     public void EndGrowthCycle()
     {
         timerNeeded = false;
@@ -83,6 +95,10 @@ public class SignalPlanted : MonoBehaviour
         growthText.text = "ГОТОВО";
     }
 
+    /// <summary>
+    /// plants chosen seed on patch
+    /// </summary>
+    /// <param name="seed"></param>
     public void PlantIt(Seed seed)
     {
         Patch.interactable = false;
@@ -94,6 +110,9 @@ public class SignalPlanted : MonoBehaviour
         timerNeeded = true;
     }
 
+    /// <summary>
+    /// Pocesses clicking
+    /// </summary>
     public void Clicked()
     {
         if (time > 0) return;
@@ -110,7 +129,7 @@ public class SignalPlanted : MonoBehaviour
         if (growingSeed == null) return;
         for (var i = 0; i < growingSeed.Amount; i++)
         {
-            var newSeed = MutateSeed(growingSeed, i);
+            var newSeed = MutateSeed(growingSeed);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
         }
         //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
@@ -118,7 +137,12 @@ public class SignalPlanted : MonoBehaviour
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
     }
 
-    public Seed MutateSeed(Seed oldSeed, int i)
+    /// <summary>
+    /// mutation mechanic
+    /// </summary>
+    /// <param name="oldSeed"></param>
+    /// <returns></returns>
+    public Seed MutateSeed(Seed oldSeed)
     {
         var procentage = UnityEngine.Random.value;
         var newSeed = ScriptableObject.CreateInstance<Seed>();

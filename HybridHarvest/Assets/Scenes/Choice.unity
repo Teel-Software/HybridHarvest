@@ -3232,6 +3232,10 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Sell
       m_Image: {fileID: 0}
+    - m_Text: Plant?
+      m_Image: {fileID: 0}
+    - m_Text: Select?
+      m_Image: {fileID: 0}
     - m_Text: lol not work
       m_Image: {fileID: 0}
   m_OnValueChanged:

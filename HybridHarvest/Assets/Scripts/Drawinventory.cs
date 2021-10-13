@@ -9,7 +9,7 @@ public class Drawinventory : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
     [SerializeField] RectTransform Place;
-    [SerializeField] GameObject CurrentInventoryParent;
+    [SerializeField] public GameObject CurrentInventoryParent;
 
     [SerializeField] Dropdown Choice;
     public Button GrowPlace { get; set; }
@@ -21,6 +21,9 @@ public class Drawinventory : MonoBehaviour
         Redraw();
     }
 
+    /// <summary>
+    /// updates pictures of items
+    /// </summary>
      public void Redraw()
     {
         for (var i = 0; i < alreadyDrawn.Count; i++)
@@ -42,6 +45,9 @@ public class Drawinventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when user clicks
+    /// </summary>
     public void PointerDown()
     {
         var item = EventSystem.current.currentSelectedGameObject;
@@ -49,17 +55,12 @@ public class Drawinventory : MonoBehaviour
         {
             return;
         }
-        var scene = SceneManager.GetActiveScene().buildIndex;
-        //DropDownMaker(item);
-        //DropDownRevealer(item);
+        DropDownRevealer(item);
+        /*var scene = SceneManager.GetActiveScene().buildIndex;
         switch (scene)
         {
             case 1:
                 DropDownRevealer(item);
-                //Sell(item);
-                //var opt  = Choice.options.ToArray();
-                //for(var i =1; i<opt.Length;i++)
-                   
                 break;
             case 2:
                 Plant(item);
@@ -70,57 +71,20 @@ public class Drawinventory : MonoBehaviour
             case 4:
                 Select(item);
                 break;
-        }
-
-        //Dropdown choice = Instantiate(Dropdown, new Vector2(0,0));
-        //var choice = new GameObject("dropdown", typeof(Dropdown));
-        //choice.gameObject.transform.position = new Vector3(item.transform.position.x, item.transform.position.y,10);
-        //choice.transform.SetParent(item.transform);
-        // choice.gameObject.SetActive(true);
-        //choice.transform.SetParent(Place);
-        //choice.transform.localScale = new Vector3(1f, 1f, 1f);
-        //choice.GetComponent<Dropdown>().AddOptions(new List<Dropdown.OptionData>() {
-        //  new Dropdown.OptionData("Продать"),
-        // new Dropdown.OptionData("Посадить")});
-        // choice.AddComponent<CanvasRenderer>();
-        // choice.gameObject.layer = 5;
-        //var i = new GameObject("fff", typeof(Button));
-        //i.gameObject.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
-        //choice.AddComponent<Text>();
-        //choice.GetComponent<Text>().text = "xnj rfr";
-        //choice.gameObject.SetActive(true);
-        //choice.AddComponent<Image>().sprite = item.GetComponent<Image>().sprite;
-        //choice.GetComponent<Dropdown>().enabled = true;
-        //Instantiate(choice);
-        //Instantiate(Choice, item.transform.position, Quaternion.identity);
-        // Choice.Show();
-        //Choice.gameObject.SetActive(true);
-        //Choice.gameObject.transform.position = item.gameObject.transform.position;
-        //Choice.GetComponent<Dropdown>().onValueChanged.AddListener((option)=> {
-        //    switch (option)
-        //    {
-        //        case 0:
-        //            Sell(item);
-        //            break;
-        //    }
-        //    //print("net");
-        //    //Destroy(Choice);
-        //    //Choice.gameObject.GetComponent<Dropdown>().enabled = false;
-        //    Choice.gameObject.SetActive(false);
-        //});
-        //print("da");
-        //Sell(item);
+        }*/
     }
 
+    /// <summary>
+    /// Creates confirmation message. Actually useless
+    /// </summary>
+    /// <param name="item"></param>
     private void DropDownMaker(GameObject item)
     {
         var c = new GameObject();
         c.gameObject.name = "dropPLS";
-        //var c = new GameObject("dropdown", typeof(Dropdown));
         c.gameObject.AddComponent<Dropdown>();
         c.gameObject.GetComponent<Dropdown>().AddOptions(new List<Dropdown.OptionData>());
         Debug.Log(c.gameObject.transform.position.z);
-        //c.gameObject.transform.SetPositionAndRotation(item.transform.position, item.transform.rotation);
         c.transform.SetParent(Place);
         Debug.Log(c.gameObject.transform.position.z);
         c.gameObject.GetComponent<RectTransform>().position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
@@ -128,13 +92,16 @@ public class Drawinventory : MonoBehaviour
         Debug.Log(c.gameObject.transform.position.z);
         c.transform.localScale = new Vector3(1, 1, 1);
         c.AddComponent<Image>();
-        //var c2 = Instantiate(c);
         c.SetActive(true);
         c.gameObject.GetComponent<Dropdown>().enabled = true;
         Debug.Log(c.transform.position.z);
         Debug.Log(c.GetComponent<RectTransform>().position.y);
     }
 
+    /// <summary>
+    /// Creates confirmation message
+    /// </summary>
+    /// <param name="item"></param>
     private void DropDownRevealer(GameObject item)
     {
         Choice.value = 0;
@@ -163,7 +130,7 @@ public class Drawinventory : MonoBehaviour
         {
             a = int.Parse(item.name);
             Seed toPlant = targetInventory.Elements[int.Parse(item.name)];
-            GrowPlace.GetComponent<SignalPlanted>().PlantIt(toPlant);
+            GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
             targetInventory.RemoveItem(int.Parse(item.name));
             Redraw();
             CurrentInventoryParent.SetActive(false);
@@ -175,7 +142,7 @@ public class Drawinventory : MonoBehaviour
         int a;
         if (int.TryParse(item.name, out a))
         {
-            a = int.Parse(item.name);
+            //a = int.Parse(item.name);
             Seed toPlant = targetInventory.Elements[a];
             GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
             targetInventory.RemoveItem(a);
