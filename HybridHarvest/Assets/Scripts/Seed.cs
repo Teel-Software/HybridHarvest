@@ -18,7 +18,7 @@ public class Seed : ScriptableObject
     public Sprite SproutSprite;
     public Sprite GrownSprite;
     //example import \Packets\Packet0.png
-    [FormerlySerializedAs("BagSprite")] public Sprite PacketSprite;
+    public Sprite PacketSprite;
 
     public Gen GabitusGen;
     public int Gabitus;
