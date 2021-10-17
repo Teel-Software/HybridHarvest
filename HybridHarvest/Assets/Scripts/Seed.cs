@@ -27,6 +27,10 @@ public class Seed : ScriptableObject
     public Gen GrowTimeGen;
     [SerializeField] public int GrowTime;
 
+    /// <summary>
+    /// Заполняет пустой элемент класса Seed
+    /// </summary>
+    /// <param name="data"></param>
     public void SetValues(string data)
     {
         var parameters = data.Split('|');
@@ -63,10 +67,15 @@ public class Seed : ScriptableObject
                 break;
         }
         BagSprite = Resources.Load<Sprite>("SeedsIcons\\Packet" + bagNum.ToString());
+        Debug.Log(BagSprite);
         NameInRussian = parameters[9];
         NameInLatin = parameters[10];
     }
 
+    /// <summary>
+    /// превращает элемент класса seed в строку
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return Name + "|" + Price + "|" +
