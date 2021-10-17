@@ -375,7 +375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &201542922
 GameObject:
@@ -2002,7 +2002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  drawinventory: {fileID: 1022704507}
+  drawInventory: {fileID: 1022704507}
   targetInventory: {fileID: 1940006996}
 --- !u!114 &1043921700
 MonoBehaviour:
@@ -2648,6 +2648,7 @@ RectTransform:
   - {fileID: 1022704511}
   - {fileID: 1806767395}
   - {fileID: 1043921698}
+  - {fileID: 1940006997}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3879,9 +3880,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940006995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46384683, y: 0.566782, z: 68.164635}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.72376, y: 27.766533, z: -1069.71}
+  m_LocalScale: {x: 48.98979, y: 48.98979, z: 48.98979}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1403440122}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

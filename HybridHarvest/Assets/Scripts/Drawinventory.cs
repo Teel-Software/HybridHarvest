@@ -21,7 +21,7 @@ public class Drawinventory : MonoBehaviour
     }
 
     /// <summary>
-    /// updates pictures of items
+    /// Draws items in inventory
     /// </summary>
      public void Redraw()
     {
@@ -35,17 +35,17 @@ public class Drawinventory : MonoBehaviour
             var item = targetInventory.Elements[i];
             var icon = new GameObject(i.ToString(), typeof(Button));
             icon.AddComponent<Image>().sprite = item.PacketSprite;
-            GameObject plantIcon = new GameObject();
+
+            var plantIcon = new GameObject("Plant" + i);
             plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
             plantIcon.transform.position = new Vector2(0, -35);
             plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
             plantIcon.transform.SetParent(icon.transform);
-            icon.transform.localScale = new Vector2(0.01f, 0.01f);
 
+            icon.transform.localScale = new Vector2(0.01f, 0.01f);
             icon.GetComponent<Button>().onClick.AddListener(PointerDown);
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
-
         }
     }
 

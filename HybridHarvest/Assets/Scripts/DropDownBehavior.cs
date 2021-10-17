@@ -4,32 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class DropDownBehavior : MonoBehaviour
 {
     public GameObject item;
-    [SerializeField] Drawinventory drawinventory;
+    [FormerlySerializedAs("drawinventory")] [SerializeField] Drawinventory drawInventory;
     [SerializeField] public Inventory targetInventory;
-
+    [SerializeField] public string title;
+    
     /// <summary>
     /// Если на определённой сцене не нужна опция, здесь можно поменять картинку и надпись.
     /// </summary>
     private void Start()
     {
+        gameObject.GetComponent<Dropdown>().GetComponentInChildren<Text>().text = title;
+        var blank = "";
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 1:
-                gameObject.GetComponent<Dropdown>().options[2].text = "lol";
-                gameObject.GetComponent<Dropdown>().options[3].text = "lol";
+                gameObject.GetComponent<Dropdown>().options[2].text = blank;
+                gameObject.GetComponent<Dropdown>().options[3].text = blank;
                 break;
             case 2:
-                gameObject.GetComponent<Dropdown>().options[3].text = "lol";
+                gameObject.GetComponent<Dropdown>().options[3].text = blank;
                 break;
             case 3:
-                gameObject.GetComponent<Dropdown>().options[2].text = "lol";
+                gameObject.GetComponent<Dropdown>().options[2].text = blank;
                 break;
             case 4:
-                gameObject.GetComponent<Dropdown>().options[2].text = "lol";
+                gameObject.GetComponent<Dropdown>().options[2].text = blank;
                 break;
         }
     }
@@ -39,6 +43,7 @@ public class DropDownBehavior : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        gameObject.GetComponent<Dropdown>().GetComponentInChildren<Text>().text = title;
         var dropDownList = GetComponentInChildren<Canvas>();
         if (!dropDownList) return;
         var togg = dropDownList.GetComponentsInChildren<Toggle>(true);
@@ -95,7 +100,7 @@ public class DropDownBehavior : MonoBehaviour
             targetInventory.ChangeMoney(targetInventory.Elements[a].Price);
             targetInventory.ChangeReputation(targetInventory.Elements[a].Gabitus);
             targetInventory.RemoveItem(a);
-            drawinventory.Redraw();
+            drawInventory.Redraw();
         }
     }
 
@@ -109,10 +114,10 @@ public class DropDownBehavior : MonoBehaviour
         if (int.TryParse(item.name, out a))
         {
             Seed toPlant = targetInventory.Elements[a];
-            drawinventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
+            drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
             //targetInventory.RemoveItem(a);
             //drawinventory.Redraw();
-            drawinventory.CurrentInventoryParent.SetActive(false);
+            drawInventory.CurrentInventoryParent.SetActive(false);
         }
     }
 
@@ -126,10 +131,10 @@ public class DropDownBehavior : MonoBehaviour
         if (int.TryParse(item.name, out a))
         {
             Seed toPlant = targetInventory.Elements[a];
-            drawinventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
+            drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
             //targetInventory.RemoveItem(a);
             //drawinventory.Redraw();
-            drawinventory.CurrentInventoryParent.SetActive(false);
+            drawInventory.CurrentInventoryParent.SetActive(false);
         }
     }
 }

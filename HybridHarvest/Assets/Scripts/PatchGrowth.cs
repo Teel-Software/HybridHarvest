@@ -132,7 +132,6 @@ public class PatchGrowth : MonoBehaviour
             var newSeed = MutateSeed(growingSeed);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
         }
-        //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(nowGrows);
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
     }
