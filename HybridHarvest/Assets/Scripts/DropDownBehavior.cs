@@ -69,7 +69,6 @@ public class DropDownBehavior : MonoBehaviour
         switch (change.value)
         {
             case 0:
-
                 break;
             case 1:
                 Sell(item);
@@ -80,9 +79,6 @@ public class DropDownBehavior : MonoBehaviour
             case 3:
                 Select(item);
                 break;
-                /*case 4:
-                    Select(item);
-                    break;*/
         }
         gameObject.SetActive(false);
     }
@@ -114,8 +110,8 @@ public class DropDownBehavior : MonoBehaviour
         {
             Seed toPlant = targetInventory.Elements[a];
             drawinventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
-            targetInventory.RemoveItem(a);
-            drawinventory.Redraw();
+            //targetInventory.RemoveItem(a);
+            //drawinventory.Redraw();
             drawinventory.CurrentInventoryParent.SetActive(false);
         }
     }
@@ -131,8 +127,8 @@ public class DropDownBehavior : MonoBehaviour
         {
             Seed toPlant = targetInventory.Elements[a];
             drawinventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
-            targetInventory.RemoveItem(a);
-            drawinventory.Redraw();
+            //targetInventory.RemoveItem(a);
+            //drawinventory.Redraw();
             drawinventory.CurrentInventoryParent.SetActive(false);
         }
     }

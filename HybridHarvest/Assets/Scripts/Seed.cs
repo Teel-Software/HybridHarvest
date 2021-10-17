@@ -16,6 +16,7 @@ public class Seed : ScriptableObject
     public Sprite PlantSprite;
     public Sprite SproutSprite;
     public Sprite GrownSprite;
+    public Sprite BagSprite;
 
     public Gen GabitusGen;
     public int Gabitus;
@@ -41,6 +42,27 @@ public class Seed : ScriptableObject
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
+        var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 0.33;
+        int bagNum = 0;
+        switch (rating)
+        {
+            case var i when i < 40:
+                bagNum = 0;
+                break;
+            case var i when i >= 40 && i<60:
+                bagNum = 1;
+                break;
+            case var i when i >= 60 && i<80:
+                bagNum = 2;
+                break;
+            case var i when i >= 80 && i<95:
+                bagNum = 3;
+                break;
+            case var i when i >= 95:
+                bagNum = 4;
+                break;
+        }
+        BagSprite = Resources.Load<Sprite>("SeedsIcons\\Packet" + bagNum.ToString());
         NameInRussian = parameters[9];
         NameInLatin = parameters[10];
     }
