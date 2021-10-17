@@ -1036,7 +1036,7 @@ MonoBehaviour:
   item: {fileID: 0}
   drawInventory: {fileID: 0}
   targetInventory: {fileID: 0}
-  title: What's next?
+  title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435"
 --- !u!1 &8863016414144107972
 GameObject:
   m_ObjectHideFlags: 0
