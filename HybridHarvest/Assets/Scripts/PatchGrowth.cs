@@ -149,11 +149,14 @@ public class PatchGrowth : MonoBehaviour
         newSeed.SetValues(oldSeed.ToString());
         var plusAmount = UnityEngine.Random.value;
         if (procentage < 0.5 && newSeed.Gabitus <= 100)
+        {
             newSeed.Gabitus += (int)(plusAmount * 5 + 1);
+            newSeed.Price += (int)(plusAmount * 5 + 1);
+        }
         else if (newSeed.Taste <= 100)
         {
             newSeed.Taste += (int)(plusAmount * 5 + 1);
-            newSeed.Price += (int)(plusAmount * 5 + 1);
+            //newSeed.Price += (int)(plusAmount * 5 + 1);
         }
         return newSeed;
     }
