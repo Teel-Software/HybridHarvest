@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HarvestProcessor : MonoBehaviour
 {
     [SerializeField] GameObject VegItem;
+    [SerializeField] RectTransform Place;
     public Seed ParentSeed;
     public RectTransform InventoryFrame;
     // Start is called before the first frame update
@@ -14,7 +15,11 @@ public class HarvestProcessor : MonoBehaviour
         for (var i = 0; i < ParentSeed.Amount; i++)
         {
             var newSeed = MutateSeed(ParentSeed);
-            Instantiate(VegItem, gameObject.transform);
+            var item = Instantiate(VegItem, Place);
+            //item.transform.position = new Vector3(0, 0, 0);
+            //place.transform.SetPositionAndRotation(new Vector3(), new Quaternion());
+            //item.transform.position = new Vector3(0, /*i * item.transform.localPosition.y - 2 * item.transform.localPosition.y*/2*i - 6, 0);
+            //Debug.Log(i * place.transform.localPosition.y);
             //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
         }
     }
