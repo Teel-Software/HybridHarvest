@@ -1,10 +1,7 @@
-using System.Collections;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,7 +9,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
 
-    private const int Devider = 5;
+    //private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }

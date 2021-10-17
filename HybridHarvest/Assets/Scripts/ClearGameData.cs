@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
 {
-    [SerializeField] GameObject RewatchButton;
+    [SerializeField] GameObject RewatchButton; // кнопка просмотра вступления
 
+    // методы начинают работу только после выхода с текущей сцены
+
+    /// <summary>
+    /// Очищает инвентарь
+    /// </summary>
     public void ClearInventory()
     {
         PlayerPrefs.SetInt("mony", 0);
@@ -13,18 +16,27 @@ public class ClearGameData : MonoBehaviour
         PlayerPrefs.SetInt("amo", 0);
     }
 
+    /// <summary>
+    /// Удаляет флаг первой инициализации приложения
+    /// </summary>
     public void UndoGameInitialization()
     {
         PlayerPrefs.DeleteKey("GameInitialised");
     }
 
+    /// <summary>
+    /// Выключает кнопку просмотра вступления
+    /// </summary>
     public void DisableRewatchButton()
     {
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
             RewatchButton.SetActive(false);
     }
 
-    public void QuitApplication() 
+    /// <summary>
+    /// Завершает работу приложения
+    /// </summary>
+    public void QuitApplication()
     {
         Application.Quit();
     }
