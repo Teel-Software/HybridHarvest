@@ -29,7 +29,7 @@ public class Seed : ScriptableObject
     [SerializeField] public int GrowTime;
 
     /// <summary>
-    /// ��������� ������ ������� ������ Seed
+    /// Imports seed data from string
     /// </summary>
     /// <param name="data"></param>
     public void SetValues(string data)
@@ -75,7 +75,7 @@ public class Seed : ScriptableObject
     }
 
     /// <summary>
-    /// ���������� ������� ������ seed � ������
+    /// Exports seed data as string
     /// </summary>
     /// <returns></returns>
     public override string ToString()
