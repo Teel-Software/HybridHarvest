@@ -16,6 +16,7 @@ public class Seed : ScriptableObject
     public Sprite PlantSprite;
     public Sprite SproutSprite;
     public Sprite GrownSprite;
+    //example import \Packets\Packet0.png
     public Sprite BagSprite;
 
     public Gen GabitusGen;
@@ -28,7 +29,7 @@ public class Seed : ScriptableObject
     [SerializeField] public int GrowTime;
 
     /// <summary>
-    /// Заполняет пустой элемент класса Seed
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Seed
     /// </summary>
     /// <param name="data"></param>
     public void SetValues(string data)
@@ -47,33 +48,34 @@ public class Seed : ScriptableObject
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
         var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 0.33;
-        int bagNum = 0;
+        var packetQuality = 0;
         switch (rating)
         {
             case var i when i < 40:
-                bagNum = 0;
+                packetQuality = 0;
                 break;
-            case var i when i >= 40 && i<60:
-                bagNum = 1;
+            case var i when i >= 40 && i < 60:
+                packetQuality = 1;
                 break;
-            case var i when i >= 60 && i<80:
-                bagNum = 2;
+            case var i when i >= 60 && i < 80:
+                packetQuality = 2;
                 break;
-            case var i when i >= 80 && i<95:
-                bagNum = 3;
+            case var i when i >= 80 && i < 95:
+                packetQuality = 3;
                 break;
             case var i when i >= 95:
-                bagNum = 4;
+                packetQuality = 4;
                 break;
         }
-        BagSprite = Resources.Load<Sprite>("SeedsIcons\\Packet" + bagNum.ToString());
+        BagSprite = Resources.Load<Sprite>("SeedsIcons\\Packet" + packetQuality);
         Debug.Log(BagSprite);
+        BagSprite = Resources.Load<Sprite>("Packets\\Packet" + packetQuality);
         NameInRussian = parameters[9];
         NameInLatin = parameters[10];
     }
 
     /// <summary>
-    /// превращает элемент класса seed в строку
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ seed пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     /// <returns></returns>
     public override string ToString()
