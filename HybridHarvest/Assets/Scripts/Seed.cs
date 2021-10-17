@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
 [System.Serializable]
@@ -17,7 +18,7 @@ public class Seed : ScriptableObject
     public Sprite SproutSprite;
     public Sprite GrownSprite;
     //example import \Packets\Packet0.png
-    public Sprite BagSprite;
+    [FormerlySerializedAs("BagSprite")] public Sprite PacketSprite;
 
     public Gen GabitusGen;
     public int Gabitus;
@@ -31,7 +32,7 @@ public class Seed : ScriptableObject
     /// <summary>
     /// Imports seed data from string
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="data">string with "|" separator</param>
     public void SetValues(string data)
     {
         var parameters = data.Split('|');
@@ -67,9 +68,8 @@ public class Seed : ScriptableObject
                 packetQuality = 4;
                 break;
         }
-        BagSprite = Resources.Load<Sprite>("SeedsIcons\\Packet" + packetQuality);
-        Debug.Log(BagSprite);
-        BagSprite = Resources.Load<Sprite>("Packets\\Packet" + packetQuality);
+        PacketSprite = Resources.Load<Sprite>("Packets\\Packet" + packetQuality);
+        Debug.Log(PacketSprite);
         NameInRussian = parameters[9];
         NameInLatin = parameters[10];
     }
@@ -77,7 +77,7 @@ public class Seed : ScriptableObject
     /// <summary>
     /// Exports seed data as string
     /// </summary>
-    /// <returns></returns>
+    /// <returns>string with "|" separator</returns>
     public override string ToString()
     {
         return Name + "|" + Price + "|" +
