@@ -69,7 +69,6 @@ public class Seed : ScriptableObject
                 break;
         }
         PacketSprite = Resources.Load<Sprite>("Packets\\Packet" + packetQuality);
-        Debug.Log(PacketSprite);
         NameInRussian = parameters[9];
         NameInLatin = parameters[10];
     }
