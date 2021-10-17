@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 249418545}
   - component: {fileID: 249418547}
   - component: {fileID: 249418546}
+  - component: {fileID: 249418548}
   m_Layer: 0
   m_Name: LightningLQSheet_0
   m_TagString: Untagged
@@ -557,6 +558,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &249418548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249418544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f97d52c44d24c48964e1b5c4812cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &270212775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,6 +1942,7 @@ GameObject:
   - component: {fileID: 1089935135}
   - component: {fileID: 1089935137}
   - component: {fileID: 1089935136}
+  - component: {fileID: 1089935138}
   m_Layer: 0
   m_Name: LookingBoyLQSheet_0
   m_TagString: Untagged
@@ -2020,6 +2034,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1089935138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089935134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f97d52c44d24c48964e1b5c4812cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1166467078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2057,7 @@ GameObject:
   - component: {fileID: 1166467079}
   - component: {fileID: 1166467081}
   - component: {fileID: 1166467080}
+  - component: {fileID: 1166467082}
   m_Layer: 0
   m_Name: RainLQSheet_0
   m_TagString: Untagged
@@ -2122,6 +2149,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1166467082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166467078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f97d52c44d24c48964e1b5c4812cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1286040355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,6 +3469,7 @@ GameObject:
   - component: {fileID: 1734348620}
   - component: {fileID: 1734348622}
   - component: {fileID: 1734348621}
+  - component: {fileID: 1734348623}
   m_Layer: 0
   m_Name: VillageSignLQSheet_0
   m_TagString: Untagged
@@ -3521,6 +3561,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1734348623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734348619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f97d52c44d24c48964e1b5c4812cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1770607987
 GameObject:
   m_ObjectHideFlags: 0
