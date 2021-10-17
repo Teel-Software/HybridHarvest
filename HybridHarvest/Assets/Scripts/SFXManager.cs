@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class SFXManager : MonoBehaviour
 {
     public static AudioSource Source;
     public static GameObject Instance;
-    //public string objectTag;
     void Awake() 
     {
         if (Instance == null)
@@ -34,6 +29,11 @@ public class SFXManager : MonoBehaviour
             return;
         }
         Source.PlayOneShot(sound?.clip);
+    }
+
+    public void Play(AudioClip soundClip)
+    {
+        Source.PlayOneShot(soundClip);
     }
 }
 

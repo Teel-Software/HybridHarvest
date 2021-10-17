@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlaySound : MonoBehaviour
 {
-    public AudioClip ClickSound;
+    [FormerlySerializedAs("Sound")] public AudioClip soundClip;
     
     public void Click() 
     {
-        var source = GameObject.FindGameObjectWithTag("GameSFX").GetComponent<AudioSource>();
-        source.PlayOneShot(ClickSound);
+        FindObjectOfType<SFXManager>().Play(soundClip);
     }
 
     public void Start()
