@@ -28,7 +28,7 @@ public class Seed : ScriptableObject
     [SerializeField] public int GrowTime;
 
     /// <summary>
-    /// Заполняет пустой элемент класса Seed
+    /// Fills new Seed with info from string
     /// </summary>
     /// <param name="data"></param>
     public void SetValues(string data)
@@ -73,7 +73,7 @@ public class Seed : ScriptableObject
     }
 
     /// <summary>
-    /// превращает элемент класса seed в строку
+    /// Creates string from Seed
     /// </summary>
     /// <returns></returns>
     public override string ToString()
