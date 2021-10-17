@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class Drawinventory : MonoBehaviour
 {
@@ -39,7 +38,6 @@ public class Drawinventory : MonoBehaviour
             GameObject plantIcon = new GameObject();
             plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
             plantIcon.transform.position = new Vector2(0, -35);
-            //plantIcon.transform.position.Scale( new Vector3(1.3f, 1.3f, 1.3f));
             plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
             plantIcon.transform.SetParent(icon.transform);
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
@@ -62,22 +60,6 @@ public class Drawinventory : MonoBehaviour
             return;
         }
         DropDownRevealer(item);
-        /*var scene = SceneManager.GetActiveScene().buildIndex;
-        switch (scene)
-        {
-            case 1:
-                DropDownRevealer(item);
-                break;
-            case 2:
-                Plant(item);
-                break;
-            case 3:
-                Select(item);
-                break;
-            case 4:
-                Select(item);
-                break;
-        }*/
     }
 
     /// <summary>
@@ -110,25 +92,9 @@ public class Drawinventory : MonoBehaviour
     /// <param name="item"></param>
     private void DropDownRevealer(GameObject item)
     {
-       /* Debug.Log("before toggle");
-        var dropDownList = Choice.GetComponentInChildren<Canvas>();
-        Debug.Log("got list");
-        Debug.Log(dropDownList);
-        var togg = dropDownList.GetComponentsInChildren<Toggle>(true);
-        Debug.Log("got toggles");
-        togg[1].enabled = false;*/
-
         Choice.value = 0;
         Choice.RefreshShownValue();
         Choice.gameObject.SetActive(true);
         Choice.GetComponent<DropDownBehavior>().item = item;
-       /* Debug.Log("before toggle");
-        var dropDownList = Choice.GetComponentInChildren<Canvas>();
-        Debug.Log("got list");
-        Debug.Log(dropDownList);
-        var togg = dropDownList.GetComponentsInChildren<Toggle>(true);
-        Debug.Log("got toggles");
-        togg[1].enabled = false;*/
-        //Choice.GetComponent<Dro>().EnableOption("Option B", false);
     }
 }
