@@ -1826,6 +1826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInventory: {fileID: 1871862018}
   drawInventory: {fileID: 0}
+  itemSpriteName: 
   itemObject: {fileID: 0}
 --- !u!114 &626268543
 MonoBehaviour:
@@ -2197,7 +2198,6 @@ RectTransform:
   m_LocalScale: {x: 1.0004543, y: 1.0004543, z: 1.0004543}
   m_Children:
   - {fileID: 358504703}
-  - {fileID: 247631722}
   m_Father: {fileID: 1054157851}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3295,6 +3295,7 @@ RectTransform:
   - {fileID: 1727909673}
   - {fileID: 55368895}
   - {fileID: 229205578}
+  - {fileID: 247631722}
   - {fileID: 1054691509}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3330,11 +3331,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 739003694}
+    m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 428303880276872338, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.399704
+      objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Name
-      value: ConfirmationPanel
+      value: ConfirmationPanelShop
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Pivot.x
@@ -3346,7 +3351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3366,11 +3371,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.6688843
+      value: 0.527771
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.2132568
+      value: 1.1665192
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0010228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0010228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0010228
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3402,11 +3419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.002609253
+      value: 0.005218506
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.04248047
+      value: 0.084983826
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3426,7 +3443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222951229884, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Text
-      value: "\u041A\u0443\u043F\u0438\u0442\u044C \u043F\u0440\u043E\u0434\u0443\u043A\u0442?"
+      value: "\u041A\u0443\u043F\u0438\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222956090697, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: targetInventory
@@ -5151,6 +5168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInventory: {fileID: 1871862018}
   drawInventory: {fileID: 0}
+  itemSpriteName: 
   itemObject: {fileID: 0}
 --- !u!1 &1574197130
 GameObject:
@@ -5783,9 +5801,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 428303880276872338, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.3996964
+      objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Name
-      value: ConfirmationPanel
+      value: ConfirmationPanelInventory
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Pivot.x
@@ -5797,7 +5819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5874,6 +5896,10 @@ PrefabInstance:
     - target: {fileID: 8071891222951229883, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1.9714012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071891222951229884, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_Text
+      value: "\u041F\u0440\u043E\u0434\u0430\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222956090697, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: drawInventory
@@ -7369,6 +7395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInventory: {fileID: 1871862018}
   drawInventory: {fileID: 0}
+  itemSpriteName: 
   itemObject: {fileID: 0}
 --- !u!114 &2034534063
 MonoBehaviour:

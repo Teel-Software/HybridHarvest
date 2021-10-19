@@ -77,7 +77,6 @@ public class AnimateText : MonoBehaviour
         }
     }
 
-    // выполняется при деактивации текущего элемента
     void OnDisable()
     {
         index = 0;

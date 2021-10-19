@@ -1,18 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] Inventory targetInventory;
     [SerializeField] Drawinventory drawInventory;
-    private string itemName;
+    public string itemSpriteName;
     public GameObject itemObject;
+    private string originalQuestionText;
 
     /// <summary>
     /// Добавляет текущий элемент в инвентарь
     /// </summary>
     public void AddOneMore()
     {
-        var seed = (Seed)Resources.Load("Seeds\\" + itemName);
+        var seed = (Seed)Resources.Load("Seeds\\" + itemSpriteName);
+        UpdateQuestionText(seed.NameInRussian);
         targetInventory.ChangeMoney(-seed.Price);
         targetInventory.AddItem(seed);
     }
@@ -22,11 +25,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Sell()
     {
-        if (int.TryParse(itemObject.name, out int a))
+        if (int.TryParse(itemObject.name, out int index))
         {
-            targetInventory.ChangeMoney(targetInventory.Elements[a].Price);
-            targetInventory.ChangeReputation(targetInventory.Elements[a].Gabitus);
-            targetInventory.RemoveItem(a);
+            targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
+            targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
+            targetInventory.RemoveItem(index);
             drawInventory.Redraw();
         }
     }
@@ -36,9 +39,9 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Plant()
     {
-        if (int.TryParse(itemObject.name, out int a))
+        if (int.TryParse(itemObject.name, out int index))
         {
-            Seed toPlant = targetInventory.Elements[a];
+            Seed toPlant = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
             drawInventory.CurrentInventoryParent.SetActive(false);
         }
@@ -49,9 +52,9 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Select()
     {
-        if (int.TryParse(itemObject.name, out int a))
+        if (int.TryParse(itemObject.name, out int index))
         {
-            Seed toPlant = targetInventory.Elements[a];
+            Seed toPlant = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
             drawInventory.CurrentInventoryParent.SetActive(false);
         }
@@ -60,9 +63,18 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// <summary>
     /// Задаёт имя элемента, добавляемого в инвентарь
     /// </summary>
-    /// <param имя="newItem"></param>
-    public void DefineItem(string newItem)
+    /// <param название спрайта="itemSpriteName"></param>
+    public void DefineItem(string itemSpriteName)
     {
-        itemName = newItem;
+        this.itemSpriteName = itemSpriteName;
+        var seed = (Seed)Resources.Load("Seeds\\" + itemSpriteName);
+        UpdateQuestionText(seed.NameInRussian);
+    }
+
+    private void UpdateQuestionText(string itemName)
+    {
+        var questionText = transform.parent.transform.Find("QuestionText").GetComponent<Text>();
+        originalQuestionText ??= questionText.text;
+        questionText.text = $"{originalQuestionText} {itemName.ToLower()}?";
     }
 }

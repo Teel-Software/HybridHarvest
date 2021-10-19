@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class Drawinventory : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Drawinventory : MonoBehaviour
 
     public Button GrowPlace { get; set; }
 
+    private string originalQuestionText;
     readonly List<GameObject> alreadyDrawn = new List<GameObject>();
 
     void Start()
@@ -30,6 +32,7 @@ public class Drawinventory : MonoBehaviour
             Destroy(alreadyDrawn[i]);
         }
         alreadyDrawn.Clear();
+
         for (var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var item = targetInventory.Elements[i];
@@ -70,6 +73,23 @@ public class Drawinventory : MonoBehaviour
         PrepareConfirmationPanel(item);
     }
 
+    /// <summary>
+    /// Вызывает панель подтверждения
+    /// </summary>
+    /// <param семечко="item"></param>
+    private void PrepareConfirmationPanel(GameObject item)
+    {
+        // добавляю в текст подтверждения название объекта
+        var questionText = ConfirmationPanel.transform.Find("QuestionText").GetComponent<Text>();
+        originalQuestionText ??= questionText.text;
+
+        if (int.TryParse(item.name, out int index))
+            questionText.text = $"{originalQuestionText} {targetInventory.Elements[index].NameInRussian.ToLower()}?";
+
+        ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>().itemObject = item;
+        ConfirmationPanel.SetActive(true);
+    }
+
     ///// <summary>
     ///// Creates confirmation message. Actually useless
     ///// </summary>
@@ -105,10 +125,4 @@ public class Drawinventory : MonoBehaviour
     //    Choice.gameObject.SetActive(true);
     //    Choice.GetComponent<DropDownBehavior>().item = item;
     //}
-
-    private void PrepareConfirmationPanel(GameObject item)
-    {
-        ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>().itemObject = item;
-        ConfirmationPanel.SetActive(true);
-    }
 }

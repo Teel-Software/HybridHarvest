@@ -1569,6 +1569,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1403440122}
     m_Modifications:
+    - target: {fileID: 428303880276872338, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.3996964
+      objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Name
       value: ConfirmationPanel
@@ -1663,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222951229884, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Text
-      value: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0434\u043B\u044F \u0441\u043A\u0440\u0435\u0449\u0438\u0432\u0430\u043D\u0438\u044F?"
+      value: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222956090697, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: itemObject
