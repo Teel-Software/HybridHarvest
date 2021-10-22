@@ -61,9 +61,10 @@ public class Inventory : MonoBehaviour
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("mony", Money);
-        PlayerPrefs.SetInt("repa", Reputation);
-        PlayerPrefs.SetInt("amo", Elements.Count);
+        PlayerPrefs.SetInt("money", Money);
+        PlayerPrefs.SetInt("reputation", Reputation);
+        PlayerPrefs.SetInt("amount", Elements.Count);
+
         for (var i = 0; i < Elements.Count; i++)
         {
             PlayerPrefs.SetString(i.ToString(), Elements[i].ToString());
@@ -72,9 +73,9 @@ public class Inventory : MonoBehaviour
 
     private void CollectData()
     {
-        Money = PlayerPrefs.GetInt("mony");
-        Reputation = PlayerPrefs.GetInt("repa");
-        var i = PlayerPrefs.GetInt("amo");
+        Money = PlayerPrefs.GetInt("money");
+        Reputation = PlayerPrefs.GetInt("reputation");
+        var i = PlayerPrefs.GetInt("amount");
         for (var j = 0; j < i; j++)
         {
             var parameters = PlayerPrefs.GetString(j.ToString());
