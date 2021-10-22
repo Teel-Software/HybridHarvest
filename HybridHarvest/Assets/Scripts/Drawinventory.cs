@@ -47,15 +47,7 @@ public class Drawinventory : MonoBehaviour
 
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             icon.GetComponent<Button>().onClick.AddListener(PointerDown);
-
-            //var colBlock = new ColorBlock
-            //{
-            //    highlightedColor = Color.red,
-            //    fadeDuration = 0.1f
-            //};
-            //icon.GetComponent<Button>().colors = colBlock;
-            //icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
-
+            icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }

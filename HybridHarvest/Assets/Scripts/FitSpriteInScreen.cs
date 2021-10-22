@@ -34,6 +34,10 @@ public class FitSpriteInScreen : MonoBehaviour
                 width = 528.6266f;
                 height = 441.459f;
                 break;
+            case 2.2:
+                width = 537.8857f;
+                height = 433.8546f;
+                break;
             default:
                 width = 554.407f;
                 height = 566.6858f;
