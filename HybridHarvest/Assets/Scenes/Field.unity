@@ -2792,6 +2792,7 @@ MonoBehaviour:
   Elements: []
   MoneyInfo: {fileID: 49473544}
   ReputationInfo: {fileID: 2054301540}
+  EnergyInfo: {fileID: 1570331046}
 --- !u!4 &1199887182
 Transform:
   m_ObjectHideFlags: 0
@@ -3888,6 +3889,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+--- !u!114 &1570331046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8915280254273062244, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+  m_PrefabInstance: {fileID: 1570331045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1739558109
 PrefabInstance:
   m_ObjectHideFlags: 0

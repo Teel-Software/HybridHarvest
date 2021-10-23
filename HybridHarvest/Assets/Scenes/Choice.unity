@@ -3712,6 +3712,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -3.06}
   m_UseGraphicAlpha: 1
+--- !u!114 &1218390669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8915280254273062244, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+  m_PrefabInstance: {fileID: 4104146254775732149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245710456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,6 +5791,7 @@ MonoBehaviour:
   Elements: []
   MoneyInfo: {fileID: 1093742595}
   ReputationInfo: {fileID: 1451225634}
+  EnergyInfo: {fileID: 1218390669}
 --- !u!4 &1871862019
 Transform:
   m_ObjectHideFlags: 0

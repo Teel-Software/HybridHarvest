@@ -8,16 +8,33 @@ public class Inventory : MonoBehaviour
     [SerializeField] public List<Seed> Elements = new List<Seed>();
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
+    [SerializeField] public Text EnergyInfo;
 
     //private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
-
+    public int Energy { get; private set; }
+    public int EnergyMax { get; private set; }
+    private float EnergyBuffer;
     void Start()
     {
+        ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
+        EnergyMax = 10;
         CollectData();
         RedrawInfo();
+    }
+
+    private void Update()
+    {
+        //Time.delta is a float and Energy is an int
+        //So this is required
+        EnergyBuffer += Time.deltaTime;
+        if (EnergyBuffer > 1)
+        {
+            EnergyBuffer--;
+            RegenEnergy(1);
+        }
     }
 
     public void AddItem(Seed newSeed)
@@ -27,7 +44,7 @@ public class Inventory : MonoBehaviour
         onItemAdded?.Invoke();
     }
 
-    public void ChangeMoney(int changingAmount)
+    public void ChangeMoney(int amount)
     {
         //Money += changingAmount > 0
         //    ? changingAmount/* / Devider*/
@@ -35,16 +52,29 @@ public class Inventory : MonoBehaviour
         //if (Money <= -100 && changingAmount < 0
         //    || changingAmount > 0)
         //    Reputation += changingAmount / Devider;
-        Money += changingAmount;
+        Money += amount;
         RedrawInfo();
     }
 
-    public void ChangeReputation(int changingAmount)
+    public void ChangeReputation(int amount)
     {
-        Reputation += changingAmount;
+        Reputation += amount;
         RedrawInfo();
     }
 
+    public void ConsumeEnergy(int amount)
+    {
+        Energy -= amount;
+        RedrawInfo();
+    }
+    
+    public void RegenEnergy(int amount)
+    {
+        if (Energy == EnergyMax) return;
+        Energy += amount;
+        RedrawInfo();
+    }
+    
     public void RemoveItem(int index)
     {
         Elements.RemoveAt(index);
@@ -57,6 +87,8 @@ public class Inventory : MonoBehaviour
         //else MoneyInfo.text = "0";
         if (ReputationInfo != null) ReputationInfo.text = Reputation.ToString();
         //else ReputationInfo.text = "0";
+        if (EnergyInfo != null) EnergyInfo.text = $"{Energy} / {EnergyMax}";
+        SaveData();
     }
 
     public void SaveData()
@@ -64,6 +96,7 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("money", Money);
         PlayerPrefs.SetInt("reputation", Reputation);
         PlayerPrefs.SetInt("amount", Elements.Count);
+        PlayerPrefs.SetInt("energy", Energy);
 
         for (var i = 0; i < Elements.Count; i++)
         {
@@ -76,6 +109,7 @@ public class Inventory : MonoBehaviour
         Money = PlayerPrefs.GetInt("money");
         Reputation = PlayerPrefs.GetInt("reputation");
         var i = PlayerPrefs.GetInt("amount");
+        Energy = PlayerPrefs.GetInt("energy");
         for (var j = 0; j < i; j++)
         {
             var parameters = PlayerPrefs.GetString(j.ToString());

@@ -102,6 +102,8 @@ public class PatchGrowth : MonoBehaviour
     /// <param name="seed"></param>
     public void PlantIt(Seed seed)
     {
+        //Consumes energy for planting (so bad)
+        GameObject.Find("DataKeeper").GetComponent<Inventory>().ConsumeEnergy(1);
         Patch.interactable = false;
         isOccupied = true;
         growingSeed = seed;

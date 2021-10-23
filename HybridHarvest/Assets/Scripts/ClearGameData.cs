@@ -2,22 +2,23 @@ using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
 {
-    [SerializeField] GameObject RewatchButton; // кнопка просмотра вступления
+    [SerializeField] GameObject RewatchButton; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    // методы начинают работу только после выхода с текущей сцены
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     /// <summary>
-    /// Очищает инвентарь
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void ClearInventory()
     {
-        PlayerPrefs.SetInt("mony", 0);
-        PlayerPrefs.SetInt("repa", 0);
-        PlayerPrefs.SetInt("amo", 0);
+        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("reputation", 0);
+        PlayerPrefs.SetInt("amount", 0);
+        PlayerPrefs.SetInt("energy", 0);
     }
 
     /// <summary>
-    /// Удаляет флаг первой инициализации приложения
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void UndoGameInitialization()
     {
@@ -25,7 +26,7 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
-    /// Выключает кнопку просмотра вступления
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void DisableRewatchButton()
     {
@@ -34,7 +35,7 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
-    /// Завершает работу приложения
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void QuitApplication()
     {
