@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -9,32 +11,40 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
     [SerializeField] public Text EnergyInfo;
-
+    [SerializeField] public Text EnergyRegenInfo;
     //private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
-    private float EnergyBuffer;
+    //The time in *seconds* it take to regenerate 1 energy
+    public int EnergyRegenDelay { get; private set; }
+    private float energyTimeBuffer;
     void Start()
     {
         ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
         EnergyMax = 10;
+        EnergyRegenDelay = 20;
+        energyTimeBuffer = EnergyRegenDelay;
         CollectData();
         RedrawInfo();
     }
 
     private void Update()
     {
-        //Time.delta is a float and Energy is an int
-        //So this is required
-        EnergyBuffer += Time.deltaTime;
-        if (EnergyBuffer > 1)
+        if (Energy == EnergyMax) return;
+        
+        energyTimeBuffer -= Time.deltaTime;
+        if (Math.Ceiling(energyTimeBuffer) == 0)
         {
-            EnergyBuffer--;
+            energyTimeBuffer = EnergyRegenDelay;
             RegenEnergy(1);
         }
+        PlayerPrefs.SetFloat("energytimebuffer", energyTimeBuffer);
+        var minutes = Math.Floor(energyTimeBuffer / 60).ToString(CultureInfo.InvariantCulture);
+        var seconds = Math.Floor(energyTimeBuffer % 60).ToString(CultureInfo.InvariantCulture);
+        EnergyRegenInfo.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
     }
 
     public void AddItem(Seed newSeed)
@@ -65,6 +75,7 @@ public class Inventory : MonoBehaviour
     public void ConsumeEnergy(int amount)
     {
         Energy -= amount;
+        PlayerPrefs.SetInt("energy", Energy);
         RedrawInfo();
     }
     
@@ -72,6 +83,7 @@ public class Inventory : MonoBehaviour
     {
         if (Energy == EnergyMax) return;
         Energy += amount;
+        PlayerPrefs.SetInt("energy", Energy);
         RedrawInfo();
     }
     
@@ -88,7 +100,7 @@ public class Inventory : MonoBehaviour
         if (ReputationInfo != null) ReputationInfo.text = Reputation.ToString();
         //else ReputationInfo.text = "0";
         if (EnergyInfo != null) EnergyInfo.text = $"{Energy} / {EnergyMax}";
-        SaveData();
+        
     }
 
     public void SaveData()
@@ -96,7 +108,6 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("money", Money);
         PlayerPrefs.SetInt("reputation", Reputation);
         PlayerPrefs.SetInt("amount", Elements.Count);
-        PlayerPrefs.SetInt("energy", Energy);
 
         for (var i = 0; i < Elements.Count; i++)
         {
@@ -110,6 +121,7 @@ public class Inventory : MonoBehaviour
         Reputation = PlayerPrefs.GetInt("reputation");
         var i = PlayerPrefs.GetInt("amount");
         Energy = PlayerPrefs.GetInt("energy");
+        energyTimeBuffer = PlayerPrefs.GetFloat("energytimebuffer");
         for (var j = 0; j < i; j++)
         {
             var parameters = PlayerPrefs.GetString(j.ToString());
