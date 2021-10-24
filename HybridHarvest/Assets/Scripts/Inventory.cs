@@ -33,7 +33,11 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Energy == EnergyMax) return;
+        if (Energy == EnergyMax)
+        {
+            EnergyRegenInfo.text = "--:--";
+            return;
+        }
         
         energyTimeBuffer -= Time.deltaTime;
         if (Math.Ceiling(energyTimeBuffer) == 0)
