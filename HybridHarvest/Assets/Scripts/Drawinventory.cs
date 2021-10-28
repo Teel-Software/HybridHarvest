@@ -83,30 +83,6 @@ public class Drawinventory : MonoBehaviour
     }
 
     ///// <summary>
-    ///// Creates confirmation message. Actually useless
-    ///// </summary>
-    ///// <param name="item"></param>
-    //private void DropDownMaker(GameObject item)
-    //{
-    //    var c = new GameObject();
-    //    c.gameObject.name = "dropPLS";
-    //    c.gameObject.AddComponent<Dropdown>();
-    //    c.gameObject.GetComponent<Dropdown>().AddOptions(new List<Dropdown.OptionData>());
-    //    Debug.Log(c.gameObject.transform.position.z);
-    //    c.transform.SetParent(Place);
-    //    Debug.Log(c.gameObject.transform.position.z);
-    //    c.gameObject.GetComponent<RectTransform>().position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
-    //    c.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, 10);
-    //    Debug.Log(c.gameObject.transform.position.z);
-    //    c.transform.localScale = new Vector3(1, 1, 1);
-    //    c.AddComponent<Image>();
-    //    c.SetActive(true);
-    //    c.gameObject.GetComponent<Dropdown>().enabled = true;
-    //    Debug.Log(c.transform.position.z);
-    //    Debug.Log(c.GetComponent<RectTransform>().position.y);
-    //}
-
-    ///// <summary>
     ///// Creates confirmation message
     ///// </summary>
     ///// <param name="item"></param>

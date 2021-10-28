@@ -130,42 +130,11 @@ public class PatchGrowth : MonoBehaviour
         growthText.text = "";
         isOccupied = false;
         if (growingSeed == null) return;
-        /*for (var i = 0; i < growingSeed.Amount; i++)
-        {
-            var newSeed = MutateSeed(growingSeed);
-            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
-        }*/
-        //var p = GameObject.Find("HarvestPlace");
-        VegItem.GetComponent<HarvestProcessor>().ParentSeed = growingSeed;
-        VegItem.GetComponent<HarvestProcessor>().InventoryFrame = InventoryFrame;
+
+        VegItem.GetComponent<HarvestProcessor>().Show(growingSeed);
         VegItem.gameObject.SetActive(true);
-        //VegItem.GetComponent<HarvestProcessor>().ParentSeed = growingSeed;
 
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
-    }
-
-    /// <summary>
-    /// mutation mechanic
-    /// </summary>
-    /// <param name="oldSeed"></param>
-    /// <returns></returns>
-    public Seed MutateSeed(Seed oldSeed)
-    {
-        var procentage = UnityEngine.Random.value;
-        var newSeed = ScriptableObject.CreateInstance<Seed>();
-        newSeed.SetValues(oldSeed.ToString());
-        var plusAmount = UnityEngine.Random.value;
-        if (procentage < 0.5 && newSeed.Gabitus <= 100)
-        {
-            newSeed.Gabitus += (int)(plusAmount * 5 + 1);
-            newSeed.Price += (int)(plusAmount * 5 + 1);
-        }
-        else if (newSeed.Taste <= 100)
-        {
-            newSeed.Taste += (int)(plusAmount * 5 + 1);
-            //newSeed.Price += (int)(plusAmount * 5 + 1);
-        }
-        return newSeed;
     }
 }

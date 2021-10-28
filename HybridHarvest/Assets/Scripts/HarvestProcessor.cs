@@ -6,31 +6,36 @@ using UnityEngine.UI;
 public class HarvestProcessor : MonoBehaviour
 {
     [SerializeField] GameObject VegItem;
+    [SerializeField] GameObject Inventory;
     [SerializeField] RectTransform Place;
-    public Seed ParentSeed;
-    public RectTransform InventoryFrame;
-    // Start is called before the first frame update
-    void Start()
+    private List<Seed> seeds = new List<Seed>();
+    private List<GameObject> items = new List<GameObject>();
+
+    public void Show(Seed ParentSeed)
     {
         for (var i = 0; i < ParentSeed.Amount; i++)
         {
             var newSeed = MutateSeed(ParentSeed);
+            seeds.Add(newSeed);
             var item = Instantiate(VegItem, Place);
-            //item.transform.position = new Vector3(0, 0, 0);
-            //place.transform.SetPositionAndRotation(new Vector3(), new Quaternion());
-            //item.transform.position = new Vector3(0, /*i * item.transform.localPosition.y - 2 * item.transform.localPosition.y*/2*i - 6, 0);
-            //Debug.Log(i * place.transform.localPosition.y);
-            //InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(newSeed);
+            items.Add(item);
+            var button = item.transform.Find("Button");
+            var label = item.transform.Find("Text");
+            var img = item.transform.Find("Image");
+            button.GetComponentInChildren<Text>().text = "А не сохранить ли?";
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Inventory.GetComponent<Inventory>().AddItem(newSeed);
+                seeds.Remove(newSeed);
+                items.Remove(item);
+                Destroy(item);
+            });
+            label.GetComponent<Text>().text = newSeed.NameInRussian +"/"+ newSeed.Name + "/" + newSeed.NameInLatin + "\nВкус: " + newSeed.Taste.ToString() + "\nГабитус: " + newSeed.Gabitus.ToString() + "\nВремя роста: " + newSeed.GrowTime.ToString();
+            img.GetComponent<Image>().sprite = newSeed.PlantSprite;
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public Seed MutateSeed(Seed oldSeed)
+    private Seed MutateSeed(Seed oldSeed)
     {
         var procentage = UnityEngine.Random.value;
         var newSeed = ScriptableObject.CreateInstance<Seed>();
@@ -44,8 +49,26 @@ public class HarvestProcessor : MonoBehaviour
         else if (newSeed.Taste <= 100)
         {
             newSeed.Taste += (int)(plusAmount * 5 + 1);
-            //newSeed.Price += (int)(plusAmount * 5 + 1);
         }
         return newSeed;
+    }
+
+    private void Sell(Seed seed)
+    {
+        var inventory = Inventory.GetComponent<Inventory>();
+        inventory.ChangeMoney(seed.Price);
+        inventory.ChangeReputation(seed.Gabitus);
+    }
+
+    public void SellAll()
+    {
+        for(var i=0; i < seeds.Count; i++)
+        {
+            Sell(seeds[i]);
+            Destroy(items[i]);
+        }
+        seeds.RemoveAll(x => x);
+        items.RemoveAll(x=>x);
+        gameObject.SetActive(false);
     }
 }
