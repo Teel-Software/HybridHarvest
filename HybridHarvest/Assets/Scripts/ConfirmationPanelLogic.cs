@@ -54,8 +54,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         if (int.TryParse(itemObject.name, out int index))
         {
-            Seed toPlant = targetInventory.Elements[index];
-            drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
+            Seed toSelect = targetInventory.Elements[index];
+            drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
             drawInventory.CurrentInventoryParent.SetActive(false);
         }
     }

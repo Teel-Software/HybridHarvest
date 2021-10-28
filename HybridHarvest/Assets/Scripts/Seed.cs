@@ -1,11 +1,8 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
 [System.Serializable]
+
 public class Seed : ScriptableObject
 {
     public string Name;

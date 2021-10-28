@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System.Text;
+using System.Linq;
+using System.Globalization;
 
 public class GeneCrossing : MonoBehaviour
 {
@@ -15,7 +18,7 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Sprite defaultSprite;
     public int[] Chances = new int[3];
     int chancesIterator;
-    
+
     private Image textBGImage;
     public void Clicked()
     {
@@ -24,12 +27,12 @@ public class GeneCrossing : MonoBehaviour
         if (seed1 == null || seed2 == null)
             return;
         var newSeed = MixTwoParents(seed1, seed2);
-        
+
         if (SceneManager.GetActiveScene().buildIndex == 4)
             CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
         else
             CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
-        
+
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
@@ -51,6 +54,8 @@ public class GeneCrossing : MonoBehaviour
             CountParameter(first.GrowTime, first.GrowTimeGen, second.GrowTime, second.GrowTimeGen);
         newSeed.Price = newSeed.Taste;
 
+        newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
+
         return newSeed;
     }
 
@@ -60,7 +65,7 @@ public class GeneCrossing : MonoBehaviour
         var recessive = Mathf.Max(value1, value2);
         if (SceneManager.GetActiveScene().buildIndex == 4)
             (dominant, recessive) = (recessive, dominant);
-            
+
         Chances[chancesIterator] = 100;
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
         {
@@ -84,7 +89,7 @@ public class GeneCrossing : MonoBehaviour
         {
             return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
         }
-        
+
         Chances[chancesIterator] = 75;
         Gen newGen;
         var possibility = (int)Random.value * 100;
@@ -99,5 +104,40 @@ public class GeneCrossing : MonoBehaviour
     {
         var fortune = (int)(Random.value * 100);
         return fortune < value1Chance ? value1 : value2;
+    }
+
+    private string MixTwoNames(string firstName, string secondName)
+    {
+        var firstSyllables = GetSyllables(firstName);
+        var secondSyllables = GetSyllables(secondName);
+        var result = string.Join("", firstSyllables.Take(firstSyllables.Count() - 1))
+            + string.Join("", secondSyllables.Skip(secondSyllables.Count() - 1));
+
+        return result;
+    }
+
+    private static IEnumerable<string> GetSyllables(string word)
+    {
+        var vowels = "àîóèýûÿþå¸".ToCharArray();
+        var vowelsIndexes = new List<int>();
+        var result = new HashSet<string>();
+        word = word.ToLower();
+
+        for (var i = 0; i < word.Length; i++)
+            if (vowels.Contains(word[i]))
+                vowelsIndexes.Add(i);
+
+        for (var i = vowelsIndexes.Count - 1; i > 0; i--)
+        {
+            if (vowelsIndexes[i] - vowelsIndexes[i - 1] == 1)
+                continue;
+            var consonantCount = vowelsIndexes[i] - vowelsIndexes[i - 1] - 1;
+            var startIndex = vowelsIndexes[i - 1] + 1 + consonantCount / 2;
+            result.Add(word.Substring(startIndex));
+            word = word.Remove(startIndex);
+        }
+        result.Add(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(word));
+
+        return result.Reverse();
     }
 }
