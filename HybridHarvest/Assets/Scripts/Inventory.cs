@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
         CollectData();
+        CollectEnergy();
         RedrawInfo();
     }
 
@@ -40,12 +41,13 @@ public class Inventory : MonoBehaviour
         }
         
         energyTimeBuffer -= Time.deltaTime;
-        if (Math.Ceiling(energyTimeBuffer) == 0)
+        if (Math.Ceiling(energyTimeBuffer) <= 0)
         {
             energyTimeBuffer = EnergyRegenDelay;
             RegenEnergy(1);
         }
-        PlayerPrefs.SetFloat("energytimebuffer", energyTimeBuffer);
+
+        SaveEnergyTime();
         var minutes = Math.Floor(energyTimeBuffer / 60).ToString(CultureInfo.InvariantCulture);
         var seconds = Math.Floor(energyTimeBuffer % 60).ToString(CultureInfo.InvariantCulture);
         EnergyRegenInfo.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
@@ -85,8 +87,10 @@ public class Inventory : MonoBehaviour
     
     public void RegenEnergy(int amount)
     {
-        if (Energy == EnergyMax) return;
-        Energy += amount;
+        if (Energy + amount > EnergyMax)
+            Energy = EnergyMax;
+        else
+            Energy += amount;
         PlayerPrefs.SetInt("energy", Energy);
         RedrawInfo();
     }
@@ -107,7 +111,7 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void SaveData()
+    private void SaveData()
     {
         PlayerPrefs.SetInt("money", Money);
         PlayerPrefs.SetInt("reputation", Reputation);
@@ -119,13 +123,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void SaveEnergyTime()
+    {
+        PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
+        PlayerPrefs.SetFloat("energytimebuffer", energyTimeBuffer);
+    }
+
     private void CollectData()
     {
         Money = PlayerPrefs.GetInt("money");
         Reputation = PlayerPrefs.GetInt("reputation");
         var i = PlayerPrefs.GetInt("amount");
         Energy = PlayerPrefs.GetInt("energy");
-        energyTimeBuffer = PlayerPrefs.GetFloat("energytimebuffer");
         for (var j = 0; j < i; j++)
         {
             var parameters = PlayerPrefs.GetString(j.ToString());
@@ -133,5 +142,16 @@ public class Inventory : MonoBehaviour
             newSeed.SetValues(parameters);
             Elements.Add(newSeed);
         }
+    }
+    
+    private void CollectEnergy()
+    {
+        energyTimeBuffer = PlayerPrefs.GetFloat("energytimebuffer");
+        var oldDate = DateTime.Parse(PlayerPrefs.GetString("energytime"));
+        //10 million ticks in a second
+        var secondsElapsed = (float)(DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
+        var regenerated = (int)secondsElapsed / EnergyRegenDelay;
+        RegenEnergy(regenerated);
+        energyTimeBuffer -= secondsElapsed % EnergyRegenDelay;
     }
 }
