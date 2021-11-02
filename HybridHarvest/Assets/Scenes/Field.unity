@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 168844528}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &168844528
 MonoBehaviour:
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 679207230}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &679207230
 MonoBehaviour:
@@ -1925,7 +1925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 738015115}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &738015115
 MonoBehaviour:
@@ -3077,7 +3077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 1243676115}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &1243676115
 MonoBehaviour:
@@ -3346,7 +3346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 1303954218}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!1 &1318360775
 GameObject:
@@ -3403,7 +3403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 1318360778}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &1318360778
 MonoBehaviour:
@@ -4588,7 +4588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 1817654734}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &1817654734
 MonoBehaviour:
@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 1833376828}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &1833376828
 MonoBehaviour:
@@ -5489,7 +5489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patch: {fileID: 2013547571}
   InventoryFrame: {fileID: 1407888802}
-  VegItem: {fileID: 197060018}
+  HarvestWindow: {fileID: 197060018}
   time: 0
 --- !u!114 &2013547571
 MonoBehaviour:

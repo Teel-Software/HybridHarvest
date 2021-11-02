@@ -9,7 +9,7 @@ public class HarvestProcessor : MonoBehaviour
     [SerializeField] GameObject Inventory;
     [SerializeField] RectTransform Place;
     private List<Seed> seeds = new List<Seed>();
-    private List<GameObject> items = new List<GameObject>();
+    private List<GameObject> seedPlaces = new List<GameObject>();
 
     public void Show(Seed ParentSeed)
     {
@@ -18,7 +18,7 @@ public class HarvestProcessor : MonoBehaviour
             var newSeed = MutateSeed(ParentSeed);
             seeds.Add(newSeed);
             var item = Instantiate(VegItem, Place);
-            items.Add(item);
+            seedPlaces.Add(item);
             var button = item.transform.Find("Button");
             var label = item.transform.Find("Text");
             var img = item.transform.Find("Image");
@@ -27,7 +27,7 @@ public class HarvestProcessor : MonoBehaviour
             {
                 Inventory.GetComponent<Inventory>().AddItem(newSeed);
                 seeds.Remove(newSeed);
-                items.Remove(item);
+                seedPlaces.Remove(item);
                 Destroy(item);
             });
             label.GetComponent<Text>().text = newSeed.NameInRussian +"/"+ newSeed.Name + "/" + newSeed.NameInLatin + "\nВкус: " + newSeed.Taste.ToString() + "\nГабитус: " + newSeed.Gabitus.ToString() + "\nВремя роста: " + newSeed.GrowTime.ToString();
@@ -65,10 +65,10 @@ public class HarvestProcessor : MonoBehaviour
         for(var i=0; i < seeds.Count; i++)
         {
             Sell(seeds[i]);
-            Destroy(items[i]);
+            Destroy(seedPlaces[i]);
         }
         seeds.RemoveAll(x => x);
-        items.RemoveAll(x=>x);
+        seedPlaces.RemoveAll(x=>x);
         gameObject.SetActive(false);
     }
 }

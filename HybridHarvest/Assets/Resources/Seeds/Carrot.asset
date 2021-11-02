@@ -26,4 +26,4 @@ MonoBehaviour:
   TasteGen: 1
   Taste: 20
   GrowTimeGen: 1
-  GrowTime: 5
+  GrowTime: 30

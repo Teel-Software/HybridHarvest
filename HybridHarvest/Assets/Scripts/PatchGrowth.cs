@@ -9,12 +9,12 @@ public class PatchGrowth : MonoBehaviour
 {
     [SerializeField] Button Patch;
     [SerializeField] RectTransform InventoryFrame;
-    [SerializeField] RectTransform VegItem;
+    [SerializeField] RectTransform HarvestWindow;
 
     bool isOccupied;
     bool timerNeeded;
     Seed growingSeed;
-    public double time;
+    public double time; //осталось расти
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
@@ -44,11 +44,9 @@ public class PatchGrowth : MonoBehaviour
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
 
-        DateTime oldDate;
-        oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
-        var timePassed = DateTime.Now - oldDate;
-        var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
-        time = PlayerPrefs.GetInt(Patch.name + "time") - timeSpan.TotalSeconds;
+        DateTime oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
+        var timePassed = (DateTime.Now.Ticks - oldDate.Ticks)/10000000;
+        time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed;
         Patch.interactable = false;
 
         if (time <= 0)
@@ -131,8 +129,8 @@ public class PatchGrowth : MonoBehaviour
         isOccupied = false;
         if (growingSeed == null) return;
 
-        VegItem.GetComponent<HarvestProcessor>().Show(growingSeed);
-        VegItem.gameObject.SetActive(true);
+        HarvestWindow.GetComponent<HarvestProcessor>().Show(growingSeed);
+        HarvestWindow.gameObject.SetActive(true);
 
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
