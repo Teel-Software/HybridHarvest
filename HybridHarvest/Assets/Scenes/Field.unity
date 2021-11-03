@@ -377,10 +377,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 197060017}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 197060021}
+        m_TargetAssemblyTypeName: HarvestProcessor, Assembly-CSharp
+        m_MethodName: ClearSpace
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -484,6 +484,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &168844528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,6 +1690,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &679207230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,6 +1929,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &738015115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3079,6 +3082,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &1243676115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,6 +3352,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!1 &1318360775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,6 +3410,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &1318360778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4590,6 +4596,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &1817654734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,6 +4951,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &1833376828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5491,6 +5499,7 @@ MonoBehaviour:
   InventoryFrame: {fileID: 1407888802}
   HarvestWindow: {fileID: 197060018}
   time: 0
+  grownSeeds: []
 --- !u!114 &2013547571
 MonoBehaviour:
   m_ObjectHideFlags: 0

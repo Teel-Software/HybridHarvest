@@ -15,6 +15,7 @@ public class PatchGrowth : MonoBehaviour
     bool timerNeeded;
     Seed growingSeed;
     public double time; //осталось расти
+    public List<Seed> grownSeeds = new List<Seed>();
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
@@ -49,6 +50,13 @@ public class PatchGrowth : MonoBehaviour
         time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed;
         Patch.interactable = false;
 
+        var seedsCount = PlayerPrefs.GetInt(Patch.name + "seedsCount");
+        for (var i = 0; i < seedsCount; i++)
+        {
+            var seed = ScriptableObject.CreateInstance<Seed>();
+            seed.SetValues(PlayerPrefs.GetString(Patch.name + "seedElement" + i.ToString()));
+            grownSeeds.Add(seed);
+        }
         if (time <= 0)
             EndGrowthCycle();
     }
@@ -123,16 +131,55 @@ public class PatchGrowth : MonoBehaviour
             InventoryFrame.gameObject.SetActive(true);
         }
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
+        if(grownSeeds.Count == 0 && growingSeed != null)
+        {
+            for (var i = 0; i < growingSeed.Amount; i++)
+                grownSeeds.Add(MutateSeed(growingSeed));
+        }
+        if (grownSeeds.Count != 0)
+        {
+            HarvestWindow.GetComponent<HarvestProcessor>().Show(grownSeeds, Patch);
+            HarvestWindow.gameObject.SetActive(true);
+        }
+
+        //plantImage.sprite = Resources.Load<Sprite>("Transparent");
+        //textBGImage.enabled = false;
+        //growthText.text = "";
+        //isOccupied = false;
+        //if (growingSeed == null) return;
+
+
+        //growingSeed = null;
+        //PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+    }
+
+    public void ClearPatch()
+    {
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
         textBGImage.enabled = false;
         growthText.text = "";
         isOccupied = false;
         if (growingSeed == null) return;
 
-        HarvestWindow.GetComponent<HarvestProcessor>().Show(growingSeed);
-        HarvestWindow.gameObject.SetActive(true);
-
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+    }
+
+    private Seed MutateSeed(Seed oldSeed)
+    {
+        var procentage = UnityEngine.Random.value;
+        var newSeed = ScriptableObject.CreateInstance<Seed>();
+        newSeed.SetValues(oldSeed.ToString());
+        var plusAmount = UnityEngine.Random.value;
+        if (procentage < 0.5 && newSeed.Gabitus <= 100)
+        {
+            newSeed.Gabitus += (int)(plusAmount * 5 + 1);
+            newSeed.Price += (int)(plusAmount * 5 + 1);
+        }
+        else if (newSeed.Taste <= 100)
+        {
+            newSeed.Taste += (int)(plusAmount * 5 + 1);
+        }
+        return newSeed;
     }
 }
