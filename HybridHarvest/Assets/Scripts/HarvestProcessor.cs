@@ -12,7 +12,7 @@ public class HarvestProcessor : MonoBehaviour
     private List<GameObject> seedPlaces = new List<GameObject>();
     private Button Patch;
 
-    public void Show(List<Seed> ParentSeed, Button patch)
+    public void ShowHarvestMenu(List<Seed> ParentSeed, Button patch)
     {
         Patch = patch;
         seeds = ParentSeed;
@@ -21,22 +21,29 @@ public class HarvestProcessor : MonoBehaviour
             // var newSeed = MutateSeed(ParentSeed);
             // seeds.Add(newSeed);
             var seed = seeds[i];
-            Debug.Log(i);
+            //Debug.Log(i);
+            
             var item = Instantiate(VegItem, Place);
             seedPlaces.Add(item);
+            
             var button = item.transform.Find("Button");
-            var label = item.transform.Find("Text");
-            var img = item.transform.Find("Image");
-            button.GetComponentInChildren<Text>().text = "А не сохранить ли?";
+            button.GetComponentInChildren<Text>().text = "РњРѕР¶РµС‚ СЃРѕС…СЂР°РЅРёС‚СЊ?";
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                //Debug.Log(i);
                 Inventory.GetComponent<Inventory>().AddItem(seed);
                 seeds.Remove(seed);
                 seedPlaces.Remove(item);
                 Destroy(item);
             });
-            label.GetComponent<Text>().text = seeds[i].NameInRussian +"/"+ seeds[i].Name + "/" + seeds[i].NameInLatin + "\nВкус: " + seeds[i].Taste.ToString() + "\nГабитус: " + seeds[i].Gabitus.ToString() + "\nВремя роста: " + seeds[i].GrowTime.ToString();
+            
+            var label = item.transform.Find("Text");
+            label.GetComponent<Text>().text =
+                $"{seeds[i].NameInRussian} (Р°РЅРіР». {seeds[i].Name}, Р»Р°С‚. {seeds[i].NameInLatin})\n" +
+                $"Р’РєСѓСЃ: {seeds[i].Taste}\n" +
+                $"Р“Р°Р±РёС‚СѓСЃ: {seeds[i].Gabitus}\n" +
+                $"Р’СЂРµРјСЏ СЂРѕСЃС‚Р°: {seeds[i].GrowTime}";
+            
+            var img = item.transform.Find("Image");
             img.GetComponent<Image>().sprite = seeds[i].PlantSprite;
         }
     }
@@ -64,6 +71,7 @@ public class HarvestProcessor : MonoBehaviour
         var inventory = Inventory.GetComponent<Inventory>();
         inventory.ChangeMoney(seed.Price);
         inventory.ChangeReputation(seed.Gabitus);
+        inventory.SaveAllData();
     }
 
     public void SellAll()

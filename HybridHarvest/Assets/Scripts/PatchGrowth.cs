@@ -138,7 +138,7 @@ public class PatchGrowth : MonoBehaviour
         }
         if (grownSeeds.Count != 0)
         {
-            HarvestWindow.GetComponent<HarvestProcessor>().Show(grownSeeds, Patch);
+            HarvestWindow.GetComponent<HarvestProcessor>().ShowHarvestMenu(grownSeeds, Patch);
             HarvestWindow.gameObject.SetActive(true);
         }
 

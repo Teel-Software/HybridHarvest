@@ -41,13 +41,14 @@ public class CreateMiniGame : MonoBehaviour
             else
                 currentSeed = ResultPlace.GetComponent<LabGrowth>().growingSeed;
 
-            var GC = CrossingPerformer.GetComponent<GeneCrossing>();
+            var GC
+                = CrossingPerformer.GetComponent<GeneCrossing>();
             var cardText = Instantiate(textSample);
             cardText.transform.SetParent(card.transform);
             cardText.GetComponent<Text>().text =
-                $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, GC.Chances[0], GC.OppositeSeedStats[0])}\n" +
-                $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, GC.Chances[1], GC.OppositeSeedStats[1])}\n" +
-                $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, GC.Chances[2], GC.OppositeSeedStats[2])}";
+                $"пїЅпїЅпїЅпїЅ: {GC.GetNewValueByPossibility(currentSeed.Taste, GC.Chances[0], GC.OppositeSeedStats[0])}\n" +
+                $"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {GC.GetNewValueByPossibility(currentSeed.Gabitus, GC.Chances[1], GC.OppositeSeedStats[1])}\n" +
+                $"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: {GC.GetNewValueByPossibility(currentSeed.GrowTime, GC.Chances[2], GC.OppositeSeedStats[2])}";
 
             var scaleFactor = 1 / 47.34849f;
             card.transform.localScale = new Vector2(scaleFactor, scaleFactor);
