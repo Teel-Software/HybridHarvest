@@ -12,11 +12,12 @@ public class LabGrowth : MonoBehaviour
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform CrossingMenue;
 
+    public Seed growingSeed;
+
     bool isOccupied;
     bool timerNeeded;
-    Seed growingSeed;
     public double time;
-    
+
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;

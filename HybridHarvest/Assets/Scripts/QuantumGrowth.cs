@@ -12,11 +12,12 @@ public class QuantumGrowth : MonoBehaviour
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform CrossingMenue;
 
+    public Seed growingSeed;
+
     bool isOccupied;
     bool timerNeeded;
-    Seed growingSeed;
     public double time;
-    
+
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
@@ -91,7 +92,7 @@ public class QuantumGrowth : MonoBehaviour
     }
 
     public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
-    { 
+    {
         //Pot.interactable = false;
         isOccupied = true;
         growingSeed = seed;

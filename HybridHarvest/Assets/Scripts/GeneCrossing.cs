@@ -13,10 +13,14 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Sprite defaultSprite;
-    public int[] Chances = new int[3];
-    int chancesIterator;
+    [SerializeField] GameObject MiniGamePanel;
 
+    public int[] Chances = new int[3];
+    public int[] OppositeSeedStats = new int[3];
+
+    int chancesIterator;
     private Image textBGImage;
+
     public void Clicked()
     {
         var seed1 = button1.GetComponent<LabButton>().NowSelected;
@@ -34,6 +38,12 @@ public class GeneCrossing : MonoBehaviour
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
+
+        button1.transform.parent.gameObject.SetActive(false); // deactivates select panel
+
+        MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = CurrentPot;
+        MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
+        MiniGamePanel.SetActive(true);
     }
 
     public Seed MixTwoParents(Seed first, Seed second)
@@ -43,12 +53,17 @@ public class GeneCrossing : MonoBehaviour
         newSeed.SetValues(first.ToString());
         (newSeed.Taste, newSeed.TasteGen) =
             CountParameter(first.Taste, first.TasteGen, second.Taste, second.TasteGen);
+        OppositeSeedStats[0] = newSeed.Taste == first.Taste ? second.Taste : first.Taste;
         chancesIterator++;
+
         (newSeed.Gabitus, newSeed.GabitusGen) =
             CountParameter(first.Gabitus, first.GabitusGen, second.Gabitus, second.GabitusGen);
+        OppositeSeedStats[1] = newSeed.Gabitus == first.Gabitus ? second.Gabitus : first.Gabitus;
         chancesIterator++;
+
         (newSeed.GrowTime, newSeed.GrowTimeGen) =
             CountParameter(first.GrowTime, first.GrowTimeGen, second.GrowTime, second.GrowTimeGen);
+        OppositeSeedStats[2] = newSeed.GrowTime == first.GrowTime ? second.GrowTime : first.GrowTime;
         newSeed.Price = newSeed.Taste;
 
         newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
@@ -58,6 +73,7 @@ public class GeneCrossing : MonoBehaviour
 
     public (int, Gen) CountParameter(int value1, Gen gen1, int value2, Gen gen2)
     {
+
         var dominant = Mathf.Min(value1, value2);
         var recessive = Mathf.Max(value1, value2);
         if (SceneManager.GetActiveScene().buildIndex == 4)
@@ -90,9 +106,11 @@ public class GeneCrossing : MonoBehaviour
         Chances[chancesIterator] = 75;
         Gen newGen;
         var possibility = (int)Random.value * 100;
-        if (possibility <= 25) newGen = Gen.Dominant;
-        else if (possibility < 75) newGen = Gen.Mixed;
-        else newGen = Gen.Recessive;
+        newGen = possibility <= 25
+            ? Gen.Dominant
+            : possibility < 75
+                ? Gen.Mixed
+                : Gen.Recessive;
         return (GetNewValueByPossibility(dominant, 75,
                 recessive), newGen);
     }
@@ -103,6 +121,9 @@ public class GeneCrossing : MonoBehaviour
         return fortune < value1Chance ? value1 : value2;
     }
 
+    /// <summary>
+    /// Gets first syllables from first word, last syllable from second word and returns mixed word
+    /// </summary>
     private string MixTwoNames(string firstName, string secondName)
     {
         var firstSyllables = GetSyllables(firstName);
@@ -113,6 +134,10 @@ public class GeneCrossing : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// Breaks a word into syllables
+    /// </summary>
+    /// <returns>IEnumerable of syllables</returns>
     private static IEnumerable<string> GetSyllables(string word)
     {
         var vowels = "àîóèýûÿþå¸".ToCharArray();

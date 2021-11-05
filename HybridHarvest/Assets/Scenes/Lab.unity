@@ -180,6 +180,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &11553178
 MonoBehaviour:
@@ -475,6 +476,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &102797807
 MonoBehaviour:
@@ -974,18 +976,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365002236}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 391753909}
         m_TargetAssemblyTypeName: GeneCrossing, Assembly-CSharp
         m_MethodName: Clicked
@@ -1053,7 +1043,9 @@ MonoBehaviour:
   button1: {fileID: 1817888070}
   button2: {fileID: 438944657}
   defaultSprite: {fileID: 21300000, guid: d6f6c46fc5b98dc4c99578abc318bd9f, type: 3}
+  MiniGamePanel: {fileID: 938389803}
   Chances: 000000000000000000000000
+  OppositeSeedStats: 000000000000000000000000
 --- !u!1 &438944655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1501,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &689944757
 MonoBehaviour:
@@ -1985,6 +1978,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930336651}
   m_CullTransparentMesh: 1
+--- !u!1 &938389803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1818408190813670350, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+  m_PrefabInstance: {fileID: 986646902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &938389804 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+  m_PrefabInstance: {fileID: 986646902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &940263595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2063,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940263595}
   m_CullTransparentMesh: 1
+--- !u!1001 &986646902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1775937274}
+    m_Modifications:
+    - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: CrossingPerformer
+      value: 
+      objectReference: {fileID: 391753906}
+    - target: {fileID: 1818408190813670350, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_Name
+      value: MiniGamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
 --- !u!1 &1061172990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2479,9 @@ MonoBehaviour:
   button1: {fileID: 0}
   button2: {fileID: 0}
   defaultSprite: {fileID: 0}
+  MiniGamePanel: {fileID: 0}
   Chances: 000000000000000000000000
+  OppositeSeedStats: 000000000000000000000000
 --- !u!1001 &1095089690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2658,6 +2764,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &1166840582
 MonoBehaviour:
@@ -3627,6 +3734,7 @@ RectTransform:
   - {fileID: 54578668}
   - {fileID: 198918058}
   - {fileID: 1095089692}
+  - {fileID: 938389804}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4141,6 +4249,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &1973410819
 MonoBehaviour:
@@ -4545,6 +4654,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 391753906}
   InventoryFrame: {fileID: 1622652212}
   CrossingMenue: {fileID: 365002237}
+  growingSeed: {fileID: 0}
   time: 0
 --- !u!1 &2019957018
 GameObject:
