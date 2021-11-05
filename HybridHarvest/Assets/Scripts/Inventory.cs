@@ -118,7 +118,7 @@ public class Inventory : MonoBehaviour
     {
         if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
         //else MoneyInfo.text = "0";
-        if (ReputationInfo != null) ReputationInfo.text = $"{Reputation} / {ReputationLimit}";
+        if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
         //else ReputationInfo.text = "0";
         if (EnergyInfo != null) EnergyInfo.text = $"{Energy} / {EnergyMax}";
         

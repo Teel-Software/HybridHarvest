@@ -140,7 +140,7 @@ public class GeneCrossing : MonoBehaviour
     /// <returns>IEnumerable of syllables</returns>
     private static IEnumerable<string> GetSyllables(string word)
     {
-        var vowels = "àîóèıûÿşå¸".ToCharArray();
+        var vowels = "Ğ°Ğ¾ÑƒĞ¸ÑÑ‹ÑÑĞµÑ‘".ToCharArray();
         var vowelsIndexes = new List<int>();
         var result = new HashSet<string>();
         word = word.ToLower();

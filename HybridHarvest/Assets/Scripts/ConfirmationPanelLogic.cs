@@ -10,7 +10,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     private string originalQuestionText;
 
     /// <summary>
-    /// Добавляет текущий элемент в инвентарь
+    /// Р”РѕР±Р°РІР»СЏРµС‚ С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ РІ РёРЅРІРµРЅС‚Р°СЂСЊ
     /// </summary>
     public void AddOneMore()
     {
@@ -21,7 +21,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Продаёт семечко
+    /// РџСЂРѕРґР°С‘С‚ СЃРµРјРµС‡РєРѕ
     /// </summary>
     public void Sell()
     {
@@ -35,7 +35,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Сажает семечко на грядку
+    /// РЎР°Р¶Р°РµС‚ СЃРµРјРµС‡РєРѕ РЅР° РіСЂСЏРґРєСѓ
     /// </summary>
     public void Plant()
     {
@@ -48,7 +48,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет на панель скрещивания
+    /// Р”РѕР±Р°РІР»СЏРµС‚ РЅР° РїР°РЅРµР»СЊ СЃРєСЂРµС‰РёРІР°РЅРёСЏ
     /// </summary>
     public void Select()
     {
@@ -61,9 +61,9 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Задаёт имя элемента, добавляемого в инвентарь
+    /// Р—Р°РґР°С‘С‚ РёРјСЏ СЌР»РµРјРµРЅС‚Р°, РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂСЊ
     /// </summary>
-    /// <param название спрайта="itemSpriteName"></param>
+    /// <param РЅР°Р·РІР°РЅРёРµ СЃРїСЂР°Р№С‚Р°="itemSpriteName"></param>
     public void DefineItem(string itemSpriteName)
     {
         this.itemSpriteName = itemSpriteName;

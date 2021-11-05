@@ -19,12 +19,15 @@ public class PatchGrowth : MonoBehaviour
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
+    private Inventory _inventory;
     
     /// <summary>
     /// Organizes plants on patch.
     /// </summary>
     private void Start()
     {
+        _inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
+        
         var imagesInChildren = Patch.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
         textBGImage = imagesInChildren[2];
@@ -109,7 +112,7 @@ public class PatchGrowth : MonoBehaviour
     public void PlantIt(Seed seed)
     {
         //Consumes energy for planting (so bad)
-        GameObject.Find("DataKeeper").GetComponent<Inventory>().ConsumeEnergy(1);
+        _inventory.ConsumeEnergy(1);
         Patch.interactable = false;
         isOccupied = true;
         growingSeed = seed;

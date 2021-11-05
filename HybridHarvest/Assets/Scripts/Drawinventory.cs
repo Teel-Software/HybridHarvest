@@ -66,12 +66,12 @@ public class Drawinventory : MonoBehaviour
     }
 
     /// <summary>
-    /// Вызывает панель подтверждения
+    /// Р’С‹Р·С‹РІР°РµС‚ РїР°РЅРµР»СЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
     /// </summary>
-    /// <param семечко="item"></param>
+    /// <param СЃРµРјРµС‡РєРѕ="item"></param>
     private void PrepareConfirmationPanel(GameObject item)
     {
-        // добавляю в текст подтверждения название объекта
+        // РґРѕР±Р°РІР»СЏСЋ РІ С‚РµРєСЃС‚ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РЅР°Р·РІР°РЅРёРµ РѕР±СЉРµРєС‚Р°
         var questionText = ConfirmationPanel.transform.Find("QuestionText").GetComponent<Text>();
         originalQuestionText ??= questionText.text;
 

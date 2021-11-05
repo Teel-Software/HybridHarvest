@@ -6,12 +6,12 @@ public class FitSpriteInScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // вычисляю соотношение сторон
+        // РІС‹С‡РёСЃР»СЏСЋ СЃРѕРѕС‚РЅРѕС€РµРЅРёРµ СЃС‚РѕСЂРѕРЅ
         var aspectRatio = Math.Round((double)Camera.main.scaledPixelWidth / Camera.main.scaledPixelHeight, 1);
         float width;
         float height;
 
-        // перебор наиболее популярных соотношений
+        // РїРµСЂРµР±РѕСЂ РЅР°РёР±РѕР»РµРµ РїРѕРїСѓР»СЏСЂРЅС‹С… СЃРѕРѕС‚РЅРѕС€РµРЅРёР№
         switch (aspectRatio)
         {
             case 1.3:

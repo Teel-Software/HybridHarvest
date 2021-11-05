@@ -14,7 +14,7 @@ public class DropDownBehavior : MonoBehaviour
     [SerializeField] public string title;
     
     /// <summary>
-    /// Если на определённой сцене не нужна опция, здесь можно поменять картинку и надпись.
+    /// Р•СЃР»Рё РЅР° РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№ СЃС†РµРЅРµ РЅРµ РЅСѓР¶РЅР° РѕРїС†РёСЏ, Р·РґРµСЃСЊ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ РєР°СЂС‚РёРЅРєСѓ Рё РЅР°РґРїРёСЃСЊ.
     /// </summary>
     private void Start()
     {
@@ -39,7 +39,7 @@ public class DropDownBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Если опция невозможна на сцене, отключает её.
+    /// Р•СЃР»Рё РѕРїС†РёСЏ РЅРµРІРѕР·РјРѕР¶РЅР° РЅР° СЃС†РµРЅРµ, РѕС‚РєР»СЋС‡Р°РµС‚ РµС‘.
     /// </summary>
     private void Update()
     {
@@ -68,7 +68,7 @@ public class DropDownBehavior : MonoBehaviour
     /// <summary>
     /// Called when any option is chosen
     /// </summary>
-    /// <param индекс опции="change"></param>
+    /// <param РёРЅРґРµРєСЃ РѕРїС†РёРё="change"></param>
     public void DropdownValueChanged(Dropdown change)
     {
         switch (change.value)
@@ -91,7 +91,7 @@ public class DropDownBehavior : MonoBehaviour
     /// <summary>
     /// Sells seed from inventory
     /// </summary>
-    /// <param семечко="item"></param>
+    /// <param СЃРµРјРµС‡РєРѕ="item"></param>
     private void Sell(GameObject item)
     {
         int a;
@@ -105,9 +105,9 @@ public class DropDownBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Сажает нв грядку
+    /// РЎР°Р¶Р°РµС‚ РЅРІ РіСЂСЏРґРєСѓ
     /// </summary>
-    /// <param семечко="item"></param>
+    /// <param СЃРµРјРµС‡РєРѕ="item"></param>
     private void Plant(GameObject item)
     {
         int a;
@@ -122,9 +122,9 @@ public class DropDownBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет на панель скрещивания
+    /// Р”РѕР±Р°РІР»СЏРµС‚ РЅР° РїР°РЅРµР»СЊ СЃРєСЂРµС‰РёРІР°РЅРёСЏ
     /// </summary>
-    /// <param семечко="item"></param>
+    /// <param СЃРµРјРµС‡РєРѕ="item"></param>
     private void Select(GameObject item)
     {
         int a;

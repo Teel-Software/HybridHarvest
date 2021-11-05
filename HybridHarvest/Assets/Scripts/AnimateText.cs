@@ -9,8 +9,8 @@ public class AnimateText : MonoBehaviour
     [SerializeField] GameObject CurrentSlide;
     [SerializeField] GameObject NextSlide;
 
-    // здесь активируются соответствующие элементы, выключенные при начале анимации
-    // нижестоящие параметры указываются только для последнего слайда
+    // Р·РґРµСЃСЊ Р°РєС‚РёРІРёСЂСѓСЋС‚СЃСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ СЌР»РµРјРµРЅС‚С‹, РІС‹РєР»СЋС‡РµРЅРЅС‹Рµ РїСЂРё РЅР°С‡Р°Р»Рµ Р°РЅРёРјР°С†РёРё
+    // РЅРёР¶РµСЃС‚РѕСЏС‰РёРµ РїР°СЂР°РјРµС‚СЂС‹ СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ РїРѕСЃР»РµРґРЅРµРіРѕ СЃР»Р°Р№РґР°
     [SerializeField] GameObject Title_LastSlide;
     [SerializeField] GameObject StartLabel_LastSlide;
     [SerializeField] GameObject StartButton_LastSlide;
@@ -26,15 +26,15 @@ public class AnimateText : MonoBehaviour
     {
         currentText = TextPanel.text;
         TextPanel.text = "";
-        index = 0; // указатель на текущий символ
-        lastSlideTime = DateTime.MinValue; // время, в которое появился прошлый слайд
-        freqMilliseconds = 25; // время между показом символов в миллисекундах
+        index = 0; // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР»
+        lastSlideTime = DateTime.MinValue; // РІСЂРµРјСЏ, РІ РєРѕС‚РѕСЂРѕРµ РїРѕСЏРІРёР»СЃСЏ РїСЂРѕС€Р»С‹Р№ СЃР»Р°Р№Рґ
+        freqMilliseconds = 25; // РІСЂРµРјСЏ РјРµР¶РґСѓ РїРѕРєР°Р·РѕРј СЃРёРјРІРѕР»РѕРІ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…
     }
 
     // Update is called once per frame
     void Update()
     {
-        // каждые freqMilliseconds текст обновляется, добавляя очередной символ
+        // РєР°Р¶РґС‹Рµ freqMilliseconds С‚РµРєСЃС‚ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ, РґРѕР±Р°РІР»СЏСЏ РѕС‡РµСЂРµРґРЅРѕР№ СЃРёРјРІРѕР»
         if ((DateTime.Now - lastSlideTime).TotalMilliseconds > freqMilliseconds)
         {
             lastSlideTime = DateTime.Now;
@@ -45,7 +45,7 @@ public class AnimateText : MonoBehaviour
     }
 
     /// <summary>
-    /// Сразу выводит готовый текст, без задержки
+    /// РЎСЂР°Р·Сѓ РІС‹РІРѕРґРёС‚ РіРѕС‚РѕРІС‹Р№ С‚РµРєСЃС‚, Р±РµР· Р·Р°РґРµСЂР¶РєРё
     /// </summary>
     public void SkipText()
     {
@@ -56,7 +56,7 @@ public class AnimateText : MonoBehaviour
         }
         else
         {
-            // проверка на последний слайд
+            // РїСЂРѕРІРµСЂРєР° РЅР° РїРѕСЃР»РµРґРЅРёР№ СЃР»Р°Р№Рґ
             if (NextSlide != null)
                 NextSlide.SetActive(true);
             else if (PlayerPrefs.HasKey("GameInitialised"))

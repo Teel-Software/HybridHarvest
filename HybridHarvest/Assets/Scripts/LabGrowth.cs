@@ -81,7 +81,7 @@ public class LabGrowth : MonoBehaviour
         timerNeeded = false;
         Pot.interactable = true;
         textBGImage.enabled = true;
-        growthText.text = "√Œ“Œ¬Œ";
+        growthText.text = "–ì–û–¢–û–í–û";
         plantImage.sprite = growingSeed.GrownSprite;
     }
 
