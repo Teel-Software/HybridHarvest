@@ -1690,7 +1690,6 @@ GameObject:
   - component: {fileID: 626268545}
   - component: {fileID: 626268544}
   - component: {fileID: 626268543}
-  - component: {fileID: 626268542}
   - component: {fileID: 626268541}
   m_Layer: 5
   m_Name: BuyCarrot
@@ -1733,22 +1732,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -3.06}
   m_UseGraphicAlpha: 1
---- !u!114 &626268542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626268539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864d4c45f268f8d469b0de1d638d7c06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetInventory: {fileID: 1871862018}
-  drawInventory: {fileID: 0}
-  itemSpriteName: 
-  itemObject: {fileID: 0}
 --- !u!114 &626268543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,19 +2686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 965966137}
         m_TargetAssemblyTypeName: ClearGameData, Assembly-CSharp
-        m_MethodName: UndoGameInitialization
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 965966137}
-        m_TargetAssemblyTypeName: ClearGameData, Assembly-CSharp
-        m_MethodName: ClearInventory
+        m_MethodName: ClearAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6772,7 +6743,6 @@ GameObject:
   - component: {fileID: 2034534065}
   - component: {fileID: 2034534064}
   - component: {fileID: 2034534063}
-  - component: {fileID: 2034534062}
   - component: {fileID: 2034534061}
   m_Layer: 5
   m_Name: BuyTomato
@@ -6815,22 +6785,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -3.06}
   m_UseGraphicAlpha: 1
---- !u!114 &2034534062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034534059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864d4c45f268f8d469b0de1d638d7c06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetInventory: {fileID: 1871862018}
-  drawInventory: {fileID: 0}
-  itemSpriteName: 
-  itemObject: {fileID: 0}
 --- !u!114 &2034534063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7304,6 +7258,10 @@ PrefabInstance:
     - target: {fileID: 2876535857775937613, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876535857775937613, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.986496
       objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441276, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_Name

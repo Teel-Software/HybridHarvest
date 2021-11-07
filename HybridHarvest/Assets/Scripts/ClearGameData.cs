@@ -7,21 +7,10 @@ public class ClearGameData : MonoBehaviour
 
     // чтобы изменения сохранились необходимо перезайти на сцену
 
-    public void ClearInventory()
+    public void ClearAll()
     {
-        PlayerPrefs.SetInt("money", 0);
-        PlayerPrefs.SetInt("reputation", 0);
-        PlayerPrefs.SetInt("reputationLimit", 500);
-        PlayerPrefs.SetInt("reputationLevel", 1);
-        PlayerPrefs.SetInt("amount", 0);
-        PlayerPrefs.SetInt("energy", 0);
-        PlayerPrefs.SetFloat("energytimebuffer", 0);
-        PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
-    }
-
-    public void UndoGameInitialization()
-    {
-        PlayerPrefs.DeleteKey("GameInitialised");
+        ClearPlayerStats();
+        UndoGameInitialization();
     }
 
     /// <summary>
@@ -33,8 +22,20 @@ public class ClearGameData : MonoBehaviour
             RewatchButton.SetActive(false);
     }
 
-    public void QuitApplication()
+    private void ClearPlayerStats()
     {
-        Application.Quit();
+        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("reputation", 0);
+        PlayerPrefs.SetInt("reputationLimit", 500);
+        PlayerPrefs.SetInt("reputationLevel", 1);
+        PlayerPrefs.SetInt("amount", 0);
+        PlayerPrefs.SetInt("energy", 0);
+        PlayerPrefs.SetFloat("energytimebuffer", 0);
+        PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
+    }
+
+    private void UndoGameInitialization()
+    {
+        PlayerPrefs.DeleteKey("GameInitialised");
     }
 }
