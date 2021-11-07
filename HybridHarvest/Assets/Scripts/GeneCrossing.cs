@@ -62,6 +62,12 @@ public class GeneCrossing : MonoBehaviour
 
         newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
 
+        if (CurrentPot != null)
+        {
+            PlayerPrefs.SetString("SelectionChances" + CurrentPot.name, string.Join(" ", Chances));
+            PlayerPrefs.SetString("OppositeSeedStats" + CurrentPot.name, string.Join(" ", OppositeSeedStats));
+        }
+
         return newSeed;
     }
 

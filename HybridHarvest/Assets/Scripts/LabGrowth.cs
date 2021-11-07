@@ -5,7 +5,7 @@ using Unity.Mathematics;
 
 public class LabGrowth : MonoBehaviour
 {
-    [SerializeField] Button Pot;
+    [SerializeField] public Button Pot;
     [SerializeField] Button CrossingPerformer;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform CrossingMenue;

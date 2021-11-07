@@ -37,17 +37,27 @@ public class CreateMiniGame : MonoBehaviour
             card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             card.GetComponent<Button>().targetGraphic = card.GetComponent<Image>();
 
+            Button currentPot;
             if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
                 currentSeed = ResultPlace.GetComponent<QuantumGrowth>().growingSeed;
+                currentPot = ResultPlace.GetComponent<QuantumGrowth>().Pot;
+            }
             else
+            {
                 currentSeed = ResultPlace.GetComponent<LabGrowth>().growingSeed;
+                currentPot = ResultPlace.GetComponent<LabGrowth>().Pot;
+            }
 
             var GC = CrossingPerformer.GetComponent<GeneCrossing>();
+            var chances = PlayerPrefs.GetString("SelectionChances" + currentPot.name).Split();
+            var oppositeStats = PlayerPrefs.GetString("OppositeSeedStats" + currentPot.name).Split();
+
             var cardText = Instantiate(textSample, card.transform);
             cardText.GetComponent<Text>().text =
-                $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, GC.Chances[0], GC.OppositeSeedStats[0])}\n" +
-                $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, GC.Chances[1], GC.OppositeSeedStats[1])}\n" +
-                $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, GC.Chances[2], GC.OppositeSeedStats[2])}";
+                $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, int.Parse(chances[0]), int.Parse(oppositeStats[0]))}\n" +
+                $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, int.Parse(chances[1]), int.Parse(oppositeStats[1]))}\n" +
+                $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, int.Parse(chances[2]), int.Parse(oppositeStats[2]))}";
 
             var scaleFactor = 1 / 47.34849f;
             card.transform.localScale = new Vector2(scaleFactor, scaleFactor);
