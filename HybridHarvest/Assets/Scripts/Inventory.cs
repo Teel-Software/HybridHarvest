@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -13,6 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text ReputationInfo;
     [SerializeField] public Text EnergyInfo;
     [SerializeField] public Text EnergyRegenInfo;
+
     //private const int Devider = 5;
     public Action onItemAdded;
     public int Money { get; private set; }
@@ -24,6 +23,7 @@ public class Inventory : MonoBehaviour
     //The time in *seconds* it take to regenerate 1 energy
     public int EnergyRegenDelay { get; private set; }
     private float energyTimeBuffer;
+
     void Start()
     {
         ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
         CollectEnergy();
-        
+
         RedrawInfo();
     }
 
@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
             EnergyRegenInfo.text = "--:--";
             return;
         }
-        
+
         energyTimeBuffer -= Time.deltaTime;
         if (Math.Ceiling(energyTimeBuffer) <= 0)
         {
@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
             Reputation -= ReputationLimit;
             ReputationLevel++;
             ReputationLimit += 100;
-        } 
+        }
         RedrawInfo();
     }
 
@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour
         SaveEnergy();
         RedrawInfo();
     }
-    
+
     public void RegenEnergy(int amount)
     {
         if (Energy + amount > EnergyMax)
@@ -107,7 +107,7 @@ public class Inventory : MonoBehaviour
         SaveEnergy();
         RedrawInfo();
     }
-    
+
     public void RemoveItem(int index)
     {
         Elements.RemoveAt(index);
@@ -117,11 +117,8 @@ public class Inventory : MonoBehaviour
     void RedrawInfo()
     {
         if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
-        //else MoneyInfo.text = "0";
         if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
-        //else ReputationInfo.text = "0";
         if (EnergyInfo != null) EnergyInfo.text = $"{Energy} / {EnergyMax}";
-        
     }
 
     public void SaveAllData()
@@ -129,7 +126,7 @@ public class Inventory : MonoBehaviour
         SaveData();
         SaveEnergy();
     }
-    
+
     private void SaveData()
     {
         PlayerPrefs.SetInt("money", Money);
@@ -138,7 +135,7 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("reputationLevel", ReputationLevel);
         PlayerPrefs.SetInt("amount", Elements.Count);
 
-        for (var i = 0; i < Elements.Count; i++) 
+        for (var i = 0; i < Elements.Count; i++)
             PlayerPrefs.SetString(i.ToString(), Elements[i].ToString());
     }
 
@@ -164,7 +161,7 @@ public class Inventory : MonoBehaviour
             Elements.Add(newSeed);
         }
     }
-    
+
     private void CollectEnergy()
     {
         Energy = PlayerPrefs.GetInt("energy");

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Linq;
 
 public class Drawinventory : MonoBehaviour
 {
@@ -54,14 +53,13 @@ public class Drawinventory : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when user clicks
+    /// Called when user clicks on item
     /// </summary>
     public void PointerDown()
     {
         var item = EventSystem.current.currentSelectedGameObject;
-        if (item == null)
-            return;
-        //DropDownRevealer(item);
+        if (item == null) return;
+
         PrepareConfirmationPanel(item);
     }
 
@@ -81,16 +79,4 @@ public class Drawinventory : MonoBehaviour
         ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>().itemObject = item;
         ConfirmationPanel.SetActive(true);
     }
-
-    ///// <summary>
-    ///// Creates confirmation message
-    ///// </summary>
-    ///// <param name="item"></param>
-    //private void DropDownRevealer(GameObject item)
-    //{
-    //    Choice.value = 0;
-    //    Choice.RefreshShownValue();
-    //    Choice.gameObject.SetActive(true);
-    //    Choice.GetComponent<DropDownBehavior>().item = item;
-    //}
 }

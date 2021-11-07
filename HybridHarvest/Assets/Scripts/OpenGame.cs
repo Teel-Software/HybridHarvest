@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -7,9 +7,9 @@ public class OpenGame : MonoBehaviour
     [SerializeField] GameObject RewatchButton;
 
     /// <summary>
-    /// Меняет сцену
+    /// РњРµРЅСЏРµС‚ СЃС†РµРЅСѓ
     /// </summary>
-    /// <param номер следующей сцены ="sceneNum"></param>
+    /// <param РЅРѕРјРµСЂ СЃР»РµРґСѓСЋС‰РµР№ СЃС†РµРЅС‹ ="sceneNum"></param>
     public void ChangeScene(int sceneNum)
     {
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
@@ -26,7 +26,7 @@ public class OpenGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Запускает вступительные слайды
+    /// Р—Р°РїСѓСЃРєР°РµС‚ РІСЃС‚СѓРїРёС‚РµР»СЊРЅС‹Рµ СЃР»Р°Р№РґС‹
     /// </summary>
     private void InitializeBeginning()
     {

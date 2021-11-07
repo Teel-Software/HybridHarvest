@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
 {
-    [SerializeField] GameObject RewatchButton; // ������ ��������� ����������
+    [SerializeField] GameObject RewatchButton; // кнопка просмотра вступления
 
-    // ������ �������� ������ ������ ����� ������ � ������� �����
+    // чтобы изменения сохранились необходимо перезайти на сцену
 
-    /// <summary>
-    /// ������� ���������
-    /// </summary>
     public void ClearInventory()
     {
         PlayerPrefs.SetInt("money", 0);
@@ -22,16 +19,13 @@ public class ClearGameData : MonoBehaviour
         PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
     }
 
-    /// <summary>
-    /// ������� ���� ������ ������������� ����������
-    /// </summary>
     public void UndoGameInitialization()
     {
         PlayerPrefs.DeleteKey("GameInitialised");
     }
 
     /// <summary>
-    /// ��������� ������ ��������� ����������
+    /// Выключает кнопку просмотра вступления
     /// </summary>
     public void DisableRewatchButton()
     {
@@ -39,9 +33,6 @@ public class ClearGameData : MonoBehaviour
             RewatchButton.SetActive(false);
     }
 
-    /// <summary>
-    /// ��������� ������ ����������
-    /// </summary>
     public void QuitApplication()
     {
         Application.Quit();

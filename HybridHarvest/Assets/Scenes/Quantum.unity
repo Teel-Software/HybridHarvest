@@ -180,6 +180,7 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 818516364}
   InventoryFrame: {fileID: 1077512522}
   CrossingMenue: {fileID: 1891486256}
+  MiniGamePanel: {fileID: 2128125894}
   growingSeed: {fileID: 0}
   time: 0
 --- !u!114 &6466562

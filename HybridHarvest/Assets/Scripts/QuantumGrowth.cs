@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Unity.Mathematics;
 
 public class QuantumGrowth : MonoBehaviour
 {
@@ -11,6 +8,7 @@ public class QuantumGrowth : MonoBehaviour
     [SerializeField] Button CrossingPerformer;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform CrossingMenue;
+    [SerializeField] GameObject MiniGamePanel;
 
     public Seed growingSeed;
 
@@ -21,6 +19,7 @@ public class QuantumGrowth : MonoBehaviour
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
+
     private void Start()
     {
         var imagesInChildren = Pot.GetComponentsInChildren<Image>();
@@ -57,12 +56,8 @@ public class QuantumGrowth : MonoBehaviour
         if (timerNeeded)
         {
             if (time > 0)
-            {
                 time -= Time.deltaTime;
-                //growthText.text = math.round(time).ToString();
-            }
-            else
-                EndGrowthCycle();
+            else EndGrowthCycle();
         }
     }
 
@@ -91,7 +86,7 @@ public class QuantumGrowth : MonoBehaviour
         timerNeeded = true;
     }
 
-    public void ApplyLightning(Seed seed)//Эта функция должна овечать за анимацию молнии
+    public void ApplyLightning(Seed seed) //Эта функция должна отвечать за анимацию молнии
     {
         //Pot.interactable = false;
         isOccupied = true;
@@ -110,10 +105,18 @@ public class QuantumGrowth : MonoBehaviour
             CrossingPerformer.GetComponent<GeneCrossing>().CurrentPot = Pot;
             CrossingMenue.gameObject.SetActive(true);
         }
+
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
         isOccupied = false;
+
         if (growingSeed != null)
+        {
+            MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
+            MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
+            MiniGamePanel.SetActive(true);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
+        }
+
         growingSeed = null;
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         growthText.text = "";

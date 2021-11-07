@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 public class LabButton : MonoBehaviour
@@ -23,9 +21,9 @@ public class LabButton : MonoBehaviour
         NowSelected = seed;
         SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian
-            + "\nВкус: " + seed.Taste.ToString()
-            + "\nГабитус: " + seed.Gabitus.ToString()
-            + "\nВремя \nроста: " + seed.GrowTime.ToString();
+            + "\nР’РєСѓСЃ: " + seed.Taste.ToString()
+            + "\nР“Р°Р±РёС‚СѓСЃ: " + seed.Gabitus.ToString()
+            + "\nР’СЂРµРјСЏ \nСЂРѕСЃС‚Р°: " + seed.GrowTime.ToString();
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;
@@ -38,9 +36,9 @@ public class LabButton : MonoBehaviour
         NowSelected = seed;
         SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian +
-            "\nВкус: " + seed.Taste.ToString() + " " + chance[0].ToString() + "%" +
-            "\nГабитус: " + seed.Gabitus.ToString() + " " + chance[1].ToString() + "%" +
-            "\nВремя \nроста: " + seed.GrowTime.ToString() + " " + chance[2].ToString() + "%";
+            "\nР’РєСѓСЃ: " + seed.Taste.ToString() + " " + chance[0].ToString() + "%" +
+            "\nР“Р°Р±РёС‚СѓСЃ: " + seed.Gabitus.ToString() + " " + chance[1].ToString() + "%" +
+            "\nР’СЂРµРјСЏ \nСЂРѕСЃС‚Р°: " + seed.GrowTime.ToString() + " " + chance[2].ToString() + "%";
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;

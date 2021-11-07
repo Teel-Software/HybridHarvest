@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -11,6 +9,7 @@ public class LabGrowth : MonoBehaviour
     [SerializeField] Button CrossingPerformer;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform CrossingMenue;
+    [SerializeField] GameObject MiniGamePanel;
 
     public Seed growingSeed;
 
@@ -104,11 +103,19 @@ public class LabGrowth : MonoBehaviour
             CrossingPerformer.GetComponent<GeneCrossing>().CurrentPot = Pot;
             CrossingMenue.gameObject.SetActive(true);
         }
+
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
         textBGImage.enabled = false;
         isOccupied = false;
+
         if (growingSeed != null)
+        {
+            MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
+            MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
+            MiniGamePanel.SetActive(true);
             InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
+        }
+
         growingSeed = null;
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         Pot.GetComponentInChildren<Text>().text = "";

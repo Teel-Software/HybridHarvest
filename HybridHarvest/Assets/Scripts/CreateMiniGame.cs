@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,7 +23,7 @@ public class CreateMiniGame : MonoBehaviour
     {
         var textSample = transform.Find("TextSample").gameObject;
         Blocker.SetActive(false);
-        GamingPlace.transform.DetachChildren();
+        DeleteChildren(GamingPlace);
 
         for (var i = 0; i < ElementsCount; i++)
         {
@@ -41,8 +42,7 @@ public class CreateMiniGame : MonoBehaviour
             else
                 currentSeed = ResultPlace.GetComponent<LabGrowth>().growingSeed;
 
-            var GC
-                = CrossingPerformer.GetComponent<GeneCrossing>();
+            var GC = CrossingPerformer.GetComponent<GeneCrossing>();
             var cardText = Instantiate(textSample, card.transform);
             cardText.GetComponent<Text>().text =
                 $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, GC.Chances[0], GC.OppositeSeedStats[0])}\n" +
@@ -80,5 +80,16 @@ public class CreateMiniGame : MonoBehaviour
         currentSeed.Price = currentSeed.Taste;
 
         Blocker.SetActive(true);
+    }
+
+    private void DeleteChildren(GameObject obj)
+    {
+        var allChildren = new HashSet<GameObject>();
+
+        foreach (Transform child in obj.transform)
+            allChildren.Add(child.gameObject);
+
+        foreach (GameObject child in allChildren)
+            DestroyImmediate(child);
     }
 }

@@ -12,7 +12,6 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Sprite defaultSprite;
-    [SerializeField] GameObject MiniGamePanel;
 
     public int[] Chances = new int[3];
     public int[] OppositeSeedStats = new int[3];
@@ -39,10 +38,6 @@ public class GeneCrossing : MonoBehaviour
         button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
 
         button1.transform.parent.gameObject.SetActive(false); // deactivates select panel
-
-        MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = CurrentPot;
-        MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
-        MiniGamePanel.SetActive(true);
     }
 
     public Seed MixTwoParents(Seed first, Seed second)
