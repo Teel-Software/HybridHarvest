@@ -87,6 +87,10 @@ public class Inventory : MonoBehaviour
             Reputation -= ReputationLimit;
             ReputationLevel++;
             ReputationLimit += 100;
+            
+            //Бонусы вот здесь
+            EnergyMax++;
+            Money += 100;
         }
         RedrawInfo();
     }
@@ -118,7 +122,7 @@ public class Inventory : MonoBehaviour
     {
         if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
         if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
-        if (EnergyInfo != null) EnergyInfo.text = $"{Energy} / {EnergyMax}";
+        if (EnergyInfo != null) EnergyInfo.text = $"{Energy}/{EnergyMax}";
     }
 
     public void SaveAllData()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0157a1d3f6edc494898bf63eb27433e6
+guid: 0fe58e180b3c90e44b976aae76148d8d
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Century Gothic
+  - Keleti
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
