@@ -43,7 +43,7 @@ public class CreateMiniGame : MonoBehaviour
 
             var GC
                 = CrossingPerformer.GetComponent<GeneCrossing>();
-            var cardText = Instantiate(textSample, card.transform, true);
+            var cardText = Instantiate(textSample, card.transform);
             cardText.GetComponent<Text>().text =
                 $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, GC.Chances[0], GC.OppositeSeedStats[0])}\n" +
                 $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, GC.Chances[1], GC.OppositeSeedStats[1])}\n" +

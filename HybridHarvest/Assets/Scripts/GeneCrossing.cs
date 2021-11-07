@@ -9,7 +9,6 @@ using System.Globalization;
 public class GeneCrossing : MonoBehaviour
 {
     [SerializeField] public Button CurrentPot;
-    [SerializeField] RectTransform InventoryFrame;
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Sprite defaultSprite;
