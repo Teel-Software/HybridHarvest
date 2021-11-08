@@ -13,7 +13,7 @@ public class PatchGrowth : MonoBehaviour
 
     bool isOccupied;
     bool timerNeeded;
-    Seed growingSeed;
+    public Seed growingSeed;
     public double time; //осталось расти
     public List<Seed> grownSeeds = new List<Seed>();
     private Image plantImage;
@@ -57,7 +57,7 @@ public class PatchGrowth : MonoBehaviour
         for (var i = 0; i < seedsCount; i++)
         {
             var seed = ScriptableObject.CreateInstance<Seed>();
-            seed.SetValues(PlayerPrefs.GetString(Patch.name + "seedElement" + i.ToString()));
+            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown"+ i.ToString()));
             grownSeeds.Add(seed);
         }
         if (time <= 0)
@@ -91,6 +91,11 @@ public class PatchGrowth : MonoBehaviour
     {
         PlayerPrefs.SetInt(Patch.name + "time", (int)time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
+        PlayerPrefs.SetInt(Patch.name + "seedsCount", grownSeeds.Count);
+        for (var i = 0; i < grownSeeds.Count;i++)
+        {
+            PlayerPrefs.SetString(Patch.name + "grown" + i.ToString(), grownSeeds[i].ToString());
+        }
     }
 
     /// <summary>

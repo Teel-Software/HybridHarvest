@@ -45,7 +45,7 @@ public class Seed : ScriptableObject
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
-        var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 0.33;
+        var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 10;
         var packetQuality = 0;
         switch (rating)
         {
