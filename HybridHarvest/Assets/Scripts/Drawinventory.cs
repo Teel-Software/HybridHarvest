@@ -14,10 +14,13 @@ public class Drawinventory : MonoBehaviour
 
     private string originalQuestionText;
     readonly List<GameObject> alreadyDrawn = new List<GameObject>();
+    private bool changeItem = false;
+    private Seed changingSeed;
 
     void Start()
     {
         targetInventory.onItemAdded += Redraw;
+        targetInventory.onInventoryFull += ChangeExistingItem;
         Redraw();
     }
 
@@ -60,6 +63,22 @@ public class Drawinventory : MonoBehaviour
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
 
+        if (changeItem) {
+            // var it = Instantiate(ConfirmationPanel, GameObject.Find("Canvas").transform);
+            //it.transform.Find("QuestionText").GetComponent<Text>().text = "Заменить?";
+            if (int.TryParse(item.name, out int index))
+            {
+                targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
+                targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
+                targetInventory.Elements[index] = changingSeed;
+                Redraw();
+                changeItem = false;
+                gameObject.SetActive(false);
+                targetInventory.SaveAllData();
+            }
+            return;
+        }
+
         PrepareConfirmationPanel(item);
     }
 
@@ -78,5 +97,12 @@ public class Drawinventory : MonoBehaviour
 
         ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>().itemObject = item;
         ConfirmationPanel.SetActive(true);
+    }
+
+    private void ChangeExistingItem(Seed newSeed)
+    {
+        gameObject.SetActive(true);
+        changeItem = true;
+        changingSeed = newSeed;
     }
 }

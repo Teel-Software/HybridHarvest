@@ -61,7 +61,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Задаёт имя элемента, добавляемого в инвентарь
+    /// Задаёт имя обрабатываемого элемента
     /// </summary>
     /// <param название спрайта="itemSpriteName"></param>
     public void DefineItem(string itemSpriteName)

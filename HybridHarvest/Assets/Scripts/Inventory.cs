@@ -14,12 +14,14 @@ public class Inventory : MonoBehaviour
 
     //private const int Devider = 5;
     public Action onItemAdded;
+    public Action<Seed> onInventoryFull;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
     public int ReputationLimit { get; private set; }
     public int ReputationLevel { get; private set; }
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
+    public int MaxItemsAmount { get; private set; }
     //The time in *seconds* it take to regenerate 1 energy
     public int EnergyRegenDelay { get; private set; }
     private float energyTimeBuffer;
@@ -30,6 +32,7 @@ public class Inventory : MonoBehaviour
         ReputationLevel = 1;
         ReputationLimit = 500;
         CollectData();
+        MaxItemsAmount = 5;
         EnergyMax = 10;
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
@@ -62,6 +65,11 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Seed newSeed)
     {
+        if (Elements.Count >= MaxItemsAmount) 
+        {
+            onInventoryFull?.Invoke(newSeed);
+            return;
+        }
         Elements.Add(newSeed);
         SaveData();
         onItemAdded?.Invoke();
