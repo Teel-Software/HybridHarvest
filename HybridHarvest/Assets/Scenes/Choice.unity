@@ -2639,6 +2639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 1871862018}
+  InventoryFrame: {fileID: 654561917}
   RewatchButton: {fileID: 0}
 --- !u!114 &965966138
 MonoBehaviour:

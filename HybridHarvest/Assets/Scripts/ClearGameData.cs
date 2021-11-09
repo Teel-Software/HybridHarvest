@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
 {
+    [SerializeField] Inventory Inventory;
+    [SerializeField] Drawinventory InventoryFrame;
     [SerializeField] GameObject RewatchButton; // кнопка просмотра вступления
-
-    // чтобы изменения сохранились необходимо перезайти на сцену
 
     public void ClearAll()
     {
+        PlayerPrefs.DeleteAll();
+
         ClearPlayerStats();
-        UndoGameInitialization();
+
+        PlayerPrefs.Save();
+
+        Inventory.Start();
+        InventoryFrame.Redraw();
     }
 
     /// <summary>
@@ -32,10 +38,5 @@ public class ClearGameData : MonoBehaviour
         PlayerPrefs.SetInt("energy", 0);
         PlayerPrefs.SetFloat("energytimebuffer", 0);
         PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
-    }
-
-    private void UndoGameInitialization()
-    {
-        PlayerPrefs.DeleteKey("GameInitialised");
     }
 }

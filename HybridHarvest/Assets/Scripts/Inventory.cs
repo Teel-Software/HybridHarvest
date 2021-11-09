@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     public int EnergyRegenDelay { get; private set; }
     private float energyTimeBuffer;
 
-    void Start()
+    public void Start()
     {
         ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
         ReputationLevel = 1;
@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
             Reputation -= ReputationLimit;
             ReputationLevel++;
             ReputationLimit += 100;
-            
+
             //Бонусы вот здесь
             EnergyMax++;
             Money += 100;
@@ -141,6 +141,8 @@ public class Inventory : MonoBehaviour
 
         for (var i = 0; i < Elements.Count; i++)
             PlayerPrefs.SetString(i.ToString(), Elements[i].ToString());
+
+        PlayerPrefs.Save();
     }
 
     private void SaveEnergy()
@@ -148,6 +150,8 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("energy", Energy);
         PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
         PlayerPrefs.SetFloat("energytimebuffer", energyTimeBuffer);
+
+        PlayerPrefs.Save();
     }
 
     private void CollectData()
@@ -156,6 +160,8 @@ public class Inventory : MonoBehaviour
         Reputation = PlayerPrefs.GetInt("reputation");
         ReputationLimit = PlayerPrefs.GetInt("reputationLimit");
         ReputationLevel = PlayerPrefs.GetInt("reputationLevel");
+
+        Elements = new List<Seed>();
         var i = PlayerPrefs.GetInt("amount");
         for (var j = 0; j < i; j++)
         {
