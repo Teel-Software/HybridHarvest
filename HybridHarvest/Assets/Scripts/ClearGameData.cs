@@ -35,6 +35,7 @@ public class ClearGameData : MonoBehaviour
         PlayerPrefs.SetInt("reputationLimit", 500);
         PlayerPrefs.SetInt("reputationLevel", 1);
         PlayerPrefs.SetInt("amount", 0);
+        PlayerPrefs.SetInt("energyMax", 10);
         PlayerPrefs.SetInt("energy", 0);
         PlayerPrefs.SetFloat("energytimebuffer", 0);
         PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
