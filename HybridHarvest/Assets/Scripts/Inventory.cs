@@ -31,12 +31,12 @@ public class Inventory : MonoBehaviour
         ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
         ReputationLevel = 1;
         ReputationLimit = 500;
-        
+
         MaxItemsAmount = 5;
-        
+
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
-        
+
         CollectData();
         CollectEnergy();
 
@@ -67,7 +67,8 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Seed newSeed)
     {
-        if (Elements.Count >= MaxItemsAmount) 
+        newSeed.UpdateRating();
+        if (Elements.Count >= MaxItemsAmount)
         {
             onInventoryFull?.Invoke(newSeed);
             return;
@@ -144,13 +145,13 @@ public class Inventory : MonoBehaviour
     private void SaveData()
     {
         PlayerPrefs.SetInt("money", Money);
-        
+
         PlayerPrefs.SetInt("reputation", Reputation);
         PlayerPrefs.SetInt("reputationLimit", ReputationLimit);
         PlayerPrefs.SetInt("reputationLevel", ReputationLevel);
-        
+
         PlayerPrefs.SetInt("energyMax", EnergyMax);
-        
+
         PlayerPrefs.SetInt("amount", Elements.Count);
 
         for (var i = 0; i < Elements.Count; i++)
@@ -171,7 +172,7 @@ public class Inventory : MonoBehaviour
     private void CollectData()
     {
         Money = PlayerPrefs.GetInt("money");
-        
+
         Reputation = PlayerPrefs.GetInt("reputation");
         ReputationLimit = PlayerPrefs.GetInt("reputationLimit");
         ReputationLevel = PlayerPrefs.GetInt("reputationLevel");
@@ -179,7 +180,7 @@ public class Inventory : MonoBehaviour
         Elements = new List<Seed>();
 
         EnergyMax = PlayerPrefs.GetInt("energyMax");
-        
+
         var i = PlayerPrefs.GetInt("amount");
         for (var j = 0; j < i; j++)
         {
