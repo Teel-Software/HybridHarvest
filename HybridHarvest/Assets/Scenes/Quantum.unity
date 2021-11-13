@@ -732,7 +732,7 @@ PrefabInstance:
     - target: {fileID: 3564395844538107595, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: InventoryFrame
       value: 
-      objectReference: {fileID: 1077512522}
+      objectReference: {fileID: 1077512519}
     - target: {fileID: 3564395844680105598, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_Name
       value: HybridChoicePanel
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 3564395844912381974, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: InventoryFrame
       value: 
-      objectReference: {fileID: 1077512522}
+      objectReference: {fileID: 1077512519}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
 --- !u!1001 &1381504036

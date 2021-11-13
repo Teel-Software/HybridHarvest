@@ -23,10 +23,48 @@ public class Drawinventory : MonoBehaviour
         Redraw();
     }
 
+    /// <summary>
+    /// Reassigns all actions
+    /// </summary>
     public void UpdateActions()
     {
         targetInventory.onItemAdded += Redraw;
         targetInventory.onInventoryFull += ChangeExistingItem;
+    }
+
+    /// <summary>
+    /// Filters inventory by name in russian
+    /// </summary>
+    public void FilterByName(string nameInRussian)
+    {
+        for (var i = 0; i < alreadyDrawn.Count; i++)
+        {
+            Destroy(alreadyDrawn[i]);
+        }
+        alreadyDrawn.Clear();
+
+        for (var i = 0; i < targetInventory.Elements.Count; i++)
+        {
+            var item = targetInventory.Elements[i];
+
+            if (item.NameInRussian != nameInRussian)
+                continue;
+
+            var icon = new GameObject(i.ToString(), typeof(Button));
+            icon.AddComponent<Image>().sprite = item.PacketSprite;
+
+            var plantIcon = new GameObject("Plant" + i);
+            plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
+            plantIcon.transform.position = new Vector2(0, -35);
+            plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+            plantIcon.transform.SetParent(icon.transform);
+
+            icon.transform.localScale = new Vector2(0.01f, 0.01f);
+            icon.GetComponent<Button>().onClick.AddListener(PointerDown);
+            icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
+            icon.transform.SetParent(Place);
+            alreadyDrawn.Add(icon);
+        }
     }
 
     /// <summary>

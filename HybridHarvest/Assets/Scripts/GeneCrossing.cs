@@ -32,12 +32,17 @@ public class GeneCrossing : MonoBehaviour
         else
             CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
 
+        ExitHybridMenu();
+    }
+
+    public void ExitHybridMenu()
+    {
         button2.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
-
-        button1.transform.parent.gameObject.SetActive(false); // deactivates select panel
+        button1.transform.parent.gameObject.SetActive(false); // deactivates hybrid panel
+        button1.GetComponent<LabButton>().InventoryFrame.Redraw();
     }
 
     public Seed MixTwoParents(Seed first, Seed second)

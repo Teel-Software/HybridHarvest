@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LabButton : MonoBehaviour
 {
-    [SerializeField] Button SelectButton;
     [SerializeField] public Button PlaceForResult;
+    [SerializeField] public Drawinventory InventoryFrame;
+    [SerializeField] Button SelectButton;
     [SerializeField] Button SecondButton;
-    [SerializeField] RectTransform InventoryFrame;
     [SerializeField] Sprite defaultSprite;
     public Seed NowSelected;
 
@@ -14,6 +15,9 @@ public class LabButton : MonoBehaviour
     {
         InventoryFrame.GetComponent<Drawinventory>().GrowPlace = SelectButton;
         InventoryFrame.gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex != 4
+            && SecondButton.GetComponent<LabButton>().NowSelected != null)
+            InventoryFrame.FilterByName(SecondButton.GetComponent<LabButton>().NowSelected.NameInRussian);
     }
 
     public void ChosenSeed(Seed seed)
