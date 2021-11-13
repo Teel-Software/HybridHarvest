@@ -388,6 +388,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1818408190813670336}
+        m_TargetAssemblyTypeName: CreateMiniGame, Assembly-CSharp
+        m_MethodName: AddGrownSeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1818408190793673264
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +577,7 @@ MonoBehaviour:
   CardSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   Blocker: {fileID: 1818408190422725818}
   CrossingPerformer: {fileID: 0}
+  InventoryFrame: {fileID: 0}
   ResultPlace: {fileID: 0}
 --- !u!1 &5573232465771689866
 GameObject:

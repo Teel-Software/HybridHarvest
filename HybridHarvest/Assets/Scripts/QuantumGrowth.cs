@@ -114,7 +114,6 @@ public class QuantumGrowth : MonoBehaviour
             MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
             MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
             MiniGamePanel.SetActive(true);
-            InventoryFrame.GetComponent<Drawinventory>().targetInventory.AddItem(growingSeed);
         }
 
         growingSeed = null;

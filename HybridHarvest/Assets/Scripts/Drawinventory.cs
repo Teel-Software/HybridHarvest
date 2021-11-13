@@ -17,11 +17,16 @@ public class Drawinventory : MonoBehaviour
     private bool changeItem = false;
     private Seed changingSeed;
 
-    void Start()
+    private void Start()
+    {
+        UpdateActions();
+        Redraw();
+    }
+
+    public void UpdateActions()
     {
         targetInventory.onItemAdded += Redraw;
         targetInventory.onInventoryFull += ChangeExistingItem;
-        Redraw();
     }
 
     /// <summary>
@@ -63,7 +68,8 @@ public class Drawinventory : MonoBehaviour
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
 
-        if (changeItem) {
+        if (changeItem)
+        {
             // var it = Instantiate(ConfirmationPanel, GameObject.Find("Canvas").transform);
             //it.transform.Find("QuestionText").GetComponent<Text>().text = "Заменить?";
             if (int.TryParse(item.name, out int index))

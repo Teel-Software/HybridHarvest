@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
         ReputationLevel = 1;
         ReputationLimit = 500;
 
-        MaxItemsAmount = 5;
+        MaxItemsAmount = 15;
 
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
@@ -70,9 +70,13 @@ public class Inventory : MonoBehaviour
         newSeed.UpdateRating();
         if (Elements.Count >= MaxItemsAmount)
         {
+            Debug.Log("invoke");
+
             onInventoryFull?.Invoke(newSeed);
             return;
         }
+
+        Debug.Log("not invoke");
         Elements.Add(newSeed);
         SaveData();
         onItemAdded?.Invoke();

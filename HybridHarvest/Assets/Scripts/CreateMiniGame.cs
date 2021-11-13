@@ -12,9 +12,11 @@ public class CreateMiniGame : MonoBehaviour
     [SerializeField] Sprite CardSprite;
     [SerializeField] GameObject Blocker;
     [SerializeField] Button CrossingPerformer;
+    [SerializeField] Drawinventory InventoryFrame;
 
     public Button ResultPlace;
     private Seed currentSeed;
+    private Button currentPot;
 
     /// <summary>
     /// Restarts mini game
@@ -37,7 +39,6 @@ public class CreateMiniGame : MonoBehaviour
             card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             card.GetComponent<Button>().targetGraphic = card.GetComponent<Image>();
 
-            Button currentPot;
             if (SceneManager.GetActiveScene().buildIndex == 4)
             {
                 currentSeed = ResultPlace.GetComponent<QuantumGrowth>().growingSeed;
@@ -63,6 +64,15 @@ public class CreateMiniGame : MonoBehaviour
             card.transform.localScale = new Vector2(scaleFactor, scaleFactor);
             card.transform.SetParent(GamingPlace.transform);
         }
+    }
+
+    /// <summary>
+    /// Adds chosen seed in inventory
+    /// </summary>
+    public void AddGrownSeed()
+    {
+        InventoryFrame.UpdateActions();
+        InventoryFrame.targetInventory.AddItem(currentSeed);
     }
 
     /// <summary>

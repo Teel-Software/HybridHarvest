@@ -73,7 +73,6 @@ public class GeneCrossing : MonoBehaviour
 
     public (int, Gen) CountParameter(int value1, Gen gen1, int value2, Gen gen2)
     {
-
         var dominant = Mathf.Min(value1, value2);
         var recessive = Mathf.Max(value1, value2);
         if (SceneManager.GetActiveScene().buildIndex == 4)
@@ -81,44 +80,36 @@ public class GeneCrossing : MonoBehaviour
 
         Chances[chancesIterator] = 100;
         if (gen1 == Gen.Dominant && gen2 == Gen.Dominant)
-        {
             return (dominant, gen1);
-        }
         if (gen1 == Gen.Recessive && gen2 == Gen.Recessive)
-        {
             return (recessive, gen1);
-        }
         if (gen1 == Gen.Dominant && gen2 == Gen.Recessive || gen1 == Gen.Recessive && gen2 == Gen.Dominant)
-        {
             return (dominant, Gen.Mixed);
-        }
-        Chances[chancesIterator] = 50;
-        if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
-        {
-            return (GetNewValueByPossibility(value1, 50, value2),
-                (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
-        }
         if (gen1 == Gen.Dominant && gen2 == Gen.Mixed || gen2 == Gen.Dominant && gen1 == Gen.Mixed)
-        {
             return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
-        }
 
-        Chances[chancesIterator] = 75;
-        Gen newGen;
+        if (value1 != value2)
+            Chances[chancesIterator] = 50;
+        var newGen = (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2);
+        if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
+            return (newGen == gen1 ? value1 : value2, newGen);
+
+        if (value1 != value2)
+            Chances[chancesIterator] = 75;
         var possibility = (int)Random.value * 100;
         newGen = possibility <= 25
             ? Gen.Dominant
             : possibility < 75
                 ? Gen.Mixed
                 : Gen.Recessive;
-        return (GetNewValueByPossibility(dominant, 75,
-                recessive), newGen);
+
+        return (dominant, newGen);
     }
 
     public int GetNewValueByPossibility(int value1, int value1Chance, int value2)
     {
         var fortune = (int)(Random.value * 100);
-        return fortune < value1Chance ? value1 : value2;
+        return fortune <= value1Chance ? value1 : value2;
     }
 
     /// <summary>
