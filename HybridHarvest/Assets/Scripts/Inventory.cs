@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -10,7 +11,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
     [SerializeField] public Text EnergyInfo;
-    [SerializeField] public Text EnergyRegenInfo;
+    [FormerlySerializedAs("EnergyRegenInfo")] 
+    [SerializeField] public Text EnergyRegenTime;
 
     //private const int Devider = 5;
     public Action onItemAdded;
@@ -28,7 +30,11 @@ public class Inventory : MonoBehaviour
 
     public void Start()
     {
-        ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
+        // Preventing null references etc
+        if (EnergyRegenTime == null)
+            EnergyRegenTime = GameObject.Find("RegenTime").GetComponent<Text>();
+        if (ReputationInfo == null)
+            ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
         ReputationLevel = 1;
         ReputationLimit = 500;
 
@@ -47,7 +53,7 @@ public class Inventory : MonoBehaviour
     {
         if (Energy == EnergyMax)
         {
-            EnergyRegenInfo.text = "--:--";
+            EnergyRegenTime.text = "--:--";
             return;
         }
 
@@ -61,7 +67,7 @@ public class Inventory : MonoBehaviour
         SaveEnergy();
         var minutes = Math.Floor(energyTimeBuffer / 60).ToString(CultureInfo.InvariantCulture);
         var seconds = Math.Floor(energyTimeBuffer % 60).ToString(CultureInfo.InvariantCulture);
-        EnergyRegenInfo.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
+        EnergyRegenTime.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
         RedrawInfo();
     }
 
