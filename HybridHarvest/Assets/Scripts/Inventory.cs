@@ -31,10 +31,9 @@ public class Inventory : MonoBehaviour
     public void Start()
     {
         // Preventing null references etc
-        if (EnergyRegenTime == null)
-            EnergyRegenTime = GameObject.Find("RegenTime").GetComponent<Text>();
-        if (ReputationInfo == null)
-            ReputationInfo = GameObject.Find("ReputationInfo").GetComponent<Text>();
+        EnergyRegenTime ??= GameObject.Find("RegenTime").GetComponent<Text>();
+        ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
+        
         ReputationLevel = 1;
         ReputationLimit = 500;
 
