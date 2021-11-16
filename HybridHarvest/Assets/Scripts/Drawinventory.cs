@@ -138,8 +138,11 @@ public class Drawinventory : MonoBehaviour
 
         if (int.TryParse(item.name, out int index))
             questionText.text = $"{originalQuestionText} {targetInventory.Elements[index].NameInRussian.ToLower()}?";
-
-        ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>().itemObject = item;
+        
+        var logic = ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>();
+        logic.ItemObject = item;
+        logic.AddPrice();
+        
         ConfirmationPanel.SetActive(true);
     }
 

@@ -2137,14 +2137,6 @@ PrefabInstance:
       propertyPath: ConfirmationPanel
       value: 
       objectReference: {fileID: 782858378}
-    - target: {fileID: 5010113884177167046, guid: 995a537943094184f9aed8bbe6344619, type: 3}
-      propertyPath: ExitButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5010113884191736161, guid: 995a537943094184f9aed8bbe6344619, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 995a537943094184f9aed8bbe6344619, type: 3}
 --- !u!1 &1373351916
