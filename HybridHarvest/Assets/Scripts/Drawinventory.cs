@@ -144,7 +144,7 @@ public class Drawinventory : MonoBehaviour
         var logic = ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>();
         logic.ItemObject = item;
         if (int.TryParse(item.name, out int index))
-            logic.DefineItem(targetInventory.Elements[index].Name);
+            logic.DefineItem(targetInventory.Elements[index]);
 
         ConfirmationPanel.SetActive(true);
     }

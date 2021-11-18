@@ -88,7 +88,17 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void DefineItem(string itemName)
     {
         ItemName = itemName;
+        // if basic = c c t
         var seed = (Seed)Resources.Load("Seeds\\" + itemName);
+        UpdateQuestionText(seed.NameInRussian);
+    }
+
+    /// <summary>
+    /// Добавляет к основному тексту название растения
+    /// <param name="seed">Класс семени растения</param>
+    /// </summary>
+    public void DefineItem(Seed seed)
+    {
         UpdateQuestionText(seed.NameInRussian);
     }
 
