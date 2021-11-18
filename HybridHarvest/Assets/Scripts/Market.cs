@@ -10,35 +10,31 @@ public class Market : MonoBehaviour
     [SerializeField] public GridLayoutGroup ScrollList;
     [SerializeField] public GameObject Listing;
         
-    public Dictionary<string, float> PriceMultipliers { get; private set; }
+    public static Dictionary<string, float> PriceMultipliers { get; private set; }
 
     private Inventory _inventory;
 
-    public void Awake()
+    public void Start()
     {
+        PriceMultipliers ??= new Dictionary<string, float>();
+        
         _inventory ??= GameObject.Find("DataKeeper").GetComponent<Inventory>();
         var seedsAvailable = _inventory.Elements.Select(el => el.Name).Distinct().ToList();
+        
         foreach (var seedName in seedsAvailable)
         {
+            if (PriceMultipliers.ContainsKey(seedName)) continue;
+            PriceMultipliers.Add(seedName, 1.0f);
+            
+            var objName = $"{seedName}Multiplier";
             var listing = Instantiate(Listing, ScrollList.transform);
-            listing.name = $"{seedName}Multiplier";
+            listing.name = objName;
             listing.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>($"SeedsIcons\\{seedName}");
-            listing.GetComponentInChildren<Text>().text = "x 1.0";
+            listing.GetComponentInChildren<Text>().text = $"x {PriceMultipliers[seedName]}";
         }
     }
-
-    public void Update()
-    {
-        
-    }
+    
     /*
-    static Market()
-    {
-        PriceMultipliers = new Dictionary<string, float>();
-        PriceMultipliers.Add("Tomato", 1.0f);
-        Debug.Log(PriceMultipliers["Tomato"]);
-    }
-
     public static void Save()
     {
         var writer = QuickSaveWriter.Create("UnlockedSeeds");
