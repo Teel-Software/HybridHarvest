@@ -2,7 +2,9 @@ using System.Linq;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
-{
+{    
+    [SerializeField] public Sound[] soundEffects;
+
     public static AudioSource Source;
     public static GameObject Instance;
     void Awake() 
@@ -17,8 +19,6 @@ public class SFXManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Source = gameObject.GetComponent<AudioSource>();
     }
-    
-    [SerializeField] public Sound[] soundEffects;
 
     public void Play(SoundEffect soundName)
     {

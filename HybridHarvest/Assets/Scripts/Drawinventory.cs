@@ -61,7 +61,7 @@ public class Drawinventory : MonoBehaviour
             plantIcon.transform.SetParent(icon.transform);
 
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            icon.GetComponent<Button>().onClick.AddListener(PointerDown);
+            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
@@ -92,7 +92,7 @@ public class Drawinventory : MonoBehaviour
             plantIcon.transform.SetParent(icon.transform);
 
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            icon.GetComponent<Button>().onClick.AddListener(PointerDown);
+            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
@@ -102,7 +102,7 @@ public class Drawinventory : MonoBehaviour
     /// <summary>
     /// Called when user clicks on item
     /// </summary>
-    public void PointerDown()
+    public void ClickedOnItem()
     {
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
@@ -124,26 +124,20 @@ public class Drawinventory : MonoBehaviour
             return;
         }
 
-        PrepareConfirmationPanel(item);
+        PrepareConfirmation(item);
     }
 
     /// <summary>
     /// Вызывает панель подтверждения
     /// </summary>
     /// <param семечко="item"></param>
-    private void PrepareConfirmationPanel(GameObject item)
+    private void PrepareConfirmation(GameObject item)
     {
-        // добавляю в текст подтверждения название объекта
-        var questionText = ConfirmationPanel.transform.Find("QuestionText").GetComponent<Text>();
-        originalQuestionText ??= questionText.text;
-
-        if (int.TryParse(item.name, out int index))
-            questionText.text = $"{originalQuestionText} {targetInventory.Elements[index].NameInRussian.ToLower()}?";
-        
         var logic = ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>();
         logic.ItemObject = item;
-        logic.AddPrice();
-        
+        if (int.TryParse(item.name, out int index))
+            logic.DefineItem(targetInventory.Elements[index].Name);
+
         ConfirmationPanel.SetActive(true);
     }
 

@@ -1,29 +1,41 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] Inventory targetInventory;
     [SerializeField] Drawinventory drawInventory;
+    [SerializeField] public bool HasPrice = false;
     
-    public string ItemSpriteName;
-    public GameObject ItemObject;
-
+    [FormerlySerializedAs("ItemSpriteName")] 
+    [SerializeField] public string ItemName;
+    
+    private GameObject itemObject;
+    public GameObject ItemObject
+    {
+        set => itemObject = value;
+    }
+    
     private GameObject questionObject;
     private string originalQuestionText;
 
+    /// <summary>
+    /// Добавляет надпись о цене, если требуется
+    /// </summary>
     public void Awake()
     {
-        //questionObject = 
+        SetPrice();
     }
-
+    
     /// <summary>
-    /// Добавляет текущий элемент в инвентарь
+    /// Покупает семечко
     /// </summary>
     public void AddOneMore()
     {
-        var seed = (Seed)Resources.Load("Seeds\\" + ItemSpriteName);
+        var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
         UpdateQuestionText(seed.NameInRussian);
         targetInventory.ChangeMoney(-seed.Price);
         targetInventory.AddItem(seed);
@@ -34,7 +46,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Sell()
     {
-        if (int.TryParse(ItemObject.name, out int index))
+        if (int.TryParse(itemObject.name, out int index))
         {
             targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
             targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
@@ -48,7 +60,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Plant()
     {
-        if (int.TryParse(ItemObject.name, out int index))
+        if (int.TryParse(itemObject.name, out int index))
         {
             Seed toPlant = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
@@ -57,26 +69,26 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет на панель скрещивания
+    /// Добавляет семечко на панель скрещивания
     /// </summary>
     public void Select()
     {
-        if (int.TryParse(ItemObject.name, out int index))
+        if (int.TryParse(itemObject.name, out int index))
         {
             Seed toSelect = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
             drawInventory.CurrentInventoryParent.SetActive(false);
         }
     }
-
+    
     /// <summary>
-    /// Задаёт имя обрабатываемого элемента
+    /// Добавляет к основному тексту название растения
+    /// <param name="itemName">Имя растения на английском</param>
     /// </summary>
-    /// <param название спрайта="itemSpriteName"></param>
-    public void DefineItem(string itemSpriteName)
+    public void DefineItem(string itemName)
     {
-        ItemSpriteName = itemSpriteName;
-        var seed = (Seed)Resources.Load("Seeds\\" + itemSpriteName);
+        ItemName = itemName;
+        var seed = (Seed)Resources.Load("Seeds\\" + itemName);
         UpdateQuestionText(seed.NameInRussian);
     }
 
@@ -84,18 +96,33 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         var questionText = transform.parent.Find("QuestionText").GetComponent<Text>();
         originalQuestionText ??= questionText.text;
-        questionText.text = $"{originalQuestionText} {itemName.ToLower()}?";
+        
+        questionText.text = $"{originalQuestionText} {itemName.ToLower()}";
+        if (!HasPrice) questionText.text += "?";
     }
-
-    public void AddPrice()
+    
+    /// <summary>
+    /// Добавляет ко второму текстовому объекту цену объекта семени
+    /// </summary>
+    private void SetPrice()
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
-
-        var questionObj = transform.parent.Find("QuestionText").gameObject;
-        var questionText = questionObj.GetComponent<Text>();
-        var priceText = questionObj.transform.Find("PriceText").gameObject.GetComponent<Text>();
-
-        questionText.text = questionText.text.Remove(questionText.text.Length - 1);
-        priceText.text = $"за {targetInventory.Elements[index].Price} Пр.?";
+        if (!HasPrice) return;
+        var price = 0;
+        //Случай покупки из магазина
+        if (itemObject is null) 
+        {
+            var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
+            price = seed.Price;
+        }
+        //Случай действия из инвентаря
+        else if (int.TryParse(itemObject.name, out int index))
+        {
+            price = targetInventory.Elements[index].Price;
+        }
+        
+        var ptObj = transform.parent.Find("QuestionText").Find("PriceText");
+        var priceText = ptObj.GetComponent<TextMeshProUGUI>();
+        
+        priceText.text = $"за {price} <sprite name=\"Money\"> ?";
     }
 }
