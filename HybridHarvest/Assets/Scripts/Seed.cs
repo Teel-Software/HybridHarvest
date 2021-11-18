@@ -45,7 +45,7 @@ public class Seed : ScriptableObject
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
-
+        
         UpdateRating();
 
         NameInRussian = parameters[9];

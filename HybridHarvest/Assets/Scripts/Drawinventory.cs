@@ -97,6 +97,14 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
+        if (targetInventory.Elements.Count < targetInventory.MaxItemsAmount) {
+            var img = Resources.Load<Sprite>("seedsplus");
+            var icon = new GameObject("plusPlace");
+            icon.transform.localScale = new Vector2(0.01f, 0.01f);
+            icon.AddComponent<Image>().sprite = img;
+            icon.transform.SetParent(Place);
+            alreadyDrawn.Add(icon);
+        }
     }
 
     /// <summary>
