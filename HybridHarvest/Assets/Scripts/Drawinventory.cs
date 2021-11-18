@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Drawinventory : MonoBehaviour
 {
@@ -146,9 +147,14 @@ public class Drawinventory : MonoBehaviour
         ConfirmationPanel.SetActive(true);
     }
 
+    /// <summary>
+    /// Поднятие флага замены пакета
+    /// </summary>
+    /// <param name="newSeed"></param>
     private void ChangeExistingItem(Seed newSeed)
     {
         gameObject.SetActive(true);
+        gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changeItem = true;
         changingSeed = newSeed;
     }

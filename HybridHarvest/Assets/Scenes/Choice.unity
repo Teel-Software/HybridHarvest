@@ -4324,8 +4324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInventory: {fileID: 1871862018}
   drawInventory: {fileID: 0}
-  itemSpriteName: 
-  itemObject: {fileID: 0}
+  ItemSpriteName: 
+  ItemObject: {fileID: 0}
 --- !u!1 &1574197130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,6 +4933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962e5c81aea117c4d819087f57e05ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryDrawer: {fileID: 654561913}
   Elements: []
   MoneyInfo: {fileID: 1093742595}
   ReputationInfo: {fileID: 1451225634}
@@ -6906,6 +6907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 5010113884177167040, guid: 995a537943094184f9aed8bbe6344619, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5010113884177167043, guid: 995a537943094184f9aed8bbe6344619, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6998,6 +7003,10 @@ PrefabInstance:
       propertyPath: ConfirmationPanel
       value: 
       objectReference: {fileID: 1054691508}
+    - target: {fileID: 5010113884191736161, guid: 995a537943094184f9aed8bbe6344619, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 995a537943094184f9aed8bbe6344619, type: 3}
 --- !u!1001 &6602301323053519791

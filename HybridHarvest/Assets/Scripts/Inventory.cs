@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] public GameObject InventoryDrawer;
     [SerializeField] public List<Seed> Elements = new List<Seed>();
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
@@ -73,15 +74,13 @@ public class Inventory : MonoBehaviour
     public void AddItem(Seed newSeed)
     {
         newSeed.UpdateRating();
+        InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
         if (Elements.Count >= MaxItemsAmount)
         {
-            Debug.Log("invoke");
-
             onInventoryFull?.Invoke(newSeed);
             return;
         }
 
-        Debug.Log("not invoke");
         Elements.Add(newSeed);
         SaveData();
         onItemAdded?.Invoke();

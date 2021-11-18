@@ -2010,6 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962e5c81aea117c4d819087f57e05ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryDrawer: {fileID: 1331257128}
   Elements: []
   MoneyInfo: {fileID: 49473544}
   ReputationInfo: {fileID: 2054301540}
@@ -2139,6 +2140,11 @@ PrefabInstance:
       objectReference: {fileID: 782858378}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 995a537943094184f9aed8bbe6344619, type: 3}
+--- !u!1 &1331257128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5010113884177167040, guid: 995a537943094184f9aed8bbe6344619, type: 3}
+  m_PrefabInstance: {fileID: 1331257127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373351916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,7 +2543,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5010113884177167044, guid: 995a537943094184f9aed8bbe6344619, type: 3}
   m_PrefabInstance: {fileID: 1331257127}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1331257128}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c6882ad41349249a1d534eb6cb1ac9, type: 3}

@@ -440,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8071891222898549139
 RectTransform:
   m_ObjectHideFlags: 0
@@ -742,8 +742,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInventory: {fileID: 0}
   drawInventory: {fileID: 0}
-  itemSpriteName: 
-  itemObject: {fileID: 0}
+  ItemSpriteName: 
+  ItemObject: {fileID: 0}
 --- !u!1 &8071891223100034180
 GameObject:
   m_ObjectHideFlags: 0
