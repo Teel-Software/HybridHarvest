@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ClearGameData : MonoBehaviour
@@ -26,6 +27,20 @@ public class ClearGameData : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
             RewatchButton.SetActive(false);
+    }
+
+    /// <summary>
+    /// Удаляет все дочерние объекты
+    /// </summary>
+    public void DeleteChildren(GameObject obj)
+    {
+        var allChildren = new HashSet<GameObject>();
+
+        foreach (Transform child in obj.transform)
+            allChildren.Add(child.gameObject);
+
+        foreach (GameObject child in allChildren)
+            DestroyImmediate(child);
     }
 
     private void ClearPlayerStats()
