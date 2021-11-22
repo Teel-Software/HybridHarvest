@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 74445848}
   - component: {fileID: 74445847}
   - component: {fileID: 74445846}
+  - component: {fileID: 74445849}
   m_Layer: 5
   m_Name: ExhibitionLabel
   m_TagString: Untagged
@@ -471,6 +472,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 74445849}
+        m_TargetAssemblyTypeName: NotificationCenter, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &74445847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +522,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74445844}
   m_CullTransparentMesh: 1
+--- !u!114 &74445849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74445844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  useDefaultColor: 1
 --- !u!1 &115181157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2566,7 @@ GameObject:
   - component: {fileID: 1054157848}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5060,6 +5088,7 @@ GameObject:
   - component: {fileID: 1891661457}
   - component: {fileID: 1891661456}
   - component: {fileID: 1891661455}
+  - component: {fileID: 1891661458}
   m_Layer: 5
   m_Name: QuestLabel
   m_TagString: Untagged
@@ -5241,6 +5270,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1891661458}
+        m_TargetAssemblyTypeName: NotificationCenter, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u041F\u043E\u043A\u0430 \u043D\u0435 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E"
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1891661456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5279,6 +5320,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891661453}
   m_CullTransparentMesh: 1
+--- !u!114 &1891661458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891661453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
+  color: {r: 1, g: 0.1745283, b: 0.1745283, a: 1}
+  useDefaultColor: 0
 --- !u!1 &1927474703
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,6 +7345,43 @@ PrefabInstance:
     - target: {fileID: 6602301324014310659, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Show
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: NotificationCenter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: "\u042F \u0431\u0438\u0440\u0436\u0430 \u043B\u0438\u043B\u043E\u0432\u0430\u044F,
+        \u0441\u043F\u0435\u043B\u0430\u044F, \u0441\u0430\u0434\u043E\u0432\u0430\u044F!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301324242340142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}

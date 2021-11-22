@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 33974220}
   - component: {fileID: 33974219}
   - component: {fileID: 33974218}
-  - component: {fileID: 33974222}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -233,18 +232,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &33974222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33974217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b256aa6c9ce5ad41bdc6df13eccc4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &49213973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  InventoryFrame: {fileID: 0}
   RewatchButton: {fileID: 1451378043}
 --- !u!114 &675252900
 MonoBehaviour:
@@ -2828,7 +2817,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 9b16f31f08ece0d47901f7cadd57d9fb, type: 2}
     m_FontSize: 25
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -3702,7 +3691,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 9b16f31f08ece0d47901f7cadd57d9fb, type: 2}
     m_FontSize: 16
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
@@ -4411,6 +4400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  InventoryFrame: {fileID: 0}
   RewatchButton: {fileID: 0}
 --- !u!114 &2058056538
 MonoBehaviour:

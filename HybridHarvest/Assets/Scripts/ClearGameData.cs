@@ -40,7 +40,7 @@ public class ClearGameData : MonoBehaviour
             allChildren.Add(child.gameObject);
 
         foreach (GameObject child in allChildren)
-            DestroyImmediate(child);
+            Destroy(child);
     }
 
     private void ClearPlayerStats()
