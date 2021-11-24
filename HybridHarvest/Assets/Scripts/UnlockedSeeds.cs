@@ -1,10 +1,7 @@
-﻿namespace DefaultNamespace
+﻿public static class UnlockedSeeds
 {
-    public static class UnlockedSeeds
-    {
-        //c =
-        //c
-        //p
-        //o+p
-    }
+    //c =
+    //c
+    //p
+    //o+p
 }
