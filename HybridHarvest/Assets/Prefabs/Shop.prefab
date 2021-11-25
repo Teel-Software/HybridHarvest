@@ -414,9 +414,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogPanel: {fileID: 0}
-  FirstCharacterSprite: {fileID: 1804255491291702245, guid: 0a3a75e3e52f0dd438e9fd305d341395, type: 3}
-  SecondCharacterSprite: {fileID: 21300000, guid: b2e6408a58ba00741bd1348dabc16a48, type: 3}
-  NarratorSprite: {fileID: 21300000, guid: 1b87919ccfd856644a93a04727adb1ce, type: 3}
+  FirstCharacterSprite: {fileID: 21300000, guid: 254ab65fb76ad304d967a240cd0d2677, type: 3}
+  SecondCharacterSprite: {fileID: 21300000, guid: 42f65c1bdf3b40d4e9e5b0c63f944a2b, type: 3}
+  NarratorSprite: {fileID: 21300000, guid: 0158df6d52a26c042bf6ba23c65b0f01, type: 3}
 --- !u!1 &6602301323275406161
 GameObject:
   m_ObjectHideFlags: 0
