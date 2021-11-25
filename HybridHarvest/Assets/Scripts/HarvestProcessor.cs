@@ -30,11 +30,14 @@ public class HarvestProcessor : MonoBehaviour
             button.GetComponentInChildren<Text>().text = "Может сохранить?";
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                Inventory.GetComponent<Inventory>().AddItem(seed);
-                seeds.Remove(seed);
-                seedPlaces.Remove(item);
-                Destroy(item);
-                if (seedPlaces.Count == 0) ClearSpace();
+                Inventory.GetComponent<Drawinventory>().targetInventory.AddItem(seed);
+                Inventory.GetComponent<Drawinventory>().SuccessfulAddition += () =>
+                 {
+                     seeds.Remove(seed);
+                     seedPlaces.Remove(item);
+                     Destroy(item);
+                     if (seedPlaces.Count == 0) ClearSpace();
+                 };
             });
             
             var label = item.transform.Find("Text");
@@ -70,7 +73,7 @@ public class HarvestProcessor : MonoBehaviour
 
     private void Sell(Seed seed)
     {
-        var inventory = Inventory.GetComponent<Inventory>();
+        var inventory = Inventory.GetComponent<Drawinventory>().targetInventory;
         inventory.ChangeMoney(seed.Price);
         inventory.ChangeReputation(seed.Gabitus);
         inventory.SaveAllData();

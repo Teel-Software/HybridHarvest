@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Drawinventory : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Drawinventory : MonoBehaviour
     [SerializeField] Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
-
+    public Action SuccessfulAddition;
     private string originalQuestionText;
     readonly List<GameObject> alreadyDrawn = new List<GameObject>();
     private bool changeItem = false;
@@ -139,6 +140,7 @@ public class Drawinventory : MonoBehaviour
                 changeItem = false;
                 gameObject.SetActive(false);
                 targetInventory.SaveAllData();
+                SuccessfulAddition?.Invoke();
             }
             return;
         }
