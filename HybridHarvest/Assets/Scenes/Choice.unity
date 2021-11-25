@@ -6719,6 +6719,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 185448005516914737, guid: 545e60fb3f67e5947af588c386824056, type: 3}
+      propertyPath: targetInventory
+      value: 
+      objectReference: {fileID: 1871862018}
     - target: {fileID: 185448005516914741, guid: 545e60fb3f67e5947af588c386824056, type: 3}
       propertyPath: m_Name
       value: DialogPanel

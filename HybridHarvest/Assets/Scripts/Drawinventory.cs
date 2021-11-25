@@ -36,7 +36,7 @@ public class Drawinventory : MonoBehaviour
     /// </summary>
     public void UpdateActions()
     {
-       // targetInventory.onItemAdded += Redraw;
+        targetInventory.onItemAdded += Redraw;
         targetInventory.onInventoryFull += ChangeExistingItem;
     }
 
@@ -116,7 +116,7 @@ public class Drawinventory : MonoBehaviour
             icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             alreadyDrawn.Add(icon);
         }
-        FreeSpaceCounter.text = targetInventory.Elements.Count.ToString() 
+        FreeSpaceCounter.text = targetInventory.Elements.Count.ToString()
             + '/' + targetInventory.MaxItemsAmount.ToString();
     }
 

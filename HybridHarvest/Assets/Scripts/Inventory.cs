@@ -12,10 +12,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text MoneyInfo;
     [SerializeField] public Text ReputationInfo;
     [SerializeField] public Text EnergyInfo;
-    [FormerlySerializedAs("EnergyRegenInfo")] 
     [SerializeField] public Text EnergyRegenTime;
 
     public Action<Seed> onInventoryFull;
+    public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
     public int ReputationLimit { get; private set; }
@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
         // Preventing null references etc
         EnergyRegenTime ??= GameObject.Find("RegenTime").GetComponent<Text>();
         ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
-        
+
         ReputationLevel = 1;
         ReputationLimit = 500;
 
@@ -69,11 +69,17 @@ public class Inventory : MonoBehaviour
         RedrawInfo();
     }
 
-    public void AddItem(Seed newSeed)
+    public void AddItem(Seed newSeed, bool withoutInvoke = false)
     {
         newSeed.UpdateRating();
         InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
+        if (!withoutInvoke)
             onInventoryFull?.Invoke(newSeed);
+        else
+        {
+            Elements.Add(newSeed);
+            onItemAdded?.Invoke();
+        }
         //Debug.Log("inv invoke");
     }
 

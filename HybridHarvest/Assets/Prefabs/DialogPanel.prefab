@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 185448005516914736}
   - component: {fileID: 185448005516914743}
   - component: {fileID: 185448005516914737}
+  - component: {fileID: 6562657945597887360}
   m_Layer: 5
   m_Name: DialogPanel
   m_TagString: Untagged
@@ -393,6 +394,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSpritePlace: {fileID: 185448004538118851}
+--- !u!114 &6562657945597887360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185448005516914741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
+  color: {r: 0.47843137, g: 1, b: 0.47843137, a: 1}
+  useDefaultColor: 0
 --- !u!1 &185448005527762565
 GameObject:
   m_ObjectHideFlags: 0
