@@ -15,8 +15,6 @@ public class Inventory : MonoBehaviour
     [FormerlySerializedAs("EnergyRegenInfo")] 
     [SerializeField] public Text EnergyRegenTime;
 
-    //private const int Devider = 5;
-    //public Action onItemAdded;
     public Action<Seed> onInventoryFull;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
@@ -75,16 +73,8 @@ public class Inventory : MonoBehaviour
     {
         newSeed.UpdateRating();
         InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
-       // if (Elements.Count >= MaxItemsAmount)
-        //{
-           // Debug.Log("event");
             onInventoryFull?.Invoke(newSeed);
-           // return;
-        //}
-
-        //Elements.Add(newSeed);
-        //SaveData();
-        //onItemAdded?.Invoke();
+        Debug.Log("inv invoke");
     }
 
     public void ChangeMoney(int amount)

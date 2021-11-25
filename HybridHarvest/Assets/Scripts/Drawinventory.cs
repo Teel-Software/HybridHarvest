@@ -99,6 +99,8 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
+        Debug.Log(changeItem);
+        Debug.Log(targetInventory.Elements.Count < targetInventory.MaxItemsAmount);
         if (changeItem && targetInventory.Elements.Count<targetInventory.MaxItemsAmount) {
             var img = Resources.Load<Sprite>("seedsplus");
             var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
@@ -122,8 +124,6 @@ public class Drawinventory : MonoBehaviour
 
         if (changeItem)
         {
-            // var it = Instantiate(ConfirmationPanel, GameObject.Find("Canvas").transform);
-            //it.transform.Find("QuestionText").GetComponent<Text>().text = "Заменить?";
             if (int.TryParse(item.name, out int index))
             {
                 if (index == targetInventory.Elements.Count)
@@ -168,8 +168,10 @@ public class Drawinventory : MonoBehaviour
     /// <param name="newSeed"></param>
     private void ChangeExistingItem(Seed newSeed)
     {
+        Debug.Log("draw got");
         changeItem = true;
         gameObject.SetActive(true);
+        Redraw();
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }
