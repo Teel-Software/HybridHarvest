@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VegItem: {fileID: 3424467636474146113, guid: b49630e685b85d94fa9c59ac3d14b329, type: 3}
-  Inventory: {fileID: 1199887180}
+  Inventory: {fileID: 1331257128}
   Place: {fileID: 1373351917}
 --- !u!1 &316308796
 GameObject:

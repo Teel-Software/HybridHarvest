@@ -20,12 +20,16 @@ public class Drawinventory : MonoBehaviour
     private bool changeItem = false;
     private Seed changingSeed;
 
-    private void Start()
+    private void OnEnable()
     {
         UpdateActions();
         Redraw();
     }
 
+    private void OnDisable()
+    {
+        if (changeItem) changeItem = false;
+    }
     /// <summary>
     /// Reassigns all actions
     /// </summary>
@@ -99,9 +103,10 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
-        Debug.Log(changeItem);
-        Debug.Log(targetInventory.Elements.Count < targetInventory.MaxItemsAmount);
+        //Debug.Log(changeItem);
+        //Debug.Log(targetInventory.Elements.Count < targetInventory.MaxItemsAmount);
         if (changeItem && targetInventory.Elements.Count<targetInventory.MaxItemsAmount) {
+           // Debug.Log("draw change");
             var img = Resources.Load<Sprite>("seedsplus");
             var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
@@ -136,7 +141,6 @@ public class Drawinventory : MonoBehaviour
                     targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
                     targetInventory.Elements[index] = changingSeed;
                 }
-                Redraw();
                 changeItem = false;
                 gameObject.SetActive(false);
                 targetInventory.SaveAllData();
@@ -168,7 +172,7 @@ public class Drawinventory : MonoBehaviour
     /// <param name="newSeed"></param>
     private void ChangeExistingItem(Seed newSeed)
     {
-        Debug.Log("draw got");
+        //Debug.Log("draw got");
         changeItem = true;
         gameObject.SetActive(true);
         //Redraw();

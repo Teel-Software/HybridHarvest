@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
         newSeed.UpdateRating();
         InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
             onInventoryFull?.Invoke(newSeed);
-        Debug.Log("inv invoke");
+        //Debug.Log("inv invoke");
     }
 
     public void ChangeMoney(int amount)
