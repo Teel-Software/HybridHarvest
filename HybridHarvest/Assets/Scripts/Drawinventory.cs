@@ -29,7 +29,7 @@ public class Drawinventory : MonoBehaviour
     /// </summary>
     public void UpdateActions()
     {
-        targetInventory.onItemAdded += Redraw;
+       // targetInventory.onItemAdded += Redraw;
         targetInventory.onInventoryFull += ChangeExistingItem;
     }
 
@@ -97,12 +97,13 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
-        if (targetInventory.Elements.Count < targetInventory.MaxItemsAmount) {
+        if (changeItem && targetInventory.Elements.Count<targetInventory.MaxItemsAmount) {
             var img = Resources.Load<Sprite>("seedsplus");
-            var icon = new GameObject("plusPlace");
+            var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             icon.AddComponent<Image>().sprite = img;
             icon.transform.SetParent(Place);
+            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             alreadyDrawn.Add(icon);
         }
     }
@@ -121,9 +122,16 @@ public class Drawinventory : MonoBehaviour
             //it.transform.Find("QuestionText").GetComponent<Text>().text = "Заменить?";
             if (int.TryParse(item.name, out int index))
             {
-                targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
-                targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
-                targetInventory.Elements[index] = changingSeed;
+                if (index == targetInventory.Elements.Count)
+                {
+                    targetInventory.Elements.Add(changingSeed);
+                }
+                else
+                {
+                    targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
+                    targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
+                    targetInventory.Elements[index] = changingSeed;
+                }
                 Redraw();
                 changeItem = false;
                 gameObject.SetActive(false);
@@ -155,9 +163,9 @@ public class Drawinventory : MonoBehaviour
     /// <param name="newSeed"></param>
     private void ChangeExistingItem(Seed newSeed)
     {
+        changeItem = true;
         gameObject.SetActive(true);
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
-        changeItem = true;
         changingSeed = newSeed;
     }
 }

@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Text EnergyRegenTime;
 
     //private const int Devider = 5;
-    public Action onItemAdded;
+    //public Action onItemAdded;
     public Action<Seed> onInventoryFull;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
         ReputationLevel = 1;
         ReputationLimit = 500;
 
-        MaxItemsAmount = 15;
+        MaxItemsAmount = 10;
 
         EnergyRegenDelay = 20;
         energyTimeBuffer = EnergyRegenDelay;
@@ -75,15 +75,16 @@ public class Inventory : MonoBehaviour
     {
         newSeed.UpdateRating();
         InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
-        if (Elements.Count >= MaxItemsAmount)
-        {
+       // if (Elements.Count >= MaxItemsAmount)
+        //{
+           // Debug.Log("event");
             onInventoryFull?.Invoke(newSeed);
-            return;
-        }
+           // return;
+        //}
 
-        Elements.Add(newSeed);
-        SaveData();
-        onItemAdded?.Invoke();
+        //Elements.Add(newSeed);
+        //SaveData();
+        //onItemAdded?.Invoke();
     }
 
     public void ChangeMoney(int amount)

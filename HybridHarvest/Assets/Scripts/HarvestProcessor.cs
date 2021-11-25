@@ -34,6 +34,7 @@ public class HarvestProcessor : MonoBehaviour
                 seeds.Remove(seed);
                 seedPlaces.Remove(item);
                 Destroy(item);
+                if (seedPlaces.Count == 0) ClearSpace();
             });
             
             var label = item.transform.Find("Text");
