@@ -96,7 +96,7 @@ public class DialogPanelLogic : MonoBehaviour
         if (cleaningIsNeeded)
         {
             var newText = Instantiate(firstTextComponent);
-            var CGD = gameObject.AddComponent<ClearGameData>();
+            var CGD = gameObject.GetComponent<ClearGameData>() ?? gameObject.AddComponent<ClearGameData>();
 
             textPanel.GetComponent<GridLayoutGroup>().enabled = false;
             CGD.DeleteChildren(textPanel);
