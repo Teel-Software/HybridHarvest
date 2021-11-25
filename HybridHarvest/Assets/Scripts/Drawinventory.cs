@@ -29,6 +29,7 @@ public class Drawinventory : MonoBehaviour
     private void OnDisable()
     {
         if (changeItem) changeItem = false;
+        gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
     }
     /// <summary>
     /// Reassigns all actions
