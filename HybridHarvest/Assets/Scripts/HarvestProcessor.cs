@@ -46,6 +46,7 @@ public class HarvestProcessor : MonoBehaviour
             
             var img = item.transform.Find("Image");
             img.GetComponent<Image>().sprite = seeds[i].PlantSprite;
+            
         }
     }
 

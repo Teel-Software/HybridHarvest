@@ -10,6 +10,7 @@ public class Drawinventory : MonoBehaviour
     [SerializeField] RectTransform Place;
     [SerializeField] public GameObject CurrentInventoryParent;
     [SerializeField] GameObject ConfirmationPanel;
+    [SerializeField] Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
 
@@ -106,6 +107,8 @@ public class Drawinventory : MonoBehaviour
             icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             alreadyDrawn.Add(icon);
         }
+        FreeSpaceCounter.text = targetInventory.Elements.Count.ToString() 
+            + '/' + targetInventory.MaxItemsAmount.ToString();
     }
 
     /// <summary>
