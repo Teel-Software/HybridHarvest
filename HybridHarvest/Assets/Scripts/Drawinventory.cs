@@ -171,7 +171,7 @@ public class Drawinventory : MonoBehaviour
         Debug.Log("draw got");
         changeItem = true;
         gameObject.SetActive(true);
-        Redraw();
+        //Redraw();
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }
