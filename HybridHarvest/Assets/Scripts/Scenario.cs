@@ -13,38 +13,38 @@ public class Scenario : MonoBehaviour
     public void MakeTestDialog()
     {
         // Пока что лучше не добавлять больше трёх ответов, будут проблемы с отображением
+        // !!! ID НАЧИНАЕТСЯ С ЦИФРЫ 1 !!!
+        // ID присваивается фразе автоматически при вызове метода AddPhrase
 
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
-        DialogPanel.AddPhrase(NowTalking.Second, "Приветствую путник, вижу ты первый раз здесь.");
+        DialogPanel.AddPhrase(NowTalking.Second, "Приветствую путник, вижу ты первый раз здесь."); // ID = 1
         DialogPanel.AddPhrase(NowTalking.First, "Эээээ, ну здрасьте!");
 
-        var ph1 = "Я - Великий Стонкс и у меня есть всевозможные товары, начиная с огурца и заканчивая морковью.";
-        DialogPanel.AddPhrase(NowTalking.Second, ph1);
-        var ph1ans1 = "1. А как же сосисочки?";
-        DialogPanel.AddPhrase(NowTalking.First, ph1ans1, ph1);
-        DialogPanel.AddAward(ph1ans1, new Award(AwardType.Achievement, message: "Достижение разблокировано: \"Вернуться в 2007\""));
-        var ph1ans1ph1 = "Да, и хороший борщик... Не продаём такое, к сожалению.";
-        DialogPanel.AddPhrase(NowTalking.Second, ph1ans1ph1, ph1ans1);
-        var ph1ans2 = "2. Вы любите розы?";
-        DialogPanel.AddPhrase(NowTalking.First, ph1ans2, ph1);
-        DialogPanel.AddAward(ph1ans2, new Award(AwardType.Money, money: 500));
-        var ph1ans2ph1 = "А я на них... не вижу никакого подтекста.";
-        DialogPanel.AddPhrase(NowTalking.Second, ph1ans2ph1, ph1ans2);
-        var ph1ans3 = "3. Получить огурчик!";
-        DialogPanel.AddPhrase(NowTalking.First, ph1ans3, ph1);
-        DialogPanel.AddAward(ph1ans3, new Award(AwardType.Seed, seedName: "Cucumber"));
+
+        DialogPanel.AddPhrase(NowTalking.Second, "Я - Великий Стонкс и у меня есть всевозможные товары, начиная с огурца и заканчивая морковью."); // ID = 3
+        DialogPanel.AddPhrase(NowTalking.First, "1. А как же сосисочки?", 3);  // ID = 4
+        DialogPanel.AddAward(4, new Award(AwardType.Achievement, message: "Достижение разблокировано: \"Вернуться в 2007\""));
+        DialogPanel.AddPhrase(NowTalking.Second, "Да, и хороший борщик... Не продаём такое, к сожалению.", 4);
+
+        DialogPanel.AddPhrase(NowTalking.First, "2. Вы любите розы?", 3); // ID = 6
+        DialogPanel.AddAward(6, new Award(AwardType.Money, money: 500));
+        DialogPanel.AddPhrase(NowTalking.Second, "А я на них... не вижу никакого подтекста.", 6);
+
+        DialogPanel.AddPhrase(NowTalking.First, "3. Получить огурчик!", 3); // ID = 8
+        DialogPanel.AddAward(8, new Award(AwardType.Seed, seedName: "Cucumber"));
+
 
         DialogPanel.AddPhrase(NowTalking.First, "Хочется взять что-то необычное... Я думаю, огурец выглядит неплохо, поэтому возьму Иерусалим.");
         DialogPanel.AddPhrase(NowTalking.Second, "???????????????\n[Великий Стонкс помер от такого]");
         DialogPanel.AddPhrase(NowTalking.Narrator, "Со смертью этого персонажа нить повествования обрывается.");
 
-        var ph2 = "Хочешь бесплатную репутацию?";
-        DialogPanel.AddPhrase(NowTalking.Narrator, ph2);
-        DialogPanel.AddPhrase(NowTalking.First, "1. Да!", ph2);
-        DialogPanel.AddAward("1. Да!", new Award(AwardType.Reputation, reputation: 500));
-        DialogPanel.AddPhrase(NowTalking.First, "2. Нет!", ph2);
-        DialogPanel.AddPhrase(NowTalking.First, "3. Четыре!", ph2);
+
+        DialogPanel.AddPhrase(NowTalking.Narrator, "Хочешь бесплатную репутацию?"); // ID = 12
+        DialogPanel.AddPhrase(NowTalking.First, "1. Да!", 12); // ID = 13
+        DialogPanel.AddAward(13, new Award(AwardType.Reputation, reputation: 500));
+        DialogPanel.AddPhrase(NowTalking.First, "2. Нет!", 12);
+        DialogPanel.AddPhrase(NowTalking.First, "3. Четыре!", 12);
 
         DialogPanel.StartDialog();
     }

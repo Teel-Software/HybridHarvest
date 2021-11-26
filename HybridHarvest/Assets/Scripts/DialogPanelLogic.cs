@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -75,12 +76,14 @@ public class DialogPanelLogic : MonoBehaviour
     private Sprite SecondCharacterSprite;
     private Sprite NarratorSprite;
 
+    private List<Speech> speechByID;
+    private Dictionary<string, int> IDByPhrase;
     private List<Speech> scenario;
-    private Dictionary<string, List<Speech>> answers;
-    private Dictionary<string, Award> awards;
+    private Dictionary<int, List<Speech>> answers;
+    private Dictionary<int, Award> awards;
 
     private int speechIndex;
-    private string lastPhrase;
+    private int lastPhraseID;
     private bool cleaningIsNeeded;
 
     /// <summary>
@@ -88,9 +91,13 @@ public class DialogPanelLogic : MonoBehaviour
     /// </summary>
     public void CreateDialogPanel(Sprite firstCharacterSprite, Sprite secondCharacterSprite, Sprite narratorSprite = default)
     {
+        speechByID = new List<Speech> { new Speech(NowTalking.Narrator, "fill zero slot") };
+        IDByPhrase = new Dictionary<string, int>();
         scenario = new List<Speech>();
-        answers = new Dictionary<string, List<Speech>>();
-        awards = new Dictionary<string, Award>();
+        answers = new Dictionary<int, List<Speech>>();
+        awards = new Dictionary<int, Award>();
+        lastPhraseID = 0;
+
         FirstCharacterSprite = firstCharacterSprite;
         SecondCharacterSprite = secondCharacterSprite;
         NarratorSprite = narratorSprite;
@@ -98,25 +105,30 @@ public class DialogPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет фразу в конец диалога, либо добавляет ответ к фразе, указанной в 'answerOn' 
+    /// Добавляет фразу в конец диалога, либо добавляет ответ к фразе с ID, указанным в 'answerOnID' 
     /// </summary>
-    public void AddPhrase(NowTalking character, string phrase, string answerOn = null)
+    public void AddPhrase(NowTalking character, string phrase, int answerOnID = 0)
     {
-        var speech = new Speech(character, phrase);
+        if (scenario == null)
+            throw new NotImplementedException("Call method \"CreateDialogPanel\" first!");
 
-        if (answerOn == null)
+        var speech = new Speech(character, phrase);
+        speechByID.Add(speech);
+        IDByPhrase.Add(speech.Phrase, ++lastPhraseID);
+
+        if (answerOnID == 0)
             scenario.Add(speech);
-        else if (!answers.ContainsKey(answerOn))
-            answers[answerOn] = new List<Speech> { speech };
-        else answers[answerOn].Add(speech);
+        else if (!answers.ContainsKey(answerOnID))
+            answers[answerOnID] = new List<Speech> { speech };
+        else answers[answerOnID].Add(speech);
     }
 
     /// <summary>
     /// Добавляет награду, появляющуюся после определённого ответа
     /// </summary>
-    public void AddAward(string answer, Award award)
+    public void AddAward(int answerID, Award award)
     {
-        awards.Add(answer, award);
+        awards.Add(answerID, award);
     }
 
     /// <summary>
@@ -125,6 +137,7 @@ public class DialogPanelLogic : MonoBehaviour
     public void StartDialog()
     {
         speechIndex = 0;
+        lastPhraseID = 0;
         LoadNewPhrase();
         transform.gameObject.SetActive(true);
     }
@@ -143,7 +156,7 @@ public class DialogPanelLogic : MonoBehaviour
             firstTextComponent = RedrawText(firstTextComponent, textPanel);
 
         // Проверка на последнюю фразу
-        if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhrase))
+        if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID))
         {
             transform.gameObject.SetActive(false);
             return;
@@ -152,10 +165,10 @@ public class DialogPanelLogic : MonoBehaviour
         if (speechIndex < scenario.Count)
             currentSpeech = scenario[speechIndex];
 
-        // Выполняется, если у фразы есть хотя бы один ответ
-        if (lastPhrase != null && answers.ContainsKey(lastPhrase))
+        // Выполняется, если у предыдущей фразы есть хотя бы один ответ
+        if (lastPhraseID != 0 && answers.ContainsKey(lastPhraseID))
         {
-            currentAnswers = answers[lastPhrase];
+            currentAnswers = answers[lastPhraseID];
             currentSpeech = currentAnswers[0];
 
             if (currentAnswers.Count > 1)
@@ -163,19 +176,27 @@ public class DialogPanelLogic : MonoBehaviour
         }
         else speechIndex++;
 
-        CharacterSpritePlace.sprite =
-        currentSpeech.Character == NowTalking.First
-        ? FirstCharacterSprite
-        : currentSpeech.Character == NowTalking.Second
-            ? SecondCharacterSprite
-            : NarratorSprite;
+        ChangeCharacterSprite(currentSpeech);
 
         if (!cleaningIsNeeded)
         {
             firstTextComponent.text = currentSpeech.Phrase;
             firstTextComponent.gameObject.name = "Main Text";
-            lastPhrase = currentSpeech.Phrase;
+            lastPhraseID = IDByPhrase[currentSpeech.Phrase];
         }
+    }
+
+    /// <summary>
+    /// Меняет спрайт персонажа
+    /// </summary>
+    private void ChangeCharacterSprite(Speech currentSpeech)
+    {
+        CharacterSpritePlace.sprite = currentSpeech.Character switch
+        {
+            NowTalking.First => FirstCharacterSprite,
+            NowTalking.Second => SecondCharacterSprite,
+            _ => NarratorSprite,
+        };
     }
 
     /// <summary>
@@ -245,11 +266,11 @@ public class DialogPanelLogic : MonoBehaviour
         var answer = EventSystem.current.currentSelectedGameObject;
         if (answer == null) return;
 
-        lastPhrase = answer.GetComponent<Text>().text;
+        lastPhraseID = IDByPhrase[answer.GetComponent<Text>().text];
 
-        if (awards.ContainsKey(lastPhrase))
+        if (awards.ContainsKey(lastPhraseID))
         {
-            var pr = awards[lastPhrase];
+            var pr = awards[lastPhraseID];
             var message = "";
 
             switch (pr.CurrentPrize)
