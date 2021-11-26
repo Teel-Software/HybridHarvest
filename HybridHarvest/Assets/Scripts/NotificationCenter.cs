@@ -1,5 +1,5 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationCenter : MonoBehaviour
 {
@@ -19,10 +19,9 @@ public class NotificationCenter : MonoBehaviour
             notificationText = "Над этим мы ещё работаем!";
 
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        var tmPro = Instantiate(notificationPrefab, canvas.transform, false)
-            .GetComponent<TextMeshProUGUI>();
-        tmPro.text = notificationText;
+        var textComp = Instantiate(notificationPrefab, canvas.transform, false).GetComponent<Text>();
+        textComp.text = notificationText;
         if (!useDefaultColor)
-            tmPro.color = color;
+            textComp.color = color;
     }
 }
