@@ -97,26 +97,24 @@ public class LabGrowth : MonoBehaviour
 
     public void Clicked()
     {
-        if (time > 0) return;
         if (!isOccupied)
         {
             CrossingPerformer.GetComponent<GeneCrossing>().CurrentPot = Pot;
             CrossingMenue.gameObject.SetActive(true);
+            return;
         }
 
-        plantImage.sprite = Resources.Load<Sprite>("Transparent");
-        textBGImage.enabled = false;
-        isOccupied = false;
-
-        if (growingSeed != null)
+        MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
+        MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
+        MiniGamePanel.SetActive(true);
+        InventoryFrame.GetComponent<Drawinventory>().SuccessfulAddition += () =>
         {
-            MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
-            MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
-            MiniGamePanel.SetActive(true);
-        }
-
-        growingSeed = null;
-        PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
-        Pot.GetComponentInChildren<Text>().text = "";
+            isOccupied = false;
+            plantImage.sprite = Resources.Load<Sprite>("Transparent");
+            textBGImage.enabled = false;
+            growingSeed = null;
+            PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
+            Pot.GetComponentInChildren<Text>().text = "";
+        };
     }
 }

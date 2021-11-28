@@ -27,7 +27,6 @@ public class HarvestProcessor : MonoBehaviour
             button.GetComponentInChildren<Text>().text = "Может сохранить?";
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                Inventory.GetComponent<Drawinventory>().targetInventory.AddItem(seed);
                 Inventory.GetComponent<Drawinventory>().SuccessfulAddition += () =>
                  {
                      seeds.Remove(seed);
@@ -35,6 +34,7 @@ public class HarvestProcessor : MonoBehaviour
                      Destroy(item);
                      if (seedPlaces.Count == 0) ClearSpace();
                  };
+                Inventory.GetComponent<Drawinventory>().targetInventory.AddItem(seed);
             });
             
             var label = item.transform.Find("Text");
