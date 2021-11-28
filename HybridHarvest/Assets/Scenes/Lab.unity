@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InfoPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4104146254865441276, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441279, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -261,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441279, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441279, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1303,10 +1307,10 @@ RectTransform:
   - {fileID: 337834837}
   - {fileID: 1800886007}
   - {fileID: 1214172328}
+  - {fileID: 54578668}
   - {fileID: 365002237}
   - {fileID: 2134036104}
   - {fileID: 198918058}
-  - {fileID: 54578668}
   - {fileID: 938389804}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1744,6 +1748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmationPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1754,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8071891222898549139, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1984,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5010113884177167043, guid: 995a537943094184f9aed8bbe6344619, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5010113884177167043, guid: 995a537943094184f9aed8bbe6344619, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2100,9 +2108,17 @@ PrefabInstance:
       propertyPath: InventoryFrame
       value: 
       objectReference: {fileID: 2134036105}
+    - target: {fileID: 3564395844680105596, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e84b86de9235fac4489c51fcaf43496d, type: 3}
     - target: {fileID: 3564395844680105598, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_Name
       value: HybridChoicePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844680105598, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3564395844680105599, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_Pivot.x
@@ -2114,7 +2130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3564395844680105599, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3564395844680105599, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_AnchorMax.x

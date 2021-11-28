@@ -117,6 +117,7 @@ public class PatchGrowth : MonoBehaviour
     public void PlantIt(Seed seed)
     {
         //Consumes energy for planting (so bad)
+        if (_inventory.Energy <= 0) return;
         _inventory.ConsumeEnergy(1);
         Patch.interactable = false;
         isOccupied = true;
