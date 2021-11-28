@@ -16,7 +16,7 @@ public class ClearGameData : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Inventory.Start();
+        Inventory.Awake();
         InventoryFrame.Redraw();
     }
 

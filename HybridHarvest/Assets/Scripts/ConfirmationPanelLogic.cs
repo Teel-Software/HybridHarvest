@@ -25,7 +25,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// <summary>
     /// Добавляет надпись о цене, если требуется
     /// </summary>
-    public void Awake()
+    public void OnEnable()
     {
         SetPrice();
     }
@@ -88,7 +88,6 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void DefineItem(string itemName)
     {
         ItemName = itemName;
-        // if basic = c c t
         var seed = (Seed)Resources.Load("Seeds\\" + itemName);
         UpdateQuestionText(seed.NameInRussian);
     }

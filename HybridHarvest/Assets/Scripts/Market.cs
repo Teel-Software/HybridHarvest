@@ -8,13 +8,8 @@ using Random = System.Random;
 
 public class Market : MonoBehaviour
 {
-    [SerializeField] public GridLayoutGroup ScrollList;
-    [SerializeField] public GameObject Listing;
-        
     public static Dictionary<string, float> PriceMultipliers { get; private set; }
     private DateTime lastDate;
-
-    private Inventory _inventory;
     
     private List<string> seedsAvailable;
     
@@ -25,39 +20,24 @@ public class Market : MonoBehaviour
         Load();
     }
 
-    public void OnDisable()
-    {
-        foreach (Transform child in ScrollList.transform)
-            Destroy(child.gameObject);
-    }
-
-    public void OnEnable()
+    public void Update()
     {
         seedsAvailable = GetSeedsAvailable();
-
+        foreach (var seedName in seedsAvailable
+            .Where(seedName => !PriceMultipliers.ContainsKey(seedName)))
+            PriceMultipliers[seedName] = 1.0f;
         var elapsed = DateTime.Now.Subtract(lastDate);
         if (elapsed.TotalHours >= hoursToRefresh)
-            (PriceMultipliers, lastDate) = GetNewMarketValues();
-
-        foreach (var seedName in seedsAvailable)
         {
-            if (!PriceMultipliers.ContainsKey(seedName))
-            {
-                PriceMultipliers[seedName] = 1.0f;
-            }
-            var objName = $"{seedName}Multiplier";
-            var listing = Instantiate(Listing, ScrollList.transform);
-            listing.name = objName;
-            listing.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>($"SeedsIcons\\{seedName}");
-            listing.GetComponentInChildren<Text>().text = $"x {PriceMultipliers[seedName]}";
+            (PriceMultipliers, lastDate) = GetNewMarketValues();
+            Save();
         }
-        Save();
     }
-
-    private List<string> GetSeedsAvailable()
+    
+    public static List<string> GetSeedsAvailable()
     {
-        _inventory ??= GameObject.Find("DataKeeper").GetComponent<Inventory>();
-        return _inventory.Elements.Select(el => el.Name).Distinct().ToList();
+        var inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
+        return inventory.Elements.Select(el => el.Name).Distinct().ToList();
     }
 
     private (Dictionary<string,float> , DateTime) GetNewMarketValues()

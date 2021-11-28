@@ -27,7 +27,8 @@ public class Inventory : MonoBehaviour
     public int EnergyRegenDelay { get; private set; }
     private float energyTimeBuffer;
 
-    public void Start()
+    private Market market;
+    public void Awake()
     {
         // Preventing null references etc
         EnergyRegenTime ??= GameObject.Find("RegenTime").GetComponent<Text>();
@@ -49,6 +50,19 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        RedrawInfo();
+    }
+
+    private void RedrawInfo()
+    {
+        if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
+        if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
+        if (EnergyInfo != null) EnergyInfo.text = $"{Energy}/{EnergyMax}";
+        DrawEnergyTime();
+    }
+    
+    private void DrawEnergyTime()
+    {
         if (Energy == EnergyMax)
         {
             EnergyRegenTime.text = "--:--";
@@ -62,11 +76,10 @@ public class Inventory : MonoBehaviour
             RegenEnergy(1);
         }
 
-        SaveEnergy();
         var minutes = Math.Floor(energyTimeBuffer / 60).ToString(CultureInfo.InvariantCulture);
         var seconds = Math.Floor(energyTimeBuffer % 60).ToString(CultureInfo.InvariantCulture);
         EnergyRegenTime.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
-        RedrawInfo();
+        SaveEnergy();
     }
 
     public void AddItem(Seed newSeed, bool withoutInvoke = false)
@@ -80,7 +93,6 @@ public class Inventory : MonoBehaviour
             Elements.Add(newSeed);
             onItemAdded?.Invoke();
         }
-        //Debug.Log("inv invoke");
     }
 
     public void ChangeMoney(int amount)
@@ -102,9 +114,10 @@ public class Inventory : MonoBehaviour
         {
             Reputation -= ReputationLimit;
             ReputationLevel++;
+            // Увеличение необх. опыта
             ReputationLimit += 100;
 
-            //Бонусы вот здесь
+            // Бонусы за повышение вот здесь
             EnergyMax++;
             Money += 100;
         }
@@ -132,13 +145,6 @@ public class Inventory : MonoBehaviour
     {
         Elements.RemoveAt(index);
         SaveData();
-    }
-
-    void RedrawInfo()
-    {
-        if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
-        if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
-        if (EnergyInfo != null) EnergyInfo.text = $"{Energy}/{EnergyMax}";
     }
 
     public void SaveAllData()

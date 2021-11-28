@@ -97,7 +97,6 @@ public class CreateMiniGame : MonoBehaviour
         currentSeed.Taste = int.Parse(seedStats[0]);
         currentSeed.Gabitus = int.Parse(seedStats[1]);
         currentSeed.GrowTime = int.Parse(seedStats[2]);
-        currentSeed.Price = currentSeed.Taste;
         currentSeed.UpdateRating();
 
         Blocker.SetActive(true);

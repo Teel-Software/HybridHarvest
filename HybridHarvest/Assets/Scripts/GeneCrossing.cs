@@ -63,7 +63,6 @@ public class GeneCrossing : MonoBehaviour
         (newSeed.GrowTime, newSeed.GrowTimeGen) =
             CountParameter(first.GrowTime, first.GrowTimeGen, second.GrowTime, second.GrowTimeGen);
         OppositeSeedStats[2] = newSeed.GrowTime == first.GrowTime ? second.GrowTime : first.GrowTime;
-        newSeed.Price = newSeed.Taste;
 
         newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
@@ -8,13 +9,23 @@ public class Seed : ScriptableObject
     public string Name;
     public string NameInRussian;
     public string NameInLatin;
-    public int Price;
+
+    public int Price
+    {
+        get
+        {
+            var multiplier = 
+                Market.PriceMultipliers.ContainsKey(Name) ? 
+                Market.PriceMultipliers[Name] : 1.0f;
+            return (int)(Taste * multiplier);
+        }
+    }
     public int Amount;
 
     public Sprite PlantSprite;
     public Sprite SproutSprite;
     public Sprite GrownSprite;
-    //example import \Packets\Packet0.png
+    //example import .\Packets\Packet0.png
     public Sprite PacketSprite;
 
     public Gen GabitusGen;
@@ -34,7 +45,6 @@ public class Seed : ScriptableObject
     {
         var parameters = data.Split('|');
         Name = parameters[0];
-        Price = int.Parse(parameters[1]);
         GrowTime = int.Parse(parameters[2]);
         GrowTimeGen = (Gen)int.Parse(parameters[3]);
         Gabitus = int.Parse(parameters[4]);
@@ -83,7 +93,7 @@ public class Seed : ScriptableObject
     /// <returns>string with "|" separator</returns>
     public override string ToString()
     {
-        return Name + "|" + Price + "|" +
+        return Name + "|" + "_" + "|" +
                GrowTime + "|" + (int)GrowTimeGen + "|" +
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
