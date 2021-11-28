@@ -126,7 +126,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         //Случай действия из инвентаря
         else if (int.TryParse(itemObject.name, out int index))
         {
-            price = targetInventory.Elements[index].ShopBuyPrice;
+            price = targetInventory.Elements[index].Price;
         }
         
         var ptObj = transform.parent.Find("QuestionText").Find("PriceText");
