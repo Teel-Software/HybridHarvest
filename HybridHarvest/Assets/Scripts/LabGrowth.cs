@@ -61,7 +61,9 @@ public class LabGrowth : MonoBehaviour
                 if (time < (double)growingSeed.GrowTime / 2)
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-                growthText.text = math.round(time).ToString();
+                var formatTime = TimeSpan.FromSeconds(math.round(time));
+                //growthText.text = $"{formatTime.TotalHours}:{formatTime.TotalMinutes}:{formatTime.TotalSeconds}";
+                growthText.text = formatTime.ToString();
                 textBGImage.enabled = true;
             }
             else
@@ -84,14 +86,14 @@ public class LabGrowth : MonoBehaviour
         plantImage.sprite = growingSeed.GrownSprite;
     }
 
-    public void PlantIt(Seed seed)
+    public void PlantIt(Seed seed, int totalTime)
     {
         Pot.interactable = false;
         isOccupied = true;
         growingSeed = seed;
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
-        time = seed.GrowTime;
+        time = totalTime;
         timerNeeded = true;
     }
 

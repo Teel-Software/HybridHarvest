@@ -30,7 +30,7 @@ public class GeneCrossing : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 4)
             CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
         else
-            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed);
+            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime+seed2.GrowTime);
 
         ExitHybridMenu();
     }
