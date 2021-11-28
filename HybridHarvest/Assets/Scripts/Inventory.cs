@@ -19,7 +19,16 @@ public class Inventory : MonoBehaviour
     public int Money { get; private set; }
     public int Reputation { get; private set; }
     public int ReputationLimit { get; private set; }
-    public int ReputationLevel { get; private set; }
+    private int _ReputationLevel;
+    public int ReputationLevel 
+    {
+        get { return _ReputationLevel; }
+        private set { 
+            _ReputationLevel = value; 
+            ReputationLimit = (int)Math.Round((0.04 * Math.Pow(value, 3)
+            + 0.8 * value * value + 2 * value) * 15); 
+        }
+    }
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
     public int MaxItemsAmount { get; private set; }
@@ -35,7 +44,9 @@ public class Inventory : MonoBehaviour
         ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
 
         ReputationLevel = 1;
-        ReputationLimit = 500;
+        //ReputationLimit =(int)Math.Round( (0.04* Math.Pow(ReputationLevel,3)
+        //    +0.8*ReputationLevel * ReputationLevel 
+        //    + 2 *ReputationLevel)*15);
 
         MaxItemsAmount = 10;
 
@@ -110,12 +121,12 @@ public class Inventory : MonoBehaviour
     public void ChangeReputation(int amount)
     {
         Reputation += amount;
-        if (Reputation > ReputationLimit)
+        if (Reputation >= ReputationLimit)
         {
             Reputation -= ReputationLimit;
             ReputationLevel++;
             // Увеличение необх. опыта
-            ReputationLimit += 100;
+            //ReputationLimit += 100;
 
             // Бонусы за повышение вот здесь
             EnergyMax++;
