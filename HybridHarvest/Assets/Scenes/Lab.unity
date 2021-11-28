@@ -2104,6 +2104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HybridChoicePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3564395844680105598, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3564395844680105599, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

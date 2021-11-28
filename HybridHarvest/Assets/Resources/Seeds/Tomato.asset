@@ -21,10 +21,10 @@ MonoBehaviour:
   PlantSprite: {fileID: 21300000, guid: aaa25c15472b0a64f90baa442d8ea995, type: 3}
   SproutSprite: {fileID: 21300000, guid: b75b0814109071f48a8f13dae7e61045, type: 3}
   GrownSprite: {fileID: 21300000, guid: 423d24c2b11b1094b935fbba9a2002cb, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 700fe8011c6291a4d8fbfec7cd5cbc2f, type: 3}
+  PacketSprite: {fileID: 21300000, guid: 64cefc8c15d96a444ab0299b376278fb, type: 3}
   GabitusGen: 1
   Gabitus: 3
   TasteGen: 1
   Taste: 7
   GrowTimeGen: 1
-  GrowTime: 5
+  GrowTime: 600
