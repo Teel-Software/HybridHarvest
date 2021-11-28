@@ -132,7 +132,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     public void Clicked()
     {
-        if (time > 0) return;
+        //if (time > 0) return;
         if (!isOccupied)
         {
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
@@ -141,7 +141,8 @@ public class PatchGrowth : MonoBehaviour
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
         if(grownSeeds.Count == 0 && growingSeed != null)
         {
-            for (var i = 0; i < growingSeed.minAmount; i++)
+            int plusSeeds = (int)Math.Round(UnityEngine.Random.value*(growingSeed.maxAmount-growingSeed.minAmount));
+            for (var i = 0; i < growingSeed.minAmount+ plusSeeds; i++)
                 grownSeeds.Add(MutateSeed(growingSeed));
         }
         if (grownSeeds.Count != 0)
@@ -181,12 +182,12 @@ public class PatchGrowth : MonoBehaviour
         var plusAmount = UnityEngine.Random.value;
         if (percentage < 0.5 && newSeed.Gabitus <= 100)
         {
-            newSeed.Gabitus += (int)(plusAmount * 5 + 1);
+            newSeed.Gabitus += (int)(plusAmount * 5);
             //newSeed.Price += (int)(plusAmount * 5 + 1);
         }
         else if (newSeed.Taste <= 100)
         {
-            newSeed.Taste += (int)(plusAmount * 5 + 1);
+            newSeed.Taste += (int)(plusAmount * 5);
         }
         return newSeed;
     }

@@ -99,7 +99,7 @@ public class Seed : ScriptableObject
                GrowTime + "|" + (int)GrowTimeGen + "|" +
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
-               minAmount + "|" + minAmount +
+               minAmount + "|" + maxAmount +
                "|" + NameInRussian + "|" + NameInLatin;
     }
 }
