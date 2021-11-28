@@ -798,7 +798,7 @@ MonoBehaviour:
   targetInventory: {fileID: 0}
   drawInventory: {fileID: 0}
   HasPrice: 0
-  ItemSpriteName: 
+  ItemName: 
 --- !u!1 &8071891223100034180
 GameObject:
   m_ObjectHideFlags: 0

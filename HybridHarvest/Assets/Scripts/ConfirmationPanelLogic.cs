@@ -37,7 +37,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
         UpdateQuestionText(seed.NameInRussian);
-        targetInventory.ChangeMoney(-seed.Price);
+        targetInventory.ChangeMoney(-seed.ShopBuyPrice);
         targetInventory.AddItem(seed);
     }
 
@@ -121,12 +121,12 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (itemObject is null) 
         {
             var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
-            price = seed.Price;
+            price = seed.ShopBuyPrice;
         }
         //Случай действия из инвентаря
         else if (int.TryParse(itemObject.name, out int index))
         {
-            price = targetInventory.Elements[index].Price;
+            price = targetInventory.Elements[index].ShopBuyPrice;
         }
         
         var ptObj = transform.parent.Find("QuestionText").Find("PriceText");
