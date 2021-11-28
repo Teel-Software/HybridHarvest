@@ -20,8 +20,9 @@ public class Seed : ScriptableObject
             return (int)(Taste * multiplier);
         }
     }
-    public int Amount;
-
+    public int minAmount;
+    public int maxAmount;
+    public int ShopBuyPrice;
     public Sprite PlantSprite;
     public Sprite SproutSprite;
     public Sprite GrownSprite;
@@ -51,15 +52,16 @@ public class Seed : ScriptableObject
         GabitusGen = (Gen)int.Parse(parameters[5]);
         Taste = int.Parse(parameters[6]);
         TasteGen = (Gen)int.Parse(parameters[7]);
-        Amount = int.Parse(parameters[8]);
+        minAmount = int.Parse(parameters[8]);
+        maxAmount = int.Parse(parameters[9]);
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
         
         UpdateRating();
 
-        NameInRussian = parameters[9];
-        NameInLatin = parameters[10];
+        NameInRussian = parameters[10];
+        NameInLatin = parameters[11];
     }
 
     public void UpdateRating()
@@ -97,7 +99,8 @@ public class Seed : ScriptableObject
                GrowTime + "|" + (int)GrowTimeGen + "|" +
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
-               Amount + "|" + NameInRussian + "|" + NameInLatin;
+               minAmount + "|" + minAmount +
+               "|" + NameInRussian + "|" + NameInLatin;
     }
 }
 

@@ -141,7 +141,7 @@ public class PatchGrowth : MonoBehaviour
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
         if(grownSeeds.Count == 0 && growingSeed != null)
         {
-            for (var i = 0; i < growingSeed.Amount; i++)
+            for (var i = 0; i < growingSeed.minAmount; i++)
                 grownSeeds.Add(MutateSeed(growingSeed));
         }
         if (grownSeeds.Count != 0)
