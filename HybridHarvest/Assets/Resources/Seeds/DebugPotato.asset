@@ -15,10 +15,12 @@ MonoBehaviour:
   Name: DebugPotato
   NameInRussian: "\u043A\u0430\u0440\u0442\u043E\u0445\u0430"
   NameInLatin: lolLatin
-  Amount: 4
-  PlantSprite: {fileID: 21300000, guid: 76e64c62035d9bb4a8f1d26fc8c77530, type: 3}
+  minAmount: 3
+  maxAmount: 6
+  ShopBuyPrice: 10
+  PlantSprite: {fileID: 21300000, guid: 15cf2647e39726e4389b6a6237360379, type: 3}
   SproutSprite: {fileID: 21300000, guid: 20d9312590cd3d949acfb796a4b97b4a, type: 3}
-  GrownSprite: {fileID: 21300000, guid: 76e64c62035d9bb4a8f1d26fc8c77530, type: 3}
+  GrownSprite: {fileID: 21300000, guid: 15cf2647e39726e4389b6a6237360379, type: 3}
   PacketSprite: {fileID: 21300000, guid: 12a47942ced23d349b4fdc30e0299613, type: 3}
   GabitusGen: 1
   Gabitus: 55

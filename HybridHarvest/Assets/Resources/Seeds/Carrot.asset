@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a112785622812904490495f4cb0851a6, type: 3}
-  m_Name: Carrot
+  m_Name: 
   m_EditorClassIdentifier: 
   Name: Carrot
   NameInRussian: "\u041C\u043E\u0440\u043A\u043E\u0432\u044C"
-  NameInLatin: Daucus sativus
-  Amount: 5
+  NameInLatin: Daucus carota
+  minAmount: 2
+  maxAmount: 3
+  ShopBuyPrice: 80
   PlantSprite: {fileID: 21300000, guid: 9ce71405e055cb047998516247baa1ff, type: 3}
   SproutSprite: {fileID: 21300000, guid: f85fac4d8bedd874cbb3ae2f86c5bd67, type: 3}
-  GrownSprite: {fileID: 21300000, guid: e8de23cc4f2337943ac5091cbf8b3c57, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 700fe8011c6291a4d8fbfec7cd5cbc2f, type: 3}
+  GrownSprite: {fileID: 21300000, guid: f85fac4d8bedd874cbb3ae2f86c5bd67, type: 3}
+  PacketSprite: {fileID: 21300000, guid: 64cefc8c15d96a444ab0299b376278fb, type: 3}
   GabitusGen: 1
-  Gabitus: 40
+  Gabitus: 5
   TasteGen: 1
-  Taste: 20
+  Taste: 10
   GrowTimeGen: 1
-  GrowTime: 30
+  GrowTime: 900

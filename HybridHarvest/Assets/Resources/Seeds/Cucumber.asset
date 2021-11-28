@@ -15,15 +15,16 @@ MonoBehaviour:
   Name: Cucumber
   NameInRussian: "\u041E\u0433\u0443\u0440\u0435\u0446"
   NameInLatin: Cucumis sativus
-  Price: 20
-  Amount: 8
+  minAmount: 4
+  maxAmount: 5
+  ShopBuyPrice: 20
   PlantSprite: {fileID: 21300000, guid: 11fb007728b39604c90a528be9483bfb, type: 3}
   SproutSprite: {fileID: 21300000, guid: 20d9312590cd3d949acfb796a4b97b4a, type: 3}
   GrownSprite: {fileID: 21300000, guid: 53929482480b2d846b67fe334c9d9375, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 700fe8011c6291a4d8fbfec7cd5cbc2f, type: 3}
+  PacketSprite: {fileID: 21300000, guid: 64cefc8c15d96a444ab0299b376278fb, type: 3}
   GabitusGen: 1
-  Gabitus: 20
+  Gabitus: 2
   TasteGen: 1
-  Taste: 20
+  Taste: 5
   GrowTimeGen: 1
-  GrowTime: 5
+  GrowTime: 180
