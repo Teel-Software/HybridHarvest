@@ -39,7 +39,6 @@ public class Scenario : MonoBehaviour
         DialogPanel.AddPhrase(NowTalking.Second, "???????????????\n[Великий Стонкс помер от такого]");
         DialogPanel.AddPhrase(NowTalking.Narrator, "Со смертью этого персонажа нить повествования обрывается.");
 
-
         DialogPanel.AddPhrase(NowTalking.Narrator, "Хочешь бесплатную репутацию?"); // ID = 12
         DialogPanel.AddPhrase(NowTalking.First, "1. Да!", 12); // ID = 13
         DialogPanel.AddAward(13, new Award(AwardType.Reputation, reputation: 500));

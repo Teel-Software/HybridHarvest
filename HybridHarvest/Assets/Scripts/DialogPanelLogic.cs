@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
 
 /// <summary>
 /// Определяет говорящего в текущий момент персонажа
@@ -138,8 +139,8 @@ public class DialogPanelLogic : MonoBehaviour
     {
         speechIndex = 0;
         lastPhraseID = 0;
-        LoadNewPhrase();
         transform.gameObject.SetActive(true);
+        LoadNewPhrase();
     }
 
     /// <summary>
@@ -178,10 +179,12 @@ public class DialogPanelLogic : MonoBehaviour
 
         ChangeCharacterSprite(currentSpeech);
 
+        // Выполняется, когда нет выбора ответов
         if (!cleaningIsNeeded)
         {
             firstTextComponent.text = currentSpeech.Phrase;
             firstTextComponent.gameObject.name = "Main Text";
+            firstTextComponent.GetComponent<AnimateText>().RestartAnimation();
             lastPhraseID = IDByPhrase[currentSpeech.Phrase];
         }
     }
@@ -221,6 +224,9 @@ public class DialogPanelLogic : MonoBehaviour
             newText.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             newText.GetComponent<Button>().targetGraphic = newText;
         }
+
+        foreach (var animText in textPanel.GetComponentsInChildren<AnimateText>().Reverse())
+            animText.RestartAnimation();
 
         cleaningIsNeeded = true;
         Destroy(firstTextComponent.gameObject);
@@ -266,7 +272,14 @@ public class DialogPanelLogic : MonoBehaviour
         var answer = EventSystem.current.currentSelectedGameObject;
         if (answer == null) return;
 
-        lastPhraseID = IDByPhrase[answer.GetComponent<Text>().text];
+        var txt = answer.GetComponent<Text>().text;
+        if (IDByPhrase.ContainsKey(txt))
+            lastPhraseID = IDByPhrase[txt];
+        else
+        {
+            Debug.Log(txt);
+            return;
+        }
 
         if (awards.ContainsKey(lastPhraseID))
         {

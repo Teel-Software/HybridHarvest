@@ -1,86 +1,90 @@
-using UnityEngine.UI;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class AnimateText : MonoBehaviour
 {
-    [SerializeField] Text TextPanel;
-    [SerializeField] GameObject CurrentSlide;
-    [SerializeField] GameObject NextSlide;
+    [SerializeField] float frameTimeSeconds;
+    [SerializeField] GameObject TextBlockerPrefab;
 
-    // здесь активируются соответствующие элементы, выключенные при начале анимации
-    // нижестоящие параметры указываются только для последнего слайда
-    [SerializeField] GameObject Title_LastSlide;
-    [SerializeField] GameObject StartLabel_LastSlide;
-    [SerializeField] GameObject StartButton_LastSlide;
-    [SerializeField] GameObject Options_LastSlide;
-    [SerializeField] GameObject Background_LastSlide;
+    private string origText;
+    private GameObject activeBlocker;
+    private Text currentTextComp;
 
-    string currentText;
-    int index, freqMilliseconds;
-    DateTime lastSlideTime;
+    private int textIndex;
+    private bool renderNeeded;
+    private Coroutine activeCoroutine;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Перезапускает анимацию
+    /// </summary>
+    public void RestartAnimation()
     {
-        currentText = TextPanel.text;
-        TextPanel.text = "";
-        index = 0; // указатель на текущий символ
-        lastSlideTime = DateTime.MinValue; // время, в которое появился прошлый слайд
-        freqMilliseconds = 25; // время между показом символов в миллисекундах
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // каждые freqMilliseconds текст обновляется, добавляя очередной символ
-        if ((DateTime.Now - lastSlideTime).TotalMilliseconds > freqMilliseconds)
+        if (activeCoroutine != null)
         {
-            lastSlideTime = DateTime.Now;
-
-            if (index < currentText.Length)
-                TextPanel.text += $"{currentText[index++]}";
+            StopCoroutine(activeCoroutine);
+            if (activeBlocker != null)
+                Destroy(activeBlocker);
         }
+
+        currentTextComp = GetComponent<Text>();
+        origText = currentTextComp.text;
+        currentTextComp.text = "";
+        textIndex = 0;
+        renderNeeded = true;
+
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        activeBlocker = Instantiate(TextBlockerPrefab, canvas.transform, false);
+        activeBlocker.AddComponent<Button>().onClick.AddListener(OnBlockerClicked);
+
+        activeCoroutine = StartCoroutine(RenderNextSymbol());
     }
 
     /// <summary>
-    /// Сразу выводит готовый текст, без задержки
+    /// Рисует следующий символ текущей строки
     /// </summary>
-    public void SkipText()
+    private IEnumerator RenderNextSymbol()
     {
-        if (index < currentText.Length)
+        while (renderNeeded)
         {
-            TextPanel.text = currentText;
-            index = int.MaxValue;
-        }
-        else
-        {
-            // проверка на последний слайд
-            if (NextSlide != null)
-                NextSlide.SetActive(true);
-            else if (PlayerPrefs.HasKey("GameInitialised"))
+            if (textIndex > origText.Length - 1)
             {
-                Title_LastSlide.SetActive(true);
-                StartLabel_LastSlide.SetActive(true);
-                StartButton_LastSlide.SetActive(true);
-                Options_LastSlide.SetActive(true);
-                Background_LastSlide.SetActive(true);
+                Destroy(activeBlocker);
+                break;
             }
-
-            if (NextSlide == null && !PlayerPrefs.HasKey("GameInitialised"))
-            {
-                PlayerPrefs.SetInt("GameInitialised", 1);
-                SceneManager.LoadScene(1);
-            }
-            else CurrentSlide.SetActive(false);
+            currentTextComp.text += origText[textIndex++];
+            yield return new WaitForSeconds(frameTimeSeconds);
         }
     }
 
-    void OnDisable()
+    // Выводит текст без анимации
+    private void SkipText()
     {
-        index = 0;
-        TextPanel.text = "";
-        lastSlideTime = DateTime.MinValue;
+        currentTextComp.text = origText;
+        renderNeeded = false;
+    }
+
+    /// <summary>
+    /// Вызывается при нажатии на блокер
+    /// </summary>
+    private void OnBlockerClicked()
+    {
+        var blocker = EventSystem.current.currentSelectedGameObject;
+        if (blocker == null) return;
+
+        Destroy(blocker);
+        SkipText();
+    }
+
+    void OnEnable()
+    {
+        RestartAnimation();
+    }
+
+    private void OnDisable()
+    {
+        if (activeBlocker != null)
+            Destroy(activeBlocker);
     }
 }
