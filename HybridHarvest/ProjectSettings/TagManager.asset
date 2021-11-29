@@ -9,6 +9,8 @@ TagManager:
   - ExitButton
   - Canvas
   - Notification
+  - AwardsPlace
+  - Inventory
   layers:
   - Default
   - TransparentFX

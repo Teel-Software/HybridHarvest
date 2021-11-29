@@ -81,7 +81,7 @@ public class DialogPanelLogic : MonoBehaviour
     private Dictionary<string, int> IDByPhrase;
     private List<Speech> scenario;
     private Dictionary<int, List<Speech>> answers;
-    private Dictionary<int, Award> awards;
+    private Dictionary<int, HashSet<Award>> awards;
 
     private int speechIndex;
     private int lastPhraseID;
@@ -96,7 +96,7 @@ public class DialogPanelLogic : MonoBehaviour
         IDByPhrase = new Dictionary<string, int>();
         scenario = new List<Speech>();
         answers = new Dictionary<int, List<Speech>>();
-        awards = new Dictionary<int, Award>();
+        awards = new Dictionary<int, HashSet<Award>>();
         lastPhraseID = 0;
 
         FirstCharacterSprite = firstCharacterSprite;
@@ -129,7 +129,9 @@ public class DialogPanelLogic : MonoBehaviour
     /// </summary>
     public void AddAward(int answerID, Award award)
     {
-        awards.Add(answerID, award);
+        if (!awards.ContainsKey(answerID))
+            awards.Add(answerID, new HashSet<Award>());
+        awards[answerID].Add(award);
     }
 
     /// <summary>
@@ -275,42 +277,10 @@ public class DialogPanelLogic : MonoBehaviour
         var txt = answer.GetComponent<Text>().text;
         if (IDByPhrase.ContainsKey(txt))
             lastPhraseID = IDByPhrase[txt];
-        else
-        {
-            Debug.Log(txt);
-            return;
-        }
+        else return;
 
         if (awards.ContainsKey(lastPhraseID))
-        {
-            var pr = awards[lastPhraseID];
-            var message = "";
-
-            switch (pr.CurrentPrize)
-            {
-                case AwardType.Achievement:
-                    message = pr.Message;
-                    break;
-                case AwardType.Money:
-                    message = $"Вы получили монеты ({pr.Money})";
-                    targetInventory.ChangeMoney(pr.Money);
-                    targetInventory.SaveAllData();
-                    break;
-                case AwardType.Seed:
-                    var seed = (Seed)Resources.Load("Seeds\\" + pr.SeedName);
-                    message = $"Вы получили {seed.NameInRussian.ToLower()}!";
-                    targetInventory.AddItem(seed, true);
-                    targetInventory.SaveAllData();
-                    break;
-                case AwardType.Reputation:
-                    message = $"Вы получили очки репутации ({pr.Reputation})";
-                    targetInventory.ChangeReputation(pr.Reputation);
-                    targetInventory.SaveAllData();
-                    break;
-            }
-
-            GetComponent<NotificationCenter>().Show(message);
-        }
+            GetComponent<AwardsCenter>().Show(awards[lastPhraseID]);
 
         LoadNewPhrase();
     }

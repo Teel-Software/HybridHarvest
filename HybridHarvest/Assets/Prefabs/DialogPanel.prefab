@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 185448005516914736}
   - component: {fileID: 185448005516914743}
   - component: {fileID: 185448005516914737}
-  - component: {fileID: 6562657945597887360}
+  - component: {fileID: 6156916958756820855}
   m_Layer: 5
   m_Name: DialogPanel
   m_TagString: Untagged
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSpritePlace: {fileID: 185448004538118851}
   targetInventory: {fileID: 0}
---- !u!114 &6562657945597887360
+--- !u!114 &6156916958756820855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,12 +420,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 185448005516914741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
+  m_Script: {fileID: 11500000, guid: f04294d6a3936d14fa5f2ace55ec2d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
-  color: {r: 0.47843137, g: 1, b: 0.47843137, a: 1}
-  useDefaultColor: 0
+  awardsPanelPrefab: {fileID: 3120944475483751061, guid: 60b0c2946d431d14aa0d2d7a56e225c5, type: 3}
+  awardPrefab: {fileID: 0}
 --- !u!1 &1495482116652796657
 GameObject:
   m_ObjectHideFlags: 0
