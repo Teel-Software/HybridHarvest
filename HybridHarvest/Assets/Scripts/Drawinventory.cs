@@ -41,11 +41,19 @@ public class Drawinventory : MonoBehaviour
         targetInventory.onInventoryFull += ChangeExistingItem;
     }
 
+    /// <summary>
+    /// Устанавливает цель вызова инвентаря по числу
+    /// </summary>
+    /// <param name="purpose"></param>
     public void SetPurpose(int purpose)
     {
         Purpose = (PurposeOfDrawing)purpose;
     }
 
+    /// <summary>
+    /// Устанавливает цель вызова инвентаря по enum
+    /// </summary>
+    /// <param name="purpose"></param>
     public void SetPurpose(PurposeOfDrawing purpose)
     {
         Purpose = purpose;
@@ -196,10 +204,6 @@ public class Drawinventory : MonoBehaviour
                 //yes.onClick.AddListener(script.Sell);
                 break;
         }
-        /*var logic = panel.GetComponentInChildren<ConfirmationPanelLogic>();
-        logic.ItemObject = item;
-        if (int.TryParse(item.name, out int index))
-            logic.DefineItem(targetInventory.Elements[index]);*/
         script.ItemObject = item;
         if (int.TryParse(item.name, out int index))
             script.DefineItem(targetInventory.Elements[index]);
@@ -213,10 +217,8 @@ public class Drawinventory : MonoBehaviour
     /// <param name="newSeed"></param>
     private void ChangeExistingItem(Seed newSeed)
     {
-        //Debug.Log("draw got");
         changeItem = true;
         gameObject.SetActive(true);
-        //Redraw();
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }

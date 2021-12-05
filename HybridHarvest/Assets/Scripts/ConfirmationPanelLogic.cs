@@ -31,6 +31,9 @@ public class ConfirmationPanelLogic : MonoBehaviour
         SetPrice();
     }
 
+    /// <summary>
+    /// удаляет объект
+    /// </summary>
     public void OnDisable()
     {
         Destroy(Panel);

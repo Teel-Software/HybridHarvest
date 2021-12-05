@@ -62,7 +62,6 @@ public class LabGrowth : MonoBehaviour
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
                 var formatTime = TimeSpan.FromSeconds(math.round(time));
-                //growthText.text = $"{formatTime.TotalHours}:{formatTime.TotalMinutes}:{formatTime.TotalSeconds}";
                 growthText.text = formatTime.ToString();
                 textBGImage.enabled = true;
             }

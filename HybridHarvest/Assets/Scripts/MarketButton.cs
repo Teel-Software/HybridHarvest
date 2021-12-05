@@ -8,6 +8,10 @@ public class MarketButton : MonoBehaviour
     [SerializeField] public GameObject ConfirmationPanel;
     [SerializeField] public Inventory targetInventory;
 
+    /// <summary>
+    /// создаёт подтверждающую панель в магазине
+    /// </summary>
+    /// <param name="name">Имя семечка</param>
     public void PrepareConfirmation(string name)
     {
         var panel = Instantiate(ConfirmationPanel, GameObject.Find("Shop").transform);

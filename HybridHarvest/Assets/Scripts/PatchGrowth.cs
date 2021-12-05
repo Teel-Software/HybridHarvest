@@ -76,7 +76,8 @@ public class PatchGrowth : MonoBehaviour
                 if (time < (double)growingSeed.GrowTime / 2)
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-                growthText.text = math.round(time).ToString();
+                var formatTime = TimeSpan.FromSeconds(math.round(time));
+                growthText.text = formatTime.ToString();
                 textBGImage.enabled = true;
             }
             else
@@ -133,7 +134,6 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     public void Clicked()
     {
-        //if (time > 0) return;
         if (!isOccupied)
         {
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
@@ -152,16 +152,6 @@ public class PatchGrowth : MonoBehaviour
             HarvestWindow.GetComponent<HarvestProcessor>().ShowHarvestMenu(grownSeeds, Patch);
             HarvestWindow.gameObject.SetActive(true);
         }
-
-        //plantImage.sprite = Resources.Load<Sprite>("Transparent");
-        //textBGImage.enabled = false;
-        //growthText.text = "";
-        //isOccupied = false;
-        //if (growingSeed == null) return;
-
-
-        //growingSeed = null;
-        //PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
     }
 
     public void ClearPatch()
@@ -185,7 +175,6 @@ public class PatchGrowth : MonoBehaviour
         if (percentage < 0.5 && newSeed.Gabitus <= 100)
         {
             newSeed.Gabitus += (int)(plusAmount * 5);
-            //newSeed.Price += (int)(plusAmount * 5 + 1);
         }
         else if (newSeed.Taste <= 100)
         {
