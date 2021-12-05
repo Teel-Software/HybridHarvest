@@ -1,34 +1,67 @@
 fileFormatVersion: 2
-guid: 0a3a75e3e52f0dd438e9fd305d341395
+guid: 6565f2623d162a44689b7ea295285098
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1804255491291702245
-    second: LookingBoyLQSheet_0
+      213: -3427603227642496840
+    second: LightningLQSheet_0
   - first:
-      213: -3337869875757873607
-    second: LookingBoyLQSheet_1
+      213: 3843830427177359576
+    second: LightningLQSheet_1
   - first:
-      213: 1199136125525652798
-    second: LookingBoyLQSheet_2
+      213: -7634648019413020159
+    second: LightningLQSheet_2
   - first:
-      213: 9022634226603465705
-    second: LookingBoyLQSheet_3
+      213: 8152649609651297619
+    second: LightningLQSheet_3
   - first:
-      213: 1524596717126932537
-    second: LookingBoyLQSheet_4
+      213: 6259665891475923123
+    second: LightningLQSheet_4
   - first:
-      213: 1741277978679933920
-    second: LookingBoyLQSheet_5
+      213: 3745929646861639640
+    second: LightningLQSheet_5
   - first:
-      213: 6366689223507140700
-    second: LookingBoyLQSheet_6
+      213: 4033875630930302978
+    second: LightningLQSheet_6
   - first:
-      213: 7678747297314324610
-    second: LookingBoyLQSheet_7
+      213: 5178233229067285795
+    second: LightningLQSheet_7
   - first:
-      213: -2801894089648772335
-    second: LookingBoyLQSheet_8
+      213: -5748216751270124211
+    second: LightningLQSheet_8
+  - first:
+      213: -4210180653091029857
+    second: LightningLQSheet_9
+  - first:
+      213: -894095381526335850
+    second: Lightning_0
+  - first:
+      213: 1757268892636325777
+    second: Lightning_1
+  - first:
+      213: -3844808008048746940
+    second: Lightning_2
+  - first:
+      213: 2027566014926527852
+    second: Lightning_3
+  - first:
+      213: -4619879911555016802
+    second: Lightning_4
+  - first:
+      213: -7997413134559260832
+    second: Lightning_5
+  - first:
+      213: 3411984276710026030
+    second: Lightning_6
+  - first:
+      213: -1334744239004626439
+    second: Lightning_7
+  - first:
+      213: -5350416157769289158
+    second: Lightning_8
+  - first:
+      213: 4522506768254785337
+    second: Lightning_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,7 +163,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LookingBoyLQSheet_0
+      name: Lightning_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e36d7a5fc00a0910800000000000000
-      internalID: 1804255491291702245
+      spriteID: 69e2ec4dcf88793f0800000000000000
+      internalID: -894095381526335850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_1
+      name: Lightning_1
       rect:
         serializedVersion: 2
         x: 192
@@ -165,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93689f468018da1d0800000000000000
-      internalID: -3337869875757873607
+      spriteID: 197ae685fb2136810800000000000000
+      internalID: 1757268892636325777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_2
+      name: Lightning_2
       rect:
         serializedVersion: 2
         x: 384
@@ -186,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e357b4fe3ff24a010800000000000000
-      internalID: 1199136125525652798
+      spriteID: 44e5da2cc7f74aac0800000000000000
+      internalID: -3844808008048746940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_3
+      name: Lightning_3
       rect:
         serializedVersion: 2
         x: 576
@@ -207,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eb1bfe6606d63d70800000000000000
-      internalID: 9022634226603465705
+      spriteID: c6d995e4c8c532c10800000000000000
+      internalID: 2027566014926527852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_4
+      name: Lightning_4
       rect:
         serializedVersion: 2
         x: 768
@@ -228,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 938d316f2a4782510800000000000000
-      internalID: 1524596717126932537
+      spriteID: e97dcc692b3e2efb0800000000000000
+      internalID: -4619879911555016802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_5
+      name: Lightning_5
       rect:
         serializedVersion: 2
         x: 960
@@ -249,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb7d6e88134a2810800000000000000
-      internalID: 1741277978679933920
+      spriteID: 06f4d80502b730190800000000000000
+      internalID: -7997413134559260832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_6
+      name: Lightning_6
       rect:
         serializedVersion: 2
         x: 1152
@@ -270,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50637add160b5850800000000000000
-      internalID: 6366689223507140700
+      spriteID: e2be4884f9dc95f20800000000000000
+      internalID: 3411984276710026030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_7
+      name: Lightning_7
       rect:
         serializedVersion: 2
         x: 1344
@@ -291,14 +324,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2804960bbf3609a60800000000000000
-      internalID: 7678747297314324610
+      spriteID: 9f15128bf290a7de0800000000000000
+      internalID: -1334744239004626439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LookingBoyLQSheet_8
+      name: Lightning_8
       rect:
         serializedVersion: 2
         x: 1536
@@ -312,8 +345,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11be738ab2cad19d0800000000000000
-      internalID: -2801894089648772335
+      spriteID: a32b6ab2ad08fb5b0800000000000000
+      internalID: -5350416157769289158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning_9
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9375028c1fb23ce30800000000000000
+      internalID: 4522506768254785337
       vertices: []
       indices: 
       edges: []

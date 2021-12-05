@@ -182,6 +182,189 @@ TextureImporter:
   - first:
       213: 607917443630767765
     second: VillageSignLQSheet_59
+  - first:
+      213: 1687599251751321405
+    second: VillageSign_0
+  - first:
+      213: -3763601084243257910
+    second: VillageSign_1
+  - first:
+      213: 450224329448367502
+    second: VillageSign_2
+  - first:
+      213: -5362923376063573653
+    second: VillageSign_3
+  - first:
+      213: -3844765232162834843
+    second: VillageSign_4
+  - first:
+      213: -5505620220513046476
+    second: VillageSign_5
+  - first:
+      213: 3615046533169425754
+    second: VillageSign_6
+  - first:
+      213: 8707243902167180659
+    second: VillageSign_7
+  - first:
+      213: -419154003342642999
+    second: VillageSign_8
+  - first:
+      213: -3565152421187441373
+    second: VillageSign_9
+  - first:
+      213: 778097223066547695
+    second: VillageSign_10
+  - first:
+      213: -6311913214459801786
+    second: VillageSign_11
+  - first:
+      213: 4800961481278668207
+    second: VillageSign_12
+  - first:
+      213: -6883186731376655577
+    second: VillageSign_13
+  - first:
+      213: 1667530151154603152
+    second: VillageSign_14
+  - first:
+      213: 5716347703946888753
+    second: VillageSign_15
+  - first:
+      213: -5154594089274972469
+    second: VillageSign_16
+  - first:
+      213: 5050744986388398760
+    second: VillageSign_17
+  - first:
+      213: -6226251613039032359
+    second: VillageSign_18
+  - first:
+      213: -7603486598341017576
+    second: VillageSign_19
+  - first:
+      213: -8732129920420172420
+    second: VillageSign_20
+  - first:
+      213: 2404962037612026055
+    second: VillageSign_21
+  - first:
+      213: -7979125462587839250
+    second: VillageSign_22
+  - first:
+      213: 4979550218902077161
+    second: VillageSign_23
+  - first:
+      213: 9129310770416071657
+    second: VillageSign_24
+  - first:
+      213: -8336933601597463279
+    second: VillageSign_25
+  - first:
+      213: -4652686209714216020
+    second: VillageSign_26
+  - first:
+      213: -933407747232912691
+    second: VillageSign_27
+  - first:
+      213: -1295146459372987278
+    second: VillageSign_28
+  - first:
+      213: 8047663403653845614
+    second: VillageSign_29
+  - first:
+      213: -2584740562150440820
+    second: VillageSign_30
+  - first:
+      213: 1427106987432992580
+    second: VillageSign_31
+  - first:
+      213: -5343307096935882096
+    second: VillageSign_32
+  - first:
+      213: -2075959956922717842
+    second: VillageSign_33
+  - first:
+      213: 3323392660330710061
+    second: VillageSign_34
+  - first:
+      213: -791202190592701239
+    second: VillageSign_35
+  - first:
+      213: -372057529508410171
+    second: VillageSign_36
+  - first:
+      213: -6302215545922147366
+    second: VillageSign_37
+  - first:
+      213: -6407886466593253627
+    second: VillageSign_38
+  - first:
+      213: 8726214839681809686
+    second: VillageSign_39
+  - first:
+      213: -3980963738430453908
+    second: VillageSign_40
+  - first:
+      213: 4300760732112026869
+    second: VillageSign_41
+  - first:
+      213: -464171350522192846
+    second: VillageSign_42
+  - first:
+      213: 286666078123396580
+    second: VillageSign_43
+  - first:
+      213: -5070994999852397483
+    second: VillageSign_44
+  - first:
+      213: -161030450215642488
+    second: VillageSign_45
+  - first:
+      213: -468646455253209278
+    second: VillageSign_46
+  - first:
+      213: 1206649480106782661
+    second: VillageSign_47
+  - first:
+      213: -5961510544278457965
+    second: VillageSign_48
+  - first:
+      213: -6769636128997561038
+    second: VillageSign_49
+  - first:
+      213: -1666047099284590963
+    second: VillageSign_50
+  - first:
+      213: 326456584627747623
+    second: VillageSign_51
+  - first:
+      213: -42181820417042186
+    second: VillageSign_52
+  - first:
+      213: 4540948915616464469
+    second: VillageSign_53
+  - first:
+      213: -8095233525043969282
+    second: VillageSign_54
+  - first:
+      213: 2948592464400856255
+    second: VillageSign_55
+  - first:
+      213: 348994767349893910
+    second: VillageSign_56
+  - first:
+      213: 2314636871621286255
+    second: VillageSign_57
+  - first:
+      213: 3925447850305915987
+    second: VillageSign_58
+  - first:
+      213: 7903495062112668548
+    second: VillageSign_59
+  - first:
+      213: -3049610399884773963
+    second: VillageSign_60
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -283,7 +466,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VillageSignLQSheet_0
+      name: VillageSign_0
       rect:
         serializedVersion: 2
         x: 0
@@ -297,14 +480,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86b518563017f62a0800000000000000
-      internalID: -6742045857748526232
+      spriteID: d3f3ad3049e8b6710800000000000000
+      internalID: 1687599251751321405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_1
+      name: VillageSign_1
       rect:
         serializedVersion: 2
         x: 192
@@ -318,14 +501,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b06d67af891b3a70800000000000000
-      internalID: 8807661601033117875
+      spriteID: ac5d76911c005cbc0800000000000000
+      internalID: -3763601084243257910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_2
+      name: VillageSign_2
       rect:
         serializedVersion: 2
         x: 384
@@ -339,14 +522,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1b8e9266149e88c0800000000000000
-      internalID: -3995092995566302436
+      spriteID: e85220a64a48f3600800000000000000
+      internalID: 450224329448367502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_3
+      name: VillageSign_3
       rect:
         serializedVersion: 2
         x: 576
@@ -360,14 +543,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7344ffe822cd89450800000000000000
-      internalID: 6095864136632058935
+      spriteID: b61971c7a911395b0800000000000000
+      internalID: -5362923376063573653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_4
+      name: VillageSign_4
       rect:
         serializedVersion: 2
         x: 768
@@ -381,14 +564,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be7244e2d705a9360800000000000000
-      internalID: 7177137454745659371
+      spriteID: 566792c4466a4aac0800000000000000
+      internalID: -3844765232162834843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_5
+      name: VillageSign_5
       rect:
         serializedVersion: 2
         x: 960
@@ -402,14 +585,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 285effdf8a43907b0800000000000000
-      internalID: -5257613189557787262
+      spriteID: 430bc18549b1893b0800000000000000
+      internalID: -5505620220513046476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_6
+      name: VillageSign_6
       rect:
         serializedVersion: 2
         x: 1152
@@ -423,14 +606,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b62cc91b7f71242a0800000000000000
-      internalID: -6754810138498121109
+      spriteID: a5d22182ba93b2230800000000000000
+      internalID: 3615046533169425754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_7
+      name: VillageSign_7
       rect:
         serializedVersion: 2
         x: 1344
@@ -444,14 +627,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31bcd97ba6370e710800000000000000
-      internalID: 1720501959839828755
+      spriteID: 3756c51323856d870800000000000000
+      internalID: 8707243902167180659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_8
+      name: VillageSign_8
       rect:
         serializedVersion: 2
         x: 1536
@@ -465,14 +648,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2feb7bb915e22c50800000000000000
-      internalID: 6639120699379937070
+      spriteID: 9c0349c97adde2af0800000000000000
+      internalID: -419154003342642999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_9
+      name: VillageSign_9
       rect:
         serializedVersion: 2
         x: 1728
@@ -486,14 +669,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a1a5640d55f47040800000000000000
-      internalID: 4644606895580357024
+      spriteID: 32daffc03c8068ec0800000000000000
+      internalID: -3565152421187441373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_10
+      name: VillageSign_10
       rect:
         serializedVersion: 2
         x: 0
@@ -507,14 +690,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6061af894465f760800000000000000
-      internalID: 7491003822305796206
+      spriteID: fe579954d4b5cca00800000000000000
+      internalID: 778097223066547695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_11
+      name: VillageSign_11
       rect:
         serializedVersion: 2
         x: 192
@@ -528,14 +711,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1305ffc8d690850c0800000000000000
-      internalID: -4586905854355222479
+      spriteID: 64f87079f549768a0800000000000000
+      internalID: -6311913214459801786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_12
+      name: VillageSign_12
       rect:
         serializedVersion: 2
         x: 384
@@ -549,14 +732,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5746e2f13a3d59ee0800000000000000
-      internalID: -1254864223596551051
+      spriteID: fadb2f7d70170a240800000000000000
+      internalID: 4800961481278668207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_13
+      name: VillageSign_13
       rect:
         serializedVersion: 2
         x: 576
@@ -570,14 +753,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a7ad9cfe99844330800000000000000
-      internalID: 3694228910286677920
+      spriteID: 723cc91f2220a70a0800000000000000
+      internalID: -6883186731376655577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_14
+      name: VillageSign_14
       rect:
         serializedVersion: 2
         x: 768
@@ -591,14 +774,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 701668e872d3d32e0800000000000000
-      internalID: -2144490607454297849
+      spriteID: 094d2d766d1442710800000000000000
+      internalID: 1667530151154603152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_15
+      name: VillageSign_15
       rect:
         serializedVersion: 2
         x: 960
@@ -612,14 +795,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd1b4f268d9b84960800000000000000
-      internalID: 7586517911329878495
+      spriteID: 136cf5243fb845f40800000000000000
+      internalID: 5716347703946888753
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_16
+      name: VillageSign_16
       rect:
         serializedVersion: 2
         x: 1152
@@ -633,14 +816,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf2476926ddd9b390800000000000000
-      internalID: -7801960967555300612
+      spriteID: bc6ef6b6cf33778b0800000000000000
+      internalID: -5154594089274972469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_17
+      name: VillageSign_17
       rect:
         serializedVersion: 2
         x: 1344
@@ -654,14 +837,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6d0901defb48c120800000000000000
-      internalID: 2434279156394560878
+      spriteID: 8a204cc1ec9d71640800000000000000
+      internalID: 5050744986388398760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_18
+      name: VillageSign_18
       rect:
         serializedVersion: 2
         x: 1536
@@ -675,14 +858,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a45aa30c5fff5f00800000000000000
-      internalID: 1107884804019999908
+      spriteID: 9d70b926529e799a0800000000000000
+      internalID: -6226251613039032359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_19
+      name: VillageSign_19
       rect:
         serializedVersion: 2
         x: 1728
@@ -696,14 +879,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb1ad049c0bd8b990800000000000000
-      internalID: -7369899943121804869
+      spriteID: 810c07b493dfa7690800000000000000
+      internalID: -7603486598341017576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_20
+      name: VillageSign_20
       rect:
         serializedVersion: 2
         x: 0
@@ -717,14 +900,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78aada65b26918650800000000000000
-      internalID: 6233428472139459207
+      spriteID: c7dabc82a1e31d680800000000000000
+      internalID: -8732129920420172420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_21
+      name: VillageSign_21
       rect:
         serializedVersion: 2
         x: 192
@@ -738,14 +921,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 301740b47e3142a00800000000000000
-      internalID: 730730923657818371
+      spriteID: 7c81a2e2b34206120800000000000000
+      internalID: 2404962037612026055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_22
+      name: VillageSign_22
       rect:
         serializedVersion: 2
         x: 384
@@ -759,14 +942,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95a7a7998e6c11510800000000000000
-      internalID: 1518213251710220889
+      spriteID: eec6d20caa3744190800000000000000
+      internalID: -7979125462587839250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_23
+      name: VillageSign_23
       rect:
         serializedVersion: 2
         x: 576
@@ -780,14 +963,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac9baf5fc055edea0800000000000000
-      internalID: -5846141752125507126
+      spriteID: 9ee70e29a8aea1540800000000000000
+      internalID: 4979550218902077161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_24
+      name: VillageSign_24
       rect:
         serializedVersion: 2
         x: 768
@@ -801,14 +984,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe2e44fd75eb740f0800000000000000
-      internalID: -1132727496643124497
+      spriteID: 9e33ccac6c3d1be70800000000000000
+      internalID: 9129310770416071657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_25
+      name: VillageSign_25
       rect:
         serializedVersion: 2
         x: 960
@@ -822,14 +1005,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47490b9b9998b58d0800000000000000
-      internalID: -2856538245298088844
+      spriteID: 115e3c07f034d4c80800000000000000
+      internalID: -8336933601597463279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_26
+      name: VillageSign_26
       rect:
         serializedVersion: 2
         x: 1152
@@ -843,14 +1026,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15e6be79e6c8e2ed0800000000000000
-      internalID: -2436855941737779631
+      spriteID: ca320a21b865e6fb0800000000000000
+      internalID: -4652686209714216020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_27
+      name: VillageSign_27
       rect:
         serializedVersion: 2
         x: 1344
@@ -864,14 +1047,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e69be7d3f000dc950800000000000000
-      internalID: 6470828305057495406
+      spriteID: dcaa59b699edb03f0800000000000000
+      internalID: -933407747232912691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_28
+      name: VillageSign_28
       rect:
         serializedVersion: 2
         x: 1536
@@ -885,14 +1068,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c221a9e6c222f54a0800000000000000
-      internalID: -6602520954472361428
+      spriteID: 27cd7fc3827b60ee0800000000000000
+      internalID: -1295146459372987278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_29
+      name: VillageSign_29
       rect:
         serializedVersion: 2
         x: 1728
@@ -906,14 +1089,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47b7e142d5dd3e5c0800000000000000
-      internalID: -4187259836416754828
+      spriteID: e62d2be2a3b0faf60800000000000000
+      internalID: 8047663403653845614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_30
+      name: VillageSign_30
       rect:
         serializedVersion: 2
         x: 0
@@ -927,14 +1110,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41c8a1d3eb573fd20800000000000000
-      internalID: 3311119610976832532
+      spriteID: c80ca7c3728212cd0800000000000000
+      internalID: -2584740562150440820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_31
+      name: VillageSign_31
       rect:
         serializedVersion: 2
         x: 192
@@ -948,14 +1131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bb868315df0d93c0800000000000000
-      internalID: -4351304257139995727
+      spriteID: 44fdb627e3a1ec310800000000000000
+      internalID: 1427106987432992580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_32
+      name: VillageSign_32
       rect:
         serializedVersion: 2
         x: 384
@@ -969,14 +1152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f58305099d9b44920800000000000000
-      internalID: 2973705998051588191
+      spriteID: 09220516182c8d5b0800000000000000
+      internalID: -5343307096935882096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_33
+      name: VillageSign_33
       rect:
         serializedVersion: 2
         x: 576
@@ -990,14 +1173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06cc58341be3a4dd0800000000000000
-      internalID: -2501117711987913632
+      spriteID: e69afa70b65b033e0800000000000000
+      internalID: -2075959956922717842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_34
+      name: VillageSign_34
       rect:
         serializedVersion: 2
         x: 768
@@ -1011,14 +1194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 061fdaea5614fe7b0800000000000000
-      internalID: -5192859940356755104
+      spriteID: d24072834001f1e20800000000000000
+      internalID: 3323392660330710061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_35
+      name: VillageSign_35
       rect:
         serializedVersion: 2
         x: 960
@@ -1032,14 +1215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa424377bae7a1bd0800000000000000
-      internalID: -2658673355104443222
+      spriteID: 9cc0634bcc51505f0800000000000000
+      internalID: -791202190592701239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_36
+      name: VillageSign_36
       rect:
         serializedVersion: 2
         x: 1152
@@ -1053,14 +1236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fee321b57b879d210800000000000000
-      internalID: 1358249491531185903
+      spriteID: 5cc44ade5af26daf0800000000000000
+      internalID: -372057529508410171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_37
+      name: VillageSign_37
       rect:
         serializedVersion: 2
         x: 1344
@@ -1074,14 +1257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fea395b64cc3e0860800000000000000
-      internalID: 7497997243930721007
+      spriteID: adbad5ff9580a88a0800000000000000
+      internalID: -6302215545922147366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_38
+      name: VillageSign_38
       rect:
         serializedVersion: 2
         x: 1536
@@ -1095,14 +1278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4aee2d4824507840800000000000000
-      internalID: 5219764500192750156
+      spriteID: 5071da5853d9217a0800000000000000
+      internalID: -6407886466593253627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_39
+      name: VillageSign_39
       rect:
         serializedVersion: 2
         x: 1728
@@ -1116,14 +1299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aaf0b979ff37d150800000000000000
-      internalID: 5897252577786002081
+      spriteID: 61df9f8c92eb91970800000000000000
+      internalID: 8726214839681809686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_40
+      name: VillageSign_40
       rect:
         serializedVersion: 2
         x: 0
@@ -1137,14 +1320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7701476c20eca88c0800000000000000
-      internalID: -3996155208023142281
+      spriteID: c67442b6296c0c8c0800000000000000
+      internalID: -3980963738430453908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_41
+      name: VillageSign_41
       rect:
         serializedVersion: 2
         x: 192
@@ -1158,14 +1341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b676f3175e3e5bb20800000000000000
-      internalID: 3149674089002526571
+      spriteID: 5fc7c75791f5fab30800000000000000
+      internalID: 4300760732112026869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_42
+      name: VillageSign_42
       rect:
         serializedVersion: 2
         x: 384
@@ -1179,14 +1362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b025abb76e959c50800000000000000
-      internalID: 6671412591386239157
+      spriteID: 23c1631bd9eee89f0800000000000000
+      internalID: -464171350522192846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_43
+      name: VillageSign_43
       rect:
         serializedVersion: 2
         x: 576
@@ -1200,14 +1383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c153504b85268260800000000000000
-      internalID: 7099403142606049736
+      spriteID: 4ed03bb77417af300800000000000000
+      internalID: 286666078123396580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_44
+      name: VillageSign_44
       rect:
         serializedVersion: 2
         x: 768
@@ -1221,14 +1404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2beb31d8217685de0800000000000000
-      internalID: -1344211159396139342
+      spriteID: 55c04083ae430a9b0800000000000000
+      internalID: -5070994999852397483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_45
+      name: VillageSign_45
       rect:
         serializedVersion: 2
         x: 960
@@ -1242,14 +1425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a33200684505bb570800000000000000
-      internalID: 8483462647038092090
+      spriteID: 88a10e0a8a7e3cdf0800000000000000
+      internalID: -161030450215642488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_46
+      name: VillageSign_46
       rect:
         serializedVersion: 2
         x: 1152
@@ -1263,14 +1446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c532af0cf91593960800000000000000
-      internalID: 7582181194234209116
+      spriteID: 24fe26d28880f79f0800000000000000
+      internalID: -468646455253209278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_47
+      name: VillageSign_47
       rect:
         serializedVersion: 2
         x: 1344
@@ -1284,14 +1467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57568015ba5a22430800000000000000
-      internalID: 3756747194397910389
+      spriteID: 5cfac2e1f41eeb010800000000000000
+      internalID: 1206649480106782661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_48
+      name: VillageSign_48
       rect:
         serializedVersion: 2
         x: 1536
@@ -1305,14 +1488,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f2a93ebc9b589b00800000000000000
-      internalID: 835518459641701107
+      spriteID: 3917983deb5744da0800000000000000
+      internalID: -5961510544278457965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_49
+      name: VillageSign_49
       rect:
         serializedVersion: 2
         x: 1728
@@ -1326,14 +1509,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71ddd30a8c13b93e0800000000000000
-      internalID: -2045986867958129385
+      spriteID: 23d2378cecb6d02a0800000000000000
+      internalID: -6769636128997561038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_50
+      name: VillageSign_50
       rect:
         serializedVersion: 2
         x: 0
@@ -1347,14 +1530,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 644114a061eca7ca0800000000000000
-      internalID: -6018271357970607034
+      spriteID: d8e62148df201e8e0800000000000000
+      internalID: -1666047099284590963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_51
+      name: VillageSign_51
       rect:
         serializedVersion: 2
         x: 192
@@ -1368,14 +1551,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 182e48159753442f0800000000000000
-      internalID: -989607222939688319
+      spriteID: 72bf259b88ec78400800000000000000
+      internalID: 326456584627747623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_52
+      name: VillageSign_52
       rect:
         serializedVersion: 2
         x: 384
@@ -1389,14 +1572,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a43a6077fa0e2290800000000000000
-      internalID: -7913375437384174428
+      spriteID: 6f8101a9bd32a6ff0800000000000000
+      internalID: -42181820417042186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_53
+      name: VillageSign_53
       rect:
         serializedVersion: 2
         x: 576
@@ -1410,14 +1593,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fba97536cb7529c0800000000000000
-      internalID: -3952617006716834825
+      spriteID: 55eb382daf0b40f30800000000000000
+      internalID: 4540948915616464469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_54
+      name: VillageSign_54
       rect:
         serializedVersion: 2
         x: 768
@@ -1431,14 +1614,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e55dec5f57074f8f0800000000000000
-      internalID: -507657206048565922
+      spriteID: ef2cbe5dff3f7af80800000000000000
+      internalID: -8095233525043969282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_55
+      name: VillageSign_55
       rect:
         serializedVersion: 2
         x: 960
@@ -1452,14 +1635,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fe8c21085ead8c80800000000000000
-      internalID: -8318801243683385616
+      spriteID: fb4b10c59318be820800000000000000
+      internalID: 2948592464400856255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_56
+      name: VillageSign_56
       rect:
         serializedVersion: 2
         x: 1152
@@ -1473,14 +1656,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7797e96629fec25f0800000000000000
-      internalID: -779985223376012937
+      spriteID: 61b4c5054e0e7d400800000000000000
+      internalID: 348994767349893910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_57
+      name: VillageSign_57
       rect:
         serializedVersion: 2
         x: 1344
@@ -1494,14 +1677,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94eeab44cdd43fb80800000000000000
-      internalID: -8362254474655633847
+      spriteID: f691205a8fd3f1020800000000000000
+      internalID: 2314636871621286255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_58
+      name: VillageSign_58
       rect:
         serializedVersion: 2
         x: 1536
@@ -1515,14 +1698,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfe7a32f165389300800000000000000
-      internalID: 259015673365823227
+      spriteID: 35c0ecd950ef97630800000000000000
+      internalID: 3925447850305915987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillageSignLQSheet_59
+      name: VillageSign_59
       rect:
         serializedVersion: 2
         x: 1728
@@ -1536,8 +1719,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59e1060b1b1cf6800800000000000000
-      internalID: 607917443630767765
+      spriteID: 48b874d62eadead60800000000000000
+      internalID: 7903495062112668548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageSign_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b5f783bf7b9da5d0800000000000000
+      internalID: -3049610399884773963
       vertices: []
       indices: 
       edges: []

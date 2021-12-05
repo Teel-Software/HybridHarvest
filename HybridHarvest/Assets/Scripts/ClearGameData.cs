@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClearGameData : MonoBehaviour
 {
@@ -27,6 +28,19 @@ public class ClearGameData : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
             RewatchButton.SetActive(false);
+    }
+
+    /// <summary>
+    /// Выходит с начальной сцены, либо деактивирует текущий объект (использовать на последнем слайде)
+    /// </summary>
+    public void ChangeStartSceneOrDisable()
+    {
+        if (!PlayerPrefs.HasKey("GameInitialised"))
+        {
+            PlayerPrefs.SetInt("GameInitialised", 1);
+            SceneManager.LoadScene(1);
+        }
+        else gameObject.SetActive(false);
     }
 
     /// <summary>

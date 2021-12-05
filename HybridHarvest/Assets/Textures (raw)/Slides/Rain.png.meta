@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: -8669324091712114685
     second: RainLQSheet_2
+  - first:
+      213: 8371938986527376862
+    second: Rain_0
+  - first:
+      213: -172499247755040552
+    second: Rain_1
+  - first:
+      213: -8140093697600284203
+    second: Rain_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RainLQSheet_0
+      name: Rain_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1af74cfabe0b41c0800000000000000
-      internalID: -4518501604876879334
+      spriteID: ed5453dd62a1f2470800000000000000
+      internalID: 8371938986527376862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RainLQSheet_1
+      name: Rain_1
       rect:
         serializedVersion: 2
         x: 192
@@ -147,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a900b64f2434e85f0800000000000000
-      internalID: -752590132876738406
+      spriteID: 8d8e98d19d82b9df0800000000000000
+      internalID: -172499247755040552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RainLQSheet_2
+      name: Rain_2
       rect:
         serializedVersion: 2
         x: 384
@@ -168,8 +177,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30073ceabaf50b780800000000000000
-      internalID: -8669324091712114685
+      spriteID: 5d9932cf8e3980f80800000000000000
+      internalID: -8140093697600284203
       vertices: []
       indices: 
       edges: []
