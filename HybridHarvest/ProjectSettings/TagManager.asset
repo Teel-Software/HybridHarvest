@@ -11,6 +11,7 @@ TagManager:
   - Notification
   - AwardsPlace
   - Inventory
+  - HybridPanel
   layers:
   - Default
   - TransparentFX

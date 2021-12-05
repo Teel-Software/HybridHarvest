@@ -30,7 +30,7 @@ public class GeneCrossing : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 4)
             CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
         else
-            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime+seed2.GrowTime);
+            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime + seed2.GrowTime);
 
         ExitHybridMenu();
     }
@@ -41,8 +41,8 @@ public class GeneCrossing : MonoBehaviour
         button1.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.GetComponent<LabButton>().ClearButton();
         button1.GetComponent<LabButton>().PlaceForResult.gameObject.SetActive(false);
-        button1.transform.parent.gameObject.SetActive(false); // deactivates hybrid panel
         button1.GetComponent<LabButton>().InventoryFrame.Redraw();
+        GameObject.FindGameObjectWithTag("HybridPanel").SetActive(false); // deactivates hybrid panel
     }
 
     public Seed MixTwoParents(Seed first, Seed second)

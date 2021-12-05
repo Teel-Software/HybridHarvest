@@ -535,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1216,7 +1216,7 @@ GameObject:
   - component: {fileID: 1775937271}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 public class MarketButton : MonoBehaviour
@@ -9,22 +7,24 @@ public class MarketButton : MonoBehaviour
     [SerializeField] public Inventory targetInventory;
 
     /// <summary>
-    /// создаёт подтверждающую панель в магазине
+    /// СЃРѕР·РґР°С‘С‚ РїРѕРґС‚РІРµСЂР¶РґР°СЋС‰СѓСЋ РїР°РЅРµР»СЊ РІ РјР°РіР°Р·РёРЅРµ
     /// </summary>
-    /// <param name="name">Имя семечка</param>
+    /// <param name="name">РРјСЏ СЃРµРјРµС‡РєР°</param>
     public void PrepareConfirmation(string name)
     {
-        var panel = Instantiate(ConfirmationPanel, GameObject.Find("Shop").transform);
+        var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Shop").transform);
+        var panel = panelObj.transform.Find("Panel");
         var text = panel.transform.Find("QuestionText").GetComponent<Text>();
         var yes = panel.transform.Find("YesButton").GetComponent<Button>();
         var script = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>();
+
         script.targetInventory = targetInventory;
-        text.text = "Купить";
+        text.text = "РљСѓРїРёС‚СЊ";
         script.HasPrice = true;
         yes.onClick.AddListener(script.AddOneMore);
 
         script.DefineItem(name);
 
-        panel.SetActive(true);
+        panelObj.SetActive(true);
     }
 }

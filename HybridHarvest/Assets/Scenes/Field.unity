@@ -2217,14 +2217,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423813073401221757, guid: 995a537943094184f9aed8bbe6344619, type: 3}
-      propertyPath: m_Text
-      value: "\u041A\u0443\u0434\u0430 \u0441\u0442\u0430\u0432\u0438\u0442\u044C-\u0442\u043E?"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423813073401221757, guid: 995a537943094184f9aed8bbe6344619, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 16
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 995a537943094184f9aed8bbe6344619, type: 3}
 --- !u!1 &1331257128 stripped
@@ -2533,7 +2525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441279, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4104146254865441279, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.x

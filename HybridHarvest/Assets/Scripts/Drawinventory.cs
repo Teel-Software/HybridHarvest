@@ -123,7 +123,8 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
-        if (changeItem && targetInventory.Elements.Count<targetInventory.MaxItemsAmount) {
+        if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
+        {
             var img = Resources.Load<Sprite>("seedsplus");
             var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
@@ -175,12 +176,15 @@ public class Drawinventory : MonoBehaviour
     /// <param семечко="item"></param>
     private void PrepareConfirmation(GameObject item)
     {
-        var panel = Instantiate(ConfirmationPanel,GameObject.Find("Inventory").transform);
+        var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform);
+        var panel = panelObj.transform.Find("Panel");
         var text = panel.transform.Find("QuestionText").GetComponent<Text>();
         var yes = panel.transform.Find("YesButton").GetComponent<Button>();
         var script = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>();
+
         script.targetInventory = targetInventory;
         script.drawInventory = gameObject.GetComponent<Drawinventory>();
+
         switch (Purpose)
         {
             case PurposeOfDrawing.Sell: //через кнопку инвентаря в боковом меню
@@ -205,11 +209,12 @@ public class Drawinventory : MonoBehaviour
                 yes.onClick.AddListener(script.SendToExhibition);
                 break;
         }
+
         script.ItemObject = item;
-        if (int.TryParse(item.name, out int index))
+        if (int.TryParse(item.name, out var index))
             script.DefineItem(targetInventory.Elements[index]);
 
-        panel.SetActive(true);
+        panelObj.SetActive(true);
     }
 
     /// <summary>

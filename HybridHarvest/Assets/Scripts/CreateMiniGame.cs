@@ -23,7 +23,8 @@ public class CreateMiniGame : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
-        var textSample = transform.Find("TextSample").gameObject;
+        var panel = transform.Find("Panel").gameObject;
+        var textSample = panel.transform.Find("TextSample").gameObject;
         Blocker.SetActive(false);
         DeleteChildren(GamingPlace);
 
