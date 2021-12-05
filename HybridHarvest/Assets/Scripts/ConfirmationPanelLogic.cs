@@ -89,7 +89,20 @@ public class ConfirmationPanelLogic : MonoBehaviour
             drawInventory.CurrentInventoryParent.SetActive(false);
         }
     }
-    
+
+    /// <summary>
+    /// Добавляет семечко на панель выставки
+    /// </summary>
+    public void SendToExhibition()
+    {
+        if (int.TryParse(itemObject.name, out int index))
+        {
+            Seed toSend = targetInventory.Elements[index];
+            drawInventory.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
+            drawInventory.CurrentInventoryParent.SetActive(false);
+        }
+    }
+
     /// <summary>
     /// Добавляет к основному тексту название растения
     /// <param name="itemName">Имя растения на английском</param>

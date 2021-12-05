@@ -199,9 +199,9 @@ public class Drawinventory : MonoBehaviour
                 text.text = "Выбрать";
                 yes.onClick.AddListener(script.Select);
                 break;
-            case PurposeOfDrawing.AddToExhibition://NotEmplimented
-                text.text = "Отправить на выставку";
-                //yes.onClick.AddListener(script.Sell);
+            case PurposeOfDrawing.AddToExhibition://через код на кнопке выставки
+                text.text = "Отправить";
+                yes.onClick.AddListener(script.SendToExhibition);
                 break;
         }
         script.ItemObject = item;
