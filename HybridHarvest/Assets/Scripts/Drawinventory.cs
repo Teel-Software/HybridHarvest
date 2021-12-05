@@ -186,6 +186,7 @@ public class Drawinventory : MonoBehaviour
             case PurposeOfDrawing.Sell: //через кнопку инвентаря в боковом меню
                 text.text = "Продать";
                 yes.onClick.AddListener(script.Sell);
+                script.HasPrice = true;
                 break;
             case PurposeOfDrawing.Change://?
                 text.text = "Заменить";

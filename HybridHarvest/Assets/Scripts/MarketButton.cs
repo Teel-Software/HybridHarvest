@@ -20,6 +20,7 @@ public class MarketButton : MonoBehaviour
         var script = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>();
         script.targetInventory = targetInventory;
         text.text = "Купить";
+        script.HasPrice = true;
         yes.onClick.AddListener(script.AddOneMore);
 
         script.DefineItem(name);
