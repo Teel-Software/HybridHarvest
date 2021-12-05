@@ -8,14 +8,15 @@ using System;
 public class Drawinventory : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
-    [SerializeField] RectTransform Place;
-    [SerializeField] public GameObject CurrentInventoryParent;
+    [SerializeField] RectTransform Place; // место отрисовки
+    [SerializeField] public GameObject CurrentInventoryParent; //?
     [SerializeField] GameObject ConfirmationPanel;
     [SerializeField] Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
     public Action SuccessfulAddition;
-    private string originalQuestionText;
+    private string originalQuestionText; //?
+    public PurposeOfDrawing Purpose;
     readonly List<GameObject> alreadyDrawn = new List<GameObject>();
     private bool changeItem = false;
     private Seed changingSeed;
@@ -38,6 +39,16 @@ public class Drawinventory : MonoBehaviour
     {
         targetInventory.onItemAdded += Redraw;
         targetInventory.onInventoryFull += ChangeExistingItem;
+    }
+
+    public void SetPurpose(int purpose)
+    {
+        Purpose = (PurposeOfDrawing)purpose;
+    }
+
+    public void SetPurpose(PurposeOfDrawing purpose)
+    {
+        Purpose = purpose;
     }
 
     /// <summary>
@@ -104,10 +115,7 @@ public class Drawinventory : MonoBehaviour
             icon.transform.SetParent(Place);
             alreadyDrawn.Add(icon);
         }
-        //Debug.Log(changeItem);
-        //Debug.Log(targetInventory.Elements.Count < targetInventory.MaxItemsAmount);
         if (changeItem && targetInventory.Elements.Count<targetInventory.MaxItemsAmount) {
-           // Debug.Log("draw change");
             var img = Resources.Load<Sprite>("seedsplus");
             var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
@@ -159,12 +167,44 @@ public class Drawinventory : MonoBehaviour
     /// <param семечко="item"></param>
     private void PrepareConfirmation(GameObject item)
     {
-        var logic = ConfirmationPanel.GetComponentInChildren<ConfirmationPanelLogic>();
+        var panel = Instantiate(ConfirmationPanel,GameObject.Find("Inventory").transform);
+        var text = panel.transform.Find("QuestionText").GetComponent<Text>();
+        var yes = panel.transform.Find("YesButton").GetComponent<Button>();
+        var script = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>();
+        script.targetInventory = targetInventory;
+        script.drawInventory = gameObject.GetComponent<Drawinventory>();
+        switch (Purpose)
+        {
+            case PurposeOfDrawing.Sell: //через кнопку инвентаря в боковом меню
+                text.text = "Продать";
+                yes.onClick.AddListener(script.Sell);
+                break;
+            case PurposeOfDrawing.Change://?
+                text.text = "Заменить";
+                // yes.onClick.AddListener(script.Sell);
+                break;
+            case PurposeOfDrawing.Plant://через код на грядке
+                text.text = "Посадить";
+                yes.onClick.AddListener(script.Plant);
+                break;
+            case PurposeOfDrawing.AddToLab://через код на кнопке лаборатории
+                text.text = "Выбрать";
+                yes.onClick.AddListener(script.Select);
+                break;
+            case PurposeOfDrawing.AddToExhibition://NotEmplimented
+                text.text = "Отправить на выставку";
+                //yes.onClick.AddListener(script.Sell);
+                break;
+        }
+        /*var logic = panel.GetComponentInChildren<ConfirmationPanelLogic>();
         logic.ItemObject = item;
         if (int.TryParse(item.name, out int index))
-            logic.DefineItem(targetInventory.Elements[index]);
+            logic.DefineItem(targetInventory.Elements[index]);*/
+        script.ItemObject = item;
+        if (int.TryParse(item.name, out int index))
+            script.DefineItem(targetInventory.Elements[index]);
 
-        ConfirmationPanel.SetActive(true);
+        panel.SetActive(true);
     }
 
     /// <summary>
@@ -180,4 +220,13 @@ public class Drawinventory : MonoBehaviour
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }
+}
+
+public enum PurposeOfDrawing
+{
+    Sell,
+    Change,
+    Plant,
+    AddToLab,
+    AddToExhibition
 }

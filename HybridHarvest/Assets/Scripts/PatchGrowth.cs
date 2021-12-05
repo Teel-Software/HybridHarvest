@@ -137,6 +137,7 @@ public class PatchGrowth : MonoBehaviour
         if (!isOccupied)
         {
             InventoryFrame.GetComponent<Drawinventory>().GrowPlace = Patch;
+            InventoryFrame.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.Plant);
             InventoryFrame.gameObject.SetActive(true);
         }
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later

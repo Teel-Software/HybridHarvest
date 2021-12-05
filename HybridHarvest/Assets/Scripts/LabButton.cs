@@ -14,6 +14,7 @@ public class LabButton : MonoBehaviour
     public void Clicked()
     {
         InventoryFrame.GetComponent<Drawinventory>().GrowPlace = SelectButton;
+        InventoryFrame.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.AddToLab);
         InventoryFrame.gameObject.SetActive(true);
         if (SceneManager.GetActiveScene().buildIndex != 4
             && SecondButton.GetComponent<LabButton>().NowSelected != null)

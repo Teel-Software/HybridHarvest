@@ -771,18 +771,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8071891222956090697}
-        m_TargetAssemblyTypeName: ShopLogic, Assembly-CSharp
-        m_MethodName: Sell
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8071891222956090697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +786,7 @@ MonoBehaviour:
   targetInventory: {fileID: 0}
   drawInventory: {fileID: 0}
   HasPrice: 0
+  Panel: {fileID: 8071891222898549138}
   ItemName: 
 --- !u!1 &8071891223100034180
 GameObject:

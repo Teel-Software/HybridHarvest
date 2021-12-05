@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
-    [SerializeField] Inventory targetInventory;
-    [SerializeField] Drawinventory drawInventory;
+    [SerializeField] public Inventory targetInventory;
+    [SerializeField] public Drawinventory drawInventory;
     [SerializeField] public bool HasPrice = false;
-    
+    [SerializeField] public GameObject Panel;
+
     [FormerlySerializedAs("ItemSpriteName")] 
     [SerializeField] public string ItemName;
     
@@ -29,7 +30,12 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         SetPrice();
     }
-    
+
+    public void OnDisable()
+    {
+        Destroy(Panel);
+    }
+
     /// <summary>
     /// Покупает семечко
     /// </summary>
