@@ -47,4 +47,16 @@ public class Scenario : MonoBehaviour
 
         DialogPanel.StartDialog();
     }
+
+    public void Tutorial()
+    {
+        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
+
+        DialogPanel.AddPhrase(NowTalking.Narrator, "Один", hideTrigger: true);
+
+        DialogPanel.AddPhrase(NowTalking.Narrator, "Два");
+        DialogPanel.AddPhrase(NowTalking.Narrator, "Три");
+
+        DialogPanel.StartDialog();
+    }
 }

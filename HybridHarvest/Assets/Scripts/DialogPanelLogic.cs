@@ -82,6 +82,7 @@ public class DialogPanelLogic : MonoBehaviour
     private List<Speech> scenario;
     private Dictionary<int, List<Speech>> answers;
     private Dictionary<int, HashSet<Award>> awards;
+    private HashSet<int> hideTriggers;
 
     private int speechIndex;
     private int lastPhraseID;
@@ -97,6 +98,7 @@ public class DialogPanelLogic : MonoBehaviour
         scenario = new List<Speech>();
         answers = new Dictionary<int, List<Speech>>();
         awards = new Dictionary<int, HashSet<Award>>();
+        hideTriggers = new HashSet<int>();
         lastPhraseID = 0;
 
         FirstCharacterSprite = firstCharacterSprite;
@@ -106,9 +108,10 @@ public class DialogPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет фразу в конец диалога, либо добавляет ответ к фразе с ID, указанным в 'answerOnID' 
+    /// Добавляет фразу в конец диалога, либо добавляет ответ к фразе с ID, указанным в 'answerOnID'.
+    /// Скрывает панель после фразы, если включен hideTrigger.
     /// </summary>
-    public void AddPhrase(NowTalking character, string phrase, int answerOnID = 0)
+    public void AddPhrase(NowTalking character, string phrase, int answerOnID = 0, bool hideTrigger = false)
     {
         if (scenario == null)
             throw new NotImplementedException("Call method \"CreateDialogPanel\" first!");
@@ -116,6 +119,9 @@ public class DialogPanelLogic : MonoBehaviour
         var speech = new Speech(character, phrase);
         speechByID.Add(speech);
         IDByPhrase.Add(speech.Phrase, ++lastPhraseID);
+
+        if (hideTrigger)
+            hideTriggers.Add(lastPhraseID);
 
         if (answerOnID == 0)
             scenario.Add(speech);
@@ -141,14 +147,15 @@ public class DialogPanelLogic : MonoBehaviour
     {
         speechIndex = 0;
         lastPhraseID = 0;
-        transform.gameObject.SetActive(true);
+        Show();
         LoadNewPhrase();
     }
 
     /// <summary>
-    /// Выводит следующую (если присутствует) фразу на диалоговою панель, если фразы нет - деактивирует панель
+    /// Выводит следующую (если присутствует) фразу на диалоговою панель, если фразы нет - деактивирует панель.
+    /// В переменной wasHided указывается true, если на последней фразе стоял hideTrigger.
     /// </summary>
-    public void LoadNewPhrase()
+    public void LoadNewPhrase(bool wasHided = false)
     {
         var firstTextComponent = transform.gameObject.GetComponentInChildren<Text>();
         var textPanel = firstTextComponent.transform.parent.gameObject;
@@ -159,9 +166,10 @@ public class DialogPanelLogic : MonoBehaviour
             firstTextComponent = RedrawText(firstTextComponent, textPanel);
 
         // Проверка на последнюю фразу
-        if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID))
+        if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
+            || !wasHided && hideTriggers.Contains(lastPhraseID))
         {
-            transform.gameObject.SetActive(false);
+            Hide();
             return;
         };
 
@@ -189,6 +197,31 @@ public class DialogPanelLogic : MonoBehaviour
             firstTextComponent.GetComponent<AnimateText>().RestartAnimation();
             lastPhraseID = IDByPhrase[currentSpeech.Phrase];
         }
+    }
+
+    /// <summary>
+    /// Продолжает показ диалога с того места, на котором панель была скрыта
+    /// </summary>
+    public void Continue()
+    {
+        Show();
+        LoadNewPhrase(true);
+    }
+
+    /// <summary>
+    /// Показывает панель
+    /// </summary>
+    private void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Скрывает панель
+    /// </summary>
+    private void Hide()
+    {
+        gameObject.SetActive(false);
     }
 
     /// <summary>
