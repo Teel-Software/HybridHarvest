@@ -62,7 +62,25 @@ public class LabGrowth : MonoBehaviour
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
                 var formatTime = TimeSpan.FromSeconds(math.round(time));
-                growthText.text = formatTime.ToString();
+                if (formatTime.Hours > 9)
+                    growthText.text = formatTime.Hours.ToString() + " ч.";
+                else
+                {
+                    if (formatTime.Hours != 0)
+                        growthText.text = formatTime.Hours.ToString() + " ч. " + formatTime.Minutes.ToString() + " м.";
+                    else
+                    {
+                        if (formatTime.Minutes > 9)
+                            growthText.text = formatTime.Minutes.ToString() + " м.";
+                        else
+                        {
+                            if (formatTime.Minutes != 0)
+                                growthText.text = formatTime.Minutes.ToString() + " м. " + formatTime.Seconds.ToString() + " c.";
+                            else
+                                growthText.text = formatTime.Seconds.ToString() + " c.";
+                        }
+                    }
+                }
                 textBGImage.enabled = true;
             }
             else

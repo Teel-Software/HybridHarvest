@@ -145,7 +145,7 @@ public class Drawinventory : MonoBehaviour
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
 
-        if (changeItem)
+        /*if (changeItem)
         {
             if (int.TryParse(item.name, out int index))
             {
@@ -165,7 +165,7 @@ public class Drawinventory : MonoBehaviour
                 SuccessfulAddition?.Invoke();
             }
             return;
-        }
+        }*/
 
         PrepareConfirmation(item);
     }
@@ -192,9 +192,18 @@ public class Drawinventory : MonoBehaviour
                 yes.onClick.AddListener(script.Sell);
                 script.HasPrice = true;
                 break;
-            case PurposeOfDrawing.Change://?
-                text.text = "Заменить";
-                // yes.onClick.AddListener(script.Sell);
+            case PurposeOfDrawing.Change://вызывается из кода инвентаря
+                if (int.Parse(item.name) == targetInventory.Elements.Count)
+                    text.text = "Добавить?";
+                else
+                    text.text = "Заменить";
+                yes.onClick.AddListener(()=> { 
+                    script.ChangeItem(changingSeed);
+                    changeItem = false;
+                    gameObject.SetActive(false);
+                    targetInventory.SaveAllData();
+                    SuccessfulAddition?.Invoke();
+                });
                 break;
             case PurposeOfDrawing.Plant://через код на грядке
                 text.text = "Посадить";
@@ -211,7 +220,8 @@ public class Drawinventory : MonoBehaviour
         }
 
         script.ItemObject = item;
-        if (int.TryParse(item.name, out var index))
+
+        if (int.TryParse(item.name, out var index) && targetInventory.Elements.Count > index)
             script.DefineItem(targetInventory.Elements[index]);
 
         panelObj.SetActive(true);

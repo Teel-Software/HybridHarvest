@@ -97,6 +97,7 @@ public class Inventory : MonoBehaviour
     {
         newSeed.UpdateRating();
         InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
+        InventoryDrawer.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.Change);
         if (!withoutInvoke)
             onInventoryFull?.Invoke(newSeed);
         else

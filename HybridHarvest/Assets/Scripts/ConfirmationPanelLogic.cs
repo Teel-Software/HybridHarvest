@@ -123,6 +123,24 @@ public class ConfirmationPanelLogic : MonoBehaviour
         UpdateQuestionText(seed.NameInRussian);
     }
 
+    public void ChangeItem(Seed newSeed)
+    {
+        if (int.TryParse(itemObject.name, out int index))
+        {
+            if (index == targetInventory.Elements.Count)
+            {
+                targetInventory.Elements.Add(newSeed);
+            }
+            else
+            {
+                targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
+                targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
+                targetInventory.Elements[index] = newSeed;
+            }
+            drawInventory.Redraw();
+        }
+    }
+
     private void UpdateQuestionText(string itemName)
     {
         var questionText = transform.parent.Find("QuestionText").GetComponent<Text>();
