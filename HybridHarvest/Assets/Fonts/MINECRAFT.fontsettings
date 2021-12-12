@@ -8,7 +8,7 @@ Font:
   m_PrefabAsset: {fileID: 0}
   m_Name: MINECRAFT
   serializedVersion: 5
-  m_LineSpacing: 16
+  m_LineSpacing: 19
   m_DefaultMaterial: {fileID: 2100000, guid: 185246a17cc9022439544e32d5706b93, type: 2}
   m_FontSize: 16
   m_Texture: {fileID: 2800000, guid: 7d59e39bd3477c249b48d899757187e9, type: 3}

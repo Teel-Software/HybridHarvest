@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: VS
+      value: VillageSign
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -937,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: R
+      value: Rain
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3261,7 +3261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: L
+      value: Lightning
       objectReference: {fileID: 0}
     - target: {fileID: 5314649477347838067, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
