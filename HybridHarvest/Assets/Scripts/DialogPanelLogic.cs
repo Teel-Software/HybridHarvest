@@ -307,6 +307,7 @@ public class DialogPanelLogic : MonoBehaviour
         var answer = EventSystem.current.currentSelectedGameObject;
         if (answer == null) return;
 
+        // защита от не прогрузившихся полностью строк
         var txt = answer.GetComponent<Text>().text;
         if (IDByPhrase.ContainsKey(txt))
             lastPhraseID = IDByPhrase[txt];
@@ -314,7 +315,6 @@ public class DialogPanelLogic : MonoBehaviour
 
         if (awards.ContainsKey(lastPhraseID))
             GetComponent<AwardsCenter>().Show(awards[lastPhraseID]);
-
-        LoadNewPhrase();
+        else LoadNewPhrase();
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - AwardsPlace
   - Inventory
   - HybridPanel
+  - DialogPanel
   layers:
   - Default
   - TransparentFX

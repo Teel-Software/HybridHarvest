@@ -5955,6 +5955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 185448005516914741, guid: 545e60fb3f67e5947af588c386824056, type: 3}
+      propertyPath: m_TagString
+      value: DialogPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 185448005516914742, guid: 545e60fb3f67e5947af588c386824056, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

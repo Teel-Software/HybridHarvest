@@ -1,4 +1,4 @@
-using TMPro;
+п»їusing TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class AwardsCenter : MonoBehaviour
     private GameObject currentAwardsPanel;
 
     /// <summary>
-    /// Выводит на панель награды.
+    /// Р’С‹РІРѕРґРёС‚ РЅР° РїР°РЅРµР»СЊ РЅР°РіСЂР°РґС‹.
     /// </summary>
     public void Show(IEnumerable<Award> awards)
     {
@@ -41,14 +41,14 @@ public class AwardsCenter : MonoBehaviour
                     tmPro.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\Reputation");
                     break;
                 case AwardType.Achievement:
-                    tmPro.text = $"Достижение x 1";
+                    tmPro.text = $"Р”РѕСЃС‚РёР¶РµРЅРёРµ x 1";
                     break;
             }
         }
     }
 
     /// <summary>
-    /// Осуществляет получение наград. Вызывать ТОЛЬКО из самого префаба.
+    /// РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚ РїРѕР»СѓС‡РµРЅРёРµ РЅР°РіСЂР°Рґ. Р’С‹Р·С‹РІР°С‚СЊ РўРћР›Р¬РљРћ РёР· СЃР°РјРѕРіРѕ РїСЂРµС„Р°Р±Р°.
     /// </summary>
     public void ApplyAwards()
     {
@@ -79,7 +79,12 @@ public class AwardsCenter : MonoBehaviour
             }
         }
 
-        // удаляет текущую панель
+        // РџСЂРѕРґРѕР»Р¶Р°РµС‚ РґРёР°Р»РѕРі, РµСЃР»Рё С‚Р°РєРѕРІРѕР№ РёРјРµРµС‚СЃСЏ
+        var dPanel = GameObject.FindGameObjectWithTag("DialogPanel");
+        if (dPanel.activeSelf == true)
+            dPanel.GetComponent<DialogPanelLogic>().LoadNewPhrase();
+
+        // СѓРґР°Р»СЏРµС‚ С‚РµРєСѓС‰СѓСЋ РїР°РЅРµР»СЊ
         Destroy(gameObject);
     }
 }
