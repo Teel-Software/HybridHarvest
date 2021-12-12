@@ -23,10 +23,12 @@ public class Market : MonoBehaviour
     public void Update()
     {
         seedsAvailable = GetSeedsAvailable();
-        foreach (var seedName in seedsAvailable
-            .Where(seedName => !PriceMultipliers.ContainsKey(seedName)))
-            PriceMultipliers[seedName] = 1.0f;
-        var elapsed = DateTime.Now.Subtract(lastDate);
+        
+        foreach (var seedName in seedsAvailable)
+            if (!PriceMultipliers.ContainsKey(seedName))
+                PriceMultipliers[seedName] = 1.0f;
+        
+        var elapsed = DateTime.Now - lastDate;
         if (elapsed.TotalHours >= hoursToRefresh)
         {
             (PriceMultipliers, lastDate) = GetNewMarketValues();
@@ -57,24 +59,14 @@ public class Market : MonoBehaviour
     private void Save()
     {
         var writer = QuickSaveWriter.Create("Market");
-        writer.Write("Multipliers", PriceMultipliers);
-        writer.Write("LastDate", lastDate);
+        writer.Write("Multipliers", PriceMultipliers)
+            .Write("LastDate", lastDate);
         writer.Commit();
     }
 
     private void Load()
     {
-        QuickSaveReader reader;
-        try
-        {
-            reader = QuickSaveReader.Create("Market");
-        }
-        catch (QuickSaveException)
-        {
-            var writer = QuickSaveWriter.Create("Market");
-            writer.Commit();
-            reader = QuickSaveReader.Create("Market");
-        }
+        var reader = QSReader.Create("Market");
         
         if (reader.Exists("Multipliers"))
             PriceMultipliers = reader.Read<Dictionary<string, float>>("Multipliers");

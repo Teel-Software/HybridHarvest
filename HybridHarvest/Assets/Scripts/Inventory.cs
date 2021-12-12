@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -18,17 +17,12 @@ public class Inventory : MonoBehaviour
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
-    public int ReputationLimit { get; private set; }
-    private int _ReputationLevel;
-    public int ReputationLevel 
-    {
-        get { return _ReputationLevel; }
-        private set { 
-            _ReputationLevel = value; 
-            ReputationLimit = (int)Math.Round((0.04 * Math.Pow(value, 3)
-            + 0.8 * value * value + 2 * value) * 15); 
-        }
-    }
+
+    public int ReputationLimit => 
+        (int)Math.Round((0.04 * Math.Pow(ReputationLevel, 3) + 
+                         0.8 * Math.Pow(ReputationLevel, 2) + 
+                         2 * ReputationLevel) * 15);
+    public int ReputationLevel;
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
     public int MaxItemsAmount { get; private set; }
@@ -126,9 +120,6 @@ public class Inventory : MonoBehaviour
         {
             Reputation -= ReputationLimit;
             ReputationLevel++;
-            // Увеличение необх. опыта
-            //ReputationLimit += 100;
-
             // Бонусы за повышение вот здесь
             EnergyMax++;
             Money += 100;
@@ -170,7 +161,6 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("money", Money);
 
         PlayerPrefs.SetInt("reputation", Reputation);
-        PlayerPrefs.SetInt("reputationLimit", ReputationLimit);
         PlayerPrefs.SetInt("reputationLevel", ReputationLevel);
 
         PlayerPrefs.SetInt("energyMax", EnergyMax);
@@ -197,7 +187,6 @@ public class Inventory : MonoBehaviour
         Money = PlayerPrefs.GetInt("money");
 
         Reputation = PlayerPrefs.GetInt("reputation");
-        ReputationLimit = PlayerPrefs.GetInt("reputationLimit");
         ReputationLevel = PlayerPrefs.GetInt("reputationLevel");
 
         Elements = new List<Seed>();
@@ -220,7 +209,7 @@ public class Inventory : MonoBehaviour
         energyTimeBuffer = PlayerPrefs.GetFloat("energytimebuffer");
         var oldDate = DateTime.Parse(PlayerPrefs.GetString("energytime"));
         //10 million ticks in a second
-        var secondsElapsed = (float)(DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
+        var secondsElapsed = (float)DateTime.Now.Subtract(oldDate).TotalSeconds;
         var regenerated = (int)secondsElapsed / EnergyRegenDelay;
         RegenEnergy(regenerated);
         energyTimeBuffer -= secondsElapsed % EnergyRegenDelay;

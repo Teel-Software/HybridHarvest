@@ -37,7 +37,7 @@ public class Seed : ScriptableObject
 
     public Gen GrowTimeGen;
     [SerializeField] public int GrowTime;
-
+    
     /// <summary>
     /// Imports seed data from string
     /// </summary>

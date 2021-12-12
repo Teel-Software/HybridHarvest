@@ -1,15 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using CI.QuickSave;
+using UnityEngine.Serialization;
 
 public class QuantumGrowth : MonoBehaviour
 {
     [SerializeField] public Button Pot;
-    [SerializeField] Button CrossingPerformer;
+    [FormerlySerializedAs("CrossingPerformer")] 
+        [SerializeField] Button CrossingButton;
+    
     [SerializeField] RectTransform InventoryFrame;
-    [SerializeField] RectTransform CrossingMenue;
+    
+    [FormerlySerializedAs("CrossingMenue")] 
+        [SerializeField] RectTransform CrossingMenu;
+    
     [SerializeField] GameObject MiniGamePanel;
-
+    [SerializeField] GameObject CooldownSign;
+    
     public Seed growingSeed;
 
     bool isOccupied;
@@ -20,45 +28,60 @@ public class QuantumGrowth : MonoBehaviour
     private Image textBGImage;
     private Text growthText;
 
+    private DateTime cooldownEnd;
     private void Start()
     {
+        Load();
+        CheckCooldownState();
         var imagesInChildren = Pot.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
         //textBGImage = imagesInChildren[2];
         growthText = Pot.GetComponentInChildren<Text>();
+        
         if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
         {
             isOccupied = true;
             timerNeeded = true;
         }
         else
-        {
             isOccupied = false;
-        }
+        
         if (!isOccupied) return;
 
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
-
-        DateTime oldDate;
-        oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
+        
+        var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
         var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
         time = PlayerPrefs.GetInt(Pot.name + "time") - timeSpan.TotalSeconds;
         Pot.interactable = false;
 
-        if (time <= 0)
-            EndGrowthCycle();
+        if (time <= 0) EndGrowthCycle();
     }
 
     private void Update()
     {
+        CheckCooldownState();
+
         if (timerNeeded)
         {
             if (time > 0)
                 time -= Time.deltaTime;
-            else EndGrowthCycle();
+            else 
+                EndGrowthCycle();
         }
+    }
+
+    private void CheckCooldownState()
+    {
+        var timeRemaining = cooldownEnd - DateTime.Now;
+        var isOver = timeRemaining.TotalSeconds <= 0;
+        CooldownSign.SetActive(!isOver);
+        CrossingButton.interactable = isOver;
+        
+        if (CooldownSign.activeSelf)
+            UpdateSign(timeRemaining);
     }
 
     void OnDestroy()
@@ -67,12 +90,42 @@ public class QuantumGrowth : MonoBehaviour
         PlayerPrefs.SetString(Pot.name + "timeStart", DateTime.Now.ToString());
     }
 
+    private void Load()
+    {
+        var reader = QSReader.Create("Quantum");
+        cooldownEnd = reader.Exists("CooldownEnd") ? 
+                    reader.Read<DateTime>("CooldownEnd") : 
+                    DateTime.Now;
+    }
+
+    private void Save()
+    {
+        var writer = QuickSaveWriter.Create("Quantum");
+        writer.Write("CooldownEnd", cooldownEnd);
+        writer.Commit();
+    }
+    
     public void EndGrowthCycle()
     {
         timerNeeded = false;
         Pot.interactable = true;
         growthText.text = "";
         plantImage.sprite = growingSeed.PlantSprite;
+
+        CrossingButton.interactable = false;
+        
+        // 24 hour delay
+        cooldownEnd = DateTime.Now.AddHours(24);
+        Save();
+        
+        CooldownSign.SetActive(true);
+        UpdateSign(cooldownEnd.TimeOfDay);
+    }
+
+    private void UpdateSign(TimeSpan time)
+    {
+        var signText = CooldownSign.GetComponentInChildren<Text>();
+        signText.text = $"Приходи через {time.Hours}:{time.Minutes}:{time.Seconds}";
     }
 
     public void PlantIt(Seed seed)
@@ -102,8 +155,8 @@ public class QuantumGrowth : MonoBehaviour
         if (time > 0) return;
         if (!isOccupied)
         {
-            CrossingPerformer.GetComponent<GeneCrossing>().CurrentPot = Pot;
-            CrossingMenue.gameObject.SetActive(true);
+            CrossingButton.GetComponent<GeneCrossing>().CurrentPot = Pot;
+            CrossingMenu.gameObject.SetActive(true);
         }
 
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
