@@ -235,7 +235,7 @@ public class Drawinventory : MonoBehaviour
     {
         changeItem = true;
         gameObject.SetActive(true);
-        gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
+        //gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }
 }

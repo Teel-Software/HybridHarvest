@@ -24,7 +24,7 @@ public class HarvestProcessor : MonoBehaviour
             seedPlaces.Add(item);
             
             var button = item.transform.Find("Button");
-            button.GetComponentInChildren<Text>().text = "Может сохранить?";
+            //button.GetComponentInChildren<Text>().text = "Может сохранить?";
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
                 Inventory.GetComponent<Drawinventory>().SuccessfulAddition += () =>
