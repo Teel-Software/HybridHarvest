@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: cda31b3ae2ad1ed43b909d8049fbe110
+guid: d71e4feee5234b340b00ed6bec0c29c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8558203965515749781
+      213: -6785678700554276630
     second: Carrot
   - first:
-      213: 1131535281375055967
+      213: -2664010402069913849
     second: Cucumber
   - first:
-      213: -5925890003656416073
+      213: -4963666469534382114
     second: Tomato
+  - first:
+      213: -4758628398877893376
+    second: Potato
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,14 +123,14 @@ TextureImporter:
         width: 152
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 599d7efc929d4c670800000000000000
-      internalID: 8558203965515749781
+      spriteID: ae037858c2d64d1a0800000000000000
+      internalID: -6785678700554276630
       vertices: []
       indices: 
       edges: []
@@ -141,14 +144,14 @@ TextureImporter:
         width: 152
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f509e21e75504bf00800000000000000
-      internalID: 1131535281375055967
+      spriteID: 70f5da267a8870bd0800000000000000
+      internalID: -2664010402069913849
       vertices: []
       indices: 
       edges: []
@@ -162,14 +165,35 @@ TextureImporter:
         width: 152
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b4650a307203cda0800000000000000
-      internalID: -5925890003656416073
+      spriteID: ed7c2e305a38d1bb0800000000000000
+      internalID: -4963666469534382114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potato
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1
+        width: 152
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d1ccafea4f5fdb0800000000000000
+      internalID: -4758628398877893376
       vertices: []
       indices: 
       edges: []

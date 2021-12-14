@@ -37,28 +37,34 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: cda31b3ae2ad1ed43b909d8049fbe110, type: 3}
+  spriteSheet: {fileID: 2800000, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 0
+    m_GlyphIndex: 3
     m_Scale: 1
     m_Name: Carrot
     m_HashCode: -1632299847
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 1
+    m_GlyphIndex: 4
     m_Scale: 1
     m_Name: Cucumber
     m_HashCode: 231678968
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 2
+    m_GlyphIndex: 5
     m_Scale: 1
     m_Name: Tomato
     m_HashCode: -1033935668
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 6
+    m_Scale: 1
+    m_Name: Potato
+    m_HashCode: -1181603791
   m_SpriteGlyphTable:
-  - m_Index: 0
+  - m_Index: 3
     m_Metrics:
       m_Width: 152
       m_Height: 184
@@ -72,8 +78,8 @@ MonoBehaviour:
       m_Height: 184
     m_Scale: 2.2
     m_AtlasIndex: 0
-    sprite: {fileID: 8558203965515749781, guid: cda31b3ae2ad1ed43b909d8049fbe110, type: 3}
-  - m_Index: 1
+    sprite: {fileID: -6785678700554276630, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
+  - m_Index: 4
     m_Metrics:
       m_Width: 152
       m_Height: 184
@@ -87,8 +93,8 @@ MonoBehaviour:
       m_Height: 184
     m_Scale: 2.2
     m_AtlasIndex: 0
-    sprite: {fileID: 1131535281375055967, guid: cda31b3ae2ad1ed43b909d8049fbe110, type: 3}
-  - m_Index: 2
+    sprite: {fileID: -2664010402069913849, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
+  - m_Index: 5
     m_Metrics:
       m_Width: 152
       m_Height: 184
@@ -102,7 +108,22 @@ MonoBehaviour:
       m_Height: 184
     m_Scale: 2.2
     m_AtlasIndex: 0
-    sprite: {fileID: -5925890003656416073, guid: cda31b3ae2ad1ed43b909d8049fbe110, type: 3}
+    sprite: {fileID: -4963666469534382114, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
+  - m_Index: 6
+    m_Metrics:
+      m_Width: 152
+      m_Height: 184
+      m_HorizontalBearingX: -20
+      m_HorizontalBearingY: 130
+      m_HorizontalAdvance: 152
+    m_GlyphRect:
+      m_X: 155
+      m_Y: 1
+      m_Width: 152
+      m_Height: 184
+    m_Scale: 2.2
+    m_AtlasIndex: 0
+    sprite: {fileID: -4758628398877893376, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
 --- !u!21 &205055949294675460
@@ -125,7 +146,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cda31b3ae2ad1ed43b909d8049fbe110, type: 3}
+        m_Texture: {fileID: 2800000, guid: d71e4feee5234b340b00ed6bec0c29c9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
