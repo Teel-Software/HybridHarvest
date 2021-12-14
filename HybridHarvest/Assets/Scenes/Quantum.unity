@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pot: {fileID: 6466562}
-  CrossingPerformer: {fileID: 818516364}
+  CrossingButton: {fileID: 818516364}
   InventoryFrame: {fileID: 1077512522}
   CrossingMenu: {fileID: 1891486256}
   MiniGamePanel: {fileID: 2128125894}
@@ -567,7 +567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0010128, y: -1.56}
+  m_AnchoredPosition: {x: 1.1642e-10, y: -0.0000025034}
   m_SizeDelta: {x: 319.72, y: 45.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721414398
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.85098046, g: 0.6156863, b: 0.1137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1494,8 +1494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0025654, y: 107.64}
-  m_SizeDelta: {x: 319.72, y: 79.31}
+  m_AnchoredPosition: {x: 0, y: 102.07}
+  m_SizeDelta: {x: 331.97, y: 90.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102697361
 MonoBehaviour:
@@ -1517,8 +1517,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: e84b86de9235fac4489c51fcaf43496d, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.33
 --- !u!222 &2102697362
 CanvasRenderer:
   m_ObjectHideFlags: 0
