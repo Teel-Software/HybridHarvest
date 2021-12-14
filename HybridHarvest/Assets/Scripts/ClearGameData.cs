@@ -57,6 +57,17 @@ public class ClearGameData : MonoBehaviour
             Destroy(child);
     }
 
+    /// <summary>
+    /// Закрывает игру
+    /// </summary>
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    /// <summary>
+    /// Приводит статистику игрока к дефолтным значениям
+    /// </summary>
     private void ClearPlayerStats()
     {
         PlayerPrefs.SetInt("money", 0);
