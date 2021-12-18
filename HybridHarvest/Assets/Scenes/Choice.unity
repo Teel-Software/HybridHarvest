@@ -2304,7 +2304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &965966136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6024,6 +6024,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 185448004538118850, guid: 545e60fb3f67e5947af588c386824056, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 185448004538118851, guid: 545e60fb3f67e5947af588c386824056, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 42f65c1bdf3b40d4e9e5b0c63f944a2b, type: 3}
     - target: {fileID: 185448005516914737, guid: 545e60fb3f67e5947af588c386824056, type: 3}
       propertyPath: targetInventory
       value: 
@@ -6033,8 +6041,8 @@ PrefabInstance:
       value: DialogPanel
       objectReference: {fileID: 0}
     - target: {fileID: 185448005516914741, guid: 545e60fb3f67e5947af588c386824056, type: 3}
-      propertyPath: m_TagString
-      value: DialogPanel
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 185448005516914742, guid: 545e60fb3f67e5947af588c386824056, type: 3}
       propertyPath: m_Pivot.x
@@ -6711,6 +6719,10 @@ PrefabInstance:
       propertyPath: DialogPanel
       value: 
       objectReference: {fileID: 338724733}
+    - target: {fileID: 6602301323134408990, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6602301323892643142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6758,6 +6770,10 @@ PrefabInstance:
     - target: {fileID: 6602301324014310659, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483175297595916037, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8228945043027926877, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target

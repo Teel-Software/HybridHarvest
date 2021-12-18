@@ -163,7 +163,7 @@ public class DialogPanelLogic : MonoBehaviour
         List<Speech> currentAnswers;
 
         if (cleaningIsNeeded)
-            firstTextComponent = RedrawText(firstTextComponent, textPanel);
+            firstTextComponent = RedrawMainText(firstTextComponent, textPanel);
 
         // Проверка на последнюю фразу
         if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
@@ -244,9 +244,8 @@ public class DialogPanelLogic : MonoBehaviour
     {
         var gridLay = textPanel.GetComponent<GridLayoutGroup>();
         gridLay.enabled = true;
-        var paddingVal = 10;
-        gridLay.cellSize = new Vector2(textPanel.GetComponent<RectTransform>().rect.width - 2 * paddingVal,
-            (textPanel.GetComponent<RectTransform>().rect.height - 4 * paddingVal) / 3);
+        var paddingVal = (firstTextComponent.transform.parent.GetComponent<RectTransform>().rect.width
+            - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
 
         for (var i = 0; i < currentAnswers.Count; i++)
         {
@@ -259,6 +258,10 @@ public class DialogPanelLogic : MonoBehaviour
             newText.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             newText.GetComponent<Button>().targetGraphic = newText;
         }
+        gridLay.cellSize = new Vector2(textPanel.GetComponent<RectTransform>().rect.width - 2 * paddingVal,
+            (textPanel.GetComponent<RectTransform>().rect.height - 2 * paddingVal
+            - (currentAnswers.Count - 1) * gridLay.spacing.y) / (currentAnswers.Count > 3
+                ? currentAnswers.Count : 3));
 
         foreach (var animText in textPanel.GetComponentsInChildren<AnimateText>().Reverse())
             animText.RestartAnimation();
@@ -267,14 +270,14 @@ public class DialogPanelLogic : MonoBehaviour
         Destroy(firstTextComponent.gameObject);
 
         // Выключает возможность переключать фразу по нажатию в любом месте экрана
-        transform.GetComponentInChildren<Button>().enabled = false; // finds Blocker
+        transform.GetComponentInChildren<Button>().enabled = false; // находит блокер
         textPanel.GetComponent<Button>().enabled = false;
     }
 
     /// <summary>
     /// Приводит текст к стандартному отображению после выбора варианта ответа
     /// </summary>
-    private Text RedrawText(Text firstTextComponent, GameObject textPanel)
+    private Text RedrawMainText(Text firstTextComponent, GameObject textPanel)
     {
         var newText = Instantiate(firstTextComponent);
         var CGD = gameObject.GetComponent<ClearGameData>() ?? gameObject.AddComponent<ClearGameData>();
@@ -283,7 +286,8 @@ public class DialogPanelLogic : MonoBehaviour
         CGD.DeleteChildren(textPanel);
         newText.transform.SetParent(textPanel.transform, false);
 
-        var paddingVal = 10;
+        var paddingVal = (firstTextComponent.transform.parent.GetComponent<RectTransform>().rect.width
+            - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
         var newTextRT = newText.gameObject.GetComponent<RectTransform>();
         newTextRT.anchorMin = Vector2.zero;
         newTextRT.anchorMax = Vector2.one;

@@ -12,7 +12,6 @@ public class Scenario : MonoBehaviour
     /// </summary>
     public void MakeTestDialog()
     {
-        // Пока что лучше не добавлять больше трёх ответов, будут проблемы с отображением
         // !!! ID НАЧИНАЕТСЯ С ЦИФРЫ 1 !!!
         // ID присваивается фразе автоматически при вызове метода AddPhrase
 
