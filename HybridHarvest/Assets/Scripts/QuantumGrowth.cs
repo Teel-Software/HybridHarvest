@@ -21,7 +21,7 @@ public class QuantumGrowth : MonoBehaviour
     public Seed growingSeed;
 
     bool isOccupied;
-    bool timerNeeded;
+    bool growTimerNeeded;
     public double time;
 
     private Image plantImage;
@@ -38,45 +38,46 @@ public class QuantumGrowth : MonoBehaviour
         //textBGImage = imagesInChildren[2];
         growthText = Pot.GetComponentInChildren<Text>();
         
-        if (PlayerPrefs.GetInt(Pot.name + "occupied") == 1)
+        isOccupied = PlayerPrefs.GetInt(Pot.name + "occupied") == 1;
+        if (!isOccupied)
         {
-            isOccupied = true;
-            timerNeeded = true;
+            Pot.interactable = true;
+            return;
         }
-        else
-            isOccupied = false;
         
-        if (!isOccupied) return;
-
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
+        plantImage.sprite = growingSeed.PlantSprite;
         
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
         var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
         time = PlayerPrefs.GetInt(Pot.name + "time") - timeSpan.TotalSeconds;
-        Pot.interactable = false;
-
-        if (time <= 0) EndGrowthCycle();
+        
+        growTimerNeeded = time > 0;
+        if (growTimerNeeded)
+            Pot.interactable = false;
     }
 
     private void Update()
     {
         CheckCooldownState();
 
-        if (timerNeeded)
+        if (growTimerNeeded)
         {
             if (time > 0)
                 time -= Time.deltaTime;
-            else 
-                EndGrowthCycle();
+            else
+                EndGrowthCycle();    
         }
+
     }
 
     private void CheckCooldownState()
     {
         var timeRemaining = cooldownEnd - DateTime.Now;
         var isOver = timeRemaining.TotalSeconds <= 0;
+        
         CooldownSign.SetActive(!isOver);
         CrossingButton.interactable = isOver;
         
@@ -107,19 +108,19 @@ public class QuantumGrowth : MonoBehaviour
     
     public void EndGrowthCycle()
     {
-        timerNeeded = false;
+        growTimerNeeded = false;
         Pot.interactable = true;
         growthText.text = "";
         plantImage.sprite = growingSeed.PlantSprite;
 
-        CrossingButton.interactable = false;
+        //CrossingButton.interactable = false;
         
         // 24 hour delay
         cooldownEnd = DateTime.Now.AddHours(24);
         Save();
-        
-        CooldownSign.SetActive(true);
-        UpdateSign(cooldownEnd.TimeOfDay);
+      
+        //CooldownSign.SetActive(true);
+        //UpdateSign(cooldownEnd.TimeOfDay);
     }
 
     private void UpdateSign(TimeSpan time)
@@ -136,7 +137,7 @@ public class QuantumGrowth : MonoBehaviour
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
         time = seed.GrowTime;
-        timerNeeded = true;
+        growTimerNeeded = true;
     }
 
     public void ApplyLightning(Seed seed) //Эта функция должна отвечать за анимацию молнии
@@ -147,7 +148,7 @@ public class QuantumGrowth : MonoBehaviour
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
         time = 0.5;
-        timerNeeded = true;
+        growTimerNeeded = true;
     }
 
     public void Clicked()
