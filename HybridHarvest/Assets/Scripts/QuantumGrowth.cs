@@ -125,7 +125,7 @@ public class QuantumGrowth : MonoBehaviour
     private void UpdateSign(TimeSpan time)
     {
         var signText = CooldownSign.GetComponentInChildren<Text>();
-        signText.text = $"Приходи через {time.Hours}:{time.Minutes}:{time.Seconds}";
+        signText.text = $"Приходи через {time:hh\\:mm\\:ss}";
     }
 
     public void PlantIt(Seed seed)
