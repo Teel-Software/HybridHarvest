@@ -35,7 +35,7 @@ public class OpenGame : MonoBehaviour
     /// </summary>
     private void ClearPlayerStats()
     {
-        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("money", 100);
         PlayerPrefs.SetInt("reputation", 0);
         PlayerPrefs.SetInt("reputationLimit", 500);
         PlayerPrefs.SetInt("reputationLevel", 1);

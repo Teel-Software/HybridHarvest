@@ -16,6 +16,12 @@ public class TextBestFit : MonoBehaviour
     {
         currTextComp = gameObject.GetComponent<Text>();
         currRT = gameObject.GetComponent<RectTransform>();
+
+        // default
+        if (minSize == 0)
+            minSize = maxSize >= 10 ? 10 : 1;
+        if (maxSize == 0)
+            maxSize = minSize <= 25 ? 25 : 100;
     }
 
     /// <summary>
