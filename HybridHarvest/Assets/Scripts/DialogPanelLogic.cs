@@ -73,6 +73,8 @@ public class DialogPanelLogic : MonoBehaviour
     [SerializeField] Image CharacterSpritePlace;
     [SerializeField] Inventory targetInventory;
 
+    public bool SkipTutorialBtnActive { get; set; }
+
     private Sprite FirstCharacterSprite;
     private Sprite SecondCharacterSprite;
     private Sprite NarratorSprite;
@@ -105,6 +107,7 @@ public class DialogPanelLogic : MonoBehaviour
         SecondCharacterSprite = secondCharacterSprite;
         NarratorSprite = narratorSprite;
         cleaningIsNeeded = false;
+        SkipTutorialBtnActive = false;
     }
 
     /// <summary>
@@ -148,6 +151,12 @@ public class DialogPanelLogic : MonoBehaviour
         speechIndex = 0;
         lastPhraseID = 0;
         Show();
+
+        var skipTutBtn = transform.Find("SkipTutorial").gameObject;
+        if (skipTutBtn != null)
+            skipTutBtn.SetActive(SkipTutorialBtnActive);
+        else Debug.Log("кнопку не нашёл " + SkipTutorialBtnActive.ToString());
+
         LoadNewPhrase();
     }
 

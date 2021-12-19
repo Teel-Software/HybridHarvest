@@ -525,6 +525,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 189950536}
+        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
+        m_MethodName: Tutorial_Exhibition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &74445847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +665,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115181157}
   m_CullTransparentMesh: 1
+--- !u!1 &189950535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 189950537}
+  - component: {fileID: 189950536}
+  - component: {fileID: 189950538}
+  m_Layer: 0
+  m_Name: TutorialHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &189950536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189950535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd46176f7d955842982655c34dccc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogPanel: {fileID: 338724733}
+  FirstCharacterSprite: {fileID: 21300000, guid: 254ab65fb76ad304d967a240cd0d2677, type: 3}
+  SecondCharacterSprite: {fileID: 21300000, guid: 0158df6d52a26c042bf6ba23c65b0f01, type: 3}
+  NarratorSprite: {fileID: 21300000, guid: 42f65c1bdf3b40d4e9e5b0c63f944a2b, type: 3}
+--- !u!4 &189950537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189950535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &189950538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189950535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06beb41487e5f954589eec62ac0d26a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainHandler: 1
 --- !u!1 &229205577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4104146254865441276, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
@@ -3846,6 +3919,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 189950536}
+        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
+        m_MethodName: Tutorial_Shop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1554585034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4274,6 +4359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 189950536}
+        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
+        m_MethodName: Tutorial_SideMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1727909675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4506,7 +4603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871862017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4638468, y: 0.566782, z: 68.164635}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4674,6 +4771,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NotificationCenter, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 189950536}
+        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
+        m_MethodName: Tutorial_Quests
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5074,6 +5183,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Drawinventory, Assembly-CSharp
         m_MethodName: SetPurpose
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 189950536}
+        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
+        m_MethodName: Tutorial_Inventory
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

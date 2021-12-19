@@ -1,5 +1,7 @@
+using CI.QuickSave;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +14,10 @@ public class ClearGameData : MonoBehaviour
     public void ClearAll()
     {
         PlayerPrefs.DeleteAll();
+
+        var quickSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave");
+        if (Directory.Exists(quickSavePath))
+            Directory.Delete(quickSavePath, true);
 
         ClearPlayerStats();
 
@@ -70,7 +76,7 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     private void ClearPlayerStats()
     {
-        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("money", 100);
         PlayerPrefs.SetInt("reputation", 0);
         PlayerPrefs.SetInt("reputationLimit", 500);
         PlayerPrefs.SetInt("reputationLevel", 1);
