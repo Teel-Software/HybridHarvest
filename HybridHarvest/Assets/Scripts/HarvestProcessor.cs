@@ -19,34 +19,36 @@ public class HarvestProcessor : MonoBehaviour
         for (var i = 0; i < seeds.Count; i++)
         {
             var seed = seeds[i];
-            
+
             var item = Instantiate(VegItem, Place);
             seedPlaces.Add(item);
-            
+
             var button = item.transform.Find("Button");
             //button.GetComponentInChildren<Text>().text = "Может сохранить?";
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
                 Inventory.GetComponent<Drawinventory>().SuccessfulAddition += () =>
-                 {
-                     seeds.Remove(seed);
-                     seedPlaces.Remove(item);
-                     Destroy(item);
-                     if (seedPlaces.Count == 0) ClearSpace();
-                 };
+                {
+                    seeds.Remove(seed);
+                    seedPlaces.Remove(item);
+                    Destroy(item);
+                    if (seedPlaces.Count == 0) ClearSpace();
+                };
                 Inventory.GetComponent<Drawinventory>().targetInventory.AddItem(seed);
+
+                Statistics.UpdateGrowedSeeds(seed.Name);
             });
-            
+
             var label = item.transform.Find("Text");
             label.GetComponent<Text>().text =
                 $"{seeds[i].NameInRussian} (англ. {seeds[i].Name}, лат. {seeds[i].NameInLatin})\n" +
                 $"Вкус: {seeds[i].Taste}\n" +
                 $"Габитус: {seeds[i].Gabitus}\n" +
                 $"Время роста: {seeds[i].GrowTime}";
-            
+
             var img = item.transform.Find("Image");
             img.GetComponent<Image>().sprite = seeds[i].PlantSprite;
-            
+
         }
     }
 
@@ -60,13 +62,13 @@ public class HarvestProcessor : MonoBehaviour
 
     public void SellAll()
     {
-        for(var i=0; i < seeds.Count; i++)
+        for (var i = 0; i < seeds.Count; i++)
         {
             Sell(seeds[i]);
             Destroy(seedPlaces[i]);
         }
         seeds.RemoveAll(x => x);
-        seedPlaces.RemoveAll(x=>x);
+        seedPlaces.RemoveAll(x => x);
         Patch.GetComponent<PatchGrowth>().ClearPatch();
         gameObject.SetActive(false);
         Save();
@@ -74,7 +76,7 @@ public class HarvestProcessor : MonoBehaviour
 
     public void ClearSpace()
     {
-        if(seeds.Count==0)
+        if (seeds.Count == 0)
             Patch.GetComponent<PatchGrowth>().ClearPatch();
         for (var i = 0; i < seeds.Count; i++)
         {
@@ -89,7 +91,7 @@ public class HarvestProcessor : MonoBehaviour
     {
         if (seeds.Count == 0) return;
         PlayerPrefs.SetInt(Patch.name + "seedsCount", seeds.Count);
-        for(var i=0; i< seeds.Count;i++)
-            PlayerPrefs.SetString(Patch.name + "seedElement"+i.ToString(), seeds[i].ToString());
+        for (var i = 0; i < seeds.Count; i++)
+            PlayerPrefs.SetString(Patch.name + "seedElement" + i.ToString(), seeds[i].ToString());
     }
 }

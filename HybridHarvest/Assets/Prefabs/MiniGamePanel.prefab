@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 1818408190813670338}
   - component: {fileID: 1818408190813670337}
   - component: {fileID: 1818408190813670336}
+  - component: {fileID: 7817315787793403696}
   m_Layer: 5
   m_Name: MiniGamePanel
   m_TagString: Untagged
@@ -670,6 +671,21 @@ MonoBehaviour:
   CrossingPerformer: {fileID: 0}
   InventoryFrame: {fileID: 0}
   ResultPlace: {fileID: 0}
+--- !u!114 &7817315787793403696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818408190813670350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e621eb1f87ddde4f97b1ea7f35991ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  InventoryFrame: {fileID: 0}
+  RewatchButton: {fileID: 0}
 --- !u!1 &5573232465771689866
 GameObject:
   m_ObjectHideFlags: 0

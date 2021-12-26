@@ -26,7 +26,7 @@ public class CreateMiniGame : MonoBehaviour
         var panel = transform.Find("Panel").gameObject;
         var textSample = panel.transform.Find("TextSample").gameObject;
         Blocker.SetActive(false);
-        DeleteChildren(GamingPlace);
+        GetComponent<ClearGameData>().ClearChildren(GamingPlace);
 
         for (var i = 0; i < ElementsCount; i++)
         {
@@ -74,6 +74,8 @@ public class CreateMiniGame : MonoBehaviour
     {
         InventoryFrame.UpdateActions();
         InventoryFrame.targetInventory.AddItem(currentSeed);
+
+        Statistics.UpdateCrossedSeeds(currentSeed.Name);
     }
 
     /// <summary>

@@ -6,21 +6,21 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public GameObject InventoryDrawer;
-    [SerializeField] public List<Seed> Elements = new List<Seed>();
-    [SerializeField] public Text MoneyInfo;
-    [SerializeField] public Text ReputationInfo;
-    [SerializeField] public Text EnergyInfo;
-    [SerializeField] public Text EnergyRegenTime;
+    public GameObject InventoryDrawer;
+    public List<Seed> Elements = new List<Seed>();
+    public Text MoneyInfo;
+    public Text ReputationInfo;
+    public Text EnergyInfo;
+    public Text EnergyRegenTime;
 
     public Action<Seed> onInventoryFull;
     public Action onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
 
-    public int ReputationLimit => 
-        (int)Math.Round((0.04 * Math.Pow(ReputationLevel, 3) + 
-                         0.8 * Math.Pow(ReputationLevel, 2) + 
+    public int ReputationLimit =>
+        (int)Math.Round((0.04 * Math.Pow(ReputationLevel, 3) +
+                         0.8 * Math.Pow(ReputationLevel, 2) +
                          2 * ReputationLevel) * 15);
     public int ReputationLevel;
     public int Energy { get; private set; }
@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
         if (EnergyInfo != null) EnergyInfo.text = $"{Energy}/{EnergyMax}";
         DrawEnergyTime();
     }
-    
+
     private void DrawEnergyTime()
     {
         if (Energy == EnergyMax)

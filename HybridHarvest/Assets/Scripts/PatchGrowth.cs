@@ -20,19 +20,19 @@ public class PatchGrowth : MonoBehaviour
     private Image textBGImage;
     private Text growthText;
     private Inventory _inventory;
-    
+
     /// <summary>
     /// Organizes plants on patch.
     /// </summary>
     private void Start()
     {
         _inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
-        
+
         var imagesInChildren = Patch.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
         textBGImage = imagesInChildren[2];
         growthText = Patch.GetComponentInChildren<Text>();
-        
+
         if (PlayerPrefs.GetInt(Patch.name + "occupied") == 1)
         {
             isOccupied = true;
@@ -44,12 +44,12 @@ public class PatchGrowth : MonoBehaviour
             textBGImage.enabled = false;
             return;
         }
-        
+
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
 
         DateTime oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
-        var timePassed = (DateTime.Now.Ticks - oldDate.Ticks)/10000000;
+        var timePassed = (DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
         time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed;
         Patch.interactable = false;
 
@@ -57,7 +57,7 @@ public class PatchGrowth : MonoBehaviour
         for (var i = 0; i < seedsCount; i++)
         {
             var seed = ScriptableObject.CreateInstance<Seed>();
-            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown"+ i.ToString()));
+            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown" + i.ToString()));
             grownSeeds.Add(seed);
         }
         if (time <= 0)
@@ -84,8 +84,9 @@ public class PatchGrowth : MonoBehaviour
                 {
                     if (formatTime.Hours != 0)
                         growthText.text = formatTime.Hours.ToString() + " ч. " + formatTime.Minutes.ToString() + " м.";
-                    else { 
-                        if(formatTime.Minutes > 9)
+                    else
+                    {
+                        if (formatTime.Minutes > 9)
                             growthText.text = formatTime.Minutes.ToString() + " м.";
                         else
                         {
@@ -111,7 +112,7 @@ public class PatchGrowth : MonoBehaviour
         PlayerPrefs.SetInt(Patch.name + "time", (int)time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
         PlayerPrefs.SetInt(Patch.name + "seedsCount", grownSeeds.Count);
-        for (var i = 0; i < grownSeeds.Count;i++)
+        for (var i = 0; i < grownSeeds.Count; i++)
         {
             PlayerPrefs.SetString(Patch.name + "grown" + i.ToString(), grownSeeds[i].ToString());
         }
@@ -159,10 +160,10 @@ public class PatchGrowth : MonoBehaviour
             InventoryFrame.gameObject.SetActive(true);
         }
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
-        if(grownSeeds.Count == 0 && growingSeed != null)
+        if (grownSeeds.Count == 0 && growingSeed != null)
         {
-            int plusSeeds = (int)Math.Round(UnityEngine.Random.value*(growingSeed.maxAmount-growingSeed.minAmount));
-            for (var i = 0; i < growingSeed.minAmount+ plusSeeds; i++)
+            int plusSeeds = (int)Math.Round(UnityEngine.Random.value * (growingSeed.maxAmount - growingSeed.minAmount));
+            for (var i = 0; i < growingSeed.minAmount + plusSeeds; i++)
                 grownSeeds.Add(MutateSeed(growingSeed));
         }
         if (grownSeeds.Count != 0)

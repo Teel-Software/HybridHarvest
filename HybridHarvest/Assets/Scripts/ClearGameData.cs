@@ -52,7 +52,7 @@ public class ClearGameData : MonoBehaviour
     /// <summary>
     /// Удаляет все дочерние объекты
     /// </summary>
-    public void DeleteChildren(GameObject obj)
+    public void ClearChildren(GameObject obj)
     {
         var allChildren = new HashSet<GameObject>();
 

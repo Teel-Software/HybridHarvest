@@ -64,6 +64,7 @@ public class GeneCrossing : MonoBehaviour
             CountParameter(first.GrowTime, first.GrowTimeGen, second.GrowTime, second.GrowTimeGen);
         OppositeSeedStats[2] = newSeed.GrowTime == first.GrowTime ? second.GrowTime : first.GrowTime;
 
+        //newSeed.Name = MixTwoNames(first.Name, second.Name, english: true);
         newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
 
         if (CurrentPot != null)
@@ -119,10 +120,10 @@ public class GeneCrossing : MonoBehaviour
     /// <summary>
     /// Gets first syllables from first word, last syllable from second word and returns mixed word
     /// </summary>
-    private string MixTwoNames(string firstName, string secondName)
+    private string MixTwoNames(string firstName, string secondName, bool english = false)
     {
-        var firstSyllables = GetSyllables(firstName);
-        var secondSyllables = GetSyllables(secondName);
+        var firstSyllables = GetSyllables(firstName, english);
+        var secondSyllables = GetSyllables(secondName, english);
         var result = string.Join("", firstSyllables.Take(firstSyllables.Count() - 1))
             + string.Join("", secondSyllables.Skip(secondSyllables.Count() - 1));
 
@@ -133,15 +134,18 @@ public class GeneCrossing : MonoBehaviour
     /// Breaks a word into syllables
     /// </summary>
     /// <returns>IEnumerable of syllables</returns>
-    private static IEnumerable<string> GetSyllables(string word)
+    private static IEnumerable<string> GetSyllables(string word, bool english = false)
     {
-        var vowels = "аоуиэыяюеё".ToCharArray();
+        var vowels = english
+            ? "aeiou"
+            : "аоуиэыяюеё";
+        var vowelsArr = vowels.ToCharArray();
         var vowelsIndexes = new List<int>();
         var result = new HashSet<string>();
         word = word.ToLower();
 
         for (var i = 0; i < word.Length; i++)
-            if (vowels.Contains(word[i]))
+            if (vowelsArr.Contains(word[i]))
                 vowelsIndexes.Add(i);
 
         for (var i = vowelsIndexes.Count - 1; i > 0; i--)

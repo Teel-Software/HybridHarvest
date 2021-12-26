@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using CI.QuickSave;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MarketButton : MonoBehaviour
 {
-    [SerializeField] public GameObject ConfirmationPanel;
-    [SerializeField] public Inventory targetInventory;
+    public GameObject ConfirmationPanel;
+    public Inventory targetInventory;
 
     /// <summary>
-    /// создаёт подтверждающую панель в магазине
+    /// Создаёт подтверждающую панель в магазине
     /// </summary>
-    /// <param name="name">Имя семечка</param>
-    public void PrepareConfirmation(string name)
+    /// <param name="seedName">Имя семечка</param>
+    public void PrepareConfirmation(string seedName)
     {
         var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Shop").transform);
         var panel = panelObj.transform.Find("Panel");
@@ -23,7 +25,7 @@ public class MarketButton : MonoBehaviour
         script.HasPrice = true;
         yes.onClick.AddListener(script.AddOneMore);
 
-        script.DefineItem(name);
+        script.DefineItem(seedName);
 
         panelObj.SetActive(true);
     }
