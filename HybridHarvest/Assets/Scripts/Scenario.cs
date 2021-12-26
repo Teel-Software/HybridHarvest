@@ -1,5 +1,6 @@
 ﻿using CI.QuickSave;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scenario : MonoBehaviour
 {
@@ -51,82 +52,69 @@ public class Scenario : MonoBehaviour
 
     public void Tutorial_Beginning()
     {
-        var key = "Tutorial_Beginning_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Добро пожаловать!");
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Меня зовут Дед Максим и я твой проводник на сегодня! Сейчас мы тебя быстро введём в курс дела.");
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Для начала нажми на вон ту стрелочку слева в центре. Не перепутай её с кнопкой выхода в главное меню, которая находится в левом верхнем углу!");
-
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1:
+                MakeTutorialPart("BeginningChoice",
+                   "Добро пожаловать! Меня зовут Дед Максим и я твой проводник на сегодня! Сейчас мы тебя быстро введём в курс дела.",
+                   "Для начала нажми на вон ту стрелочку слева в центре. Не перепутай её с кнопкой выхода в главное меню, которая находится в левом верхнем углу!");
+                break;
+            case 2:
+                MakeTutorialPart("BeginningField",
+                   "Это поле. Здесь можно посадить семена, которые есть у тебя на складе. Нажми на грядку, посмотри, что будет.");
+                break;
+            case 3:
+                MakeTutorialPart("BeginningLab",
+                   "Это лаборатория. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно только семена одного вида!");
+                break;
+            case 4:
+                MakeTutorialPart("BeginningQuantum",
+                   "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно что угодно, но один раз в день!");
+                break;
+        }
     }
 
     public void Tutorial_SideMenu()
     {
-        var key = "Tutorial_SideMenu_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.");
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
-
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        MakeTutorialPart("SideMenu",
+            "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
+            "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
     }
 
     public void Tutorial_Shop()
     {
-        var key = "Tutorial_Shop_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        MakeTutorialPart("Shop",
+            "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
     }
 
     public void Tutorial_Quests()
     {
-        var key = "Tutorial_Quests_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        MakeTutorialPart("Quests",
+            "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
     }
 
     public void Tutorial_Inventory()
     {
-        var key = "Tutorial_Inventory_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Это склад. Здесь хранятся все пакеты семян, которые ты получил. " +
-            "Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        MakeTutorialPart("Inventory",
+            "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
     }
 
     public void Tutorial_Exhibition()
     {
-        var key = "Tutorial_Exhibition_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
+        MakeTutorialPart("Exhibition",
+           "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
+    }
 
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-        DialogPanel.AddPhrase(NowTalking.Narrator, "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+    public void Tutorial_Market()
+    {
+        MakeTutorialPart("Market",
+           "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
+    }
+
+    public void Tutorial_HybridPanel()
+    {
+        MakeTutorialPart("HybridPanel",
+           "Это панель для скрещивания. Выбери семечко слева, затем семечко справа. После этого нажми \"Скрестить\" и наслаждайся результатом.");
     }
 
     /// <summary>
@@ -139,15 +127,22 @@ public class Scenario : MonoBehaviour
         writer.Commit();
     }
 
-    // шаблон
-    public void Tutorial_()
+    /// <summary>
+    /// Создаёт часть туториала
+    /// </summary>
+    /// <param name="keyPart">Название, по которому идёт сохранение</param>
+    /// <param name="phrases">Фразы, которые говорит рассказчик</param>
+    public void MakeTutorialPart(string keyPart, params string[] phrases)
     {
-        var key = "Tutorial__Played";
+        var key = $"Tutorial_{keyPart}_Played";
         if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
         else SaveTutorialData(key);
 
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-        DialogPanel.AddPhrase(NowTalking.Narrator, "");
+
+        foreach (var ph in phrases)
+            DialogPanel.AddPhrase(NowTalking.Narrator, ph);
+
         DialogPanel.SkipTutorialBtnActive = true;
         DialogPanel.StartDialog();
     }

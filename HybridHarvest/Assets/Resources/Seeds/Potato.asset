@@ -19,9 +19,9 @@ MonoBehaviour:
   maxAmount: 7
   ShopBuyPrice: 15
   PlantSprite: {fileID: 21300000, guid: 9be7f7c7fa3558547aec6ac8df1ef823, type: 3}
-  SproutSprite: {fileID: 0}
-  GrownSprite: {fileID: 0}
-  PacketSprite: {fileID: 21300000, guid: da013f14e33a1454f9f03aa4c611fec5, type: 3}
+  SproutSprite: {fileID: 21300000, guid: 4f71c54b46708954891b8c8202f9e497, type: 3}
+  GrownSprite: {fileID: 21300000, guid: 8dae01033a28b8c4e99649ff2b135cd5, type: 3}
+  PacketSprite: {fileID: 21300000, guid: 64cefc8c15d96a444ab0299b376278fb, type: 3}
   GabitusGen: 1
   Gabitus: 2
   TasteGen: 1
