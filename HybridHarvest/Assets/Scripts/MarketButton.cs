@@ -1,6 +1,4 @@
-﻿using CI.QuickSave;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MarketButton : MonoBehaviour
@@ -28,5 +26,16 @@ public class MarketButton : MonoBehaviour
         script.DefineItem(seedName);
 
         panelObj.SetActive(true);
+    }
+
+    public void CSVTest()
+    {
+        var stats = CSVReader.ParseSeedStats("Peas");
+        Debug.Log(string.Join(" ", stats.Gabitus));
+        Debug.Log(string.Join(" ", stats.Taste));
+        Debug.Log(string.Join(" ", stats.MinAmount));
+        Debug.Log(string.Join(" ", stats.MaxAmount));
+        Debug.Log(string.Join(" ", stats.MutationChance));
+        Debug.Log(string.Join(" ", stats.GrowTime));
     }
 }

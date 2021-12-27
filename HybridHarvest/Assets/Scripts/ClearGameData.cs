@@ -32,7 +32,7 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void DisableRewatchButton()
     {
-        if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
+        if (!QSReader.Create("GameState").Exists("GameInitialised") && RewatchButton != null)
             RewatchButton.SetActive(false);
     }
 
@@ -41,9 +41,14 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void ChangeStartSceneOrDisable()
     {
-        if (!PlayerPrefs.HasKey("GameInitialised"))
+        var key = "GameInitialised";
+
+        if (!QSReader.Create("GameState").Exists(key))
         {
-            PlayerPrefs.SetInt("GameInitialised", 1);
+            var writer = QuickSaveWriter.Create("GameState");
+            writer.Write(key, true);
+            writer.Commit();
+
             SceneManager.LoadScene(1);
         }
         else gameObject.SetActive(false);

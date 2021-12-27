@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
-[System.Serializable]
+[Serializable]
 
 public class Seed : ScriptableObject
 {
@@ -14,8 +14,8 @@ public class Seed : ScriptableObject
     {
         get
         {
-            var multiplier = 
-                Market.PriceMultipliers.ContainsKey(Name) ? 
+            var multiplier =
+                Market.PriceMultipliers.ContainsKey(Name) ?
                 Market.PriceMultipliers[Name] : 1.0f;
             return (int)(Taste * multiplier);
         }
@@ -36,8 +36,8 @@ public class Seed : ScriptableObject
     public int Taste;
 
     public Gen GrowTimeGen;
-    [SerializeField] public int GrowTime;
-    
+    public int GrowTime;
+
     /// <summary>
     /// Imports seed data from string
     /// </summary>
@@ -57,7 +57,7 @@ public class Seed : ScriptableObject
         PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0]);
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Sprout");
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[0] + "Grown");
-        
+
         UpdateRating();
 
         NameInRussian = parameters[10];
