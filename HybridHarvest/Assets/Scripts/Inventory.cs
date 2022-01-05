@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using CI.QuickSave;
 
 public class Inventory : MonoBehaviour
 {
@@ -158,7 +159,7 @@ public class Inventory : MonoBehaviour
 
     private void SaveData()
     {
-        PlayerPrefs.SetInt("money", Money);
+        /*PlayerPrefs.SetInt("money", Money);
 
         PlayerPrefs.SetInt("reputation", Reputation);
         PlayerPrefs.SetInt("reputationLevel", ReputationLevel);
@@ -170,7 +171,20 @@ public class Inventory : MonoBehaviour
         for (var i = 0; i < Elements.Count; i++)
             PlayerPrefs.SetString(i.ToString(), Elements[i].ToString());
 
-        PlayerPrefs.Save();
+        PlayerPrefs.Save();*/
+
+        var writer = QuickSaveWriter.Create("PlayerInventoryData");
+        writer.Write("money", Money)
+            .Write("reputation", Reputation)
+            .Write("reputationLevel", ReputationLevel)
+            .Write("energyMax", EnergyMax);
+        writer.Commit();
+
+        writer = QuickSaveWriter.Create("PlayerInventoryItems");
+        writer.Write("amount", Elements.Count);
+        for (var i = 0; i < Elements.Count; i++)
+            writer.Write(i.ToString(), Elements[i].ToString());
+        writer.Commit();
     }
 
     private void SaveEnergy()
@@ -184,22 +198,51 @@ public class Inventory : MonoBehaviour
 
     private void CollectData()
     {
-        Money = PlayerPrefs.GetInt("money");
+        /* Money = PlayerPrefs.GetInt("money");
 
-        Reputation = PlayerPrefs.GetInt("reputation");
-        ReputationLevel = PlayerPrefs.GetInt("reputationLevel");
+         Reputation = PlayerPrefs.GetInt("reputation");
+         ReputationLevel = PlayerPrefs.GetInt("reputationLevel");
+
+         Elements = new List<Seed>();
+
+         EnergyMax = PlayerPrefs.GetInt("energyMax");
+
+         var i = PlayerPrefs.GetInt("amount");
+         for (var j = 0; j < i; j++)
+         {
+             var parameters = PlayerPrefs.GetString(j.ToString());
+             var newSeed = ScriptableObject.CreateInstance<Seed>();
+             newSeed.SetValues(parameters);
+             Elements.Add(newSeed);
+         }*/
+        var reader = QSReader.Create("PlayerInventoryData");
+        if (reader.Exists("money"))
+        {
+            Money = reader.Read<int>("money");
+            Reputation = reader.Read<int>("reputation");
+            ReputationLevel = reader.Read<int>("reputationLevel");
+            EnergyMax = reader.Read<int>("energyMax");
+        }
+        else
+        {
+            Money = 0;
+            Reputation = 0;
+            ReputationLevel = 1;  //начинается с 1 т.к. формула неадекватно реагирует на 0
+            EnergyMax = 10;
+        }
 
         Elements = new List<Seed>();
-
-        EnergyMax = PlayerPrefs.GetInt("energyMax");
-
-        var i = PlayerPrefs.GetInt("amount");
-        for (var j = 0; j < i; j++)
+        reader = QSReader.Create("PlayerInventoryItems");
+        if (reader.Exists("amount"))
         {
-            var parameters = PlayerPrefs.GetString(j.ToString());
-            var newSeed = ScriptableObject.CreateInstance<Seed>();
-            newSeed.SetValues(parameters);
-            Elements.Add(newSeed);
+            var i = reader.Read<int>("amount");
+            for (var j = 0; j < i; j++)
+            {
+                var parameters = reader.Read<string>(j.ToString());
+                var newSeed = ScriptableObject.CreateInstance<Seed>();
+                newSeed.SetValues(parameters);
+                Elements.Add(newSeed);
+            }
         }
     }
 
