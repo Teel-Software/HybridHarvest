@@ -783,6 +783,7 @@ MonoBehaviour:
   Place: {fileID: 5010113884191736161}
   CurrentInventoryParent: {fileID: 5010113884177167040}
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
+  StatPanel: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
   FreeSpaceCounter: {fileID: 5459698639124235524}
   Purpose: 0
 --- !u!1 &5010113884191736174

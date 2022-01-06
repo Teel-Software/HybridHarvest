@@ -10,20 +10,24 @@ public class Market : MonoBehaviour
 {
     public static Dictionary<string, float> PriceMultipliers { get; private set; }
     private DateTime lastDate;
-    
-    private List<string> seedsAvailable;
+
+    private List<string> seedsAvailable
+    {
+        get
+        { 
+            var inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
+            return inventory.Elements.Select(el => el.Name).Distinct().ToList(); 
+        }
+    }
     
     private readonly int hoursToRefresh = 24;
     public void Awake()
     {
-        seedsAvailable = GetSeedsAvailable();
         Load();
     }
 
     public void Update()
     {
-        seedsAvailable = GetSeedsAvailable();
-        
         foreach (var seedName in seedsAvailable)
             if (!PriceMultipliers.ContainsKey(seedName))
                 PriceMultipliers[seedName] = 1.0f;
@@ -34,12 +38,6 @@ public class Market : MonoBehaviour
             (PriceMultipliers, lastDate) = GetNewMarketValues();
             Save();
         }
-    }
-    
-    public static List<string> GetSeedsAvailable()
-    {
-        var inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
-        return inventory.Elements.Select(el => el.Name).Distinct().ToList();
     }
 
     private (Dictionary<string,float> , DateTime) GetNewMarketValues()

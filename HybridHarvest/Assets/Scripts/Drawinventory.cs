@@ -9,8 +9,11 @@ public class Drawinventory : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
     [SerializeField] RectTransform Place; // место отрисовки
+    
     [SerializeField] public GameObject CurrentInventoryParent; //?
     [SerializeField] GameObject ConfirmationPanel;
+    [SerializeField] GameObject StatPanel;
+    
     [SerializeField] Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
@@ -133,8 +136,7 @@ public class Drawinventory : MonoBehaviour
             icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             alreadyDrawn.Add(icon);
         }
-        FreeSpaceCounter.text = targetInventory.Elements.Count.ToString()
-            + '/' + targetInventory.MaxItemsAmount.ToString();
+        FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
     }
 
     /// <summary>
@@ -176,6 +178,12 @@ public class Drawinventory : MonoBehaviour
     /// <param семечко="item"></param>
     private void PrepareConfirmation(GameObject item)
     {
+        /*
+        var seedItem = targetInventory.Elements[int.Parse(item.name)];
+        var stat = Instantiate(StatPanel, gameObject.transform);
+        var statDrawer = stat.GetComponentInChildren<StatPanelDrawer>();
+        statDrawer.PlantImage.sprite = seedItem.PlantSprite;
+        */
         var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform);
         var panel = panelObj.transform.Find("Panel");
         var text = panel.transform.Find("QuestionText").GetComponent<Text>();
