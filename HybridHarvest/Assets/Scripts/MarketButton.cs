@@ -37,5 +37,6 @@ public class MarketButton : MonoBehaviour
         Debug.Log(string.Join(" ", stats.MaxAmount));
         Debug.Log(string.Join(" ", stats.MutationChance));
         Debug.Log(string.Join(" ", stats.GrowTime));
+        Debug.Log(stats.ToString());
     }
 }

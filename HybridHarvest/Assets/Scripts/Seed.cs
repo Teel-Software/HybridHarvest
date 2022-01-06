@@ -38,6 +38,10 @@ public class Seed : ScriptableObject
     public Gen GrowTimeGen;
     public int GrowTime;
 
+    public MutationChance MutationPossibility;
+
+    public SeedStatistics LevelData;
+
     /// <summary>
     /// Imports seed data from string
     /// </summary>
@@ -60,12 +64,20 @@ public class Seed : ScriptableObject
         SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
         GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
 
+        LevelData = CSVReader.ParseSeedStats(parameters[0]);
+
+        MutationPossibility = (MutationChance)int.Parse(parameters[15]);
+        //Debug.Log(LevelData.ToString());
+
         UpdateRating();
     }
 
     public void UpdateRating()
     {
-        var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 10;
+        if(LevelData == null)
+            LevelData = CSVReader.ParseSeedStats(Name);
+        var rating = LevelData.Gabitus[Gabitus] + LevelData.Taste[Taste] + LevelData.MutationChance[MutationPossibility]
+            + LevelData.MinAmount[minAmount] + LevelData.GrowTime[GrowTime];
         var packetQuality = 0;
         switch (rating)
         {
@@ -100,7 +112,8 @@ public class Seed : ScriptableObject
                Taste + "|" + (int)TasteGen + "|" +
                minAmount + "|" + maxAmount +
                "|" + NameInRussian + "|" + NameInLatin + 
-               "|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name;
+               "|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
+               + "|" + (int)MutationPossibility;
     }
 }
 
@@ -109,4 +122,12 @@ public enum Gen
     Recessive,
     Mixed,
     Dominant
+}
+
+public enum MutationChance
+{
+    Low,
+    Normal,
+    High,
+    Ultra
 }
