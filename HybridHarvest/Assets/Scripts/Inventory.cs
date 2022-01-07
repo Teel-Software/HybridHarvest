@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
         ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
 
         ReputationLevel = 1;
-        //ReputationLimit =(int)Math.Round( (0.04* Math.Pow(ReputationLevel,3)
+        //ReputationLimit = (int)Math.Round( (0.04* Math.Pow(ReputationLevel,3)
         //    +0.8*ReputationLevel * ReputationLevel 
         //    + 2 *ReputationLevel)*15);
 

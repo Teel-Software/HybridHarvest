@@ -178,12 +178,6 @@ public class Drawinventory : MonoBehaviour
     /// <param семечко="item"></param>
     private void PrepareConfirmation(GameObject item)
     {
-        /*
-        var seedItem = targetInventory.Elements[int.Parse(item.name)];
-        var stat = Instantiate(StatPanel, gameObject.transform);
-        var statDrawer = stat.GetComponentInChildren<StatPanelDrawer>();
-        statDrawer.PlantImage.sprite = seedItem.PlantSprite;
-        */
         var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform);
         var panel = panelObj.transform.Find("Panel");
         var text = panel.transform.Find("QuestionText").GetComponent<Text>();
