@@ -66,7 +66,7 @@ public class Seed : ScriptableObject
 
     public void UpdateRating()
     {
-        var rating = Gabitus * 0.33 + Taste * 0.33 + GrowTime * 10;
+        var rating = Gabitus * 0.33 + Taste * 0.33 + (double)1000/GrowTime; //lol
         PacketQuality = 0;
         switch (rating)
         {

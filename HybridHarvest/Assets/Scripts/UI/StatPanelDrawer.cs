@@ -11,7 +11,7 @@ public class StatPanelDrawer : MonoBehaviour
     [SerializeField] private Text PlantName;
     [SerializeField] private TextMeshProUGUI PlantNameLatin;
     [SerializeField] private Image QualityColor;
-    [SerializeField] private Text QualityText;
+    [SerializeField] private TextMeshProUGUI QualityText;
 
     void Start()
     {
@@ -31,7 +31,26 @@ public class StatPanelDrawer : MonoBehaviour
         PlantNameLatin.text = $"(лат. {seed.NameInLatin})";
 
         QualityColor.sprite = Resources.Load<Sprite>("Packets\\Quality" + seed.PacketQuality);
-        QualityText.text = $"Качество {seed.PacketQuality}";
+        var qualityTxt = "";
+        switch (seed.PacketQuality)
+        {
+            case 0:
+                qualityTxt = "Обычный";
+                break;
+            case 1:
+                qualityTxt = "Особый";
+                break;
+            case 2:
+                qualityTxt = "Удивительный";
+                break;
+            case 3:
+                qualityTxt = "Мифический";
+                break;
+            case 4:
+                qualityTxt = "Легендарный";
+                break;
+        }
+        QualityText.text = $"{qualityTxt}";
 
         PlantDesc.text = $"Вкус - {seed.Taste}\n\n" +
                          $"Габитус - {seed.Gabitus}\n\n" +
