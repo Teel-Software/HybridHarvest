@@ -377,6 +377,8 @@ MonoBehaviour:
   PlantDesc: {fileID: 5303091067625800199}
   PlantName: {fileID: 3559575885464273810}
   PlantNameLatin: {fileID: 5750707278309890265}
+  QualityColor: {fileID: 2493719485866773712}
+  QualityText: {fileID: 4831951868810392189}
 --- !u!1 &2954797398393512317
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +741,7 @@ GameObject:
   - component: {fileID: 8833147808999708670}
   - component: {fileID: 4831951868810392189}
   m_Layer: 5
-  m_Name: RarityName
+  m_Name: QualityText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -800,12 +802,12 @@ MonoBehaviour:
     m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0420\u0435\u0434\u043A\u043E\u0441\u0442\u044C"
+  m_Text: "\u041A\u0430\u0447\u0435\u0441\u0442\u0432\u043E"
 --- !u!1 &5534423799468203021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1051,7 @@ GameObject:
   - component: {fileID: 3096309409284101333}
   - component: {fileID: 2493719485866773712}
   m_Layer: 5
-  m_Name: RarityColor
+  m_Name: QualityColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1103,8 +1105,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 14c3ca0afe047a14cb86bb66f5813264, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1112,7 +1114,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!1 &8971659089130421007
 GameObject:
   m_ObjectHideFlags: 0

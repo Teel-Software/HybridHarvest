@@ -10,6 +10,8 @@ public class StatPanelDrawer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PlantDesc;
     [SerializeField] private Text PlantName;
     [SerializeField] private TextMeshProUGUI PlantNameLatin;
+    [SerializeField] private Image QualityColor;
+    [SerializeField] private Text QualityText;
 
     void Start()
     {
@@ -27,7 +29,10 @@ public class StatPanelDrawer : MonoBehaviour
         
         PlantName.text = seed.NameInRussian;
         PlantNameLatin.text = $"(лат. {seed.NameInLatin})";
-        
+
+        QualityColor.sprite = Resources.Load<Sprite>("Packets\\Quality" + seed.PacketQuality);
+        QualityText.text = $"Качество {seed.PacketQuality}";
+
         PlantDesc.text = $"Вкус - {seed.Taste}\n\n" +
                          $"Габитус - {seed.Gabitus}\n\n" +
                          $"Время роста - {seed.GrowTime} секунд\n\n" +
