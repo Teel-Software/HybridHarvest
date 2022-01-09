@@ -225,7 +225,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Money = 0;
+            Money = 100;
             Reputation = 0;
             ReputationLevel = 1;  //начинается с 1 т.к. формула неадекватно реагирует на 0
             EnergyMax = 10;
