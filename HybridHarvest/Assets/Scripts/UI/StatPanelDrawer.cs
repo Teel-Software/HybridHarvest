@@ -10,9 +10,11 @@ public class StatPanelDrawer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PlantDesc;
     [SerializeField] private Text PlantName;
     [SerializeField] private TextMeshProUGUI PlantNameLatin;
+    
     [SerializeField] private Image QualityColor;
     [SerializeField] private TextMeshProUGUI QualityText;
 
+    [SerializeField] public GameObject ProceedButton;
     void Start()
     {
         

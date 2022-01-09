@@ -1,20 +1,16 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     public Inventory targetInventory;
     public Drawinventory drawInventory;
-    public bool HasPrice = false;
-    public GameObject Panel;
+    public bool HasPrice;
     public string ItemName;
-
-    private GameObject itemObject;
-    public GameObject ItemObject
-    {
-        set => itemObject = value;
-    }
+    
+    public GameObject ItemObject;
 
     private GameObject questionObject;
     private string originalQuestionText;
@@ -25,14 +21,6 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void OnEnable()
     {
         SetPrice();
-    }
-
-    /// <summary>
-    /// удаляет объект
-    /// </summary>
-    public void OnDisable()
-    {
-        Destroy(Panel);
     }
 
     /// <summary>
@@ -53,7 +41,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Sell()
     {
-        if (int.TryParse(itemObject.name, out int index))
+        if (int.TryParse(ItemObject.name, out int index))
         {
             var seed = targetInventory.Elements[index];
 
@@ -62,7 +50,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
             targetInventory.RemoveItem(index);
             drawInventory.Redraw();
 
-            Statistics.UpdateSelledSeeds(seed.Name);
+            Statistics.UpdateSoldSeeds(seed.Name);
         }
     }
 
@@ -71,7 +59,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Plant()
     {
-        if (int.TryParse(itemObject.name, out int index))
+        if (int.TryParse(ItemObject.name, out int index))
         {
             Seed toPlant = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
@@ -84,7 +72,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Select()
     {
-        if (int.TryParse(itemObject.name, out int index))
+        if (int.TryParse(ItemObject.name, out int index))
         {
             Seed toSelect = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
@@ -97,7 +85,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void SendToExhibition()
     {
-        if (int.TryParse(itemObject.name, out int index))
+        if (int.TryParse(ItemObject.name, out int index))
         {
             Seed toSend = targetInventory.Elements[index];
             drawInventory.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
@@ -127,7 +115,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
 
     public void ChangeItem(Seed newSeed)
     {
-        if (int.TryParse(itemObject.name, out int index))
+        if (int.TryParse(ItemObject.name, out int index))
         {
             if (index == targetInventory.Elements.Count)
             {
@@ -160,13 +148,13 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!HasPrice) return;
         var price = 0;
         //Случай покупки из магазина
-        if (itemObject is null)
+        if (ItemObject is null)
         {
             var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
             price = seed.ShopBuyPrice;
         }
         //Случай действия из инвентаря
-        else if (int.TryParse(itemObject.name, out int index))
+        else if (int.TryParse(ItemObject.name, out int index))
         {
             price = targetInventory.Elements[index].Price;
         }
