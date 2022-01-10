@@ -53,10 +53,10 @@ public class StatPanelDrawer : MonoBehaviour
                 break;
         }
         QualityText.text = $"{qualityTxt}";
-
+        var price = seed.ShopBuyPrice > 0 ? seed.ShopBuyPrice : seed.Price;
         PlantDesc.text = $"Вкус - {seed.Taste}\n\n" +
                          $"Габитус - {seed.Gabitus}\n\n" +
                          $"Время роста - {seed.GrowTime} секунд\n\n" +
-                         $"Цена - {seed.Price}<sprite name=\"Money\">\n";
+                         $"Цена - {price}<sprite name=\"Money\">\n";
     }
 }
