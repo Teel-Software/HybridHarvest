@@ -79,7 +79,6 @@ public class Seed : ScriptableObject
             LevelData = CSVReader.ParseSeedStats(Name);
         var rating = LevelData.Gabitus[Gabitus] + LevelData.Taste[Taste] + LevelData.MutationChance[MutationPossibility]
             + LevelData.MinAmount[minAmount] + LevelData.GrowTime[GrowTime];
-        var packetQuality = 0;
         switch (rating)
         {
             case var i when i < 40:
