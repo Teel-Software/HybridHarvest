@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   targetInventory: {fileID: 0}
+  StatPanel: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
 --- !u!1 &6602301322469722836
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   targetInventory: {fileID: 0}
+  StatPanel: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
 --- !u!1 &6602301322584530566
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   targetInventory: {fileID: 0}
+  StatPanel: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
 --- !u!1 &6602301323964905052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   targetInventory: {fileID: 0}
+  StatPanel: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
 --- !u!1 &7483175297595916037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfirmationPanel: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   targetInventory: {fileID: 0}
+  StatPanel: {fileID: 0}
 --- !u!1 &8390714145984156293
 GameObject:
   m_ObjectHideFlags: 0

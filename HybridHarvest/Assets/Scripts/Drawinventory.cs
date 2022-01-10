@@ -182,21 +182,25 @@ public class Drawinventory : MonoBehaviour
         Text text;
         Button yesButton;
         ConfirmationPanelLogic logicScript;
-        if (targetInventory.Elements.Count > index)
+        
+        var needsStats = targetInventory.Elements.Count > index;
+        if (needsStats)
         {
-            var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform).GetComponentInChildren<StatPanelDrawer>();
+            var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform)
+                .GetComponentInChildren<StatPanelDrawer>();
             statPanelDrawer.DisplayStats(targetInventory.Elements[index]);
+            
             text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
             yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
             logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
         }
         else
         {
-            var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform);
-            var panel = panelObj.transform.Find("Panel");
-            text = panel.transform.Find("QuestionText").GetComponent<Text>();
-            yesButton = panel.transform.Find("YesButton").GetComponent<Button>();
-            logicScript = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>(); 
+            var confPanelDrawer = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform)
+                .GetComponentInChildren<ConfirmationPanelDrawer>();
+            text = confPanelDrawer.QuestionText;
+            yesButton = confPanelDrawer.YesButton.GetComponent<Button>();
+            logicScript = confPanelDrawer.YesButton.GetComponentInChildren<ConfirmationPanelLogic>(); 
         }
 
         logicScript.targetInventory = targetInventory;
@@ -210,10 +214,18 @@ public class Drawinventory : MonoBehaviour
                 logicScript.HasPrice = true;
                 break;
             case PurposeOfDrawing.Change: // вызывается из кода инвентаря
-                if (int.Parse(item.name) == targetInventory.Elements.Count)
+                if (index == targetInventory.Elements.Count)
+                {
                     text.text = "Добавить";
+                    if (!needsStats)
+                    {
+                        text.text += $" ?";
+                    }
+                }
                 else
+                {
                     text.text = "Заменить";
+                }
                 yesButton.onClick.AddListener(()=> { 
                     logicScript.ChangeItem(changingSeed);
                     changeItem = false;

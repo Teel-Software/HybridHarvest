@@ -102,7 +102,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ChangeMoney(int amount)
+    public void AddMoney(int amount)
     {
         //Money += changingAmount > 0
         //    ? changingAmount/* / Devider*/

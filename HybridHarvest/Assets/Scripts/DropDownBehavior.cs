@@ -97,7 +97,7 @@ public class DropDownBehavior : MonoBehaviour
         int a;
         if (int.TryParse(item.name, out a))
         {
-            targetInventory.ChangeMoney(targetInventory.Elements[a].Price);
+            targetInventory.AddMoney(targetInventory.Elements[a].Price);
             targetInventory.ChangeReputation(targetInventory.Elements[a].Gabitus);
             targetInventory.RemoveItem(a);
             drawInventory.Redraw();

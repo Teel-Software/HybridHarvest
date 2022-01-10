@@ -61,7 +61,7 @@ public class AwardsCenter : MonoBehaviour
             switch (aw.CurrentPrize)
             {
                 case AwardType.Money:
-                    targetInventory.ChangeMoney(aw.Money);
+                    targetInventory.AddMoney(aw.Money);
                     targetInventory.SaveAllData();
                     break;
                 case AwardType.Seed:
