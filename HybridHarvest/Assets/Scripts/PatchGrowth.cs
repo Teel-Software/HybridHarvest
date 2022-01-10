@@ -190,14 +190,15 @@ public class PatchGrowth : MonoBehaviour
     {
         var changingStatsAmount = getAmountOfChangingStats(oldSeed.MutationPossibility);
 
-        bool[] index = new bool[5];
+        (bool[] index, int alreadyFull) = GetStatsFullness(oldSeed);
         var t = -1;
-        while(changingStatsAmount > 0)
+        while(changingStatsAmount > 0 && alreadyFull < 5)
         {
             t = (int)Math.Round((UnityEngine.Random.value * 100) % 4);
             if (!index[t])
             {
                 changingStatsAmount--;
+                alreadyFull++;
                 index[t] = true;
             }
         }
@@ -258,5 +259,27 @@ public class PatchGrowth : MonoBehaviour
             stats.Add(statsData.Last().Item1);
         
         return stats.ToArray();
+    }
+
+    private (bool[], int) GetStatsFullness(Seed oldSeed)
+    {
+        Tuple<int, int[]>[] statsData = {
+        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
+        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
+        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
+        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
+        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
+        };
+        bool[] index = new bool[5];
+        var amount =0;
+        for (var i = 0; i < statsData.Length - 1; i++)
+        {
+            if (statsData[i].Item1 == statsData[i].Item2.Last())
+            {
+                index[i] = true;
+                amount++;
+            }
+        }
+        return (index, amount);
     }
 }
