@@ -28,6 +28,7 @@ public class Seed : ScriptableObject
     public Sprite GrownSprite;
     //example import .\Packets\Packet0.png
     public Sprite PacketSprite;
+    public int PacketQuality { get; private set; }
 
     public Gen GabitusGen;
     public int Gabitus;
@@ -82,22 +83,22 @@ public class Seed : ScriptableObject
         switch (rating)
         {
             case var i when i < 40:
-                packetQuality = 0;
+                PacketQuality = 0;
                 break;
             case var i when i >= 40 && i < 60:
-                packetQuality = 1;
+                PacketQuality = 1;
                 break;
             case var i when i >= 60 && i < 80:
-                packetQuality = 2;
+                PacketQuality = 2;
                 break;
             case var i when i >= 80 && i < 95:
-                packetQuality = 3;
+                PacketQuality = 3;
                 break;
             case var i when i >= 95:
-                packetQuality = 4;
+                PacketQuality = 4;
                 break;
         }
-        PacketSprite = Resources.Load<Sprite>("Packets\\Packet" + packetQuality);
+        PacketSprite = Resources.Load<Sprite>("Packets\\Packet" + PacketQuality);
     }
 
     /// <summary>

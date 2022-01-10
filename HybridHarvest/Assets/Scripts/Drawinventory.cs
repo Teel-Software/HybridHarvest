@@ -178,61 +178,82 @@ public class Drawinventory : MonoBehaviour
     /// <param семечко="item"></param>
     private void PrepareConfirmation(GameObject item)
     {
-        /*
-        var seedItem = targetInventory.Elements[int.Parse(item.name)];
-        var stat = Instantiate(StatPanel, gameObject.transform);
-        var statDrawer = stat.GetComponentInChildren<StatPanelDrawer>();
-        statDrawer.PlantImage.sprite = seedItem.PlantSprite;
-        */
-        var panelObj = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform);
-        var panel = panelObj.transform.Find("Panel");
-        var text = panel.transform.Find("QuestionText").GetComponent<Text>();
-        var yes = panel.transform.Find("YesButton").GetComponent<Button>();
-        var script = panel.transform.Find("YesButton").GetComponent<ConfirmationPanelLogic>();
+        if (!int.TryParse(item.name, out var index)) return;
+        Text text;
+        Button yesButton;
+        ConfirmationPanelLogic logicScript;
+        
+        var needsStats = targetInventory.Elements.Count > index;
+        if (needsStats)
+        {
+            var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform)
+                .GetComponentInChildren<StatPanelDrawer>();
+            statPanelDrawer.DisplayStats(targetInventory.Elements[index]);
+            
+            text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
+            yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
+            logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
+        }
+        else
+        {
+            var confPanelDrawer = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform)
+                .GetComponentInChildren<ConfirmationPanelDrawer>();
+            text = confPanelDrawer.QuestionText;
+            yesButton = confPanelDrawer.YesButton.GetComponent<Button>();
+            logicScript = confPanelDrawer.YesButton.GetComponentInChildren<ConfirmationPanelLogic>(); 
+        }
 
-        script.targetInventory = targetInventory;
-        script.drawInventory = gameObject.GetComponent<Drawinventory>();
+        logicScript.targetInventory = targetInventory;
+        logicScript.drawInventory = this;
 
         switch (Purpose)
         {
-            case PurposeOfDrawing.Sell: //через кнопку инвентаря в боковом меню
+            case PurposeOfDrawing.Sell: // через кнопку инвентаря в боковом меню
                 text.text = "Продать";
-                yes.onClick.AddListener(script.Sell);
-                script.HasPrice = true;
+                yesButton.onClick.AddListener(logicScript.Sell);
+                logicScript.HasPrice = true;
                 break;
-            case PurposeOfDrawing.Change://вызывается из кода инвентаря
-                if (int.Parse(item.name) == targetInventory.Elements.Count)
-                    text.text = "Добавить?";
+            case PurposeOfDrawing.Change: // вызывается из кода инвентаря
+                if (index == targetInventory.Elements.Count)
+                {
+                    text.text = "Добавить";
+                    if (!needsStats)
+                    {
+                        text.text += $" ?";
+                    }
+                }
                 else
+                {
                     text.text = "Заменить";
-                yes.onClick.AddListener(()=> { 
-                    script.ChangeItem(changingSeed);
+                }
+                yesButton.onClick.AddListener(()=> { 
+                    logicScript.ChangeItem(changingSeed);
                     changeItem = false;
                     gameObject.SetActive(false);
                     targetInventory.SaveAllData();
                     SuccessfulAddition?.Invoke();
                 });
                 break;
-            case PurposeOfDrawing.Plant://через код на грядке
+            case PurposeOfDrawing.Plant: // через код на грядке
                 text.text = "Посадить";
-                yes.onClick.AddListener(script.Plant);
+                yesButton.onClick.AddListener(logicScript.Plant);
                 break;
-            case PurposeOfDrawing.AddToLab://через код на кнопке лаборатории
+            case PurposeOfDrawing.AddToLab: // через код на кнопке лаборатории
                 text.text = "Выбрать";
-                yes.onClick.AddListener(script.Select);
+                yesButton.onClick.AddListener(logicScript.Select);
                 break;
-            case PurposeOfDrawing.AddToExhibition://через код на кнопке выставки
+            case PurposeOfDrawing.AddToExhibition: // через код на кнопке выставки
                 text.text = "Отправить";
-                yes.onClick.AddListener(script.SendToExhibition);
+                yesButton.onClick.AddListener(logicScript.SendToExhibition);
                 break;
         }
 
-        script.ItemObject = item;
+        logicScript.ItemObject = item;
 
-        if (int.TryParse(item.name, out var index) && targetInventory.Elements.Count > index)
-            script.DefineItem(targetInventory.Elements[index]);
+        //if (int.TryParse(item.name, out var index) && targetInventory.Elements.Count > index)
+        //    logicScript.DefineItem(targetInventory.Elements[index]);
 
-        panelObj.SetActive(true);
+        //panelObj.SetActive(true);
     }
 
     /// <summary>

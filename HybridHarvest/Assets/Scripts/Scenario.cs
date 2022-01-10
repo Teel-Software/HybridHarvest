@@ -1,6 +1,7 @@
 ﻿using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Scenario : MonoBehaviour
 {
@@ -55,20 +56,20 @@ public class Scenario : MonoBehaviour
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 1:
-                MakeTutorialPart("BeginningChoice",
+                ExecuteTutorialPart("BeginningChoice", "SceneButtonField",
                    "Добро пожаловать! Меня зовут Дед Максим и я твой проводник на сегодня! Сейчас мы тебя быстро введём в курс дела.",
                    "Для начала нажми на вон ту стрелочку слева в центре. Не перепутай её с кнопкой выхода в главное меню, которая находится в левом верхнем углу!");
                 break;
             case 2:
-                MakeTutorialPart("BeginningField",
+                ExecuteTutorialPart("BeginningField", "ExitScene",
                    "Это поле. Здесь можно посадить семена, которые есть у тебя на складе. Нажми на грядку, посмотри, что будет.");
                 break;
             case 3:
-                MakeTutorialPart("BeginningLab",
+                ExecuteTutorialPart("BeginningLab", "ExitScene",
                    "Это лаборатория. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно только семена одного вида!");
                 break;
             case 4:
-                MakeTutorialPart("BeginningQuantum",
+                ExecuteTutorialPart("BeginningQuantum", "ExitScene",
                    "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно что угодно, но один раз в день!");
                 break;
         }
@@ -76,45 +77,73 @@ public class Scenario : MonoBehaviour
 
     public void Tutorial_SideMenu()
     {
-        MakeTutorialPart("SideMenu",
-            "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
+        ExecuteTutorialPart("SideMenu",
+            "", "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
             "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
     }
 
     public void Tutorial_Shop()
     {
-        MakeTutorialPart("Shop",
-            "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
+        ExecuteTutorialPart("Shop",
+            "", "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
     }
 
     public void Tutorial_Quests()
     {
-        MakeTutorialPart("Quests",
-            "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
+        ExecuteTutorialPart("Quests",
+            "", "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
     }
 
     public void Tutorial_Inventory()
     {
-        MakeTutorialPart("Inventory",
-            "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
+        ExecuteTutorialPart("Inventory",
+            "", "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
     }
 
     public void Tutorial_Exhibition()
     {
-        MakeTutorialPart("Exhibition",
-           "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
+        ExecuteTutorialPart("Exhibition",
+           "", "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
     }
 
     public void Tutorial_Market()
     {
-        MakeTutorialPart("Market",
-           "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
+        ExecuteTutorialPart("Market",
+           "", "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
     }
 
     public void Tutorial_HybridPanel()
     {
-        MakeTutorialPart("HybridPanel",
-           "Это панель для скрещивания. Выбери семечко слева, затем семечко справа. После этого нажми \"Скрестить\" и наслаждайся результатом.");
+        ExecuteTutorialPart("HybridPanel",
+           "", "Это панель для скрещивания. Выбери семечко слева, затем семечко справа. После этого нажми \"Скрестить\" и наслаждайся результатом.");
+    }
+
+    /// <summary>
+    /// Проигрывает часть туториала
+    /// </summary>
+    /// <param name="keyPart">Название, по которому идёт сохранение</param>
+    /// <param name="nextButtonName">Название кнопки, которую следует сделать активной после окончания части вступления</param>
+    /// <param name="phrases">Фразы, которые говорит рассказчик</param>
+    private void ExecuteTutorialPart(string keyPart, string nextButtonName, params string[] phrases)
+    {
+        var key = $"Tutorial_{keyPart}_Played";
+        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
+
+        if (keyPart.Contains("Beginning"))
+            DisableAllButtons();
+        SaveTutorialData(key);
+
+        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
+
+        foreach (var ph in phrases)
+            DialogPanel.AddPhrase(NowTalking.Narrator, ph);
+
+        DialogPanel.SkipTutorialBtnActive = true;
+        DialogPanel.StartDialog();
+
+        var btn = GameObject.Find(nextButtonName);
+        if (btn != null)
+            btn.GetComponent<Button>().interactable = true;
     }
 
     /// <summary>
@@ -127,23 +156,11 @@ public class Scenario : MonoBehaviour
         writer.Commit();
     }
 
-    /// <summary>
-    /// Создаёт часть туториала
-    /// </summary>
-    /// <param name="keyPart">Название, по которому идёт сохранение</param>
-    /// <param name="phrases">Фразы, которые говорит рассказчик</param>
-    public void MakeTutorialPart(string keyPart, params string[] phrases)
+    private void DisableAllButtons()
     {
-        var key = $"Tutorial_{keyPart}_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-        else SaveTutorialData(key);
-
-        DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
-
-        foreach (var ph in phrases)
-            DialogPanel.AddPhrase(NowTalking.Narrator, ph);
-
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        var allButtons = canvas.GetComponentsInChildren<Button>();
+        foreach (var btn in allButtons)
+            btn.interactable = false;
     }
 }

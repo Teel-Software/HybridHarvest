@@ -8,7 +8,7 @@ public static class Statistics
         UpdateSeedInformation("PurchasedSeeds", seedName);
     }
 
-    public static void UpdateSelledSeeds(string seedName)
+    public static void UpdateSoldSeeds(string seedName)
     {
         UpdateSeedInformation("SelledSeeds", seedName);
     }

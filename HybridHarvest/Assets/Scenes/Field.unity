@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 316308800}
   - component: {fileID: 316308798}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: ExitScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,7 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9a4923e7c8f174e90697634e991520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RewatchButton: {fileID: 0}
+  RewatchBeginningBtn: {fileID: 0}
+  ClearGameData: {fileID: 0}
 --- !u!114 &316308801
 MonoBehaviour:
   m_ObjectHideFlags: 0

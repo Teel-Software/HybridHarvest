@@ -1,23 +1,24 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OpenGame : MonoBehaviour
 {
-    [SerializeField] GameObject RewatchButton;
+    [SerializeField] GameObject RewatchBeginningBtn;
+    [SerializeField] ClearGameData ClearGameData;
 
     /// <summary>
     /// Меняет сцену
     /// </summary>
-    /// <param номер следующей сцены ="sceneNum"></param>
+    /// <param name="sceneNum">Номер следующей сцены</param>
     public void ChangeScene(int sceneNum)
     {
-        if (!PlayerPrefs.HasKey("GameInitialised") && RewatchButton != null)
+        // проверка на первый заход в игру
+        if (!QSReader.Create("GameState").Exists("GameInitialised")
+            && RewatchBeginningBtn != null)
         {
-            ClearPlayerStats();
+            ClearGameData.ClearAll();
             InitializeBeginning();
-            PlayerPrefs.Save();
         }
         else
         {
@@ -31,26 +32,10 @@ public class OpenGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Приводит статистику игрока к дефолтным значениям
-    /// </summary>
-    private void ClearPlayerStats()
-    {
-        PlayerPrefs.SetInt("money", 100);
-        PlayerPrefs.SetInt("reputation", 0);
-        PlayerPrefs.SetInt("reputationLimit", 500);
-        PlayerPrefs.SetInt("reputationLevel", 1);
-        PlayerPrefs.SetInt("amount", 0);
-        PlayerPrefs.SetInt("energyMax", 10);
-        PlayerPrefs.SetInt("energy", 0);
-        PlayerPrefs.SetFloat("energytimebuffer", 0);
-        PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
-    }
-
-    /// <summary>
     /// Запускает вступительные слайды
     /// </summary>
     private void InitializeBeginning()
     {
-        RewatchButton.GetComponent<Button>().onClick.Invoke();
+        RewatchBeginningBtn.GetComponent<Button>().onClick.Invoke();
     }
 }

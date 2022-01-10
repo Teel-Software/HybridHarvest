@@ -9,7 +9,7 @@ public class ClearGameData : MonoBehaviour
 {
     [SerializeField] Inventory Inventory;
     [SerializeField] Drawinventory InventoryFrame;
-    [SerializeField] GameObject RewatchButton; // кнопка просмотра вступления
+    [SerializeField] GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
 
     public void ClearAll()
     {
@@ -23,17 +23,33 @@ public class ClearGameData : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Inventory.Awake();
-        InventoryFrame.Redraw();
+        if (Inventory != null)
+            Inventory.Awake();
+        if (InventoryFrame != null)
+            InventoryFrame.Redraw();
     }
 
     /// <summary>
-    /// Выключает кнопку просмотра вступления
+    /// Выключает кнопки просмотра начальных роликов
     /// </summary>
-    public void DisableRewatchButton()
+    public void DisableRewatchButtons()
     {
-        if (!QSReader.Create("GameState").Exists("GameInitialised") && RewatchButton != null)
-            RewatchButton.SetActive(false);
+        if (!QSReader.Create("GameState").Exists("GameInitialised") && RewatchButtons != null)
+            foreach (var btn in RewatchButtons)
+                btn.SetActive(false);
+    }
+
+    /// <summary>
+    /// Перезапускает туториал
+    /// </summary>
+    public void WatchTutorial()
+    {
+        var tutorialSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave\\TutorialState.json");
+        if (File.Exists(tutorialSavePath))
+            File.Delete(tutorialSavePath);
+        else Debug.Log($@"Файл {tutorialSavePath} не найден.");
+
+        SceneManager.LoadScene(1);
     }
 
     /// <summary>

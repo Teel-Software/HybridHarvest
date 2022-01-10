@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
         ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
 
         ReputationLevel = 1;
-        //ReputationLimit =(int)Math.Round( (0.04* Math.Pow(ReputationLevel,3)
+        //ReputationLimit = (int)Math.Round( (0.04* Math.Pow(ReputationLevel,3)
         //    +0.8*ReputationLevel * ReputationLevel 
         //    + 2 *ReputationLevel)*15);
 
@@ -102,7 +102,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ChangeMoney(int amount)
+    public void AddMoney(int amount)
     {
         //Money += changingAmount > 0
         //    ? changingAmount/* / Devider*/
@@ -225,7 +225,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Money = 0;
+            Money = 100;
             Reputation = 0;
             ReputationLevel = 1;  //начинается с 1 т.к. формула неадекватно реагирует на 0
             EnergyMax = 10;

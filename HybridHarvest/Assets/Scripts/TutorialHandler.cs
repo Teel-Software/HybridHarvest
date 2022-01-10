@@ -1,14 +1,12 @@
-using CI.QuickSave;
+﻿using CI.QuickSave;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialHandler : MonoBehaviour
 {
-    [SerializeField] bool MainHandler;
-
     void Start()
     {
-        if (MainHandler)
-            GetComponent<Scenario>().Tutorial_Beginning();
+        GetComponent<Scenario>()?.Tutorial_Beginning();
     }
 
     public void SkipTutorial()
@@ -16,5 +14,8 @@ public class TutorialHandler : MonoBehaviour
         var writer = QuickSaveWriter.Create("TutorialState");
         writer.Write("TutorialSkipped", true);
         writer.Commit();
+
+        // перезагружает сцену, чтобы неактивные кнопки обновились
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
