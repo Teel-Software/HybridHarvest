@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
+using System.Linq;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -187,18 +188,68 @@ public class PatchGrowth : MonoBehaviour
 
     private Seed MutateSeed(Seed oldSeed)
     {
-        var percentage = UnityEngine.Random.value;
+        var changingStatsAmount = getAmountOfChangingStats(oldSeed.MutationPossibility);
+
+        bool[] index = new bool[5];
+        var t = -1;
+        while(changingStatsAmount > 0)
+        {
+            t = (int)Math.Round((UnityEngine.Random.value * 100) % 5);
+            if (!index[t])
+            {
+                changingStatsAmount--;
+                index[t] = true;
+            }
+        }
+
+        var newStats = MutateStats(oldSeed, index);
         var newSeed = ScriptableObject.CreateInstance<Seed>();
         newSeed.SetValues(oldSeed.ToString());
-        var plusAmount = UnityEngine.Random.value;
-        if (percentage < 0.5 && newSeed.Gabitus <= 100)
-        {
-            newSeed.Gabitus += (int)(plusAmount * 5);
-        }
-        else if (newSeed.Taste <= 100)
-        {
-            newSeed.Taste += (int)(plusAmount * 5);
-        }
+        newSeed.Gabitus = newStats[0];
+        newSeed.Taste = newStats[1];
+        newSeed.GrowTime = newStats[2];
+        newSeed.minAmount = newStats[3];
+        newSeed.MutationPossibility =  (MutationChance)newStats[4];
         return newSeed;
+    }
+
+    private int getAmountOfChangingStats(MutationChance basicMutation)
+    {
+        var mutation = (int)basicMutation;
+        var percentage = UnityEngine.Random.value;
+        if (percentage <= 0.2)
+            return 2+ mutation;
+        if (percentage <= 0.4)
+            return 1 + mutation;
+        if (percentage <= 0.6)
+            return mutation;
+        if (percentage <= 0.6)
+            return (mutation-1)>0 ? mutation - 1 : 0;
+        if (percentage <= 0.8)
+            return (mutation - 2) > 0 ? mutation - 2 : 0;
+        return 0;
+    }
+
+    private int[] MutateStats(Seed oldSeed, bool[] index)
+    {
+        Tuple<int, int[]>[] statsData = {
+        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
+        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
+        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
+        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
+        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
+        };
+        List<int> stats = new List<int>();
+        for (var i = 0; i < statsData.Length; i++)
+        {
+            if (index[i] && Array.IndexOf(statsData[i].Item2, statsData[i].Item1) + 1 < statsData[i].Item2.Length)
+            {
+                stats.Add(statsData[i].Item2[Array.IndexOf(statsData[i].Item2, statsData[i].Item1) + 1]);
+            }
+            else
+                stats.Add(statsData[i].Item1);
+        }
+        
+        return stats.ToArray();
     }
 }
