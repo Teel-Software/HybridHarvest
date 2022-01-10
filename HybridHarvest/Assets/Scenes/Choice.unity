@@ -5018,6 +5018,10 @@ PrefabInstance:
       value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 1358692507042594874, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: StatPanel
+      value: 
+      objectReference: {fileID: 225713377576896546, guid: 79a5b5ad555a2894e8c3958e3d482eee, type: 3}
+    - target: {fileID: 1358692507042594874, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: targetInventory
       value: 
       objectReference: {fileID: 1871862018}

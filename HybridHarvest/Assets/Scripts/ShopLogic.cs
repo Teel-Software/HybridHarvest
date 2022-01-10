@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class ShopLogic : MonoBehaviour
 {
-    public GameObject ConfirmationPanel;
+    
     public Inventory targetInventory;
-
     [SerializeField] public GameObject StatPanel;
+    [SerializeField] public GameObject ConfirmationPanel;
     /// <summary>
     /// Создаёт подтверждающую панель в магазине
     /// </summary>
