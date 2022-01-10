@@ -194,7 +194,7 @@ public class PatchGrowth : MonoBehaviour
         var t = -1;
         while(changingStatsAmount > 0)
         {
-            t = (int)Math.Round((UnityEngine.Random.value * 100) % 5);
+            t = (int)Math.Round((UnityEngine.Random.value * 100) % 4);
             if (!index[t])
             {
                 changingStatsAmount--;
@@ -210,6 +210,7 @@ public class PatchGrowth : MonoBehaviour
         newSeed.GrowTime = newStats[2];
         newSeed.minAmount = newStats[3];
         newSeed.MutationPossibility =  (MutationChance)newStats[4];
+        newSeed.maxAmount = newStats[5];
         return newSeed;
     }
 
@@ -238,9 +239,10 @@ public class PatchGrowth : MonoBehaviour
         Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
         Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
         Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
+        Tuple.Create(oldSeed.maxAmount, oldSeed.LevelData.MaxAmount.Keys.ToArray())
         };
         List<int> stats = new List<int>();
-        for (var i = 0; i < statsData.Length; i++)
+        for (var i = 0; i < statsData.Length -1; i++)
         {
             if (index[i] && Array.IndexOf(statsData[i].Item2, statsData[i].Item1) + 1 < statsData[i].Item2.Length)
             {
@@ -249,6 +251,11 @@ public class PatchGrowth : MonoBehaviour
             else
                 stats.Add(statsData[i].Item1);
         }
+
+        if (stats[3] != oldSeed.minAmount)
+            stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
+        else
+            stats.Add(statsData.Last().Item1);
         
         return stats.ToArray();
     }
