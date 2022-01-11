@@ -117,7 +117,7 @@ public class DropDownBehavior : MonoBehaviour
             drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
             //targetInventory.RemoveItem(a);
             //drawinventory.Redraw();
-            drawInventory.CurrentInventoryParent.SetActive(false);
+            drawInventory.InventoryGameObject.SetActive(false);
         }
     }
 
@@ -134,7 +134,7 @@ public class DropDownBehavior : MonoBehaviour
             drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toPlant);
             //targetInventory.RemoveItem(a);
             //drawinventory.Redraw();
-            drawInventory.CurrentInventoryParent.SetActive(false);
+            drawInventory.InventoryGameObject.SetActive(false);
         }
     }
 }

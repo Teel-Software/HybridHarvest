@@ -8,9 +8,10 @@ using System;
 public class Drawinventory : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
-    [SerializeField] RectTransform Place; // место отрисовки
-    
-    [SerializeField] public GameObject CurrentInventoryParent; //?
+    // Место отрисовки
+    [SerializeField] RectTransform Place;
+    // Объект к которому привязан скрипт
+    public GameObject InventoryGameObject;
     [SerializeField] GameObject ConfirmationPanel;
     [SerializeField] GameObject StatPanel;
     

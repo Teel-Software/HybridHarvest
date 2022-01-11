@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
+    [SerializeField] private GameObject parentGameObject;
     public Inventory targetInventory;
     public Drawinventory drawInventory;
     public bool HasPrice;
@@ -14,15 +15,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
 
     private GameObject questionObject;
     private string originalQuestionText;
-
-    /// <summary>
-    /// Добавляет надпись о цене, если требуется
-    /// </summary>
-    public void OnEnable()
-    {
-        SetPrice();
-    }
-
+    
     /// <summary>
     /// Покупает семечко
     /// </summary>
@@ -32,6 +25,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         targetInventory.AddItem(seed);
 
         Statistics.UpdatePurchasedSeeds(seed.Name);
+        parentGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -49,6 +43,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
         drawInventory.Redraw();
 
         Statistics.UpdateSoldSeeds(seed.Name);
+        
+        parentGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -60,7 +56,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toPlant = targetInventory.Elements[index];
         drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
-        drawInventory.CurrentInventoryParent.SetActive(false);
+        drawInventory.InventoryGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -72,7 +68,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toSelect = targetInventory.Elements[index];
         drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
-        drawInventory.CurrentInventoryParent.SetActive(false);
+        drawInventory.InventoryGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -84,9 +80,30 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toSend = targetInventory.Elements[index];
         drawInventory.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
-        drawInventory.CurrentInventoryParent.SetActive(false);
+        drawInventory.InventoryGameObject.SetActive(false);
     }
-
+    
+    /// <summary>
+    /// Заменяет семечко на другое
+    /// </summary>   
+    public void ChangeItem(Seed newSeed)
+    {
+        if (!int.TryParse(ItemObject.name, out int index)) return;
+        
+        if (index == targetInventory.Elements.Count)
+        {
+            targetInventory.Elements.Add(newSeed);
+        }
+        else
+        {
+            targetInventory.AddMoney(targetInventory.Elements[index].Price);
+            targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
+            targetInventory.Elements[index] = newSeed;
+        }
+        drawInventory.Redraw();
+        parentGameObject.SetActive(false);
+    }
+    
     /// <summary>
     /// Добавляет к основному тексту название растения
     /// <param name="itemName">Имя растения на английском</param>
@@ -107,23 +124,6 @@ public class ConfirmationPanelLogic : MonoBehaviour
         UpdateQuestionText(seed.NameInRussian);
     }
 
-    public void ChangeItem(Seed newSeed)
-    {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
-        
-        if (index == targetInventory.Elements.Count)
-        {
-            targetInventory.Elements.Add(newSeed);
-        }
-        else
-        {
-            targetInventory.AddMoney(targetInventory.Elements[index].Price);
-            targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
-            targetInventory.Elements[index] = newSeed;
-        }
-        drawInventory.Redraw();
-    }
-
     private void UpdateQuestionText(string itemName)
     {
         var questionText = transform.parent.Find("QuestionText").GetComponent<Text>();
@@ -133,6 +133,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!HasPrice) questionText.text += "?";
     }
 
+    void OnEnable()
+    {
+        //SetPrice();
+    }
+    
     /// <summary>
     /// Добавляет ко второму текстовому объекту цену объекта семени
     /// </summary>

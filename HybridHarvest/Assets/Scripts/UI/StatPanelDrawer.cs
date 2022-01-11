@@ -14,17 +14,7 @@ public class StatPanelDrawer : MonoBehaviour
     [SerializeField] private Image QualityColor;
     [SerializeField] private TextMeshProUGUI QualityText;
 
-    [SerializeField] public GameObject ProceedButton;
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
-
+    public GameObject ProceedButton;
     public void DisplayStats(Seed seed)
     {
         PlantImage.sprite = seed.PlantSprite;
