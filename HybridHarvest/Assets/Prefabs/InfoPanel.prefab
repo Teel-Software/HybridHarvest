@@ -702,19 +702,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6100595345661552307}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7535886282336548673}
-        m_TargetAssemblyTypeName: AdHandler, Assembly-CSharp
-        m_MethodName: UpdateEnergy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3187413148230551172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1335,7 @@ GameObject:
   - component: {fileID: 4104146254865441279}
   - component: {fileID: 4104146254865441273}
   - component: {fileID: 4104146254865441278}
+  - component: {fileID: 9164974771554531668}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -1418,6 +1407,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.2
+--- !u!114 &9164974771554531668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104146254865441276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36192690d7d930c429f8314589842551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 4555067
+  _iOSGameId: 4555066
+  _testMode: 1
 --- !u!1 &4104146255198764260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,6 +2945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb34f880104f9499f706f595b0ff50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showAdButton: {fileID: 707062566294717610}
+  _androidAdUnitId: Rewarded_Android
+  _iOSAdUnitId: Rewarded_iOS
 --- !u!1 &7956763565692735380
 GameObject:
   m_ObjectHideFlags: 0
