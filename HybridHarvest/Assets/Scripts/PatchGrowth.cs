@@ -82,11 +82,10 @@ public class PatchGrowth : MonoBehaviour
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
             }
-
+            else
+                EndGrowthCycle();
             textBGImage.enabled = true;
         }
-        else
-            EndGrowthCycle();
     }
 
     /// <summary>
@@ -149,7 +148,7 @@ public class PatchGrowth : MonoBehaviour
         {
             int plusSeeds = (int)Math.Round(UnityEngine.Random.value * (growingSeed.maxAmount - growingSeed.minAmount));
             for (var i = 0; i < growingSeed.minAmount + plusSeeds; i++)
-                grownSeeds.Add(MutateSeed(growingSeed));
+                grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
         }
         if (grownSeeds.Count != 0)
         {
@@ -168,102 +167,5 @@ public class PatchGrowth : MonoBehaviour
 
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
-    }
-
-    private Seed MutateSeed(Seed oldSeed)
-    {
-        var changingStatsAmount = getAmountOfChangingStats(oldSeed.MutationPossibility);
-
-        (bool[] index, int alreadyFull) = GetStatsFullness(oldSeed);
-        var t = -1;
-        while(changingStatsAmount > 0 && alreadyFull < 5)
-        {
-            t = (int)Math.Round((UnityEngine.Random.value * 100) % 4);
-            if (!index[t])
-            {
-                changingStatsAmount--;
-                alreadyFull++;
-                index[t] = true;
-            }
-        }
-
-        var newStats = MutateStats(oldSeed, index);
-        var newSeed = ScriptableObject.CreateInstance<Seed>();
-        newSeed.SetValues(oldSeed.ToString());
-        newSeed.Gabitus = newStats[0];
-        newSeed.Taste = newStats[1];
-        newSeed.GrowTime = newStats[2];
-        newSeed.minAmount = newStats[3];
-        newSeed.MutationPossibility =  (MutationChance)newStats[4];
-        newSeed.maxAmount = newStats[5];
-        return newSeed;
-    }
-
-    private int getAmountOfChangingStats(MutationChance basicMutation)
-    {
-        var mutation = (int)basicMutation;
-        var percentage = UnityEngine.Random.value;
-        if (percentage <= 0.2)
-            return 2+ mutation;
-        if (percentage <= 0.4)
-            return 1 + mutation;
-        if (percentage <= 0.6)
-            return mutation;
-        if (percentage <= 0.6)
-            return (mutation-1)>0 ? mutation - 1 : 0;
-        if (percentage <= 0.8)
-            return (mutation - 2) > 0 ? mutation - 2 : 0;
-        return 0;
-    }
-
-    private int[] MutateStats(Seed oldSeed, bool[] index)
-    {
-        Tuple<int, int[]>[] statsData = {
-        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
-        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
-        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
-        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
-        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
-        Tuple.Create(oldSeed.maxAmount, oldSeed.LevelData.MaxAmount.Keys.ToArray())
-        };
-        List<int> stats = new List<int>();
-        for (var i = 0; i < statsData.Length -1; i++)
-        {
-            if (index[i] && Array.IndexOf(statsData[i].Item2, statsData[i].Item1) + 1 < statsData[i].Item2.Length)
-            {
-                stats.Add(statsData[i].Item2[Array.IndexOf(statsData[i].Item2, statsData[i].Item1) + 1]);
-            }
-            else
-                stats.Add(statsData[i].Item1);
-        }
-
-        if (stats[3] != oldSeed.minAmount)
-            stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
-        else
-            stats.Add(statsData.Last().Item1);
-        
-        return stats.ToArray();
-    }
-
-    private (bool[], int) GetStatsFullness(Seed oldSeed)
-    {
-        Tuple<int, int[]>[] statsData = {
-        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
-        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
-        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
-        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
-        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
-        };
-        bool[] index = new bool[5];
-        var amount =0;
-        for (var i = 0; i < statsData.Length - 1; i++)
-        {
-            if (statsData[i].Item1 == statsData[i].Item2.Last())
-            {
-                index[i] = true;
-                amount++;
-            }
-        }
-        return (index, amount);
     }
 }
