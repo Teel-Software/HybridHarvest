@@ -23,27 +23,36 @@ public class StatPanelDrawer : MonoBehaviour
         PlantNameLatin.text = $"(лат. {seed.NameInLatin})";
 
         QualityColor.sprite = Resources.Load<Sprite>("Packets\\Quality" + seed.PacketQuality);
+        
         var qualityTxt = "";
+        var qualityTxtColor = Color.black;
         switch (seed.PacketQuality)
         {
             case 0:
                 qualityTxt = "Обычный";
+                ColorUtility.TryParseHtmlString("#D7D7EF", out qualityTxtColor);
                 break;
             case 1:
                 qualityTxt = "Особый";
+                ColorUtility.TryParseHtmlString("#73A9F4", out qualityTxtColor);
                 break;
             case 2:
                 qualityTxt = "Удивительный";
+                ColorUtility.TryParseHtmlString("#C768ED", out qualityTxtColor);
                 break;
             case 3:
                 qualityTxt = "Мифический";
+                ColorUtility.TryParseHtmlString("#FF0043", out qualityTxtColor);
                 break;
             case 4:
                 qualityTxt = "Легендарный";
                 break;
         }
         QualityText.text = $"{qualityTxt}";
+        QualityText.color = qualityTxtColor;
+        
         var price = seed.ShopBuyPrice > 0 ? seed.ShopBuyPrice : seed.Price;
+        
         PlantDesc.text = $"Вкус - {seed.Taste}\n\n" +
                          $"Габитус - {seed.Gabitus}\n\n" +
                          $"Время роста - {seed.GrowTime} секунд\n\n" +

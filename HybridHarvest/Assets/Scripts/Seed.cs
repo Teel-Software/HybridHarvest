@@ -75,10 +75,14 @@ public class Seed : ScriptableObject
 
     public void UpdateRating()
     {
-        if(LevelData == null)
-            LevelData = CSVReader.ParseSeedStats(Name);
-        var rating = LevelData.Gabitus[Gabitus] + LevelData.Taste[Taste] + LevelData.MutationChance[MutationPossibility]
-            + LevelData.MinAmount[minAmount] + LevelData.GrowTime[GrowTime];
+        LevelData ??= CSVReader.ParseSeedStats(Name);
+        
+        var rating = LevelData.Gabitus[Gabitus] 
+                     + LevelData.Taste[Taste] 
+                     + LevelData.MutationChance[MutationPossibility]
+                     + LevelData.MinAmount[minAmount] 
+                     + LevelData.GrowTime[GrowTime];
+        
         switch (rating)
         {
             case var i when i < 40:

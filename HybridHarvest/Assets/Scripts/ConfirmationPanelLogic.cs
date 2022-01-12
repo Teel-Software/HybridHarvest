@@ -28,6 +28,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         targetInventory.AddItem(seed);
 
         Statistics.UpdatePurchasedSeeds(seed.Name);
+        
         parentGameObject.SetActive(false);
     }
 
@@ -59,7 +60,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toPlant = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
-        inventoryDrawer.InventoryGameObject.SetActive(false);
+        inventoryDrawer.ToggleGameObject(false);
     }
 
     /// <summary>
@@ -71,7 +72,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toSelect = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
-        inventoryDrawer.InventoryGameObject.SetActive(false);
+        inventoryDrawer.ToggleGameObject(false);
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         
         var toSend = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
-        inventoryDrawer.InventoryGameObject.SetActive(false);
+        inventoryDrawer.ToggleGameObject(false);
     }
     
     /// <summary>

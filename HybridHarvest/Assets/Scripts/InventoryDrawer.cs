@@ -11,7 +11,7 @@ public class InventoryDrawer : MonoBehaviour
     // Место отрисовки
     [SerializeField] RectTransform Place;
     // Объект к которому привязан скрипт
-    public GameObject InventoryGameObject { get; }
+    //public GameObject InventoryGameObject;
     
     [SerializeField] GameObject ConfirmationPanel;
     [SerializeField] GameObject StatPanel;
@@ -36,6 +36,11 @@ public class InventoryDrawer : MonoBehaviour
     {
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
+    }
+
+    public void ToggleGameObject(bool enableIt)
+    {
+        gameObject.SetActive(enableIt);
     }
     
     /// <summary>
