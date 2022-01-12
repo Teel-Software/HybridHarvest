@@ -61,6 +61,7 @@ public class PatchGrowth : MonoBehaviour
             seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown" + i.ToString()));
             grownSeeds.Add(seed);
         }
+
         if (time <= 0)
             EndGrowthCycle();
     }
@@ -77,32 +78,15 @@ public class PatchGrowth : MonoBehaviour
                 if (time < (double)growingSeed.GrowTime / 2)
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-                var formatTime = TimeSpan.FromSeconds(math.round(time));
-                //growthText.text = formatTime.ToString();
-                if (formatTime.Hours > 9)
-                    growthText.text = formatTime.Hours.ToString() + " ч.";
-                else
-                {
-                    if (formatTime.Hours != 0)
-                        growthText.text = formatTime.Hours.ToString() + " ч. " + formatTime.Minutes.ToString() + " м.";
-                    else
-                    {
-                        if (formatTime.Minutes > 9)
-                            growthText.text = formatTime.Minutes.ToString() + " м.";
-                        else
-                        {
-                            if (formatTime.Minutes != 0)
-                                growthText.text = formatTime.Minutes.ToString() + " м. " + formatTime.Seconds.ToString() + " c.";
-                            else
-                                growthText.text = formatTime.Seconds.ToString() + " c.";
-                        }
-                    }
-                }
-                textBGImage.enabled = true;
+
+                var timeSpan = TimeSpan.FromSeconds(math.round(time));
+                growthText.text = Tools.TimeFormatter.Format(timeSpan);
             }
-            else
-                EndGrowthCycle();
+
+            textBGImage.enabled = true;
         }
+        else
+            EndGrowthCycle();
     }
 
     /// <summary>

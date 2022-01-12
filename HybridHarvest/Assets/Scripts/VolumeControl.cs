@@ -5,20 +5,26 @@ using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
-    public Slider Slide;
-    public GameObject GameMusic;
-
-    public void Start()
+    public Slider Slider;
+    public GameObject bgmGameObject;
+    
+    private const string PrefsBGMVolumeKey = "BGMVolume";
+    public void Awake()
     {
-        GameMusic = GameObject.FindGameObjectWithTag("GameMusic");
-        var audioSource = GameMusic.GetComponent<AudioSource>();
-        Slide.value = audioSource.volume;
+        bgmGameObject ??= GameObject.FindGameObjectWithTag("GameMusic");
+        var audioSource = bgmGameObject.GetComponent<AudioSource>();
+        if (PlayerPrefs.HasKey(PrefsBGMVolumeKey))
+        {
+            audioSource.volume = PlayerPrefs.GetFloat(PrefsBGMVolumeKey);
+        }
+        Slider.value = audioSource.volume;
     }
 
     public void ChangeVolume()
     {
-        GameMusic = GameObject.FindGameObjectWithTag("GameMusic");
-        var audioSource = GameMusic.GetComponent<AudioSource>();
-        audioSource.volume = Slide.value;
+        bgmGameObject ??= GameObject.FindGameObjectWithTag("GameMusic");
+        var audioSource = bgmGameObject.GetComponent<AudioSource>();
+        PlayerPrefs.SetFloat(PrefsBGMVolumeKey, Slider.value);
+        audioSource.volume = Slider.value;
     }
 }

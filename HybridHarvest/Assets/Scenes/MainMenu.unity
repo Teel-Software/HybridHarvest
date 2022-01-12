@@ -219,8 +219,8 @@ RectTransform:
   - {fileID: 1522843217}
   - {fileID: 2058056532}
   - {fileID: 675252894}
-  - {fileID: 1467745612}
   - {fileID: 1319921956}
+  - {fileID: 1467745612}
   - {fileID: 493570858}
   - {fileID: 143187397}
   - {fileID: 2129525003}
@@ -780,8 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acae94cb7acdb84aaa1b00e73ef7aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slide: {fileID: 270212777}
-  GameMusic: {fileID: 0}
+  Slider: {fileID: 270212777}
+  bgmGameObject: {fileID: 1312396169}
 --- !u!1 &325136925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5314649477347838069, guid: 6ecf017c9dcf9614c86aa0aa4a17e007, type: 3}
@@ -1528,7 +1528,7 @@ GameObject:
   - component: {fileID: 675252899}
   - component: {fileID: 675252900}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2339,7 +2339,7 @@ GameObject:
   - component: {fileID: 1319921958}
   - component: {fileID: 1319921957}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2359,7 +2359,7 @@ RectTransform:
   - {fileID: 144958941}
   - {fileID: 961640731}
   m_Father: {fileID: 33974221}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2680,7 +2680,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 33974221}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
