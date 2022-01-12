@@ -187,6 +187,20 @@ public class InventoryDrawer : MonoBehaviour
     private void PrepareConfirmation(GameObject item)
     {
         if (!int.TryParse(item.name, out var index)) return;
+        
+        if (Purpose == PurposeOfDrawing.Change && index == targetInventory.Elements.Count) // get rekt part 1
+        { 
+            // код полностью скопирован из ConfirmationPanelLogic :sadbob:
+            targetInventory.Elements.Add(changingSeed);
+            
+            Redraw();
+            // вот до сюда
+            changeItem = false;
+            gameObject.SetActive(false);
+            targetInventory.SaveAllData();
+            SuccessfulAddition?.Invoke();
+            return;
+        }
         Text text;
         Button yesButton;
         ConfirmationPanelLogic logicScript;
@@ -224,6 +238,7 @@ public class InventoryDrawer : MonoBehaviour
             case PurposeOfDrawing.Change: // вызывается из кода инвентаря
                 if (index == targetInventory.Elements.Count)
                 {
+                    // в этот if не заходит из-за условия в самом начале
                     text.text = "Добавить";
                     if (!needsStats)
                     {
