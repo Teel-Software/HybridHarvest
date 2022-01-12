@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 public class SeedStatistics
 {
@@ -19,6 +18,7 @@ public class SeedStatistics
         MutationChance = new Dictionary<MutationChance, int>();
         GrowTime = new Dictionary<int, int>();
     }
+
     public override string ToString()
     {
         StringBuilder encodedData = new StringBuilder();

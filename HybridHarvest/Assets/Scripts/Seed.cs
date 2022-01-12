@@ -76,13 +76,23 @@ public class Seed : ScriptableObject
     public void UpdateRating()
     {
         LevelData ??= CSVReader.ParseSeedStats(Name);
-        
-        var rating = LevelData.Gabitus[Gabitus] 
-                     + LevelData.Taste[Taste] 
-                     + LevelData.MutationChance[MutationPossibility]
-                     + LevelData.MinAmount[minAmount] 
-                     + LevelData.GrowTime[GrowTime];
-        
+        var rating = 0;
+
+        try
+        {
+            rating = LevelData.Gabitus[Gabitus]
+                         + LevelData.Taste[Taste]
+                         + LevelData.MutationChance[MutationPossibility]
+                         + LevelData.MinAmount[minAmount]
+                         + LevelData.GrowTime[GrowTime];
+        }
+        catch
+        {
+            // Раскомментируйте строчку ниже для дебага. (Возможен спам)
+
+            //Debug.Log($"В таблице характеристик не указано одно или несколько значений. Рейтинг семян \"{NameInRussian}\" равен нулю.");
+        }
+
         switch (rating)
         {
             case var i when i < 40:
@@ -115,7 +125,7 @@ public class Seed : ScriptableObject
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
                minAmount + "|" + maxAmount +
-               "|" + NameInRussian + "|" + NameInLatin + 
+               "|" + NameInRussian + "|" + NameInLatin +
                "|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
                + "|" + (int)MutationPossibility;
     }

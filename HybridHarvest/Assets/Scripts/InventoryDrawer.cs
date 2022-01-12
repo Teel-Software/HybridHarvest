@@ -12,10 +12,10 @@ public class InventoryDrawer : MonoBehaviour
     [SerializeField] RectTransform Place;
     // Объект к которому привязан скрипт
     //public GameObject InventoryGameObject;
-    
+
     [SerializeField] GameObject ConfirmationPanel;
     [SerializeField] GameObject StatPanel;
-    
+
     [SerializeField] Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
@@ -34,6 +34,7 @@ public class InventoryDrawer : MonoBehaviour
 
     private void OnDisable()
     {
+        targetInventory.SaveAllData();
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
     }
@@ -42,7 +43,7 @@ public class InventoryDrawer : MonoBehaviour
     {
         gameObject.SetActive(enableIt);
     }
-    
+
     /// <summary>
     /// Reassigns all actions
     /// </summary>
@@ -187,12 +188,12 @@ public class InventoryDrawer : MonoBehaviour
     private void PrepareConfirmation(GameObject item)
     {
         if (!int.TryParse(item.name, out var index)) return;
-        
+
         if (Purpose == PurposeOfDrawing.Change && index == targetInventory.Elements.Count) // get rekt part 1
-        { 
+        {
             // код полностью скопирован из ConfirmationPanelLogic :sadbob:
             targetInventory.Elements.Add(changingSeed);
-            
+
             Redraw();
             // вот до сюда
             changeItem = false;
@@ -204,14 +205,14 @@ public class InventoryDrawer : MonoBehaviour
         Text text;
         Button yesButton;
         ConfirmationPanelLogic logicScript;
-        
+
         var needsStats = targetInventory.Elements.Count > index;
         if (needsStats)
         {
             var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform)
                 .GetComponentInChildren<StatPanelDrawer>();
             statPanelDrawer.DisplayStats(targetInventory.Elements[index]);
-            
+
             text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
             yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
             logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
@@ -222,7 +223,7 @@ public class InventoryDrawer : MonoBehaviour
                 .GetComponentInChildren<ConfirmationPanelDrawer>();
             text = confPanelDrawer.QuestionText;
             yesButton = confPanelDrawer.YesButton.GetComponent<Button>();
-            logicScript = confPanelDrawer.YesButton.GetComponentInChildren<ConfirmationPanelLogic>(); 
+            logicScript = confPanelDrawer.YesButton.GetComponentInChildren<ConfirmationPanelLogic>();
         }
 
         logicScript.targetInventory = targetInventory;
@@ -249,7 +250,8 @@ public class InventoryDrawer : MonoBehaviour
                 {
                     text.text = "Заменить";
                 }
-                yesButton.onClick.AddListener(()=> { 
+                yesButton.onClick.AddListener(() =>
+                {
                     logicScript.ChangeItem(changingSeed);
                     changeItem = false;
                     gameObject.SetActive(false);

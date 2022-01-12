@@ -1,5 +1,7 @@
 ﻿using CI.QuickSave;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,6 +11,7 @@ public class Scenario : MonoBehaviour
     [SerializeField] Sprite FirstCharacterSprite;
     [SerializeField] Sprite SecondCharacterSprite;
     [SerializeField] Sprite NarratorSprite;
+    [SerializeField] GameObject BlockerPrefab;
 
     /// <summary>
     /// В подобных методах нужно создавать диалоги
@@ -56,94 +59,147 @@ public class Scenario : MonoBehaviour
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 1:
-                ExecuteTutorialPart("BeginningChoice", "SceneButtonField",
-                   "Добро пожаловать! Меня зовут Дед Максим и я твой проводник на сегодня! Сейчас мы тебя быстро введём в курс дела.",
-                   "Для начала нажми на вон ту стрелочку слева в центре. Не перепутай её с кнопкой выхода в главное меню, которая находится в левом верхнем углу!");
+                ExecuteTutorialPart("BeginningChoice", "SceneButtonField", FirstCharacterPhrases: new string[] {
+                   "Хороший денёк, однако выдался! Помнится, вчера я хотел посадить семена, да вот забыл... Ну ничего, сделаю это сейчас!"},
+                   NarratorPhrases: new string[] { "Нажмите на кнопку \"Грядка\"" },
+                   award: new Award(AwardType.Seed, seedName: "Potato"));
                 break;
             case 2:
-                ExecuteTutorialPart("BeginningField", "ExitScene",
-                   "Это поле. Здесь можно посадить семена, которые есть у тебя на складе. Нажми на грядку, посмотри, что будет.");
+                ExecuteTutorialPart("BeginningField", "FarmSpot", FirstCharacterPhrases: new string[] {
+                   "Это поле. Здесь можно посадить семена, которые есть у тебя на складе. Нажми на грядку, посмотри, что будет." });
                 break;
             case 3:
-                ExecuteTutorialPart("BeginningLab", "ExitScene",
-                   "Это лаборатория. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно только семена одного вида!");
+                ExecuteTutorialPart("BeginningLab", "ExitScene", FirstCharacterPhrases: new string[] {
+                   "Это лаборатория. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно только семена одного вида!" });
                 break;
-            case 4:
-                ExecuteTutorialPart("BeginningQuantum", "ExitScene",
-                   "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно что угодно, но один раз в день!");
-                break;
+                //case 4:
+                //    ExecuteTutorialPart("BeginningQuantum", "ExitScene",
+                //       "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно что угодно, но один раз в день!");
+                //    break;
         }
     }
 
-    public void Tutorial_SideMenu()
-    {
-        ExecuteTutorialPart("SideMenu",
-            "", "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
-            "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
-    }
+    //public void Tutorial_SideMenu()
+    //{
+    //    ExecuteTutorialPart("SideMenu",
+    //        "", "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
+    //        "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
+    //}
 
-    public void Tutorial_Shop()
-    {
-        ExecuteTutorialPart("Shop",
-            "", "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
-    }
+    //public void Tutorial_Shop()
+    //{
+    //    ExecuteTutorialPart("Shop",
+    //        "", "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
+    //}
 
-    public void Tutorial_Quests()
-    {
-        ExecuteTutorialPart("Quests",
-            "", "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
-    }
+    //public void Tutorial_Quests()
+    //{
+    //    ExecuteTutorialPart("Quests",
+    //        "", "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
+    //}
 
-    public void Tutorial_Inventory()
-    {
-        ExecuteTutorialPart("Inventory",
-            "", "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
-    }
+    //public void Tutorial_Inventory()
+    //{
+    //    ExecuteTutorialPart("Inventory",
+    //        "", "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
+    //}
 
-    public void Tutorial_Exhibition()
-    {
-        ExecuteTutorialPart("Exhibition",
-           "", "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
-    }
+    //public void Tutorial_Exhibition()
+    //{
+    //    ExecuteTutorialPart("Exhibition",
+    //       "", "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
+    //}
 
-    public void Tutorial_Market()
-    {
-        ExecuteTutorialPart("Market",
-           "", "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
-    }
+    //public void Tutorial_Market()
+    //{
+    //    ExecuteTutorialPart("Market",
+    //       "", "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
+    //}
 
-    public void Tutorial_HybridPanel()
-    {
-        ExecuteTutorialPart("HybridPanel",
-           "", "Это панель для скрещивания. Выбери семечко слева, затем семечко справа. После этого нажми \"Скрестить\" и наслаждайся результатом.");
-    }
+    //public void Tutorial_HybridPanel()
+    //{
+    //    ExecuteTutorialPart("HybridPanel",
+    //       "", "Это панель для скрещивания. Выбери семечко слева, затем семечко справа. После этого нажми \"Скрестить\" и наслаждайся результатом.");
+    //}
 
     /// <summary>
     /// Проигрывает часть туториала
     /// </summary>
     /// <param name="keyPart">Название, по которому идёт сохранение</param>
-    /// <param name="nextButtonName">Название кнопки, которую следует сделать активной после окончания части вступления</param>
-    /// <param name="phrases">Фразы, которые говорит рассказчик</param>
-    private void ExecuteTutorialPart(string keyPart, string nextButtonName, params string[] phrases)
+    /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления</param>
+    /// <param name="NarratorPhrases">Фразы, которые говорит рассказчик</param>
+    private void ExecuteTutorialPart(string keyPart, string activeButtonName, string[] FirstCharacterPhrases = null, string[] NarratorPhrases = null, Award award = null)
     {
         var key = $"Tutorial_{keyPart}_Played";
         if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
-
-        if (keyPart.Contains("Beginning"))
-            DisableAllButtons();
         SaveTutorialData(key);
 
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
-        foreach (var ph in phrases)
-            DialogPanel.AddPhrase(NowTalking.Narrator, ph);
+        if (FirstCharacterPhrases != null)
+            foreach (var ph in FirstCharacterPhrases)
+                DialogPanel.AddPhrase(NowTalking.First, ph);
+        if (NarratorPhrases != null)
+            foreach (var ph in NarratorPhrases)
+                DialogPanel.AddPhrase(NowTalking.Narrator, ph);
+
+        // добавляет награду после слов первого персонажа
+        if (award != null)
+            DialogPanel.AddAward(FirstCharacterPhrases == null ? 0 : FirstCharacterPhrases.Length, award);
 
         DialogPanel.SkipTutorialBtnActive = true;
         DialogPanel.StartDialog();
 
-        var btn = GameObject.Find(nextButtonName);
-        if (btn != null)
-            btn.GetComponent<Button>().interactable = true;
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        var btn = GameObject.Find(activeButtonName);
+
+        // создаёт блокер и дублирует нужную кнопку
+        if (BlockerPrefab != null)
+        {
+            DialogPanel.LastAction = () =>
+            {
+                Instantiate(BlockerPrefab, canvas.transform, false);
+                var newBtn = Instantiate(btn, canvas.transform, true);
+                newBtn.GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        // удаляет блокер и кнопку после клика на кнопку
+                        var currentBtn = EventSystem.current.currentSelectedGameObject;
+                        var blocker = GameObject.FindGameObjectWithTag("Blocker");
+                        if (currentBtn == null) return;
+
+                        if (blocker != null)
+                            Destroy(blocker);
+                        Destroy(currentBtn);
+                    });
+
+                if (btn.name == "FarmSpot")
+                {
+                    newBtn.GetComponent<PatchGrowth>().Patch = btn.GetComponent<PatchGrowth>().Patch;
+                    Seed tutorSeed = null;
+
+                    try
+                    {
+                        tutorSeed = GameObject.FindGameObjectWithTag("Inventory")
+                            .GetComponent<Inventory>()
+                            .Elements
+                            .Where(s => s.Name == "Potato")
+                            .Last();
+                    }
+                    catch
+                    {
+                        Debug.Log("Э, куда картошку обучающую дел??? Перезапускай тутор.");
+                    }
+
+                    if (tutorSeed != null)
+                    {
+                        tutorSeed.GrowTime = 10;
+                        tutorSeed.UpdateRating();
+                    }
+                }
+            };
+        }
+        else Debug.Log("Префаб блокера для туториала не указан!");
     }
 
     /// <summary>
@@ -154,13 +210,5 @@ public class Scenario : MonoBehaviour
         var writer = QuickSaveWriter.Create("TutorialState");
         writer.Write(key, true);
         writer.Commit();
-    }
-
-    private void DisableAllButtons()
-    {
-        var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        var allButtons = canvas.GetComponentsInChildren<Button>();
-        foreach (var btn in allButtons)
-            btn.interactable = false;
     }
 }

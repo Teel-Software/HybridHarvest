@@ -8,7 +8,7 @@ using System.Linq;
 
 public class PatchGrowth : MonoBehaviour
 {
-    [SerializeField] Button Patch;
+    public Button Patch;
     [SerializeField] RectTransform InventoryFrame;
     [SerializeField] RectTransform HarvestWindow;
 

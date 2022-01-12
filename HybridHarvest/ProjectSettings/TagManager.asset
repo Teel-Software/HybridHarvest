@@ -13,6 +13,7 @@ TagManager:
   - Inventory
   - HybridPanel
   - DialogPanel
+  - Blocker
   layers:
   - Default
   - TransparentFX

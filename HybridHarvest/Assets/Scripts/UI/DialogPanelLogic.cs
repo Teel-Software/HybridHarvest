@@ -74,6 +74,7 @@ public class DialogPanelLogic : MonoBehaviour
     [SerializeField] Inventory targetInventory;
 
     public bool SkipTutorialBtnActive { get; set; }
+    public Action LastAction { get; set; } // действие активируется после исчезновения диалога с экрана
 
     private Sprite FirstCharacterSprite;
     private Sprite SecondCharacterSprite;
@@ -155,16 +156,26 @@ public class DialogPanelLogic : MonoBehaviour
         var skipTutBtn = transform.Find("SkipTutorial").gameObject;
         if (skipTutBtn != null)
             skipTutBtn.SetActive(SkipTutorialBtnActive);
-        else Debug.Log("кнопку не нашёл " + SkipTutorialBtnActive.ToString());
+        else Debug.Log("Кнопку SkipTutorial не нашёл: Active = " + SkipTutorialBtnActive.ToString());
 
-        LoadNewPhrase();
+        LoadNextPhrase();
+    }
+
+    /// <summary>
+    /// Показывает панель наград, либо отображает следующую фразу
+    /// </summary>
+    public void ExecuteNextMove()
+    {
+        if (awards.ContainsKey(lastPhraseID))
+            GetComponent<AwardsCenter>().Show(awards[lastPhraseID]);
+        else LoadNextPhrase();
     }
 
     /// <summary>
     /// Выводит следующую (если присутствует) фразу на диалоговою панель, если фразы нет - деактивирует панель.
     /// В переменной wasHided указывается true, если на последней фразе стоял hideTrigger.
     /// </summary>
-    public void LoadNewPhrase(bool wasHided = false)
+    public void LoadNextPhrase(bool wasHided = false)
     {
         var firstTextComponent = transform.gameObject.GetComponentInChildren<Text>();
         var textPanel = firstTextComponent.transform.parent.gameObject;
@@ -178,6 +189,8 @@ public class DialogPanelLogic : MonoBehaviour
         if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
             || !wasHided && hideTriggers.Contains(lastPhraseID))
         {
+            if (LastAction != null)
+                LastAction.Invoke();
             Hide();
             return;
         };
@@ -214,7 +227,7 @@ public class DialogPanelLogic : MonoBehaviour
     public void Continue()
     {
         Show();
-        LoadNewPhrase(true);
+        LoadNextPhrase(true);
     }
 
     /// <summary>
@@ -326,8 +339,9 @@ public class DialogPanelLogic : MonoBehaviour
             lastPhraseID = IDByPhrase[txt];
         else return;
 
+        // отображает награды за ответ при их наличии
         if (awards.ContainsKey(lastPhraseID))
             GetComponent<AwardsCenter>().Show(awards[lastPhraseID]);
-        else LoadNewPhrase();
+        else LoadNextPhrase();
     }
 }

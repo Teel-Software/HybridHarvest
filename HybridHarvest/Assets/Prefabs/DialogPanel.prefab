@@ -122,8 +122,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 185448005516914737}
         m_TargetAssemblyTypeName: DialogPanelLogic, Assembly-CSharp
-        m_MethodName: LoadNewPhrase
-        m_Mode: 6
+        m_MethodName: ExecuteNextMove
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 254ab65fb76ad304d967a240cd0d2677, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48453772077058143b190c315038583b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -697,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06beb41487e5f954589eec62ac0d26a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainHandler: 0
 --- !u!1 &1495482116652796657
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,8 +845,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 185448005516914737}
         m_TargetAssemblyTypeName: DialogPanelLogic, Assembly-CSharp
-        m_MethodName: LoadNewPhrase
-        m_Mode: 6
+        m_MethodName: ExecuteNextMove
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
