@@ -44,7 +44,9 @@ public class HarvestProcessor : MonoBehaviour
                 $"{seeds[i].NameInRussian} (англ. {seeds[i].Name}, лат. {seeds[i].NameInLatin})\n" +
                 $"Вкус: {seeds[i].Taste}\n" +
                 $"Габитус: {seeds[i].Gabitus}\n" +
-                $"Время роста: {seeds[i].GrowTime}";
+                $"Время роста: {seeds[i].GrowTime}\n" +
+                $"Кол-во плодов: {seeds[i].minAmount} - {seeds[i].maxAmount}\n" +
+                $"Шанс мутации: {seeds[i].MutationPossibility}\n";
 
             var img = item.transform.Find("Image");
             img.GetComponent<Image>().sprite = seeds[i].PlantSprite;
