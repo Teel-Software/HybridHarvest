@@ -126,7 +126,7 @@ public class LabGrowth : MonoBehaviour
         MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
         MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
         MiniGamePanel.SetActive(true);
-        InventoryFrame.GetComponent<Drawinventory>().SuccessfulAddition += () =>
+        InventoryFrame.GetComponent<InventoryDrawer>().SuccessfulAddition += () =>
         {
             isOccupied = false;
             plantImage.sprite = Resources.Load<Sprite>("Transparent");

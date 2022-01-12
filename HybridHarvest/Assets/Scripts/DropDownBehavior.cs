@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 public class DropDownBehavior : MonoBehaviour
 {
     public GameObject item;
-    [FormerlySerializedAs("drawinventory")] [SerializeField] Drawinventory drawInventory;
+    [FormerlySerializedAs("drawinventory")] [SerializeField] InventoryDrawer drawInventory;
     [SerializeField] public Inventory targetInventory;
     [SerializeField] public string title;
     

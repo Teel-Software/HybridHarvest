@@ -10,8 +10,8 @@ public class ExhibitionButton : MonoBehaviour
 
     public void Click()
     {
-        Inventory.GetComponent<Drawinventory>().GrowPlace = gameObject.GetComponent<Button>();
-        Inventory.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.AddToExhibition);
+        Inventory.GetComponent<InventoryDrawer>().GrowPlace = gameObject.GetComponent<Button>();
+        Inventory.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToExhibition);
         Inventory.gameObject.SetActive(true);
     }
 

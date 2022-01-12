@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class LabButton : MonoBehaviour
 {
     [SerializeField] public Button PlaceForResult;
-    [SerializeField] public Drawinventory InventoryFrame;
+    [SerializeField] public InventoryDrawer InventoryFrame;
     [SerializeField] Button SelectButton;
     [SerializeField] Button SecondButton;
     [SerializeField] Sprite defaultSprite;
@@ -13,8 +13,8 @@ public class LabButton : MonoBehaviour
 
     public void Clicked()
     {
-        InventoryFrame.GetComponent<Drawinventory>().GrowPlace = SelectButton;
-        InventoryFrame.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.AddToLab);
+        InventoryFrame.GetComponent<InventoryDrawer>().GrowPlace = SelectButton;
+        InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToLab);
         InventoryFrame.gameObject.SetActive(true);
         if (SceneManager.GetActiveScene().buildIndex != 4
             && SecondButton.GetComponent<LabButton>().NowSelected != null)

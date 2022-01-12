@@ -91,8 +91,8 @@ public class Inventory : MonoBehaviour
     public void AddItem(Seed newSeed, bool withoutInvoke = false)
     {
         newSeed.UpdateRating();
-        InventoryDrawer.GetComponent<Drawinventory>().UpdateActions();
-        InventoryDrawer.GetComponent<Drawinventory>().SetPurpose(PurposeOfDrawing.Change);
+        InventoryDrawer.GetComponent<InventoryDrawer>().UpdateActions();
+        InventoryDrawer.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.Change);
         if (!withoutInvoke)
             onInventoryFull?.Invoke(newSeed);
         else

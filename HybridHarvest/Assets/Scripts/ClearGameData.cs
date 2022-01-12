@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClearGameData : MonoBehaviour
 {
     [SerializeField] Inventory Inventory;
-    [SerializeField] Drawinventory InventoryFrame;
+    [SerializeField] InventoryDrawer InventoryFrame;
     [SerializeField] GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
 
     public void ClearAll()

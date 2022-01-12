@@ -12,7 +12,7 @@ public class CreateMiniGame : MonoBehaviour
     [SerializeField] Sprite CardSprite;
     [SerializeField] GameObject Blocker;
     [SerializeField] Button CrossingPerformer;
-    [SerializeField] Drawinventory InventoryFrame;
+    [SerializeField] InventoryDrawer InventoryFrame;
 
     public Button ResultPlace;
     private Seed currentSeed;

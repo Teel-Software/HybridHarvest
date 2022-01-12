@@ -5,13 +5,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
 
-public class Drawinventory : MonoBehaviour
+public class InventoryDrawer : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
     // Место отрисовки
     [SerializeField] RectTransform Place;
     // Объект к которому привязан скрипт
-    public GameObject InventoryGameObject;
+    public GameObject InventoryGameObject { get; }
+    
     [SerializeField] GameObject ConfirmationPanel;
     [SerializeField] GameObject StatPanel;
     
@@ -36,6 +37,7 @@ public class Drawinventory : MonoBehaviour
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
     }
+    
     /// <summary>
     /// Reassigns all actions
     /// </summary>
@@ -205,7 +207,7 @@ public class Drawinventory : MonoBehaviour
         }
 
         logicScript.targetInventory = targetInventory;
-        logicScript.drawInventory = this;
+        logicScript.inventoryDrawer = this;
 
         switch (Purpose)
         {

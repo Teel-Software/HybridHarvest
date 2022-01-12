@@ -7,7 +7,10 @@ public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] private GameObject parentGameObject;
     public Inventory targetInventory;
-    public Drawinventory drawInventory;
+    
+    [FormerlySerializedAs("drawInventory")] 
+    public InventoryDrawer inventoryDrawer;
+    
     public bool HasPrice;
     public string ItemName;
     
@@ -40,7 +43,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         targetInventory.AddMoney(seed.Price);
         targetInventory.ChangeReputation(seed.Gabitus);
         targetInventory.RemoveItem(index);
-        drawInventory.Redraw();
+        inventoryDrawer.Redraw();
 
         Statistics.UpdateSoldSeeds(seed.Name);
         
@@ -55,8 +58,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!int.TryParse(ItemObject.name, out int index)) return;
         
         var toPlant = targetInventory.Elements[index];
-        drawInventory.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
-        drawInventory.InventoryGameObject.SetActive(false);
+        inventoryDrawer.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
+        inventoryDrawer.InventoryGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -67,8 +70,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!int.TryParse(ItemObject.name, out int index)) return;
         
         var toSelect = targetInventory.Elements[index];
-        drawInventory.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
-        drawInventory.InventoryGameObject.SetActive(false);
+        inventoryDrawer.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
+        inventoryDrawer.InventoryGameObject.SetActive(false);
     }
 
     /// <summary>
@@ -79,8 +82,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!int.TryParse(ItemObject.name, out int index)) return;
         
         var toSend = targetInventory.Elements[index];
-        drawInventory.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
-        drawInventory.InventoryGameObject.SetActive(false);
+        inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
+        inventoryDrawer.InventoryGameObject.SetActive(false);
     }
     
     /// <summary>
@@ -100,7 +103,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
             targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
             targetInventory.Elements[index] = newSeed;
         }
-        drawInventory.Redraw();
+        inventoryDrawer.Redraw();
         parentGameObject.SetActive(false);
     }
     
