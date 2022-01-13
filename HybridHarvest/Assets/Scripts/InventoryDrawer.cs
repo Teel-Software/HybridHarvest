@@ -4,17 +4,18 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.Serialization;
 
 public class InventoryDrawer : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
     // Место отрисовки
-    [SerializeField] RectTransform Place;
-    // Объект к которому привязан скрипт
-    //public GameObject InventoryGameObject;
-
-    [SerializeField] GameObject ConfirmationPanel;
-    [SerializeField] GameObject StatPanel;
+    [FormerlySerializedAs("Place")] 
+    [SerializeField] private RectTransform scrollViewContent;
+    // Префабы
+    [SerializeField] private GameObject ConfirmationPanel;
+    [SerializeField] private GameObject StatPanel;
+    [SerializeField] private GameObject ItemIcon;
 
     [SerializeField] Text FreeSpaceCounter;
 
@@ -101,7 +102,7 @@ public class InventoryDrawer : MonoBehaviour
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
-            icon.transform.SetParent(Place);
+            icon.transform.SetParent(scrollViewContent);
             alreadyDrawn.Add(icon);
         }
     }
@@ -119,21 +120,28 @@ public class InventoryDrawer : MonoBehaviour
 
         for (var i = 0; i < targetInventory.Elements.Count; i++)
         {
-            var item = targetInventory.Elements[i];
-            var icon = new GameObject(i.ToString(), typeof(Button));
-            icon.AddComponent<Image>().sprite = item.PacketSprite;
+            var seed = targetInventory.Elements[i];
+            /*
+            var itemGameObj = new GameObject(i.ToString(), typeof(Button));
+            itemGameObj.AddComponent<Image>().sprite = item.PacketSprite;
 
             var plantIcon = new GameObject("Plant" + i);
             plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
             plantIcon.transform.position = new Vector2(0, -35);
             plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-            plantIcon.transform.SetParent(icon.transform);
+            plantIcon.transform.SetParent(itemGameObj.transform);
 
-            icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
-            icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
-            icon.transform.SetParent(Place);
-            alreadyDrawn.Add(icon);
+            itemGameObj.transform.localScale = new Vector2(0.01f, 0.01f);
+            itemGameObj.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
+            itemGameObj.GetComponent<Button>().targetGraphic = itemGameObj.GetComponent<Image>();
+            itemGameObj.transform.SetParent(Place);
+            */
+            var itemIconObj = Instantiate(ItemIcon, scrollViewContent);
+            itemIconObj.name = i.ToString();
+            var itemIconDrawer = itemIconObj.GetComponent<ItemIconDrawer>();
+            itemIconDrawer.SetSeed(seed);
+            itemIconDrawer.Button.onClick.AddListener(ClickedOnItem);
+            alreadyDrawn.Add(itemIconObj);
         }
         if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
         {
@@ -141,7 +149,7 @@ public class InventoryDrawer : MonoBehaviour
             var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
             icon.transform.localScale = new Vector2(0.01f, 0.01f);
             icon.AddComponent<Image>().sprite = img;
-            icon.transform.SetParent(Place);
+            icon.transform.SetParent(scrollViewContent);
             icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             alreadyDrawn.Add(icon);
         }

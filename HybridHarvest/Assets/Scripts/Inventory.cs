@@ -251,7 +251,7 @@ public class Inventory : MonoBehaviour
         Energy = PlayerPrefs.GetInt("energy");
         energyTimeBuffer = PlayerPrefs.GetFloat("energytimebuffer");
         var oldDate = DateTime.Parse(PlayerPrefs.GetString("energytime"));
-        //10 million ticks in a second
+
         var secondsElapsed = (float)DateTime.Now.Subtract(oldDate).TotalSeconds;
         var regenerated = (int)secondsElapsed / EnergyRegenDelay;
         RegenEnergy(regenerated);

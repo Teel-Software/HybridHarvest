@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopLogic : MonoBehaviour
@@ -7,6 +8,12 @@ public class ShopLogic : MonoBehaviour
     public Inventory targetInventory;
     [SerializeField] public GameObject StatPanel;
     [SerializeField] public GameObject ConfirmationPanel;
+
+    private void OnEnable()
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Создаёт подтверждающую панель в магазине
     /// </summary>

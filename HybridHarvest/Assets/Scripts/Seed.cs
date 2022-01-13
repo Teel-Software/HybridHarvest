@@ -26,8 +26,7 @@ public class Seed : ScriptableObject
     public Sprite PlantSprite;
     public Sprite SproutSprite;
     public Sprite GrownSprite;
-    //example import .\Packets\Packet0.png
-    public Sprite PacketSprite;
+    public Sprite PacketSprite => Resources.Load<Sprite>("Packets\\Packet" + PacketQuality);
     public int PacketQuality { get; private set; }
 
     public Gen GabitusGen;
@@ -111,7 +110,6 @@ public class Seed : ScriptableObject
                 PacketQuality = 4;
                 break;
         }
-        PacketSprite = Resources.Load<Sprite>("Packets\\Packet" + PacketQuality);
     }
 
     /// <summary>

@@ -4941,10 +4941,6 @@ PrefabInstance:
       propertyPath: targetInventory
       value: 
       objectReference: {fileID: 1871862018}
-    - target: {fileID: 5010113884177167044, guid: 995a537943094184f9aed8bbe6344619, type: 3}
-      propertyPath: ConfirmationPanel
-      value: 
-      objectReference: {fileID: 8071891222898549138, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
     - target: {fileID: 5010113884191736161, guid: 995a537943094184f9aed8bbe6344619, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
