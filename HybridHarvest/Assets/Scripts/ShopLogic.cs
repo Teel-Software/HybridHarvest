@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopLogic : MonoBehaviour
 {
-    
     public Inventory targetInventory;
-    [SerializeField] public GameObject StatPanel;
-    [SerializeField] public GameObject ConfirmationPanel;
+    public GameObject StatPanel;
 
-    private void OnEnable()
+    public List<string> unlockedSeeds { get; private set; }
+
+    private void Awake()
     {
-        throw new NotImplementedException();
+        targetInventory ??= GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        // loading unlocked seeds from file at some point
+        unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Debug", };
     }
 
     /// <summary>

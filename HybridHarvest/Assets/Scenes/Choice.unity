@@ -5021,6 +5021,10 @@ PrefabInstance:
       propertyPath: targetInventory
       value: 
       objectReference: {fileID: 1871862018}
+    - target: {fileID: 2135406033895724097, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: targetInventory
+      value: 
+      objectReference: {fileID: 1871862018}
     - target: {fileID: 6510543788895875491, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5168,6 +5172,10 @@ PrefabInstance:
     - target: {fileID: 6602301323134408990, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602301323275405999, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6602301323892643142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchorMax.y

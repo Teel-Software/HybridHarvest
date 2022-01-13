@@ -136,22 +136,22 @@ public class InventoryDrawer : MonoBehaviour
             itemGameObj.GetComponent<Button>().targetGraphic = itemGameObj.GetComponent<Image>();
             itemGameObj.transform.SetParent(Place);
             */
-            var itemIconObj = Instantiate(ItemIcon, scrollViewContent);
-            itemIconObj.name = i.ToString();
-            var itemIconDrawer = itemIconObj.GetComponent<ItemIconDrawer>();
+            var itemIcon = Instantiate(ItemIcon, scrollViewContent);
+            itemIcon.name = i.ToString();
+            var itemIconDrawer = itemIcon.GetComponent<ItemIconDrawer>();
             itemIconDrawer.SetSeed(seed);
             itemIconDrawer.Button.onClick.AddListener(ClickedOnItem);
-            alreadyDrawn.Add(itemIconObj);
+            alreadyDrawn.Add(itemIcon);
         }
         if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
         {
             var img = Resources.Load<Sprite>("seedsplus");
-            var icon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
-            icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            icon.AddComponent<Image>().sprite = img;
-            icon.transform.SetParent(scrollViewContent);
-            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
-            alreadyDrawn.Add(icon);
+            var itemIcon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
+            itemIcon.transform.localScale = new Vector2(0.01f, 0.01f);
+            itemIcon.AddComponent<Image>().sprite = img;
+            itemIcon.transform.SetParent(scrollViewContent);
+            itemIcon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
+            alreadyDrawn.Add(itemIcon);
         }
         FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
     }

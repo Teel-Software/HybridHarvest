@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -6,8 +7,8 @@ using UnityEngine.UI;
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] private GameObject parentGameObject;
-    public Inventory targetInventory;
     
+    public Inventory targetInventory;
     [FormerlySerializedAs("drawInventory")] 
     public InventoryDrawer inventoryDrawer;
     
@@ -18,7 +19,12 @@ public class ConfirmationPanelLogic : MonoBehaviour
 
     private GameObject questionObject;
     private string originalQuestionText;
-    
+
+    private void Awake()
+    {
+        
+    }
+
     /// <summary>
     /// Покупает семечко
     /// </summary>
