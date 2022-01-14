@@ -23,6 +23,8 @@ public class ClearGameData : MonoBehaviour
 
         PlayerPrefs.Save();
 
+        ClearExhibition();
+
         if (Inventory != null)
             Inventory.Awake();
         if (InventoryFrame != null)
@@ -39,6 +41,13 @@ public class ClearGameData : MonoBehaviour
                 btn.SetActive(false);
     }
 
+    public void ClearExhibition()
+    {
+        GameObject.Find("Exhibition").SetActive(false);
+        var writer = QuickSaveWriter.Create("ExhibitionData");
+        writer.Write("ExhSeed", "no");
+        writer.Commit();
+    }
     /// <summary>
     /// Перезапускает туториал
     /// </summary>

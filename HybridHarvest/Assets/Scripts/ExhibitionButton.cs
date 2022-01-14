@@ -62,6 +62,8 @@ public class ExhibitionButton : MonoBehaviour
 
     private void OnEnable()
     {
+        gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("InvFrameAdd");
+        NowSelected = null;
         CollectData();
     }
 

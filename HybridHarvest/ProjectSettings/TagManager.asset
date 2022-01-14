@@ -16,6 +16,7 @@ TagManager:
   - TutorialHandler
   - ExitInventory
   - InventoryPlusBtn
+  - InventoryDrawer
   layers:
   - Default
   - TransparentFX

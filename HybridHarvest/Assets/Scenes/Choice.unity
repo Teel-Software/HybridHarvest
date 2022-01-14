@@ -4878,6 +4878,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5010113884177167040, guid: 995a537943094184f9aed8bbe6344619, type: 3}
+      propertyPath: m_TagString
+      value: InventoryDrawer
+      objectReference: {fileID: 0}
     - target: {fileID: 5010113884177167043, guid: 995a537943094184f9aed8bbe6344619, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5046,6 +5050,10 @@ PrefabInstance:
       propertyPath: targetInventory
       value: 
       objectReference: {fileID: 1871862018}
+    - target: {fileID: 2135406033895724097, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: inventoryDrawer
+      value: 
+      objectReference: {fileID: 654561917}
     - target: {fileID: 2135406033895724097, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: targetInventory
       value: 

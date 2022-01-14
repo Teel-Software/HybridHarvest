@@ -30,9 +30,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Buy(Seed seed)
     {
-        targetInventory.AddMoney(-seed.ShopBuyPrice);
+        inventoryDrawer.SuccessfulAddition = () => targetInventory.AddMoney(-seed.ShopBuyPrice);
         targetInventory.AddItem(seed);
-
         Statistics.UpdatePurchasedSeeds(seed.Name);
         
         parentGameObject.SetActive(false);

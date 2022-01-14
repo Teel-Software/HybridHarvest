@@ -64,8 +64,8 @@ public class InventoryDrawer : MonoBehaviour
     /// </summary>
     public void UpdateActions()
     {
-        targetInventory.onItemAdded += Redraw;
-        targetInventory.onInventoryFull += ChangeExistingItem;
+        targetInventory.onItemAdded = Redraw;
+        targetInventory.onInventoryFull = ChangeExistingItem;
     }
 
     /// <summary>
@@ -178,29 +178,6 @@ public class InventoryDrawer : MonoBehaviour
     {
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
-
-        /*if (changeItem)
-        {
-            if (int.TryParse(item.name, out int index))
-            {
-                if (index == targetInventory.Elements.Count)
-                {
-                    targetInventory.Elements.Add(changingSeed);
-                }
-                else
-                {
-                    targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
-                    targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
-                    targetInventory.Elements[index] = changingSeed;
-                }
-                changeItem = false;
-                gameObject.SetActive(false);
-                targetInventory.SaveAllData();
-                SuccessfulAddition?.Invoke();
-            }
-            return;
-        }*/
-
         PrepareConfirmation(item);
     }
 

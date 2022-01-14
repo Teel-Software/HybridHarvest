@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ShopLogic : MonoBehaviour, ISaveable
 {
+    [SerializeField] public InventoryDrawer inventoryDrawer;
     public Inventory targetInventory;
     public GameObject StatPanel;
 
@@ -42,6 +43,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
         var logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
         
         text.text = "Купить";
+        logicScript.inventoryDrawer = inventoryDrawer;
         yesButton.onClick.AddListener(() => logicScript.Buy(seed));
         logicScript.targetInventory = targetInventory;
         logicScript.HasPrice = true;
