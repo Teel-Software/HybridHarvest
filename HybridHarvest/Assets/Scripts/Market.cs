@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
-public class Market : MonoBehaviour
+public class Market : MonoBehaviour, ISaveable
 {
     public static Dictionary<string, float> PriceMultipliers { get; private set; }
-    private DateTime lastDate;
+    private DateTime _lastRefreshDate;
 
-    private List<string> seedsAvailable
+    private static List<string> SeedTypesInInventory
     {
         get
         { 
@@ -19,8 +19,9 @@ public class Market : MonoBehaviour
             return inventory.Elements.Select(el => el.Name).Distinct().ToList(); 
         }
     }
-    
-    private readonly int hoursToRefresh = 24;
+
+    private const int HoursToRefresh = 24;
+
     public void Awake()
     {
         Load();
@@ -28,21 +29,30 @@ public class Market : MonoBehaviour
 
     public void Update()
     {
-        foreach (var seedName in seedsAvailable)
+        foreach (var seedName in SeedTypesInInventory)
             if (!PriceMultipliers.ContainsKey(seedName))
                 PriceMultipliers[seedName] = 1.0f;
         
-        var elapsed = DateTime.Now - lastDate;
-        if (elapsed.TotalHours >= hoursToRefresh)
+        var elapsed = DateTime.Now - _lastRefreshDate;
+        if (elapsed.TotalHours >= HoursToRefresh)
         {
-            (PriceMultipliers, lastDate) = GetNewMarketValues();
-            Save();
+            PriceMultipliers = GetNewMultipliers();
+            _lastRefreshDate = DateTime.Today;
         }
     }
 
-    private (Dictionary<string,float> , DateTime) GetNewMarketValues()
+    /// <summary>
+    /// Используется вместо OnDestroy из-за особенностей мобильных платформ
+    /// </summary>
+    private void OnApplicationFocus(bool hasFocus)
     {
-        var rand = new Random(lastDate.DayOfYear * DateTime.Now.Second);
+        if (!hasFocus) 
+            Save();
+    }
+
+    private Dictionary<string,float> GetNewMultipliers()
+    {
+        var rand = new Random(_lastRefreshDate.DayOfYear * DateTime.Now.Second);
         var newDict = new Dictionary<string, float>();
         
         foreach (var plant in PriceMultipliers.Keys)
@@ -51,18 +61,18 @@ public class Market : MonoBehaviour
             newDict[plant] = (float)Math.Round(newMul, 1);
         }
 
-        return (newDict, DateTime.Today);
+        return newDict;
     }
     
-    private void Save()
+    public void Save()
     {
         var writer = QuickSaveWriter.Create("Market");
         writer.Write("Multipliers", PriceMultipliers)
-            .Write("LastDate", lastDate);
+            .Write("LastDate", _lastRefreshDate);
         writer.Commit();
     }
 
-    private void Load()
+    public void Load()
     {
         var reader = QSReader.Create("Market");
         
@@ -71,11 +81,11 @@ public class Market : MonoBehaviour
         else
         {
             PriceMultipliers ??= new Dictionary<string, float>();
-            foreach (var seedName in seedsAvailable)
+            foreach (var seedName in SeedTypesInInventory)
                 if (!PriceMultipliers.ContainsKey(seedName))
                     PriceMultipliers.Add(seedName, 1.0f);
         }
         
-        lastDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Today;
+        _lastRefreshDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Today;
     }
 }

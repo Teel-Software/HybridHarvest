@@ -15,8 +15,10 @@ public class ShopDrawer : MonoBehaviour
             itemIcon.transform.localScale = new Vector3(0.9f, 0.9f);
             var itemIconDrawer = itemIcon.GetComponent<ItemIconDrawer>();
             // покупать можно нормально заданные семена
-            itemIconDrawer.SetSeed((Seed)Resources.Load("Seeds\\" + seedName));
-            itemIconDrawer.Button.onClick.AddListener(() => shopLogic.PrepareConfirmation(seedName));
+            // хотя через ресурсы тоже вроде норм
+            var seed = (Seed)Resources.Load("Seeds\\" + seedName);
+            itemIconDrawer.SetSeed(seed);
+            itemIconDrawer.Button.onClick.AddListener(() => shopLogic.PrepareConfirmation(seed));
         }
     }
 

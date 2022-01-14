@@ -1,31 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopLogic : MonoBehaviour
+public class ShopLogic : MonoBehaviour, ISaveable
 {
     public Inventory targetInventory;
     public GameObject StatPanel;
 
     public List<string> unlockedSeeds { get; private set; }
-
     private void Awake()
     {
         targetInventory ??= GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        // loading unlocked seeds from file at some point
-        unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Debug", };
+        Load();
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+            Save();
+    }
+
+    private void OnDisable()
+    {
+        Save();
     }
 
     /// <summary>
     /// Создаёт подтверждающую панель в магазине
     /// </summary>
-    /// <param name="seedName">Имя растения</param>
-    public void PrepareConfirmation(string seedName)
+    /// <param name="seed">Растение класса Seed</param>
+    public void PrepareConfirmation(Seed seed)
     {
         var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Shop").transform)
             .GetComponentInChildren<StatPanelDrawer>();
-        var seed = (Seed)Resources.Load("Seeds\\" + seedName);
         statPanelDrawer.DisplayStats(seed);
             
         var text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
@@ -38,6 +47,22 @@ public class ShopLogic : MonoBehaviour
         logicScript.HasPrice = true;
     }
 
+    public void Save()
+    {
+        var writer = QuickSaveWriter.Create("Shop");
+        writer.Write("UnlockedSeeds", unlockedSeeds);
+        writer.Commit();
+    }
+
+    public void Load()
+    {
+        var reader = QSReader.Create("Shop");
+        if (reader.Exists("UnlockedSeeds"))
+            unlockedSeeds = reader.Read<List<string>>("UnlockedSeeds");
+        else
+            unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Debug", };
+    }
+    
     public void CSVTest()
     {
         var stats = CSVReader.ParseSeedStats("Peas");
@@ -48,4 +73,5 @@ public class ShopLogic : MonoBehaviour
         Debug.Log(string.Join(" ", stats.MutationChance));
         Debug.Log(string.Join(" ", stats.GrowTime));
     }
+
 }

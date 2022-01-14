@@ -22,7 +22,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
 
     private void Awake()
     {
-        
+        targetInventory ??= GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 
     /// <summary>
