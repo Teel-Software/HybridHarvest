@@ -60,7 +60,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
         if (reader.Exists("UnlockedSeeds"))
             unlockedSeeds = reader.Read<List<string>>("UnlockedSeeds");
         else
-            unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Debug", };
+            unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Pea", "Debug",};
     }
     
     public void CSVTest()

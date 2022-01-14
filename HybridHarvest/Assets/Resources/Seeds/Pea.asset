@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a112785622812904490495f4cb0851a6, type: 3}
+  m_Name: Pea
+  m_EditorClassIdentifier: 
+  Name: Pea
+  NameInRussian: "\u0413\u043E\u0440\u043E\u0445"
+  NameInLatin: "P\xEDsum"
+  minAmount: 9
+  maxAmount: 11
+  ShopBuyPrice: 30
+  PlantSprite: {fileID: 21300000, guid: 13280603d7919434193b88a9fb4fc49e, type: 3}
+  SproutSprite: {fileID: 21300000, guid: f85fac4d8bedd874cbb3ae2f86c5bd67, type: 3}
+  GrownSprite: {fileID: 21300000, guid: 53929482480b2d846b67fe334c9d9375, type: 3}
+  GabitusGen: 1
+  Gabitus: 1
+  TasteGen: 1
+  Taste: 2
+  GrowTimeGen: 1
+  GrowTime: 900
+  MutationPossibility: 0
