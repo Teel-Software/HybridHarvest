@@ -81,7 +81,7 @@ public class AwardsCenter : MonoBehaviour
 
         // Продолжает диалог, если таковой имеется
         var dPanel = GameObject.FindGameObjectWithTag("DialogPanel");
-        if (dPanel.activeSelf == true)
+        if (dPanel?.activeSelf == true)
             dPanel.GetComponent<DialogPanelLogic>().LoadNextPhrase();
 
         // удаляет текущую панель

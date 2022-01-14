@@ -661,18 +661,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 74445849}
-        m_TargetAssemblyTypeName: NotificationCenter, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 189950536}
         m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
         m_MethodName: Tutorial_Exhibition
@@ -998,6 +986,7 @@ GameObject:
   - component: {fileID: 314216979}
   - component: {fileID: 314216978}
   - component: {fileID: 314216977}
+  - component: {fileID: 314216976}
   m_Layer: 5
   m_Name: Exhibition
   m_TagString: Untagged
@@ -1005,6 +994,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &314216976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314216975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f434fc7b093c748bfd6b9fd21acc46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exhButton: {fileID: 1215146672835046241}
 --- !u!114 &314216977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4522,32 +4524,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4070770460126795767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4720062190801490399}
-        m_TargetAssemblyTypeName: ExhibitionButton, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4118424948299718793}
-        m_TargetAssemblyTypeName: NotificationCenter, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0443\u043B\u044C\u0442\u0443\u0440\u0443
-            \u0434\u043B\u044F \u043F\u043E\u043A\u0430\u0437\u0430"
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1001 &2146170985106004464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4826,6 +4803,7 @@ GameObject:
   - component: {fileID: 1215146672835046241}
   - component: {fileID: 4720062190801490399}
   - component: {fileID: 4118424948299718793}
+  - component: {fileID: 4118424948299718794}
   m_Layer: 5
   m_Name: SelectSeed
   m_TagString: Untagged
@@ -4848,6 +4826,20 @@ MonoBehaviour:
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0.5019608, g: 1, b: 0.5019608, a: 1}
   useDefaultColor: 0
+--- !u!114 &4118424948299718794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4118424948299718792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04294d6a3936d14fa5f2ace55ec2d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  awardsPanelPrefab: {fileID: 3120944475483751061, guid: 60b0c2946d431d14aa0d2d7a56e225c5, type: 3}
+  awardPrefab: {fileID: 2668108572914083540, guid: eb4796eb4adc96d4a8553c593f18ac0f, type: 3}
 --- !u!114 &4720062190801490399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,6 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 654561913}
+  DialogPanel: {fileID: 338724733}
   NowSelected: {fileID: 0}
 --- !u!222 &4909804019856622875
 CanvasRenderer:
