@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b52a92e3a5556ba4086c43c4f8509461
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - F77 Minecraft
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: be0d33b0a4044d744aa7452a3c733887, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

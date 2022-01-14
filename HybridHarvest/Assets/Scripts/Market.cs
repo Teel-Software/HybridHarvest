@@ -15,7 +15,7 @@ public class Market : MonoBehaviour
     {
         get
         { 
-            var inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
+            var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
             return inventory.Elements.Select(el => el.Name).Distinct().ToList(); 
         }
     }
