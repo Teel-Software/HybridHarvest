@@ -109,6 +109,7 @@ public class DialogPanelLogic : MonoBehaviour
         NarratorSprite = narratorSprite;
         cleaningIsNeeded = false;
         SkipTutorialBtnActive = false;
+        LastAction = null;
     }
 
     /// <summary>

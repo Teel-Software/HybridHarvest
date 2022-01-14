@@ -14,9 +14,9 @@ public class Market : MonoBehaviour, ISaveable
     private static List<string> SeedTypesInInventory
     {
         get
-        { 
+        {
             var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-            return inventory.Elements.Select(el => el.Name).Distinct().ToList(); 
+            return inventory.Elements.Select(el => el.Name).Distinct().ToList();
         }
     }
 
@@ -32,7 +32,7 @@ public class Market : MonoBehaviour, ISaveable
         foreach (var seedName in SeedTypesInInventory)
             if (!PriceMultipliers.ContainsKey(seedName))
                 PriceMultipliers[seedName] = 1.0f;
-        
+
         var elapsed = DateTime.Now - _lastRefreshDate;
         if (elapsed.TotalHours >= HoursToRefresh)
         {
@@ -46,15 +46,15 @@ public class Market : MonoBehaviour, ISaveable
     /// </summary>
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (!hasFocus) 
+        if (!hasFocus)
             Save();
     }
 
-    private Dictionary<string,float> GetNewMultipliers()
+    private Dictionary<string, float> GetNewMultipliers()
     {
         var rand = new Random(_lastRefreshDate.DayOfYear * DateTime.Now.Second);
         var newDict = new Dictionary<string, float>();
-        
+
         foreach (var plant in PriceMultipliers.Keys)
         {
             var newMul = rand.NextDouble() + 0.5;
@@ -63,7 +63,7 @@ public class Market : MonoBehaviour, ISaveable
 
         return newDict;
     }
-    
+
     public void Save()
     {
         var writer = QuickSaveWriter.Create("Market");
@@ -75,7 +75,7 @@ public class Market : MonoBehaviour, ISaveable
     public void Load()
     {
         var reader = QSReader.Create("Market");
-        
+
         if (reader.Exists("Multipliers"))
             PriceMultipliers = reader.Read<Dictionary<string, float>>("Multipliers");
         else
@@ -85,7 +85,7 @@ public class Market : MonoBehaviour, ISaveable
                 if (!PriceMultipliers.ContainsKey(seedName))
                     PriceMultipliers.Add(seedName, 1.0f);
         }
-        
+
         _lastRefreshDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Today;
     }
 }

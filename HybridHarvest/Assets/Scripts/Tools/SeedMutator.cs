@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
 
-public static class SeedMutator 
+public static class SeedMutator
 {
     public static Seed GetMutatedSeed(Seed oldSeed)
     {
@@ -73,10 +73,17 @@ public static class SeedMutator
                 stats.Add(statsData[i].Item1);
         }
 
-        if (stats[3] != oldSeed.minAmount)
-            stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
-        else
-            stats.Add(statsData.Last().Item1);
+        try
+        {
+            if (stats[3] != oldSeed.minAmount)
+                stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
+            else
+                stats.Add(statsData.Last().Item1);
+        }
+        catch
+        {
+            Debug.Log($"В мутации ошибка -_- Семечко \"{oldSeed.Name}\".");
+        }
 
         return stats.ToArray();
     }

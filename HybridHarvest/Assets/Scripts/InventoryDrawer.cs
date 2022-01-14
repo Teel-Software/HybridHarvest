@@ -10,7 +10,7 @@ public class InventoryDrawer : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
     // Место отрисовки
-    [FormerlySerializedAs("Place")] 
+    [FormerlySerializedAs("Place")]
     [SerializeField] private RectTransform scrollViewContent;
     // Префабы
     [SerializeField] private GameObject ConfirmationPanel;
@@ -21,7 +21,6 @@ public class InventoryDrawer : MonoBehaviour
 
     public Button GrowPlace { get; set; }
     public Action SuccessfulAddition;
-    private string originalQuestionText; //?
     public PurposeOfDrawing Purpose;
     readonly List<GameObject> alreadyDrawn = new List<GameObject>();
     private bool changeItem = false;
@@ -31,6 +30,15 @@ public class InventoryDrawer : MonoBehaviour
     {
         UpdateActions();
         Redraw();
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для замены пакета семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_Inventory_Played"))
+            scenario?.Tutorial_ReplaceItem();
+
+        // тутор для инвентаря
+        scenario?.Tutorial_Inventory();
     }
 
     private void OnDisable()
@@ -38,6 +46,12 @@ public class InventoryDrawer : MonoBehaviour
         targetInventory.SaveAllData();
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для замены пакета семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
+            scenario?.Tutorial_HarvestPlaceSellAll();
     }
 
     public void ToggleGameObject(bool enableIt)
@@ -151,6 +165,7 @@ public class InventoryDrawer : MonoBehaviour
             itemIcon.AddComponent<Image>().sprite = img;
             itemIcon.transform.SetParent(scrollViewContent);
             itemIcon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
+            itemIcon.tag = "InventoryPlusBtn";
             alreadyDrawn.Add(itemIcon);
         }
         FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";

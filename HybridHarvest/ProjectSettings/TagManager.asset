@@ -6,7 +6,6 @@ TagManager:
   tags:
   - GameMusic
   - GameSFX
-  - ExitButton
   - Canvas
   - Notification
   - AwardsPlace
@@ -14,6 +13,9 @@ TagManager:
   - HybridPanel
   - DialogPanel
   - Blocker
+  - TutorialHandler
+  - ExitInventory
+  - InventoryPlusBtn
   layers:
   - Default
   - TransparentFX

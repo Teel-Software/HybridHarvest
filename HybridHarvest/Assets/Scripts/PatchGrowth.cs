@@ -130,6 +130,11 @@ public class PatchGrowth : MonoBehaviour
         PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
         time = seed.GrowTime;
         timerNeeded = true;
+
+        // тутор для инвентаря
+        GameObject.FindGameObjectWithTag("TutorialHandler")
+            ?.GetComponent<Scenario>()
+            ?.Tutorial_FarmSpot();
     }
 
     /// <summary>

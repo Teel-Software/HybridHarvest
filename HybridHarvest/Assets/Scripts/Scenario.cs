@@ -13,6 +13,8 @@ public class Scenario : MonoBehaviour
     [SerializeField] Sprite NarratorSprite;
     [SerializeField] GameObject BlockerPrefab;
 
+    private GameObject lastButton;
+
     /// <summary>
     /// В подобных методах нужно создавать диалоги
     /// </summary>
@@ -59,17 +61,17 @@ public class Scenario : MonoBehaviour
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 1:
-                ExecuteTutorialPart("BeginningChoice", "SceneButtonField", FirstCharacterPhrases: new string[] {
-                   "Хороший денёк, однако выдался! Помнится, вчера я хотел посадить семена, да вот забыл... Ну ничего, сделаю это сейчас!"},
-                   NarratorPhrases: new string[] { "Нажмите на кнопку \"Грядка\"" },
+                ExecuteTutorialPart("BeginningChoice", activeButtonName: "SceneButtonField",
+                    firstCharacterPhrases: new string[] { "Хороший денёк, однако выдался! Помнится, вчера я хотел посадить семена, да вот забыл... Ну ничего, сделаю это сейчас!" },
+                   narratorPhrases: new string[] { "Нажмите на кнопку \"Грядка\"." },
                    award: new Award(AwardType.Seed, seedName: "Potato"));
                 break;
             case 2:
-                ExecuteTutorialPart("BeginningField", "FarmSpot", FirstCharacterPhrases: new string[] {
-                   "Это поле. Здесь можно посадить семена, которые есть у тебя на складе. Нажми на грядку, посмотри, что будет." });
+                ExecuteTutorialPart("BeginningField", activeButtonName: "FarmSpot",
+                    narratorPhrases: new string[] { "Это поле. Здесь можно посадить семена, которые есть на складе. Нажмите на грядку." });
                 break;
             case 3:
-                ExecuteTutorialPart("BeginningLab", "ExitScene", FirstCharacterPhrases: new string[] {
+                ExecuteTutorialPart("BeginningLab", firstCharacterPhrases: new string[] {
                    "Это лаборатория. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно только семена одного вида!" });
                 break;
                 //case 4:
@@ -77,6 +79,91 @@ public class Scenario : MonoBehaviour
                 //       "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть у тебя на складе. Скрещивать можно что угодно, но один раз в день!");
                 //    break;
         }
+    }
+
+    public void Tutorial_Inventory()
+    {
+        if (!QSReader.Create("TutorialState").Exists("Tutorial_Inventory_Played", "TutorialSkipped"))
+        {
+            // деактивирует кнопку выхода из инвентаря
+            GameObject.Find("ExitInventory")?.SetActive(false);
+            // деактивирует кнопку выхода со сцены
+            GameObject.Find("ExitScene")?.SetActive(false);
+        }
+
+        ExecuteTutorialPart("Inventory", narratorPhrases: new string[] {
+        "Это склад. Здесь хранятся пакеты семян. Следите за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.",
+        "Нажмите на пакет с семенами картофеля."});
+    }
+
+    public void Tutorial_StatPanel()
+    {
+        ExecuteTutorialPart("StatPanel", narratorPhrases: new string[] { "На этой панели написана вся нужная информация о семечке. Нажмите на кнопку \"Посадить\"." });
+    }
+
+    public void Tutorial_FarmSpot()
+    {
+        ExecuteTutorialPart("FarmSpot", activeButtonName: "FarmSpot",
+            firstCharacterPhrases: new string[] { "Ого, картошка нынче быстро растёт! Видимо повлияли хорошие погодные условия." },
+            narratorPhrases: new string[] { "Первый раз мы ускорили время роста картошки, чтобы вы долго не ждали. " +
+            "Обычные семена прорастают намного медленнее. Каждый раз при посадке семечка тратится 1 единица энергии.",
+            "Нажмите на картофель, как только он вырастет."});
+    }
+
+    public void Tutorial_HarvestPlace()
+    {
+        ExecuteTutorialPart("HarvestPlace", activeButtonName: "AddToInventory",
+            firstCharacterPhrases: new string[] { "Ух ты, сколько картошки выросло! Даже и не знаю, какую выбрать!" },
+            narratorPhrases: new string[] { "На данной панели отображается всё, что выросло из посаженного семечка. Чтобы добавить понравившиеся семена на склад - нажмите на кнопку \"+\"." });
+    }
+
+    public void Tutorial_ReplaceItem()
+    {
+        if (!QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played", "TutorialSkipped"))
+        {
+            // деактивирует кнопку добавления элемента в инвентаре
+            GameObject.FindGameObjectWithTag("InventoryPlusBtn")?.SetActive(false);
+        }
+
+        ExecuteTutorialPart("ReplaceItem", narratorPhrases: new string[] { "Нажмите на пакет семян, после чего нажмите на кнопку \"Заменить\"." });
+    }
+
+    public void Tutorial_HarvestPlaceSellAll()
+    {
+        ExecuteTutorialPart("HarvestPlaceSellAll", activeButtonName: "SellAll",
+            firstCharacterPhrases: new string[] { "Думаю, что остальную картошку можно продать, сейчас она всё равно мне не понадобится." },
+            narratorPhrases: new string[] { "Нажмите на кнопку \"Продать всё\"." });
+    }
+
+    public void Tutorial_FieldEnding()
+    {
+        if (!QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played", "TutorialSkipped"))
+        {
+            // активирует кнопку выхода со сцены
+            var btn = GameObject.FindGameObjectWithTag("Canvas")
+                 ?.transform
+                 ?.Find("ExitScene")
+                 ?.gameObject;
+            btn?.SetActive(true);
+        }
+
+        ExecuteTutorialPart("FieldEnding", activeButtonName: "ExitScene",
+            firstCharacterPhrases: new string[] { "Отлично, с урожаем я разобрался, теперь самое время заглянуть к торговцу!" });
+    }
+
+    public void Tutorial_Market()
+    {
+        ExecuteTutorialPart("Market",
+            firstCharacterPhrases: new string[] { "Ого! С ценой всё в порядке... У меня первый раз такое!" },
+            narratorPhrases: new string[] { "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.",
+            "Если цифра меньше единицы - цена уменьшилась, если равна единице - цена не изменилась, если больше единицы - цена увеличилась. " +
+            "Цифра будет меняться по ходу игры, следите за ней и продавайте семена вовремя."});
+    }
+
+    public void Tutorial_Energy()
+    {
+        ExecuteTutorialPart("Energy", narratorPhrases: new string[] {
+            "Энергия тратится, когда вы садите растения. Она сама восстанавливается со временем, но если вы хотите - можно смотреть рекламу и получать энергию БЕСПЛАТНО!" });
     }
 
     //public void Tutorial_SideMenu()
@@ -98,22 +185,11 @@ public class Scenario : MonoBehaviour
     //        "", "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий ты получишь от них награду.");
     //}
 
-    //public void Tutorial_Inventory()
-    //{
-    //    ExecuteTutorialPart("Inventory",
-    //        "", "Это склад. Здесь хранятся все пакеты семян, которые ты получил. Следи за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.");
-    //}
 
     //public void Tutorial_Exhibition()
     //{
     //    ExecuteTutorialPart("Exhibition",
     //       "", "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!");
-    //}
-
-    //public void Tutorial_Market()
-    //{
-    //    ExecuteTutorialPart("Market",
-    //       "", "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.");
     //}
 
     //public void Tutorial_HybridPanel()
@@ -127,8 +203,12 @@ public class Scenario : MonoBehaviour
     /// </summary>
     /// <param name="keyPart">Название, по которому идёт сохранение</param>
     /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления</param>
-    /// <param name="NarratorPhrases">Фразы, которые говорит рассказчик</param>
-    private void ExecuteTutorialPart(string keyPart, string activeButtonName, string[] FirstCharacterPhrases = null, string[] NarratorPhrases = null, Award award = null)
+    /// <param name="activeButtonTag">Тег кнопки, которую следует сделать активной после окончания части вступления</param>
+    /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж</param>
+    /// <param name="narratorPhrases">Фразы, которые говорит рассказчик</param>
+    /// <param name="award">Награда после слов первого персонажа</param>
+    private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
+        string[] firstCharacterPhrases = null, string[] narratorPhrases = null, Award award = null)
     {
         var key = $"Tutorial_{keyPart}_Played";
         if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
@@ -136,22 +216,34 @@ public class Scenario : MonoBehaviour
 
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
-        if (FirstCharacterPhrases != null)
-            foreach (var ph in FirstCharacterPhrases)
+        if (firstCharacterPhrases != null)
+            foreach (var ph in firstCharacterPhrases)
                 DialogPanel.AddPhrase(NowTalking.First, ph);
-        if (NarratorPhrases != null)
-            foreach (var ph in NarratorPhrases)
+        if (narratorPhrases != null)
+            foreach (var ph in narratorPhrases)
                 DialogPanel.AddPhrase(NowTalking.Narrator, ph);
 
         // добавляет награду после слов первого персонажа
         if (award != null)
-            DialogPanel.AddAward(FirstCharacterPhrases == null ? 0 : FirstCharacterPhrases.Length, award);
+            DialogPanel.AddAward(firstCharacterPhrases == null ? 0 : firstCharacterPhrases.Length, award);
 
         DialogPanel.SkipTutorialBtnActive = true;
         DialogPanel.StartDialog();
 
+        if (activeButtonName != null)
+            HighlightNextButton(GameObject.Find(activeButtonName));
+        else if (activeButtonTag != null)
+            HighlightNextButton(GameObject.FindGameObjectWithTag(activeButtonTag));
+    }
+
+    /// <summary>
+    /// Подсвечивает нужную кнопку
+    /// </summary>
+    /// <param name="activeButton">Кнопка, которую следует выделить</param>
+    private void HighlightNextButton(GameObject activeButton)
+    {
+        if (activeButton == null) return;
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        var btn = GameObject.Find(activeButtonName);
 
         // создаёт блокер и дублирует нужную кнопку
         if (BlockerPrefab != null)
@@ -159,23 +251,14 @@ public class Scenario : MonoBehaviour
             DialogPanel.LastAction = () =>
             {
                 Instantiate(BlockerPrefab, canvas.transform, false);
-                var newBtn = Instantiate(btn, canvas.transform, true);
-                newBtn.GetComponent<Button>()
-                    .onClick.AddListener(() =>
-                    {
-                        // удаляет блокер и кнопку после клика на кнопку
-                        var currentBtn = EventSystem.current.currentSelectedGameObject;
-                        var blocker = GameObject.FindGameObjectWithTag("Blocker");
-                        if (currentBtn == null) return;
+                var newBtn = Instantiate(activeButton, activeButton.transform.parent);
+                newBtn.transform.SetSiblingIndex(activeButton.transform.GetSiblingIndex());
+                newBtn.name = "SuperFakeButton271386";
 
-                        if (blocker != null)
-                            Destroy(blocker);
-                        Destroy(currentBtn);
-                    });
+                lastButton = newBtn;
 
-                if (btn.name == "FarmSpot")
+                if (activeButton.name == "FarmSpot")
                 {
-                    newBtn.GetComponent<PatchGrowth>().Patch = btn.GetComponent<PatchGrowth>().Patch;
                     Seed tutorSeed = null;
 
                     try
@@ -197,6 +280,24 @@ public class Scenario : MonoBehaviour
                         tutorSeed.UpdateRating();
                     }
                 }
+
+                activeButton.transform.SetParent(canvas.transform, true);
+                activeButton.transform.SetAsLastSibling();
+                activeButton.GetComponent<Button>()
+                    .onClick.AddListener(() =>
+                    {
+                        // удаляет блокер и фейковую кнопку
+                        var placeholder = lastButton;
+                        var blocker = GameObject.FindGameObjectWithTag("Blocker");
+
+                        if (placeholder != null)
+                        {
+                            activeButton.transform.SetParent(placeholder.transform.parent, true);
+                            activeButton.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+                        }
+                        Destroy(placeholder);
+                        Destroy(blocker);
+                    });
             };
         }
         else Debug.Log("Префаб блокера для туториала не указан!");

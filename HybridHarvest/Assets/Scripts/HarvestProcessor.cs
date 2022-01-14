@@ -23,9 +23,9 @@ public class HarvestProcessor : MonoBehaviour
             var item = Instantiate(VegItem, Place);
             seedPlaces.Add(item);
 
-            var button = item.transform.Find("Button");
+            var plusButton = item.GetComponentInChildren<Button>();
             //button.GetComponentInChildren<Text>().text = "Может сохранить?";
-            button.GetComponent<Button>().onClick.AddListener(() =>
+            plusButton.onClick.AddListener(() =>
             {
                 Inventory.GetComponent<InventoryDrawer>().SuccessfulAddition += () =>
                 {
@@ -74,6 +74,11 @@ public class HarvestProcessor : MonoBehaviour
         Patch.GetComponent<PatchGrowth>().ClearPatch();
         gameObject.SetActive(false);
         Save();
+
+        // тутор для выхода из поля на другую сцену
+        GameObject.FindGameObjectWithTag("TutorialHandler")
+            ?.GetComponent<Scenario>()
+            ?.Tutorial_FieldEnding();
     }
 
     public void ClearSpace()
@@ -95,5 +100,20 @@ public class HarvestProcessor : MonoBehaviour
         PlayerPrefs.SetInt(Patch.name + "seedsCount", seeds.Count);
         for (var i = 0; i < seeds.Count; i++)
             PlayerPrefs.SetString(Patch.name + "seedElement" + i.ToString(), seeds[i].ToString());
+    }
+
+    private void OnEnable()
+    {
+        // тутор для окна сбора урожая
+        GameObject.FindGameObjectWithTag("TutorialHandler")
+            ?.GetComponent<Scenario>()
+            ?.Tutorial_HarvestPlace();
+    }
+
+    private void OnDisable()
+    {
+        GameObject.FindGameObjectWithTag("Inventory")
+            .GetComponent<Inventory>()
+            .SaveAllData();
     }
 }
