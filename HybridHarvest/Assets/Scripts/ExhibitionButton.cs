@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CI.QuickSave;
@@ -12,34 +11,34 @@ public class ExhibitionButton : MonoBehaviour
 
     public void DefaultClick()
     {
-            Inventory.GetComponent<InventoryDrawer>().GrowPlace = gameObject.GetComponent<Button>();
-            Inventory.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToExhibition);
-            Inventory.gameObject.SetActive(true);
+        Inventory.GetComponent<InventoryDrawer>().GrowPlace = gameObject.GetComponent<Button>();
+        Inventory.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToExhibition);
+        Inventory.gameObject.SetActive(true);
         if (NowSelected == null)
         {
-            gameObject.GetComponent<NotificationCenter>().Show("Выберите культуру для показа");
+            gameObject.GetComponent<NotificationCenter>().Show("Р’С‹Р±РµСЂРёС‚Рµ РєСѓР»СЊС‚СѓСЂСѓ РґР»СЏ РїРѕРєР°Р·Р°");
         }
         else
         {
-            gameObject.GetComponent<NotificationCenter>().Show("На что вы хотите заменить культуру?");
+            gameObject.GetComponent<NotificationCenter>().Show("РќР° С‡С‚Рѕ РІС‹ С…РѕС‚РёС‚Рµ Р·Р°РјРµРЅРёС‚СЊ РєСѓР»СЊС‚СѓСЂСѓ?");
         }
     }
 
     public void ExhibitionClick()
     {
-        gameObject.GetComponent<NotificationCenter>().Show("Выставка в самом разгаре\nПриходите завтра");
+        gameObject.GetComponent<NotificationCenter>().Show("Р’С‹СЃС‚Р°РІРєР° РІ СЃР°РјРѕРј СЂР°Р·РіР°СЂРµ\nРџСЂРёС…РѕРґРёС‚Рµ Р·Р°РІС‚СЂР°");
     }
 
     public void ResultClick()
     {
         if (NowSelected == null)
         {
-            gameObject.GetComponent<NotificationCenter>().Show("Нет награды");
+            gameObject.GetComponent<NotificationCenter>().Show("РќРµС‚ РЅР°РіСЂР°РґС‹");
         }
         else
         {
             var awards = new List<Award>();
-             awards.Add(new Award(AwardType.Money, money: 100));
+            awards.Add(new Award(AwardType.Money, money: 100));
             awards.Add(new Award(AwardType.Reputation, reputation: 100));
             gameObject.GetComponent<AwardsCenter>().Show(awards);
 
@@ -57,7 +56,7 @@ public class ExhibitionButton : MonoBehaviour
 
     private void OnDisable()
     {
-            SaveData();
+        SaveData();
     }
 
     private void OnEnable()
@@ -70,7 +69,7 @@ public class ExhibitionButton : MonoBehaviour
     private void SaveData()
     {
         var writer = QuickSaveWriter.Create("ExhibitionData");
-        if(NowSelected != null)
+        if (NowSelected != null)
             writer.Write("ExhSeed", NowSelected.ToString());
         else
             writer.Write("ExhSeed", "no");

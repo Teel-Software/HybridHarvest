@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +6,12 @@ public class ExhibitionBehaviour : MonoBehaviour
 {
     [SerializeField] public Button exhButton;
     DateTime date;
+
     void OnEnable()
     {
-        //date = new DateTime(2022, 1, 16);
+        date = DateTime.Now;
         exhButton.onClick.RemoveAllListeners();
+
         switch (date.DayOfWeek)
         {
             case DayOfWeek.Saturday:
