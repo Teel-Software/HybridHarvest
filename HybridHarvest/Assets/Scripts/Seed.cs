@@ -72,11 +72,15 @@ public class Seed : ScriptableObject
         UpdateRating();
     }
 
+    private void Awake()
+    {
+        //UpdateRating();
+    }
+
     public void UpdateRating()
     {
         LevelData ??= CSVReader.ParseSeedStats(Name);
         var rating = 0;
-
         try
         {
             rating = LevelData.Gabitus[Gabitus]
@@ -88,7 +92,6 @@ public class Seed : ScriptableObject
         catch
         {
             // Раскомментируйте строчку ниже для дебага. (Возможен спам)
-
             //Debug.Log($"В таблице характеристик не указано одно или несколько значений. Рейтинг семян \"{NameInRussian}\" равен нулю.");
         }
 

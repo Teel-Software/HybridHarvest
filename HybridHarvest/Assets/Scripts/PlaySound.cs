@@ -12,14 +12,4 @@ public class PlaySound : MonoBehaviour
     {
         FindObjectOfType<SFXManager>().Play(soundClip);
     }
-
-    public void Start()
-    {
-        
-    }
-
-    public void Update()
-    {
-        
-    }
 }

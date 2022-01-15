@@ -43,7 +43,7 @@ public class InventoryDrawer : MonoBehaviour
 
     private void OnDisable()
     {
-        targetInventory.SaveAllData();
+        targetInventory.Save();
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
 
@@ -198,7 +198,7 @@ public class InventoryDrawer : MonoBehaviour
             // вот до сюда
             changeItem = false;
             gameObject.SetActive(false);
-            targetInventory.SaveAllData();
+            targetInventory.Save();
             SuccessfulAddition?.Invoke();
             return;
         }
@@ -255,7 +255,7 @@ public class InventoryDrawer : MonoBehaviour
                     logicScript.ChangeItem(changingSeed);
                     changeItem = false;
                     gameObject.SetActive(false);
-                    targetInventory.SaveAllData();
+                    targetInventory.Save();
                     SuccessfulAddition?.Invoke();
                 });
                 break;

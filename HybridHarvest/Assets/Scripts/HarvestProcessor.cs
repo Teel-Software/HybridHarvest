@@ -59,7 +59,7 @@ public class HarvestProcessor : MonoBehaviour
         var inventory = Inventory.GetComponent<InventoryDrawer>().targetInventory;
         inventory.AddMoney(seed.Price);
         inventory.ChangeReputation(seed.Gabitus);
-        inventory.SaveAllData();
+        inventory.Save();
     }
 
     public void SellAll()
@@ -114,6 +114,6 @@ public class HarvestProcessor : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Inventory")
             .GetComponent<Inventory>()
-            .SaveAllData();
+            .Save();
     }
 }

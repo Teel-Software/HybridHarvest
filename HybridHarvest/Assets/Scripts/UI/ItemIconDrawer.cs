@@ -8,7 +8,7 @@ public class ItemIconDrawer : MonoBehaviour
     [SerializeField] private Image plantIcon;
 
     public void SetSeed(Seed seed)
-    {
+    { 
         seed.UpdateRating();
         plantIcon.sprite = seed.PlantSprite;
         packetIcon.sprite = seed.PacketSprite;
