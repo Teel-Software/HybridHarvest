@@ -43,7 +43,7 @@ public class ClearGameData : MonoBehaviour
 
     public void ClearExhibition()
     {
-        GameObject.Find("Exhibition").SetActive(false);
+        GameObject.Find("Exhibition")?.SetActive(false);
         var writer = QuickSaveWriter.Create("ExhibitionData");
         writer.Write("ExhSeed", "no");
         writer.Commit();

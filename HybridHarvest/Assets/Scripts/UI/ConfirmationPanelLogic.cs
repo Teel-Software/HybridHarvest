@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] private GameObject parentGameObject;
-    
+
     public Inventory targetInventory;
-    [FormerlySerializedAs("drawInventory")] 
+    [FormerlySerializedAs("drawInventory")]
     public InventoryDrawer inventoryDrawer;
-    
+
     public bool HasPrice;
     public string ItemName;
-    
+
     public GameObject ItemObject;
 
     private GameObject questionObject;
@@ -33,7 +33,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         inventoryDrawer.SuccessfulAddition = () => targetInventory.AddMoney(-seed.ShopBuyPrice);
         targetInventory.AddItem(seed);
         Statistics.UpdatePurchasedSeeds(seed.Name);
-        
+
         parentGameObject.SetActive(false);
     }
 
@@ -43,7 +43,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void Sell()
     {
         if (!int.TryParse(ItemObject.name, out int index)) return;
-        
+
         var seed = targetInventory.Elements[index];
 
         targetInventory.AddMoney(seed.Price);
@@ -52,7 +52,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         inventoryDrawer.Redraw();
 
         Statistics.UpdateSoldSeeds(seed.Name);
-        
+
         parentGameObject.SetActive(false);
     }
 
@@ -62,7 +62,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void Plant()
     {
         if (!int.TryParse(ItemObject.name, out int index)) return;
-        
+
         var toPlant = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
         inventoryDrawer.ToggleGameObject(false);
@@ -74,7 +74,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void Select()
     {
         if (!int.TryParse(ItemObject.name, out int index)) return;
-        
+
         var toSelect = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
         inventoryDrawer.ToggleGameObject(false);
@@ -86,19 +86,19 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public void SendToExhibition()
     {
         if (!int.TryParse(ItemObject.name, out int index)) return;
-        
+
         var toSend = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
         inventoryDrawer.ToggleGameObject(false);
     }
-    
+
     /// <summary>
     /// Заменяет семечко на другое
     /// </summary>   
     public void ChangeItem(Seed newSeed)
     {
         if (!int.TryParse(ItemObject.name, out int index)) return;
-        
+
         if (index == targetInventory.Elements.Count)
         {
             targetInventory.Elements.Add(newSeed);
@@ -112,7 +112,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         inventoryDrawer.Redraw();
         parentGameObject.SetActive(false);
     }
-    
+
     /// <summary>
     /// Добавляет к основному тексту название растения
     /// <param name="itemName">Имя растения на английском</param>
@@ -142,11 +142,6 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!HasPrice) questionText.text += "?";
     }
 
-    void OnEnable()
-    {
-        //SetPrice();
-    }
-    
     /// <summary>
     /// Добавляет ко второму текстовому объекту цену объекта семени
     /// </summary>

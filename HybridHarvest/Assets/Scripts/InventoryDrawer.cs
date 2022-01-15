@@ -33,6 +33,10 @@ public class InventoryDrawer : MonoBehaviour
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
+        // тутор для добавления пакета семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_BuyItem_Played"))
+            scenario?.Tutorial_AddItem();
+
         // тутор для замены пакета семян
         if (QSReader.Create("TutorialState").Exists("Tutorial_Inventory_Played"))
             scenario?.Tutorial_ReplaceItem();
@@ -46,12 +50,6 @@ public class InventoryDrawer : MonoBehaviour
         targetInventory.Save();
         if (changeItem) changeItem = false;
         gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(false);
-
-        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-
-        // тутор для замены пакета семян
-        if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
-            scenario?.Tutorial_HarvestPlaceSellAll();
     }
 
     public void ToggleGameObject(bool enableIt)
@@ -167,6 +165,15 @@ public class InventoryDrawer : MonoBehaviour
             itemIcon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
             itemIcon.tag = "InventoryPlusBtn";
             alreadyDrawn.Add(itemIcon);
+
+            itemIcon.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+                // тутор для выхода из магазина
+                if (QSReader.Create("TutorialState").Exists("Tutorial_AddItem_Played"))
+                    scenario?.Tutorial_ShopExit();
+            });
         }
         FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
     }
@@ -202,6 +209,7 @@ public class InventoryDrawer : MonoBehaviour
             SuccessfulAddition?.Invoke();
             return;
         }
+
         Text text;
         Button yesButton;
         ConfirmationPanelLogic logicScript;
@@ -273,6 +281,19 @@ public class InventoryDrawer : MonoBehaviour
                 break;
         }
 
+        yesButton.onClick.AddListener(() =>
+        {
+            var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+            // тутор для захода на биржу
+            if (QSReader.Create("TutorialState").Exists("Tutorial_SellItem_Played"))
+                scenario?.Tutorial_GoToMarket();
+
+            // тутор для продажи урожая
+            if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
+                scenario?.Tutorial_HarvestPlaceSellAll();
+
+        });
         logicScript.ItemObject = item;
 
         //if (int.TryParse(item.name, out var index) && targetInventory.Elements.Count > index)

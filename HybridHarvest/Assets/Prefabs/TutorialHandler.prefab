@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPanel: {fileID: 0}
   FirstCharacterSprite: {fileID: 21300000, guid: 254ab65fb76ad304d967a240cd0d2677, type: 3}
-  SecondCharacterSprite: {fileID: 21300000, guid: 0158df6d52a26c042bf6ba23c65b0f01, type: 3}
+  SecondCharacterSprite: {fileID: 21300000, guid: a6e21a10b697b1843880148232d5a3da, type: 3}
   NarratorSprite: {fileID: 21300000, guid: 48453772077058143b190c315038583b, type: 3}
   BlockerPrefab: {fileID: 7642040400430658116, guid: 3709cd888402dd14fbfa4e44da4bef7b, type: 3}
 --- !u!114 &2146170984949625786

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5231617042604959936}
   - component: {fileID: 363828189394075483}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: MarketExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

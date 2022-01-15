@@ -104,10 +104,10 @@ public class HarvestProcessor : MonoBehaviour
 
     private void OnEnable()
     {
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
         // тутор для окна сбора урожая
-        GameObject.FindGameObjectWithTag("TutorialHandler")
-            ?.GetComponent<Scenario>()
-            ?.Tutorial_HarvestPlace();
+        scenario.Tutorial_HarvestPlace();
     }
 
     private void OnDisable()

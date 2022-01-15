@@ -18,4 +18,16 @@ public class TutorialHandler : MonoBehaviour
         // перезагружает сцену, чтобы неактивные кнопки обновились
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void SideMenuTutorial()
+    {
+        var scenario = GetComponent<Scenario>();
+
+        // тутор для захода на склад
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ShopExit_Played"))
+            scenario?.Tutorial_SideMenuInventory();
+
+        // тутор для боковой панели
+        scenario?.Tutorial_SideMenu();
+    }
 }

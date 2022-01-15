@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (!hasFocus) 
+        if (!hasFocus)
             Save();
     }
 
@@ -149,7 +149,7 @@ public class Inventory : MonoBehaviour, ISaveable
         for (var i = 0; i < Elements.Count; i++)
             writer.Write(i.ToString(), Elements[i].ToString());
         writer.Commit();
-        
+
         writer = QuickSaveWriter.Create("EnergyData");
         writer.Write("Energy", Energy)
             .Write("EnergyMax", EnergyMax)
@@ -165,7 +165,7 @@ public class Inventory : MonoBehaviour, ISaveable
         Reputation = reader.Exists("reputation") ? reader.Read<int>("reputation") : 0;
         // Hачинается с 1 т.к. формула неадекватно реагирует на 0
         ReputationLevel = reader.Exists("reputationLevel") ? reader.Read<int>("reputationLevel") : 1;
-        
+
         MaxItemsAmount = 10;
         Elements = new List<Seed>();
         reader = QSReader.Create("PlayerInventoryItems");
@@ -180,13 +180,13 @@ public class Inventory : MonoBehaviour, ISaveable
                 Elements.Add(newSeed);
             }
         }
-        
+
         EnergyRegenDelay = 20; // time it take to regen (in seconds)
         reader = QSReader.Create("EnergyData");
-        Energy = reader.Exists("Energy") ? reader.Read<int>("Energy") : 0;
+        Energy = reader.Exists("Energy") ? reader.Read<int>("Energy") : 1;
         EnergyMax = reader.Exists("EnergyMax") ? reader.Read<int>("EnergyMax") : 10;
-        energyBuffer = reader.Exists("EnergyBuffer") 
-            ? reader.Read<float>("EnergyBuffer") 
+        energyBuffer = reader.Exists("EnergyBuffer")
+            ? reader.Read<float>("EnergyBuffer")
             : EnergyRegenDelay;
         var lastDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Now;
         var secondsElapsed = (float)(DateTime.Now - lastDate).TotalSeconds;

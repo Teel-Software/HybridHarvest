@@ -121,7 +121,13 @@ public class PatchGrowth : MonoBehaviour
     public void PlantIt(Seed seed)
     {
         //Consumes energy for planting (so bad)
-        if (_inventory.Energy <= 0) return;
+        if (_inventory.Energy <= 0)
+        {
+            _inventory.GetComponent<NotificationCenter>()
+                ?.Show("Недостаточно энергии!");
+            return;
+        }
+
         _inventory.ConsumeEnergy(1);
         Patch.interactable = false;
         isOccupied = true;
@@ -131,7 +137,7 @@ public class PatchGrowth : MonoBehaviour
         time = seed.GrowTime;
         timerNeeded = true;
 
-        // тутор для инвентаря
+        // тутор для роста семечка
         GameObject.FindGameObjectWithTag("TutorialHandler")
             ?.GetComponent<Scenario>()
             ?.Tutorial_FarmSpot();

@@ -62,9 +62,17 @@ public class StatPanelDrawer : MonoBehaviour
 
     private void OnEnable()
     {
-        // тутор для панели
-        GameObject.FindGameObjectWithTag("TutorialHandler")
-            ?.GetComponent<Scenario>()
-            ?.Tutorial_StatPanel();
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для продажи пакета семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSell_Played"))
+            scenario?.Tutorial_SellItem();
+
+        // тутор для покупки пакета семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
+            scenario?.Tutorial_BuyItem();
+
+        // тутор для панели статистики
+        scenario?.Tutorial_StatPanel();
     }
 }

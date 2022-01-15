@@ -2395,6 +2395,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1237089973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2146170984949625786, guid: fcb31162402b3fc4fbdf8bff81469d76, type: 3}
+  m_PrefabInstance: {fileID: 2146170985106004464}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06beb41487e5f954589eec62ac0d26a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245710456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,9 +3514,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 189950536}
-        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
-        m_MethodName: Tutorial_SideMenu
+      - m_Target: {fileID: 1237089973}
+        m_TargetAssemblyTypeName: TutorialHandler, Assembly-CSharp
+        m_MethodName: SideMenuTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4088,7 +4099,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 189950536}
         m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
-        m_MethodName: Tutorial_Inventory
+        m_MethodName: Tutorial_ChooseItemToSell
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4623,6 +4634,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 189950536}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Tutorial_InventoryExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 363828189394075483, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2876535857775937613, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5213,14 +5252,6 @@ PrefabInstance:
     - target: {fileID: 6602301323134408990, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602301323275406160, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602301323275406160, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 23.225998
       objectReference: {fileID: 0}
     - target: {fileID: 6602301323892643142, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchorMax.y

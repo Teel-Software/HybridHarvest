@@ -1,4 +1,5 @@
 ﻿using CI.QuickSave;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,7 @@ public class Scenario : MonoBehaviour
     [SerializeField] Sprite NarratorSprite;
     [SerializeField] GameObject BlockerPrefab;
 
-    private GameObject lastButton;
+    private readonly Dictionary<GameObject, GameObject> fakeButtons = new Dictionary<GameObject, GameObject>();
 
     /// <summary>
     /// В подобных методах нужно создавать диалоги
@@ -65,6 +66,12 @@ public class Scenario : MonoBehaviour
                     firstCharacterPhrases: new string[] { "Хороший денёк, однако выдался! Помнится, вчера я хотел посадить семена, да вот забыл... Ну ничего, сделаю это сейчас!" },
                    narratorPhrases: new string[] { "Нажмите на кнопку \"Грядка\"." },
                    award: new Award(AwardType.Seed, seedName: "Potato"));
+
+                // тутор для повторного захода в меню выбора
+                if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
+                    ExecuteTutorialPart("ChoiceSecond", activeButtonName: "SideMenuButton",
+                        firstCharacterPhrases: new string[] { "Почти пришли! Отсюда до магазина совсем не далеко!" });
+
                 break;
             case 2:
                 ExecuteTutorialPart("BeginningField", activeButtonName: "FarmSpot",
@@ -128,7 +135,7 @@ public class Scenario : MonoBehaviour
         ExecuteTutorialPart("ReplaceItem", narratorPhrases: new string[] { "Нажмите на пакет семян, после чего нажмите на кнопку \"Заменить\"." });
     }
 
-    public void Tutorial_HarvestPlaceSellAll()
+    public void Tutorial_HarvestPlaceSellAll() // not working
     {
         ExecuteTutorialPart("HarvestPlaceSellAll", activeButtonName: "SellAll",
             firstCharacterPhrases: new string[] { "Думаю, что остальную картошку можно продать, сейчас она всё равно мне не понадобится." },
@@ -151,33 +158,76 @@ public class Scenario : MonoBehaviour
             firstCharacterPhrases: new string[] { "Отлично, с урожаем я разобрался, теперь самое время заглянуть к торговцу!" });
     }
 
-    public void Tutorial_Market()
-    {
-        ExecuteTutorialPart("Market",
-            firstCharacterPhrases: new string[] { "Ого! С ценой всё в порядке... У меня первый раз такое!" },
-            narratorPhrases: new string[] { "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.",
-            "Если цифра меньше единицы - цена уменьшилась, если равна единице - цена не изменилась, если больше единицы - цена увеличилась. " +
-            "Цифра будет меняться по ходу игры, следите за ней и продавайте семена вовремя."});
-    }
-
     public void Tutorial_Energy()
     {
         ExecuteTutorialPart("Energy", narratorPhrases: new string[] {
             "Энергия тратится, когда вы садите растения. Она сама восстанавливается со временем, но если вы хотите - можно смотреть рекламу и получать энергию БЕСПЛАТНО!" });
     }
 
-    //public void Tutorial_SideMenu()
-    //{
-    //    ExecuteTutorialPart("SideMenu",
-    //        "", "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку.",
-    //        "Посмотри, что в каждом из этих мест находится. Помни, про кнопку выхода в левом верхнем углу. Если не видишь стрелочку - ищи крестик. Всё просто :)");
-    //}
+    public void Tutorial_SideMenu()
+    {
+        ExecuteTutorialPart("SideMenu", activeButtonName: "ShopLabel", narratorPhrases: new string[] {
+            "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку." });
+    }
 
-    //public void Tutorial_Shop()
-    //{
-    //    ExecuteTutorialPart("Shop",
-    //        "", "Это магазин. Здесь можно покупать семена разных культур. Купленные пакеты семян можно найти на складе.");
-    //}
+    public void Tutorial_Shop()
+    {
+        ExecuteTutorialPart("Shop", activeButtonName: "BuyTomato",
+            firstCharacterPhrases: new string[] { "Здарова, Порфирий! Сколько лет, сколько зим!", "Да ладно тебе, я тут по делу. Мне бы семян томата прикупить." },
+            secondCharacterPhrases: new string[] { "Если быть точным, то 0 лет и 0 зим, мы же только вчера виделись.", "Пожалуйста, выбирай. Всё, что есть - на прилавке." },
+            narratorPhrases: new string[] { "Купленные пакеты семян можно найти на складе." });
+    }
+
+    public void Tutorial_BuyItem()
+    {
+        ExecuteTutorialPart("BuyItem", activeButtonName: "ProceedButton");
+    }
+
+    public void Tutorial_AddItem()
+    {
+        ExecuteTutorialPart("AddItem", activeButtonTag: "InventoryPlusBtn",
+            narratorPhrases: new string[] { "Новый пакет можно не заменять, а просто добавить на склад, если в нём достаточно места." });
+    }
+
+    public void Tutorial_ShopExit()
+    {
+        ExecuteTutorialPart("ShopExit", activeButtonName: "SideMenuButton");
+    }
+
+    public void Tutorial_SideMenuInventory()
+    {
+        ExecuteTutorialPart("SideMenuInventory", activeButtonName: "InventoryLabel");
+    }
+
+    public void Tutorial_ChooseItemToSell()
+    {
+        ExecuteTutorialPart("ChooseItemToSell", firstCharacterPhrases: new string[] { "Самое время продать выращенную картошку!" });
+    }
+
+    public void Tutorial_SellItem()
+    {
+        ExecuteTutorialPart("SellItem", activeButtonName: "ProceedButton",
+            narratorPhrases: new string[] { "После продажи семян вы получаете опыт, благодаря которому прокачивается ваш уровень." });
+    }
+
+    public void Tutorial_GoToMarket()
+    {
+        ExecuteTutorialPart("GoToMarket", activeButtonName: "MarketPanel");
+    }
+
+    public void Tutorial_Market()
+    {
+        ExecuteTutorialPart("Market", activeButtonName: "MarketExit",
+            firstCharacterPhrases: new string[] { "Ого! С ценой всё в порядке... У меня первый раз такое!" }, narratorPhrases: new string[] {
+                "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.",
+                "Если цифра меньше единицы - цена уменьшилась, если равна единице - цена не изменилась, если больше единицы - цена увеличилась. " +
+                "Цифра будет меняться по ходу игры, следите за ней и продавайте семена вовремя."});
+    }
+
+    public void Tutorial_InventoryExit()
+    {
+        ExecuteTutorialPart("InventoryExit", activeButtonTag: "ExitInventory");
+    }
 
     //public void Tutorial_Quests()
     //{
@@ -208,7 +258,7 @@ public class Scenario : MonoBehaviour
     /// <param name="narratorPhrases">Фразы, которые говорит рассказчик</param>
     /// <param name="award">Награда после слов первого персонажа</param>
     private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
-        string[] firstCharacterPhrases = null, string[] narratorPhrases = null, Award award = null)
+        string[] firstCharacterPhrases = null, string[] secondCharacterPhrases = null, string[] narratorPhrases = null, Award award = null)
     {
         var key = $"Tutorial_{keyPart}_Played";
         if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
@@ -216,7 +266,22 @@ public class Scenario : MonoBehaviour
 
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
-        if (firstCharacterPhrases != null)
+        if (secondCharacterPhrases != null)
+        {
+            for (var i = 0; i < secondCharacterPhrases.Length; i++)
+            {
+                try
+                {
+                    DialogPanel.AddPhrase(NowTalking.First, firstCharacterPhrases[i]);
+                    DialogPanel.AddPhrase(NowTalking.Second, secondCharacterPhrases[i]);
+                }
+                catch
+                {
+                    Debug.Log("Количество фраз у первого и второго персонажей не совпадает. Некоторые из них были пропущены.");
+                }
+            }
+        }
+        else if (firstCharacterPhrases != null)
             foreach (var ph in firstCharacterPhrases)
                 DialogPanel.AddPhrase(NowTalking.First, ph);
         if (narratorPhrases != null)
@@ -227,13 +292,13 @@ public class Scenario : MonoBehaviour
         if (award != null)
             DialogPanel.AddAward(firstCharacterPhrases == null ? 0 : firstCharacterPhrases.Length, award);
 
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
-
         if (activeButtonName != null)
             HighlightNextButton(GameObject.Find(activeButtonName));
         else if (activeButtonTag != null)
             HighlightNextButton(GameObject.FindGameObjectWithTag(activeButtonTag));
+
+        DialogPanel.SkipTutorialBtnActive = true;
+        DialogPanel.StartDialog();
     }
 
     /// <summary>
@@ -253,9 +318,8 @@ public class Scenario : MonoBehaviour
                 Instantiate(BlockerPrefab, canvas.transform, false);
                 var newBtn = Instantiate(activeButton, activeButton.transform.parent);
                 newBtn.transform.SetSiblingIndex(activeButton.transform.GetSiblingIndex());
-                newBtn.name = "SuperFakeButton271386";
-
-                lastButton = newBtn;
+                newBtn.name = $"FakeButton_{activeButton.name}";
+                fakeButtons.Add(activeButton, newBtn);
 
                 if (activeButton.name == "FarmSpot")
                 {
@@ -286,14 +350,20 @@ public class Scenario : MonoBehaviour
                 activeButton.GetComponent<Button>()
                     .onClick.AddListener(() =>
                     {
+                        var currentButton = EventSystem.current.currentSelectedGameObject;
+                        if (currentButton == null) return;
+
                         // удаляет блокер и фейковую кнопку
-                        var placeholder = lastButton;
+                        GameObject placeholder = null;
+                        if (fakeButtons.ContainsKey(currentButton))
+                            placeholder = fakeButtons[currentButton];
                         var blocker = GameObject.FindGameObjectWithTag("Blocker");
 
                         if (placeholder != null)
                         {
-                            activeButton.transform.SetParent(placeholder.transform.parent, true);
-                            activeButton.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+                            fakeButtons.Remove(currentButton);
+                            currentButton.transform.SetParent(placeholder.transform.parent, true);
+                            currentButton.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
                         }
                         Destroy(placeholder);
                         Destroy(blocker);
