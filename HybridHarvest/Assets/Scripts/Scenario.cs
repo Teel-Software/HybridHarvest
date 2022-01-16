@@ -64,7 +64,7 @@ public class Scenario : MonoBehaviour
             case 1:
                 // тутор для третьего захода в меню выбора
                 if (QSReader.Create("TutorialState").Exists("Tutorial_LabEnding_Played"))
-                    ExecuteTutorialPart("ChoiceThird", narratorPhrases: new string[] {
+                    ExecuteTutorialPart("ChoiceThird", lastPart: true, narratorPhrases: new string[] {
                         "С этого момента вы можете исследовать всё сами! Приятной игры! P. S. Обязательно загляните в К.В.А.Н.Т. При скрещивании разных растений получаются очень смешные названия :)" });
 
                 // тутор для повторного захода в меню выбора
@@ -322,7 +322,7 @@ public class Scenario : MonoBehaviour
     /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж</param>
     /// <param name="narratorPhrases">Фразы, которые говорит рассказчик</param>
     /// <param name="award">Награда после слов первого персонажа</param>
-    private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
+    private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null, bool lastPart = false,
         string[] firstCharacterPhrases = null, string[] secondCharacterPhrases = null, string[] narratorPhrases = null, Award award = null)
     {
         var key = $"Tutorial_{keyPart}_Played";
@@ -357,7 +357,13 @@ public class Scenario : MonoBehaviour
         if (award != null)
             DialogPanel.AddAward(firstCharacterPhrases == null ? 0 : firstCharacterPhrases.Length, award);
 
-        HighlightNextButton(activeButtonName: activeButtonName, activeButtonTag: activeButtonTag);
+        if (lastPart == false)
+            HighlightNextButton(activeButtonName: activeButtonName, activeButtonTag: activeButtonTag);
+        else DialogPanel.LastAction = () =>
+            GameObject.FindGameObjectWithTag("TutorialHandler")
+                ?.GetComponent<TutorialHandler>()
+                ?.ClearGameAfterTutorial();
+
         DialogPanel.SkipTutorialBtnActive = true;
         DialogPanel.StartDialog();
     }

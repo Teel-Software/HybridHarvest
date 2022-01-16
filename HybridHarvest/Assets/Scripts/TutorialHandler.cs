@@ -12,7 +12,7 @@ public class TutorialHandler : MonoBehaviour
 
     public void SkipTutorial()
     {
-        //ClearGameAfterTutorial();
+        ClearGameAfterTutorial();
 
         var writer = QuickSaveWriter.Create("TutorialState");
         writer.Write("TutorialSkipped", true);
@@ -41,5 +41,6 @@ public class TutorialHandler : MonoBehaviour
         inventory.Elements = inventory.Elements
                .Where(seed => !seed.NameInRussian.Contains("Обучаю"))
                .ToList();
+        inventory.Save();
     }
 }
