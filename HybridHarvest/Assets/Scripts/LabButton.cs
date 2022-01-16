@@ -9,6 +9,7 @@ public class LabButton : MonoBehaviour
     [SerializeField] Button SelectButton;
     [SerializeField] Button SecondButton;
     [SerializeField] Sprite defaultSprite;
+    [SerializeField] Button CrossingPerformer;
     public Seed NowSelected;
 
     public void Clicked()
@@ -35,10 +36,12 @@ public class LabButton : MonoBehaviour
     {
         NowSelected = seed;
         SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
-        var seedInfo = seed.NameInRussian
-            + "\nВкус: " + seed.Taste.ToString()
-            + "\nГабитус: " + seed.Gabitus.ToString()
-            + "\nВремя \nроста: " + seed.GrowTime.ToString();
+        var seedInfo = seed.NameInRussian +
+            $"\nВкус: {seed.Taste}" +
+            $"\nГабитус: {seed.Gabitus}" +
+            $"\nВремя роста: {seed.GrowTime}" +
+            $"\nКол-во: {seed.minAmount}-{seed.maxAmount}" +
+            $"\nШанс мутации: {seed.MutationPossibility}";
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;
@@ -51,9 +54,11 @@ public class LabButton : MonoBehaviour
         NowSelected = seed;
         SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian +
-            "\nВкус: " + seed.Taste.ToString() + " " + chance[0].ToString() + "%" +
-            "\nГабитус: " + seed.Gabitus.ToString() + " " + chance[1].ToString() + "%" +
-            "\nВремя \nроста: " + seed.GrowTime.ToString() + " " + chance[2].ToString() + "%";
+            $"\nВкус: {seed.Taste} {chance[0]}%" +
+            $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
+            $"\nВремя роста:\n {seed.GrowTime} {chance[2]}%"+
+            $"\nКол-во: {seed.minAmount}-{seed.maxAmount}  {chance[1]}%" +
+            $"\nШанс мутации: \n{seed.MutationPossibility} {chance[1]}%" ;
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;
@@ -63,8 +68,8 @@ public class LabButton : MonoBehaviour
 
     private void DrawResult(Seed seed1)
     {
-        var newseed = PlaceForResult.GetComponent<GeneCrossing>().MixTwoParents(seed1, NowSelected);
-        var chance = PlaceForResult.GetComponent<GeneCrossing>().Chances;
+        var newseed = CrossingPerformer.GetComponent<GeneCrossing>().MixTwoParents(seed1, NowSelected);
+        var chance = CrossingPerformer.GetComponent<GeneCrossing>().Chances;
         PlaceForResult.GetComponent<LabButton>().ChosenSeed(newseed, chance);
         PlaceForResult.gameObject.SetActive(true);
     }

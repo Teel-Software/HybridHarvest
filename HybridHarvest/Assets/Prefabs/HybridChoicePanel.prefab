@@ -166,8 +166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 113.29, y: 80.4513}
+  m_AnchoredPosition: {x: -1.5396, y: -141.1581}
+  m_SizeDelta: {x: 147.1595, y: 92.7675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3564395843741670254
 CanvasRenderer:
@@ -224,7 +224,6 @@ GameObject:
   - component: {fileID: 3564395843930875693}
   - component: {fileID: 3564395843930875692}
   - component: {fileID: 3564395843930875695}
-  - component: {fileID: 3564395843930875699}
   m_Layer: 5
   m_Name: PlaceForResult
   m_TagString: Untagged
@@ -351,25 +350,8 @@ MonoBehaviour:
   SelectButton: {fileID: 3564395843930875692}
   SecondButton: {fileID: 0}
   defaultSprite: {fileID: 0}
+  CrossingPerformer: {fileID: 3564395844722619184}
   NowSelected: {fileID: 0}
---- !u!114 &3564395843930875699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3564395843930875689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d0f1beb0fd397440ba51f78ba4719a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentPot: {fileID: 0}
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  defaultSprite: {fileID: 0}
-  Chances: 000000000000000000000000
-  OppositeSeedStats: 000000000000000000000000
 --- !u!1 &3564395844172071415
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,8 +465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -65}
-  m_SizeDelta: {x: 90, y: 110}
+  m_AnchoredPosition: {x: 4.1054, y: -71.67128}
+  m_SizeDelta: {x: 163.8973, y: 123.3426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3564395844331841443
 CanvasRenderer:
@@ -679,6 +661,7 @@ MonoBehaviour:
   SelectButton: {fileID: 3564395844538107588}
   SecondButton: {fileID: 3564395844912381971}
   defaultSprite: {fileID: 21300000, guid: d6f6c46fc5b98dc4c99578abc318bd9f, type: 3}
+  CrossingPerformer: {fileID: 3564395844722619184}
   NowSelected: {fileID: 0}
 --- !u!1 &3564395844680105598
 GameObject:
@@ -697,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3564395844680105599
 RectTransform:
   m_ObjectHideFlags: 0
@@ -907,8 +890,6 @@ MonoBehaviour:
   button1: {fileID: 3564395844538107588}
   button2: {fileID: 3564395844912381971}
   defaultSprite: {fileID: 21300000, guid: d6f6c46fc5b98dc4c99578abc318bd9f, type: 3}
-  Chances: 000000000000000000000000
-  OppositeSeedStats: 000000000000000000000000
 --- !u!1 &3564395844912381965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1041,7 @@ MonoBehaviour:
   SelectButton: {fileID: 3564395844912381971}
   SecondButton: {fileID: 3564395844538107588}
   defaultSprite: {fileID: 21300000, guid: d6f6c46fc5b98dc4c99578abc318bd9f, type: 3}
+  CrossingPerformer: {fileID: 3564395844722619184}
   NowSelected: {fileID: 0}
 --- !u!1 &3564395845159233044
 GameObject:
@@ -1095,8 +1077,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -65}
-  m_SizeDelta: {x: 90, y: 110}
+  m_AnchoredPosition: {x: -1.0263, y: -71.15808}
+  m_SizeDelta: {x: 161.8446, y: 124.3689}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3564395845159233051
 CanvasRenderer:

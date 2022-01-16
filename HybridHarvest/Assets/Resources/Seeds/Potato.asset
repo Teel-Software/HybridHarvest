@@ -15,16 +15,15 @@ MonoBehaviour:
   Name: Potato
   NameInRussian: "\u041A\u0430\u0440\u0442\u043E\u0444\u0435\u043B\u044C"
   NameInLatin: Solanum tuberosum
+  AmountGen: 1
   minAmount: 5
   maxAmount: 7
   ShopBuyPrice: 15
-  PlantSprite: {fileID: 21300000, guid: 9be7f7c7fa3558547aec6ac8df1ef823, type: 3}
-  SproutSprite: {fileID: 21300000, guid: 4f71c54b46708954891b8c8202f9e497, type: 3}
-  GrownSprite: {fileID: 21300000, guid: 8dae01033a28b8c4e99649ff2b135cd5, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 700fe8011c6291a4d8fbfec7cd5cbc2f, type: 3}
   GabitusGen: 1
   Gabitus: 2
   TasteGen: 1
   Taste: 3
   GrowTimeGen: 1
   GrowTime: 300
+  MutationPossibilityGen: 1
+  MutationPossibility: 0

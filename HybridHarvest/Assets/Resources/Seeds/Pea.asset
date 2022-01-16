@@ -15,16 +15,15 @@ MonoBehaviour:
   Name: Pea
   NameInRussian: "\u0413\u043E\u0440\u043E\u0445"
   NameInLatin: "P\xEDsum"
+  AmountGen: 1
   minAmount: 9
   maxAmount: 11
   ShopBuyPrice: 30
-  PlantSprite: {fileID: 21300000, guid: 13280603d7919434193b88a9fb4fc49e, type: 3}
-  SproutSprite: {fileID: 21300000, guid: f85fac4d8bedd874cbb3ae2f86c5bd67, type: 3}
-  GrownSprite: {fileID: 21300000, guid: 53929482480b2d846b67fe334c9d9375, type: 3}
   GabitusGen: 1
   Gabitus: 1
   TasteGen: 1
   Taste: 2
   GrowTimeGen: 1
   GrowTime: 900
+  MutationPossibilityGen: 1
   MutationPossibility: 0

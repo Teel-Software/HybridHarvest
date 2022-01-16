@@ -15,17 +15,15 @@ MonoBehaviour:
   Name: Debug
   NameInRussian: "\u0414\u0435\u0431\u0430\u0433"
   NameInLatin: Debuggius solanus
+  AmountGen: 1
   minAmount: 4
   maxAmount: 8
   ShopBuyPrice: 1
-  PlantSprite: {fileID: 21300000, guid: 3843015d645862f4d8d45e5bd9abab20, type: 3}
-  SproutSprite: {fileID: 21300000, guid: 4905b375b1145824e9225ce9ee8ed5e3, type: 3}
-  GrownSprite: {fileID: 21300000, guid: fc4913cbbf31db742a8e47a83294a018, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 553169e4036802643abe41c79d0f2cff, type: 3}
   GabitusGen: 1
   Gabitus: 55
   TasteGen: 1
   Taste: 55
   GrowTimeGen: 1
   GrowTime: 1
+  MutationPossibilityGen: 1
   MutationPossibility: 0

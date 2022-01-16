@@ -15,17 +15,15 @@ MonoBehaviour:
   Name: Tomato
   NameInRussian: "\u041F\u043E\u043C\u0438\u0434\u043E\u0440"
   NameInLatin: Solanum lycopersicum
+  AmountGen: 1
   minAmount: 3
   maxAmount: 4
   ShopBuyPrice: 40
-  PlantSprite: {fileID: 21300000, guid: aaa25c15472b0a64f90baa442d8ea995, type: 3}
-  SproutSprite: {fileID: 21300000, guid: b75b0814109071f48a8f13dae7e61045, type: 3}
-  GrownSprite: {fileID: 21300000, guid: 423d24c2b11b1094b935fbba9a2002cb, type: 3}
-  PacketSprite: {fileID: 21300000, guid: 700fe8011c6291a4d8fbfec7cd5cbc2f, type: 3}
   GabitusGen: 1
   Gabitus: 3
   TasteGen: 1
   Taste: 7
   GrowTimeGen: 1
   GrowTime: 600
+  MutationPossibilityGen: 1
   MutationPossibility: 1

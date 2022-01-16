@@ -21,6 +21,7 @@ public class Seed : ScriptableObject
             return (int)(Taste * multiplier);
         }
     }
+    public Gen AmountGen;
     public int minAmount;
     public int maxAmount;
     public int ShopBuyPrice;
@@ -82,6 +83,7 @@ public class Seed : ScriptableObject
     public Gen GrowTimeGen;
     public int GrowTime;
 
+    public Gen MutationPossibilityGen;
     public MutationChance MutationPossibility;
 
     public SeedStatistics LevelData;
