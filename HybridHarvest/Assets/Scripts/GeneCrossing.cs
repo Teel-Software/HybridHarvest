@@ -16,7 +16,7 @@ public class GeneCrossing : MonoBehaviour
     private List<int> chances;
     private List<int> oppositeSeedStats;
 
-    public int[] Chances { get => chances.ToArray();}
+    public int[] Chances { get => chances.ToArray(); }
     public int[] OppositeSeedStats { get => oppositeSeedStats.ToArray(); }
 
     int chancesIterator;
@@ -118,13 +118,13 @@ public class GeneCrossing : MonoBehaviour
             return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
 
         if (value1 != value2)
-            chances.Add(50);
+            chances[chances.Count - 1] = 50;
         var newGen = (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2);
         if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
             return (newGen == gen1 ? value1 : value2, newGen);
 
         if (value1 != value2)
-            chances.Add(75);
+            chances[chances.Count - 1] = 75;
         var possibility = (int)Random.value * 100;
         newGen = possibility <= 25
             ? Gen.Dominant

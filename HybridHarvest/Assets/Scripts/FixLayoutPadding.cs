@@ -8,12 +8,13 @@ public class FixLayoutPadding : MonoBehaviour
     /// </summary>
     void Start()
     {
+        var minPaddingLeft = 30f;
         var currentLayout = transform.GetComponent<GridLayoutGroup>();
-        var objectWidth = GetComponent<RectTransform>().rect.width;
+        var rectWidth = GetComponent<RectTransform>().rect.width - minPaddingLeft * 2;
         var actualCellSize = currentLayout.cellSize.x + currentLayout.spacing.x;
-        var rowElementCount = Mathf.Floor((objectWidth - currentLayout.cellSize.x) / actualCellSize) + 1;
+        var rowElementCount = Mathf.Floor((rectWidth - currentLayout.cellSize.x) / actualCellSize) + 1;
 
-        currentLayout.padding.left = (int)Mathf.Floor((objectWidth
+        currentLayout.padding.left = (int)Mathf.Floor((rectWidth
             - (currentLayout.cellSize.x + actualCellSize * (rowElementCount - 1))) / 2);
         currentLayout.childAlignment = TextAnchor.UpperLeft;
     }

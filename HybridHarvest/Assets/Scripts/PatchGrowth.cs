@@ -188,7 +188,11 @@ public class PatchGrowth : MonoBehaviour
     /// <param name="seed">Семечко</param>
     private void SpeedUpTutorSeed(Seed seed)
     {
-        if (seed.NameInRussian == "Обучающий картофель")
-            _timeSpeedBooster = 30;
+        _timeSpeedBooster = seed.NameInRussian switch
+        {
+            "Обучающий картофель" => 30,
+            "Обучающий помидор" => 60,
+            _ => 1,
+        };
     }
 }

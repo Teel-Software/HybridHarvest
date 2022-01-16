@@ -64,7 +64,8 @@ public class Scenario : MonoBehaviour
             case 1:
                 // тутор для третьего захода в меню выбора
                 if (QSReader.Create("TutorialState").Exists("Tutorial_LabEnding_Played"))
-                    ExecuteTutorialPart("ChoiceThird", narratorPhrases: new string[] { "С этого момента вы можете исследовать всё сами! Приятной игры!" });
+                    ExecuteTutorialPart("ChoiceThird", narratorPhrases: new string[] {
+                        "С этого момента вы можете исследовать всё сами! Приятной игры! P. S. Обязательно загляните в К.В.А.Н.Т. При скрещивании разных растений получаются очень смешные названия :)" });
 
                 // тутор для повторного захода в меню выбора
                 if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
@@ -303,7 +304,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_Quests()
     {
         ExecuteTutorialPart("Quests",
-            narratorPhrases: new string[] { "Это доска объявлений. Здесь появляеются задания от жителей, которым нужна помощь. За выполнение заданий вы получите от них награду." });
+            narratorPhrases: new string[] { "Это доска объявлений. Здесь появляются задания от жителей, которым нужна помощь. За выполнение заданий вы получите от них награду." });
     }
 
     public void Tutorial_Exhibition()

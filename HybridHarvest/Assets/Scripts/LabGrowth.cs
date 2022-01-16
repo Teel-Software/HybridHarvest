@@ -44,7 +44,7 @@ public class LabGrowth : MonoBehaviour
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
         SpeedUpTutorSeed(growingSeed);
-        
+
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
         var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
@@ -149,7 +149,11 @@ public class LabGrowth : MonoBehaviour
     /// <param name="seed">Семечко</param>
     private void SpeedUpTutorSeed(Seed seed)
     {
-        if (seed.NameInRussian == "Обучающий помидор")
-            _timeSpeedBooster = 120;
+        _timeSpeedBooster = seed.NameInRussian switch
+        {
+            "Обучающий картофель" => 60,
+            "Обучающий помидор" => 120,
+            _ => 1,
+        };
     }
 }
