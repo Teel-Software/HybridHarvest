@@ -1904,7 +1904,7 @@ GameObject:
   - component: {fileID: 8390107003974449885}
   - component: {fileID: 5882242573902627156}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: EnergyExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

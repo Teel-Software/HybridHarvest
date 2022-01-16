@@ -37,12 +37,13 @@ public class InventoryDrawer : MonoBehaviour
         if (QSReader.Create("TutorialState").Exists("Tutorial_BuyItem_Played"))
             scenario?.Tutorial_AddItem();
 
-        // тутор для замены пакета семян
-        if (QSReader.Create("TutorialState").Exists("Tutorial_Inventory_Played"))
-            scenario?.Tutorial_ReplaceItem();
+        // тутор для выбора пакета семян для замены
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
+            scenario?.Tutorial_ChooseItemToReplace();
 
         // тутор для инвентаря
-        scenario?.Tutorial_Inventory();
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
+            scenario?.Tutorial_Inventory();
     }
 
     private void OnDisable()
@@ -85,44 +86,10 @@ public class InventoryDrawer : MonoBehaviour
     }
 
     /// <summary>
-    /// Filters inventory by name in russian
+    /// Отрисовывает инвентарь
     /// </summary>
-    public void FilterByName(string nameInRussian)
-    {
-        for (var i = 0; i < alreadyDrawn.Count; i++)
-        {
-            Destroy(alreadyDrawn[i]);
-        }
-        alreadyDrawn.Clear();
-
-        for (var i = 0; i < targetInventory.Elements.Count; i++)
-        {
-            var item = targetInventory.Elements[i];
-
-            if (item.NameInRussian != nameInRussian)
-                continue;
-
-            var icon = new GameObject(i.ToString(), typeof(Button));
-            icon.AddComponent<Image>().sprite = item.PacketSprite;
-
-            var plantIcon = new GameObject("Plant" + i);
-            plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
-            plantIcon.transform.position = new Vector2(0, -35);
-            plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-            plantIcon.transform.SetParent(icon.transform);
-
-            icon.transform.localScale = new Vector2(0.01f, 0.01f);
-            icon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
-            icon.GetComponent<Button>().targetGraphic = icon.GetComponent<Image>();
-            icon.transform.SetParent(scrollViewContent);
-            alreadyDrawn.Add(icon);
-        }
-    }
-
-    /// <summary>
-    /// Draws items in inventory
-    /// </summary>
-    public void Redraw()
+    /// <param name="filter_RussianName">Показывает только предметы с этим русским названием</param>
+    public void Redraw(string filter_RussianName = null)
     {
         for (var i = 0; i < alreadyDrawn.Count; i++)
         {
@@ -133,6 +100,11 @@ public class InventoryDrawer : MonoBehaviour
         for (var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var seed = targetInventory.Elements[i];
+
+            // фильтрует семена по русскому названию
+            if (filter_RussianName != null
+                && seed.NameInRussian != filter_RussianName)
+                continue;
             /*
             var itemGameObj = new GameObject(i.ToString(), typeof(Button));
             itemGameObj.AddComponent<Image>().sprite = item.PacketSprite;
@@ -153,6 +125,12 @@ public class InventoryDrawer : MonoBehaviour
             var itemIconDrawer = itemIcon.GetComponent<ItemIconDrawer>();
             itemIconDrawer.SetSeed(seed);
             itemIconDrawer.Button.onClick.AddListener(ClickedOnItem);
+            itemIcon.tag = seed.NameInRussian switch
+            {
+                "Обучающий картофель" => "TutorialPotato",
+                "Обучающий помидор" => "TutorialTomato",
+                _ => "Seed"
+            };
             alreadyDrawn.Add(itemIcon);
         }
         if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
@@ -170,8 +148,12 @@ public class InventoryDrawer : MonoBehaviour
             {
                 var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
+                // тутор для выхода из лаборатории
+                if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))
+                    scenario?.Tutorial_LabEnding();
+
                 // тутор для выхода из магазина
-                if (QSReader.Create("TutorialState").Exists("Tutorial_AddItem_Played"))
+                else if (QSReader.Create("TutorialState").Exists("Tutorial_AddItem_Played"))
                     scenario?.Tutorial_ShopExit();
             });
         }
@@ -285,12 +267,24 @@ public class InventoryDrawer : MonoBehaviour
         {
             var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
+            // тутор для выхода из лаборатории
+            if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))
+                scenario?.Tutorial_LabEnding();
+
+            // тутор для окончания скрещивания
+            else if (QSReader.Create("TutorialState").Exists("Tutorial_ApplyItemToCrossSecond_Played"))
+                scenario?.Tutorial_ApplyCrossing();
+
+            // тутор для активации кнопки скрещивания 2
+            else if (QSReader.Create("TutorialState").Exists("Tutorial_ApplyItemToCrossFirst_Played"))
+                scenario?.Tutorial_HybridPanelSecond();
+
             // тутор для захода на биржу
-            if (QSReader.Create("TutorialState").Exists("Tutorial_SellItem_Played"))
+            else if (QSReader.Create("TutorialState").Exists("Tutorial_SellItem_Played"))
                 scenario?.Tutorial_GoToMarket();
 
             // тутор для продажи урожая
-            if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
+            else if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
                 scenario?.Tutorial_HarvestPlaceSellAll();
 
         });

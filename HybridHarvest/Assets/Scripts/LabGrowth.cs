@@ -20,6 +20,8 @@ public class LabGrowth : MonoBehaviour
     private Image plantImage;
     private Image textBGImage;
     private Text growthText;
+    private double _timeSpeedBooster = 1;
+
     private void Start()
     {
         var imagesInChildren = Pot.GetComponentsInChildren<Image>();
@@ -40,12 +42,13 @@ public class LabGrowth : MonoBehaviour
 
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
+        SpeedUpTutorSeed(growingSeed);
 
         DateTime oldDate;
         oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
         var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
-        time = PlayerPrefs.GetInt(Pot.name + "time") - timeSpan.TotalSeconds;
+        time = PlayerPrefs.GetInt(Pot.name + "time") - timeSpan.TotalSeconds * _timeSpeedBooster;
         Pot.interactable = false;
 
         if (time <= 0)
@@ -60,7 +63,8 @@ public class LabGrowth : MonoBehaviour
             {
                 if (time < (double)growingSeed.GrowTime / 2)
                     plantImage.sprite = growingSeed.SproutSprite;
-                time -= Time.deltaTime;
+                time -= Time.deltaTime * _timeSpeedBooster;
+
                 var formatTime = TimeSpan.FromSeconds(math.round(time));
                 if (formatTime.Hours > 9)
                     growthText.text = formatTime.Hours.ToString() + " ч.";
@@ -112,6 +116,7 @@ public class LabGrowth : MonoBehaviour
         PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
         time = totalTime;
         timerNeeded = true;
+        SpeedUpTutorSeed(seed);
     }
 
     public void Clicked()
@@ -135,5 +140,15 @@ public class LabGrowth : MonoBehaviour
             PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
             Pot.GetComponentInChildren<Text>().text = "";
         };
+    }
+
+    /// <summary>
+    /// Ускоряет рост обучающих семян
+    /// </summary>
+    /// <param name="seed">Семечко</param>
+    private void SpeedUpTutorSeed(Seed seed)
+    {
+        if (seed.NameInRussian == "Обучающий помидор")
+            _timeSpeedBooster = 120;
     }
 }

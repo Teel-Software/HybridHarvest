@@ -64,15 +64,28 @@ public class StatPanelDrawer : MonoBehaviour
     {
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
+        // тутор для скрещивания семян 2
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToCrossSecond_Played"))
+            scenario?.Tutorial_ApplyItemToCrossSecond();
+
+        // тутор для скрещивания семян 1
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToCrossFirst_Played"))
+            scenario?.Tutorial_ApplyItemToCrossFirst();
+
         // тутор для продажи пакета семян
-        if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSell_Played"))
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSell_Played"))
             scenario?.Tutorial_SellItem();
 
         // тутор для покупки пакета семян
-        if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
             scenario?.Tutorial_BuyItem();
 
+        // тутор для замены пакета семян
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToReplace_Played"))
+            scenario?.Tutorial_ReplaceItem();
+
         // тутор для панели статистики
-        scenario?.Tutorial_StatPanel();
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToPlant_Played"))
+            scenario?.Tutorial_StatPanel();
     }
 }

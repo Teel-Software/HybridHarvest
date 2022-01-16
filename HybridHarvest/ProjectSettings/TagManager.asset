@@ -17,6 +17,9 @@ TagManager:
   - ExitInventory
   - InventoryPlusBtn
   - InventoryDrawer
+  - TutorialPotato
+  - TutorialTomato
+  - Seed
   layers:
   - Default
   - TransparentFX

@@ -105,14 +105,9 @@ public class CreateMiniGame : MonoBehaviour
         Blocker.SetActive(true);
     }
 
-    private void DeleteChildren(GameObject obj)
+    private void OnEnable()
     {
-        var allChildren = new HashSet<GameObject>();
-
-        foreach (Transform child in obj.transform)
-            allChildren.Add(child.gameObject);
-
-        foreach (GameObject child in allChildren)
-            DestroyImmediate(child);
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        scenario?.Tutorial_MiniGame();
     }
 }

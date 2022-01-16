@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2017966849998011223}
   - component: {fileID: 2017966849998011225}
   - component: {fileID: 2017966849998011222}
-  m_Layer: 5
+  - component: {fileID: 777516895251654437}
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000004347414, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: -4, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2017966849998011225
 CanvasRenderer:
@@ -66,8 +67,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 492386898b554b940a9c7d834aa049dc, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 9b16f31f08ece0d47901f7cadd57d9fb, type: 2}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -79,6 +80,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &777516895251654437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017966849998011220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a3d84fdec10b948a6ebdbadc5102f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSize: 10
+  maxSize: 25
 --- !u!1 &2017966850703178134
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +258,7 @@ GameObject:
   - component: {fileID: 2017966851350379692}
   - component: {fileID: 2017966851350379694}
   - component: {fileID: 2017966851350379695}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +333,7 @@ GameObject:
   - component: {fileID: 2017966851455226526}
   - component: {fileID: 2017966851455226496}
   - component: {fileID: 2017966851455226497}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TextBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1839,6 +1839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGamePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670350, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

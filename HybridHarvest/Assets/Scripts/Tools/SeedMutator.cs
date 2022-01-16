@@ -25,13 +25,22 @@ public static class SeedMutator
 
         var newStats = MutateStats(oldSeed, index);
         var newSeed = ScriptableObject.CreateInstance<Seed>();
-        newSeed.SetValues(oldSeed.ToString());
-        newSeed.Gabitus = newStats[0];
-        newSeed.Taste = newStats[1];
-        newSeed.GrowTime = newStats[2];
-        newSeed.minAmount = newStats[3];
-        newSeed.MutationPossibility = (MutationChance)newStats[4];
-        newSeed.maxAmount = newStats[5];
+
+        try
+        {
+            newSeed.SetValues(oldSeed.ToString());
+            newSeed.Gabitus = newStats[0];
+            newSeed.Taste = newStats[1];
+            newSeed.GrowTime = newStats[2];
+            newSeed.minAmount = newStats[3];
+            newSeed.MutationPossibility = (MutationChance)newStats[4];
+            newSeed.maxAmount = newStats[5];
+        }
+        catch
+        {
+            Debug.Log($"В мутации ошибка -_- Семечко \"{oldSeed.Name}\".");
+        }
+
         return newSeed;
     }
 

@@ -568,34 +568,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214172328}
     m_Modifications:
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1163872606}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Tutorial_HybridPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Scenario, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5251126956864642449, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
       propertyPath: CrossingMenue
       value: 
@@ -730,6 +702,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1775937274}
     m_Modifications:
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1163872606}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Tutorial_ReplaceOrAddItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190422725820, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: InventoryFrame
       value: 
@@ -741,6 +741,10 @@ PrefabInstance:
     - target: {fileID: 1818408190813670350, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: m_Name
       value: MiniGamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670350, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1818408190813670351, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: m_Pivot.x
@@ -835,34 +839,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214172328}
     m_Modifications:
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1163872606}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Tutorial_HybridPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Scenario, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5251126956864642449, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
       propertyPath: CrossingMenue
       value: 
@@ -1441,34 +1417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214172328}
     m_Modifications:
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1163872606}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Tutorial_HybridPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Scenario, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5251126956864642449, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
       propertyPath: CrossingMenue
       value: 
@@ -1908,34 +1856,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214172328}
     m_Modifications:
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1163872606}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Tutorial_HybridPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Scenario, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5251126956864642449, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
       propertyPath: CrossingMenue
       value: 
@@ -2132,34 +2052,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214172328}
     m_Modifications:
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1163872606}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Tutorial_HybridPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Scenario, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251126956864642448, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5251126956864642449, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
       propertyPath: CrossingMenue
       value: 
@@ -2404,6 +2296,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1775937274}
     m_Modifications:
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1163872606}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Tutorial_ChooseItemToCrossFirst
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844538107588, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3564395844538107595, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: InventoryFrame
       value: 
@@ -2504,6 +2428,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1163872606}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Tutorial_WaitForCrossing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619184, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3564395844722619191, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: MiniGamePanel
       value: 
@@ -2512,6 +2464,38 @@ PrefabInstance:
       propertyPath: InventoryFrame
       value: 
       objectReference: {fileID: 2134036104}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1163872606}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Tutorial_ChooseItemToCrossSecond
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564395844912381971, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3564395844912381974, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: InventoryFrame
       value: 
