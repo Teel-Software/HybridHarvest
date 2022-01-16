@@ -13,4 +13,10 @@ public class ItemIconDrawer : MonoBehaviour
         plantIcon.sprite = seed.PlantSprite;
         packetIcon.sprite = seed.PacketSprite;
     }
+
+    public void SetPlus()
+    {
+        plantIcon.sprite = Resources.Load<Sprite>("Transparent");
+        packetIcon.sprite = Resources.Load<Sprite>("seedsplus");
+    }
 }

@@ -58,8 +58,7 @@ public class LabGrowth : MonoBehaviour
         {
             if (time > 0)
             {
-                if (time < (double)growingSeed.GrowTime / 2)
-                    plantImage.sprite = growingSeed.SproutSprite;
+                plantImage.sprite = growingSeed.GetGrowthStageSprite(time);
                 time -= Time.deltaTime;
                 var formatTime = TimeSpan.FromSeconds(math.round(time));
                 if (formatTime.Hours > 9)

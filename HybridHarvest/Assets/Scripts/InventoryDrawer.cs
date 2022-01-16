@@ -157,19 +157,17 @@ public class InventoryDrawer : MonoBehaviour
         }
         if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
         {
-            var img = Resources.Load<Sprite>("seedsplus");
-            var itemIcon = new GameObject(targetInventory.Elements.Count.ToString(), typeof(Button));
-            itemIcon.transform.localScale = new Vector2(0.01f, 0.01f);
-            itemIcon.AddComponent<Image>().sprite = img;
-            itemIcon.transform.SetParent(scrollViewContent);
-            itemIcon.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
+            var itemIcon = Instantiate(ItemIcon, scrollViewContent);
+            itemIcon.name = targetInventory.Elements.Count.ToString();
+            var itemIconDrawer = itemIcon.GetComponent<ItemIconDrawer>();
+            itemIconDrawer.SetPlus();
+            itemIconDrawer.Button.onClick.AddListener(ClickedOnItem);
             itemIcon.tag = "InventoryPlusBtn";
             alreadyDrawn.Add(itemIcon);
 
-            itemIcon.GetComponent<Button>().onClick.AddListener(() =>
+            itemIconDrawer.Button.onClick.AddListener(() =>
             {
                 var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-
                 // тутор для выхода из магазина
                 if (QSReader.Create("TutorialState").Exists("Tutorial_AddItem_Played"))
                     scenario?.Tutorial_ShopExit();
@@ -198,11 +196,9 @@ public class InventoryDrawer : MonoBehaviour
 
         if (Purpose == PurposeOfDrawing.Change && index == targetInventory.Elements.Count) // get rekt part 1
         {
-            // код полностью скопирован из ConfirmationPanelLogic :sadbob:
             targetInventory.Elements.Add(changingSeed);
-
             Redraw();
-            // вот до сюда
+            
             changeItem = false;
             gameObject.SetActive(false);
             targetInventory.Save();

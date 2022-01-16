@@ -75,13 +75,10 @@ public class PatchGrowth : MonoBehaviour
         {
             if (time > 0)
             {
-                // here
-                if (time < (double)growingSeed.GrowTime / 2)
-                    plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
-
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
+                plantImage.sprite = growingSeed.GetGrowthStageSprite(time);
             }
             else
                 EndGrowthCycle();

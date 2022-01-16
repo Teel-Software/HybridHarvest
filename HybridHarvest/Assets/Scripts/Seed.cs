@@ -25,7 +25,9 @@ public class Seed : ScriptableObject
     public int maxAmount;
     public int ShopBuyPrice;
     public Sprite PlantSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}");
+    public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Early");
     public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Sprout");
+    public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Young");
     public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Grown");
     public Sprite PacketSprite => Resources.Load<Sprite>($"Packets\\Packet{PacketQuality}");
 
@@ -135,6 +137,24 @@ public class Seed : ScriptableObject
                "|" + NameInRussian + "|" + NameInLatin +
                "|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
                + "|" + (int)MutationPossibility;
+    }
+
+    /// <summary>
+    /// Получает спрайт растения на стадии роста
+    /// </summary>
+    /// <param name="time">Сколько осталось до конца роста</param>
+    /// <returns>Спрайт растения</returns>
+    public Sprite GetGrowthStageSprite(double time)
+    {
+        var growTime = (double)GrowTime;
+        if (growTime >= time && time > growTime * 2 / 3)
+            return EarlySprite;
+        if (growTime * 2 / 3 >= time && time > growTime / 3)
+            return SproutSprite;
+        if (growTime / 3 >= time && time > 0)
+            return YoungSprite;
+        else
+            return GrownSprite;
     }
 }
 
