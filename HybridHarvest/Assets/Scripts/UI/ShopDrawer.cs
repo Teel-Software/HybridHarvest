@@ -8,6 +8,7 @@ public class ShopDrawer : MonoBehaviour
     private void OnEnable()
     {
         var shopLogic = GetComponent<ShopLogic>();
+        shopLogic.Awake();
         foreach (var seedName in shopLogic.unlockedSeeds)
         {
             var itemIcon = Instantiate(ItemIcon, shoppingPlace.transform);
