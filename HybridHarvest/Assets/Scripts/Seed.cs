@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
@@ -23,11 +24,52 @@ public class Seed : ScriptableObject
     public int minAmount;
     public int maxAmount;
     public int ShopBuyPrice;
-    public Sprite PlantSprite;
-    public Sprite SproutSprite;
-    public Sprite GrownSprite;
-    public Sprite PacketSprite => Resources.Load<Sprite>("Packets\\Packet" + PacketQuality);
-    public int PacketQuality { get; private set; }
+    public Sprite PlantSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}");
+    public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Sprout");
+    public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Grown");
+    public Sprite PacketSprite => Resources.Load<Sprite>($"Packets\\Packet{PacketQuality}");
+
+    public int PacketQuality
+    {
+        get
+        {
+            LevelData ??= CSVReader.ParseSeedStats(Name);
+            var rating = 0;
+            try
+            {
+                rating = LevelData.Gabitus[Gabitus]
+                         + LevelData.Taste[Taste]
+                         + LevelData.MutationChance[MutationPossibility]
+                         + LevelData.MinAmount[minAmount]
+                         + LevelData.GrowTime[GrowTime];
+            }
+            catch
+            {
+                // Р Р°СЃРєРѕРјРјРµРЅС‚РёСЂСѓР№С‚Рµ СЃС‚СЂРѕС‡РєСѓ РЅРёР¶Рµ РґР»СЏ РґРµР±Р°РіР°. (Р’РѕР·РјРѕР¶РµРЅ СЃРїР°Рј)
+                //Debug.Log($"Р’ С‚Р°Р±Р»РёС†Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РЅРµ СѓРєР°Р·Р°РЅРѕ РѕРґРЅРѕ РёР»Рё РЅРµСЃРєРѕР»СЊРєРѕ Р·РЅР°С‡РµРЅРёР№. Р РµР№С‚РёРЅРі СЃРµРјСЏРЅ \"{NameInRussian}\" СЂР°РІРµРЅ РЅСѓР»СЋ.");
+            }
+            var quality = 0;
+            switch (rating)
+            {
+                case var i when i < 40:
+                    quality = 0;
+                    break;
+                case var i when i >= 40 && i < 60:
+                    quality = 1;
+                    break;
+                case var i when i >= 60 && i < 80:
+                    quality = 2;
+                    break;
+                case var i when i >= 80 && i < 95:
+                    quality = 3;
+                    break;
+                case var i when i >= 95:
+                    quality = 4;
+                    break;
+            }
+            return quality;
+        }
+    }
 
     public Gen GabitusGen;
     public int Gabitus;
@@ -49,6 +91,7 @@ public class Seed : ScriptableObject
     public void SetValues(string data)
     {
         var parameters = data.Split('|');
+        LevelData = CSVReader.ParseSeedStats(parameters[0]);
         Name = parameters[0];
         GrowTime = int.Parse(parameters[2]);
         GrowTimeGen = (Gen)int.Parse(parameters[3]);
@@ -60,61 +103,24 @@ public class Seed : ScriptableObject
         maxAmount = int.Parse(parameters[9]);
         NameInRussian = parameters[10];
         NameInLatin = parameters[11];
-        PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[12]);
-        SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
-        GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
-
-        LevelData = CSVReader.ParseSeedStats(parameters[0]);
-
+        //PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[12]);
+        //SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
+        //GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
         MutationPossibility = (MutationChance)int.Parse(parameters[15]);
-        //Debug.Log(LevelData.ToString());
-
-        UpdateRating();
+        //JsonTest();
     }
 
-    private void Awake()
+    private void JsonTest()
     {
-        //UpdateRating();
+        var str = JsonUtility.ToJson(this);
+        Debug.Log(str);
+        
+        var s = (Seed)CreateInstance(typeof(Seed));
+        JsonUtility.FromJsonOverwrite(str, s);
+        Debug.Log(s);
+        Debug.Log(this);
     }
-
-    public void UpdateRating()
-    {
-        LevelData ??= CSVReader.ParseSeedStats(Name);
-        var rating = 0;
-        try
-        {
-            rating = LevelData.Gabitus[Gabitus]
-                         + LevelData.Taste[Taste]
-                         + LevelData.MutationChance[MutationPossibility]
-                         + LevelData.MinAmount[minAmount]
-                         + LevelData.GrowTime[GrowTime];
-        }
-        catch
-        {
-            // Раскомментируйте строчку ниже для дебага. (Возможен спам)
-            //Debug.Log($"В таблице характеристик не указано одно или несколько значений. Рейтинг семян \"{NameInRussian}\" равен нулю.");
-        }
-
-        switch (rating)
-        {
-            case var i when i < 40:
-                PacketQuality = 0;
-                break;
-            case var i when i >= 40 && i < 60:
-                PacketQuality = 1;
-                break;
-            case var i when i >= 60 && i < 80:
-                PacketQuality = 2;
-                break;
-            case var i when i >= 80 && i < 95:
-                PacketQuality = 3;
-                break;
-            case var i when i >= 95:
-                PacketQuality = 4;
-                break;
-        }
-    }
-
+    
     /// <summary>
     /// Exports seed data as string
     /// </summary>

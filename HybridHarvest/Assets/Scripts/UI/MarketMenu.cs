@@ -23,12 +23,11 @@ public class MarketMenu : MonoBehaviour
             var txtComponent = listing.GetComponentInChildren<Text>();
             var multiplier = Market.PriceMultipliers[seedName];
             txtComponent.text = $"x {multiplier}";
-            txtComponent.color = 
-                multiplier == 1.0f ? 
-                    new Color(0,0,0) : 
-                multiplier > 1.0f ? 
-                    new Color(0f, 0.76f, 0.02f) : 
-                new Color(0.75f, 0.16f, 0.13f);
+            txtComponent.color = multiplier == 1.0f 
+                            ? new Color(0,0,0) 
+                            : multiplier > 1.0f 
+                                ? new Color(0f, 0.76f, 0.02f) 
+                                : new Color(0.75f, 0.16f, 0.13f);
             // Plant name
             var plantName = listing.GetComponentInChildren<TextMeshProUGUI>();
             var seed = (Seed)Resources.Load("Seeds\\" + seedName);

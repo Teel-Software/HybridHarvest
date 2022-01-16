@@ -341,7 +341,7 @@ public class Scenario : MonoBehaviour
                     if (tutorSeed != null)
                     {
                         tutorSeed.GrowTime = 10;
-                        tutorSeed.UpdateRating();
+                        //tutorSeed.UpdateRating();
                     }
                 }
 

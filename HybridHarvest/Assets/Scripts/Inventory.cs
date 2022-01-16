@@ -82,7 +82,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
     public void AddItem(Seed newSeed, bool withoutInvoke = false)
     {
-        newSeed.UpdateRating();
+        //newSeed.UpdateRating();
         InventoryDrawer.GetComponent<InventoryDrawer>().UpdateActions();
         InventoryDrawer.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.Change);
         if (!withoutInvoke)

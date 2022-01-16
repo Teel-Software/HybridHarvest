@@ -9,7 +9,7 @@ public class ItemIconDrawer : MonoBehaviour
 
     public void SetSeed(Seed seed)
     { 
-        seed.UpdateRating();
+        //seed.UpdateRating();
         plantIcon.sprite = seed.PlantSprite;
         packetIcon.sprite = seed.PacketSprite;
     }

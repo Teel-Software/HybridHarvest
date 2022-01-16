@@ -27,7 +27,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        _inventory = GameObject.Find("DataKeeper").GetComponent<Inventory>();
+        _inventory ??= GameObject.Find("DataKeeper").GetComponent<Inventory>();
 
         var imagesInChildren = Patch.GetComponentsInChildren<Image>();
         plantImage = imagesInChildren[1];
@@ -49,7 +49,7 @@ public class PatchGrowth : MonoBehaviour
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
 
-        DateTime oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
+        var oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
         var timePassed = (DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
         time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed;
         Patch.interactable = false;
@@ -58,7 +58,7 @@ public class PatchGrowth : MonoBehaviour
         for (var i = 0; i < seedsCount; i++)
         {
             var seed = ScriptableObject.CreateInstance<Seed>();
-            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown" + i.ToString()));
+            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown" + i));
             grownSeeds.Add(seed);
         }
 
@@ -67,7 +67,7 @@ public class PatchGrowth : MonoBehaviour
     }
 
     /// <summary>
-    /// Used as Timer.
+    /// Used as a Timer
     /// </summary>
     private void Update()
     {
@@ -75,6 +75,7 @@ public class PatchGrowth : MonoBehaviour
         {
             if (time > 0)
             {
+                // here
                 if (time < (double)growingSeed.GrowTime / 2)
                     plantImage.sprite = growingSeed.SproutSprite;
                 time -= Time.deltaTime;
@@ -98,7 +99,7 @@ public class PatchGrowth : MonoBehaviour
         PlayerPrefs.SetInt(Patch.name + "seedsCount", grownSeeds.Count);
         for (var i = 0; i < grownSeeds.Count; i++)
         {
-            PlayerPrefs.SetString(Patch.name + "grown" + i.ToString(), grownSeeds[i].ToString());
+            PlayerPrefs.SetString(Patch.name + "grown" + i, grownSeeds[i].ToString());
         }
     }
 
