@@ -14,18 +14,18 @@ public class ShopLogic : MonoBehaviour, ISaveable
     private void Awake()
     {
         targetInventory ??= GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        Load();
+        //Load();
+        unlockedSeeds = new List<string>{ "Potato", "Tomato", "Cucumber", "Pea", "Debug" };
     }
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (!hasFocus)
-            Save();
+        //if (!hasFocus) Save();
     }
 
     private void OnDisable()
     {
-        Save();
+        //Save();
     }
 
     /// <summary>
