@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public Text EnergyRegenTime;
 
     public Action<Seed> onInventoryFull;
-    public Action onItemAdded;
+    public Action<string> onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
 
@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour, ISaveable
         else
         {
             Elements.Add(newSeed);
-            onItemAdded?.Invoke();
+            onItemAdded?.Invoke(null);
         }
     }
 

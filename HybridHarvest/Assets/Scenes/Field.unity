@@ -2958,6 +2958,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 272786471}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Tutorial_ChooseItemToPlant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenario, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882242573902627156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6827712443285308860, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3269,10 +3297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 453041742}
     m_Modifications:
-    - target: {fileID: 2017966849998011220, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
       propertyPath: m_Name
       value: FarmSpot
@@ -3377,13 +3401,5 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 316308796}
-    - target: {fileID: 2017966851350379693, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2017966851455226527, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}

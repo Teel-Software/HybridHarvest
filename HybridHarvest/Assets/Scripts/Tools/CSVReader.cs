@@ -7,10 +7,20 @@ public static class CSVReader
     public static SeedStatistics ParseSeedStats(string seedName)
     {
         var outStats = new SeedStatistics();
-        var seedData = Resources
+        var seedData = new string[] { };
+
+        try
+        {
+            seedData = Resources
             .Load<TextAsset>($@"SeedStats\{seedName}")
             .text
             .Split('\n');
+        }
+        catch
+        {
+            Debug.Log($"Невозможно загрузить характеристики семечка \"{seedName}\"");
+            return null;
+        }
 
         foreach (var line in seedData)
         {
@@ -76,10 +86,10 @@ public static class CSVReader
     private static Dictionary<T, int> ConvertToDict<T>(T[] mas)
     {
         var dict = new Dictionary<T, int>();
-        for(var i=0; i<mas.Length; i++)
+        for (var i = 0; i < mas.Length; i++)
         {
             var current = mas[i];
-            while(i < mas.Length && mas[i].Equals(current))
+            while (i < mas.Length && mas[i].Equals(current))
             {
                 i++;
             }

@@ -107,13 +107,7 @@ public class HarvestProcessor : MonoBehaviour
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
         // тутор для окна сбора урожая
-        scenario.Tutorial_HarvestPlace();
-    }
-
-    private void OnDisable()
-    {
-        GameObject.FindGameObjectWithTag("Inventory")
-            .GetComponent<Inventory>()
-            .Save();
+        if (QSReader.Create("TutorialState").Exists("Tutorial_WaitForGrowing_Played"))
+            scenario.Tutorial_HarvestPlace();
     }
 }

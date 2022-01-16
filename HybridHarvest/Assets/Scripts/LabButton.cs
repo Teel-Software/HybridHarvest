@@ -18,7 +18,17 @@ public class LabButton : MonoBehaviour
         InventoryFrame.gameObject.SetActive(true);
         if (SceneManager.GetActiveScene().buildIndex != 4
             && SecondButton.GetComponent<LabButton>().NowSelected != null)
-            InventoryFrame.FilterByName(SecondButton.GetComponent<LabButton>().NowSelected.NameInRussian);
+            InventoryFrame.Redraw(filter_RussianName: SecondButton.GetComponent<LabButton>().NowSelected.NameInRussian);
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для выбора семечка 2
+        if (QSReader.Create("TutorialState").Exists("Tutorial_HybridPanelSecond_Played"))
+            scenario?.Tutorial_ChooseItemToCrossSecond();
+
+        // тутор для выбора семечка 1
+        if (QSReader.Create("TutorialState").Exists("Tutorial_HybridPanel_Played"))
+            scenario?.Tutorial_ChooseItemToCrossFirst();
     }
 
     public void ChosenSeed(Seed seed)

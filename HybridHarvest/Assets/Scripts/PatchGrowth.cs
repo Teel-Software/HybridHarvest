@@ -21,6 +21,7 @@ public class PatchGrowth : MonoBehaviour
     private Image textBGImage;
     private Text growthText;
     private Inventory _inventory;
+    private double _timeSpeedBooster = 1;
 
     /// <summary>
     /// Organizes plants on patch.
@@ -48,10 +49,11 @@ public class PatchGrowth : MonoBehaviour
 
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
+        SpeedUpTutorSeed(growingSeed);
 
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
         var timePassed = (DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
-        time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed;
+        time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed * _timeSpeedBooster;
         Patch.interactable = false;
 
         var seedsCount = PlayerPrefs.GetInt(Patch.name + "seedsCount");
@@ -75,7 +77,7 @@ public class PatchGrowth : MonoBehaviour
         {
             if (time > 0)
             {
-                time -= Time.deltaTime;
+                time -= Time.deltaTime * _timeSpeedBooster;
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(time);
@@ -134,11 +136,13 @@ public class PatchGrowth : MonoBehaviour
         PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
         time = seed.GrowTime;
         timerNeeded = true;
+        SpeedUpTutorSeed(seed);
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
         // тутор для роста семечка
-        GameObject.FindGameObjectWithTag("TutorialHandler")
-            ?.GetComponent<Scenario>()
-            ?.Tutorial_FarmSpot();
+        if (QSReader.Create("TutorialState").Exists("Tutorial_StatPanel_Played"))
+            scenario.Tutorial_WaitForGrowing();
     }
 
     /// <summary>
@@ -176,5 +180,15 @@ public class PatchGrowth : MonoBehaviour
 
         growingSeed = null;
         PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+    }
+
+    /// <summary>
+    /// Ускоряет рост обучающих семян
+    /// </summary>
+    /// <param name="seed">Семечко</param>
+    private void SpeedUpTutorSeed(Seed seed)
+    {
+        if (seed.NameInRussian == "Обучающий картофель")
+            _timeSpeedBooster = 30;
     }
 }
