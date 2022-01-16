@@ -16,6 +16,7 @@ public class LabGrowth : MonoBehaviour
     bool isOccupied;
     bool timerNeeded;
     public double time;
+    private double _totalTime;
 
     private Image plantImage;
     private Image textBGImage;
@@ -43,12 +44,12 @@ public class LabGrowth : MonoBehaviour
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
         SpeedUpTutorSeed(growingSeed);
-
-        DateTime oldDate;
-        oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
+        
+        var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));
         var timePassed = DateTime.Now - oldDate;
         var timeSpan = new TimeSpan(timePassed.Days, timePassed.Hours, timePassed.Minutes, timePassed.Seconds);
         time = PlayerPrefs.GetInt(Pot.name + "time") - timeSpan.TotalSeconds * _timeSpeedBooster;
+        _totalTime = PlayerPrefs.GetFloat(Pot.name + "TotalTime");
         Pot.interactable = false;
 
         if (time <= 0)
@@ -61,8 +62,8 @@ public class LabGrowth : MonoBehaviour
         {
             if (time > 0)
             {
-                plantImage.sprite = growingSeed.GetGrowthStageSprite(time);
-                time -= Time.deltaTime * _timeSpeedBooster;;
+                plantImage.sprite = growingSeed.GetGrowthStageSprite(time, _totalTime);
+                time -= Time.deltaTime * _timeSpeedBooster;
                 var formatTime = TimeSpan.FromSeconds(math.round(time));
                 if (formatTime.Hours > 9)
                     growthText.text = formatTime.Hours.ToString() + " ч.";
@@ -90,13 +91,13 @@ public class LabGrowth : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         PlayerPrefs.SetInt(Pot.name + "time", (int)time);
         PlayerPrefs.SetString(Pot.name + "timeStart", DateTime.Now.ToString());
     }
 
-    public void EndGrowthCycle()
+    private void EndGrowthCycle()
     {
         timerNeeded = false;
         Pot.interactable = true;
@@ -113,6 +114,8 @@ public class LabGrowth : MonoBehaviour
         PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
         PlayerPrefs.SetString(Pot.name + "grows", seed.ToString());
         time = totalTime;
+        _totalTime = totalTime;
+        PlayerPrefs.SetFloat(Pot.name + "TotalTime", (float)_totalTime);
         timerNeeded = true;
         SpeedUpTutorSeed(seed);
     }

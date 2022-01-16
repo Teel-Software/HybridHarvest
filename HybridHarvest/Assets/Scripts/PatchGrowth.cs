@@ -80,7 +80,7 @@ public class PatchGrowth : MonoBehaviour
                 time -= Time.deltaTime * _timeSpeedBooster;
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
-                plantImage.sprite = growingSeed.GetGrowthStageSprite(time);
+                plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
             }
             else
                 EndGrowthCycle();
@@ -91,7 +91,7 @@ public class PatchGrowth : MonoBehaviour
     /// <summary>
     /// Saves data when window closed
     /// </summary>
-    void OnDestroy()
+    private void OnDestroy()
     {
         PlayerPrefs.SetInt(Patch.name + "time", (int)time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());

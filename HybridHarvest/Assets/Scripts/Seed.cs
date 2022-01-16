@@ -143,10 +143,10 @@ public class Seed : ScriptableObject
     /// Получает спрайт растения на стадии роста
     /// </summary>
     /// <param name="time">Сколько осталось до конца роста</param>
+    /// <param name="growTime">Сколько всего времени нужно для роста</param>
     /// <returns>Спрайт растения</returns>
-    public Sprite GetGrowthStageSprite(double time)
+    public Sprite GetGrowthStageSprite(double time, double growTime)
     {
-        var growTime = (double)GrowTime;
         if (growTime >= time && time > growTime * 2 / 3)
             return EarlySprite;
         if (growTime * 2 / 3 >= time && time > growTime / 3)
