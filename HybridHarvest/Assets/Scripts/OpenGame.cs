@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class OpenGame : MonoBehaviour
 {
     [SerializeField] GameObject RewatchBeginningBtn;
     [SerializeField] ClearGameData ClearGameData;
+    [SerializeField] Text debugtext;
 
     /// <summary>
     /// Меняет сцену
@@ -13,21 +15,28 @@ public class OpenGame : MonoBehaviour
     /// <param name="sceneNum">Номер следующей сцены</param>
     public void ChangeScene(int sceneNum)
     {
-        // проверка на первый заход в игру
-        if (!QSReader.Create("GameState").Exists("GameInitialised")
-            && RewatchBeginningBtn != null)
+        try
         {
-            ClearGameData.ClearAll();
-            InitializeBeginning();
-        }
-        else
-        {
-            if (sceneNum == 0)
+            // проверка на первый заход в игру
+            if (!QSReader.Create("GameState").Exists("GameInitialised")
+                && RewatchBeginningBtn != null)
             {
-                GameObject obj = GameObject.Find("player");
-                Destroy(obj);
+                ClearGameData.ClearAll();
+                InitializeBeginning();
             }
-            SceneManager.LoadScene(sceneNum);
+            else
+            {
+                if (sceneNum == 0)
+                {
+                    GameObject obj = GameObject.Find("player");
+                    Destroy(obj);
+                }
+                SceneManager.LoadScene(sceneNum);
+            }
+        }
+        catch(Exception ex)
+        {
+            debugtext.GetComponent<Text>().text = ex.Message;
         }
     }
 
