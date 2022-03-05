@@ -31,10 +31,23 @@ public class OpenGame : MonoBehaviour
                     GameObject obj = GameObject.Find("player");
                     Destroy(obj);
                 }
+
                 SceneManager.LoadScene(sceneNum);
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
+        {
+            debugtext.GetComponent<Text>().text = ex.Message;
+        }
+    }
+
+    public void ThrowException()
+    {
+        try
+        {
+            Debugger.ThrowException();
+        }
+        catch (Exception ex)
         {
             debugtext.GetComponent<Text>().text = ex.Message;
         }

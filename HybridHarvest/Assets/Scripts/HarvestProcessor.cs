@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,16 +26,15 @@ public class HarvestProcessor : MonoBehaviour
             //button.GetComponentInChildren<Text>().text = "Может сохранить?";
             plusButton.onClick.AddListener(() =>
             {
-                Inventory.GetComponent<InventoryDrawer>().SuccessfulAddition += () =>
+                Inventory.GetComponent<InventoryDrawer>().SuccessfulAddition = () =>
                 {
                     seeds.Remove(seed);
                     seedPlaces.Remove(item);
                     Destroy(item);
                     if (seedPlaces.Count == 0) ClearSpace();
+                    Statistics.UpdateGrowedSeeds(seed.Name);
                 };
                 Inventory.GetComponent<InventoryDrawer>().targetInventory.AddItem(seed);
-
-                Statistics.UpdateGrowedSeeds(seed.Name);
             });
 
             var label = item.transform.Find("Text");
@@ -69,6 +67,7 @@ public class HarvestProcessor : MonoBehaviour
             Sell(seeds[i]);
             Destroy(seedPlaces[i]);
         }
+
         seeds.RemoveAll(x => x);
         seedPlaces.RemoveAll(x => x);
         Patch.GetComponent<PatchGrowth>().ClearPatch();
@@ -89,6 +88,7 @@ public class HarvestProcessor : MonoBehaviour
         {
             Destroy(seedPlaces[i]);
         }
+
         seedPlaces.RemoveAll(x => x);
         gameObject.SetActive(false);
         Save();
@@ -97,6 +97,7 @@ public class HarvestProcessor : MonoBehaviour
     private void Save()
     {
         if (seeds.Count == 0) return;
+
         PlayerPrefs.SetInt(Patch.name + "seedsCount", seeds.Count);
         for (var i = 0; i < seeds.Count; i++)
             PlayerPrefs.SetString(Patch.name + "seedElement" + i.ToString(), seeds[i].ToString());

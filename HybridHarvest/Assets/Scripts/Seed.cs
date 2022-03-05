@@ -1,5 +1,4 @@
 using System;
-using Newtonsoft.Json;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]

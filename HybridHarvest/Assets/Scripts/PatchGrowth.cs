@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
-using System.Linq;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -84,6 +82,7 @@ public class PatchGrowth : MonoBehaviour
             }
             else
                 EndGrowthCycle();
+
             textBGImage.enabled = true;
         }
     }
@@ -93,7 +92,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
-        PlayerPrefs.SetInt(Patch.name + "time", (int)time);
+        PlayerPrefs.SetInt(Patch.name + "time", (int) time);
         PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
         PlayerPrefs.SetInt(Patch.name + "seedsCount", grownSeeds.Count);
         for (var i = 0; i < grownSeeds.Count; i++)
@@ -156,13 +155,16 @@ public class PatchGrowth : MonoBehaviour
             InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.Plant);
             InventoryFrame.gameObject.SetActive(true);
         }
+
         //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
         if (grownSeeds.Count == 0 && growingSeed != null)
         {
-            int plusSeeds = (int)Math.Round(UnityEngine.Random.value * (growingSeed.maxAmount - growingSeed.minAmount));
+            int plusSeeds =
+                (int) Math.Round(UnityEngine.Random.value * (growingSeed.maxAmount - growingSeed.minAmount));
             for (var i = 0; i < growingSeed.minAmount + plusSeeds; i++)
                 grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
         }
+
         if (grownSeeds.Count != 0)
         {
             HarvestWindow.GetComponent<HarvestProcessor>().ShowHarvestMenu(grownSeeds, Patch);
