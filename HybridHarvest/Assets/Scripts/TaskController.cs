@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -73,6 +74,9 @@ public class TaskController : MonoBehaviour
         };
 
         taskComp.description.text = $"Нужно {taskName} {taskComp.Details.AmountToComplete} {itemName}.";
+        taskComp.progressLabel.text =
+            $"Прогресс: {Math.Min(taskComp.Details.ProgressAmount, taskComp.Details.AmountToComplete)}" +
+            $"/{taskComp.Details.AmountToComplete}";
         taskComp.characterSpritePlace.sprite =
             Resources.Load<Sprite>($"Characters\\{taskComp.Details.FromCharacter}");
         taskComp.CheckForCompletion();

@@ -8,6 +8,25 @@ public class TaskDetails
 {
     public string StatCategory { get; }
     public string Key { get; }
+
+    public int ProgressAmount
+    {
+        get
+        {
+            var seedsInfo = new Dictionary<string, int>();
+            var reader = QSReader.Create("Statistics");
+            var currentAmount = 0;
+
+            if (reader.Exists(StatCategory))
+                seedsInfo = reader.Read<Dictionary<string, int>>(StatCategory);
+
+            if (seedsInfo.ContainsKey(Key))
+                currentAmount = seedsInfo[Key];
+
+            return currentAmount - StartAmount;
+        }
+    }
+
     public int AmountToComplete { get; }
     public string FromCharacter { get; }
     public int StartAmount { get; set; }
@@ -27,8 +46,10 @@ public class Task : MonoBehaviour
     [SerializeField] public Image characterSpritePlace;
     [SerializeField] public Text description;
     [SerializeField] private GameObject getRewardBtn;
+    [SerializeField] public Text progressLabel;
+
     public TaskDetails Details { get; set; }
-    public bool IsCompleted = false;
+    public bool IsCompleted { get; private set; }
 
     public void FillParameters(string statCategory, string key, int amountToComplete, string fromCharacter)
     {
@@ -49,17 +70,7 @@ public class Task : MonoBehaviour
 
     public void CheckForCompletion()
     {
-        var seedsInfo = new Dictionary<string, int>();
-        var reader = QSReader.Create("Statistics");
-        var currentAmount = 0;
-
-        if (reader.Exists(Details.StatCategory))
-            seedsInfo = reader.Read<Dictionary<string, int>>(Details.StatCategory);
-
-        if (seedsInfo.ContainsKey(Details.Key))
-            currentAmount = seedsInfo[Details.Key];
-
-        if (currentAmount - Details.StartAmount < Details.AmountToComplete) return;
+        if (Details.ProgressAmount < Details.AmountToComplete) return;
 
         getRewardBtn.GetComponent<Button>().interactable = true;
         IsCompleted = true;
