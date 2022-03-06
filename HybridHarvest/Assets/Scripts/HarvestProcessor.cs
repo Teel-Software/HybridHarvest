@@ -57,6 +57,8 @@ public class HarvestProcessor : MonoBehaviour
         var inventory = Inventory.GetComponent<InventoryDrawer>().targetInventory;
         inventory.AddMoney(seed.Price);
         inventory.ChangeReputation(seed.Gabitus);
+        Statistics.UpdateSoldSeeds(seed.Name);
+        Statistics.UpdateGrowedSeeds(seed.Name);
         inventory.Save();
     }
 

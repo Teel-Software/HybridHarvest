@@ -58,11 +58,14 @@ public class Scenario : MonoBehaviour
         DialogPanel.StartDialog();
     }
 
-    public void CreateTaskEndDialog(string firstCharacterPhrase, Award award)
+    public void CreateTaskEndDialog(string firstCharacterPhrase, params Award[] awards)
     {
         DialogPanel.CreateDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
         DialogPanel.AddPhrase(NowTalking.First, firstCharacterPhrase);
-        DialogPanel.AddAward(1, award);
+
+        foreach (var award in awards)
+            DialogPanel.AddAward(1, award);
+
         DialogPanel.StartDialog();
     }
 
@@ -73,7 +76,7 @@ public class Scenario : MonoBehaviour
             case 1:
                 // тутор для третьего захода в меню выбора
                 if (QSReader.Create("TutorialState").Exists("Tutorial_LabEnding_Played"))
-                    ExecuteTutorialPart("ChoiceThird", lastPart: true, narratorPhrases: new string[]
+                    ExecuteTutorialPart("ChoiceThird", lastPart: true, narratorPhrases: new[]
                     {
                         "С этого момента вы можете исследовать всё сами! Приятной игры! P. S. Обязательно загляните в К.В.А.Н.Т. При скрещивании разных растений получаются очень смешные названия :)"
                     });
@@ -81,32 +84,32 @@ public class Scenario : MonoBehaviour
                 // тутор для повторного захода в меню выбора
                 if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
                     ExecuteTutorialPart("ChoiceSecond", activeButtonName: "SideMenuButton",
-                        firstCharacterPhrases: new string[] { "Почти пришли! Отсюда до магазина совсем не далеко!" });
+                        firstCharacterPhrases: new[] { "Почти пришли! Отсюда до магазина совсем не далеко!" });
 
                 ExecuteTutorialPart("BeginningChoice", activeButtonName: "SceneButtonField",
-                    firstCharacterPhrases: new string[]
+                    firstCharacterPhrases: new[]
                     {
                         "Хороший денёк, однако выдался! Помнится, вчера я хотел посадить семена, да вот забыл... Ну ничего, сделаю это сейчас!"
                     },
-                    narratorPhrases: new string[] { "Нажмите на кнопку \"Грядка\"." },
+                    narratorPhrases: new[] { "Нажмите на кнопку \"Грядка\"." },
                     award: new Award(AwardType.Seed, seedName: "Potato"));
 
                 break;
             case 2:
                 ExecuteTutorialPart("BeginningField", activeButtonName: "FarmSpot",
-                    narratorPhrases: new string[]
+                    narratorPhrases: new[]
                         { "Это поле. Здесь можно посадить семена, которые есть на складе. Нажмите на грядку." });
                 break;
             case 3:
                 ExecuteTutorialPart("BeginningLab", activeButtonName: "Pot",
-                    narratorPhrases: new string[]
+                    narratorPhrases: new[]
                     {
                         "Это лаборатория. Здесь можно скрестить семена, которые есть на складе. Скрещивать можно только семена одного вида!"
                     });
                 break;
             case 4:
                 ExecuteTutorialPart("BeginningQuantum",
-                    narratorPhrases: new string[]
+                    narratorPhrases: new[]
                     {
                         "Это К.В.А.Н.Т. Здесь можно скрестить семена, которые есть на складе. Скрещивать можно что угодно, но один раз в день!"
                     });
@@ -116,7 +119,7 @@ public class Scenario : MonoBehaviour
 
     public void Tutorial_Inventory()
     {
-        ExecuteTutorialPart("Inventory", activeButtonName: "EnergyPanel", narratorPhrases: new string[]
+        ExecuteTutorialPart("Inventory", activeButtonName: "EnergyPanel", narratorPhrases: new[]
         {
             "Это склад. Здесь хранятся пакеты семян. Следите за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.",
             "Для начала познакомимся с энергией."
@@ -125,7 +128,7 @@ public class Scenario : MonoBehaviour
 
     public void Tutorial_Energy()
     {
-        ExecuteTutorialPart("Energy", activeButtonName: "EnergyExit", narratorPhrases: new string[]
+        ExecuteTutorialPart("Energy", activeButtonName: "EnergyExit", narratorPhrases: new[]
         {
             "Энергия тратится, когда вы садите растения. Она сама восстанавливается со временем, но если вы хотите - можно смотреть рекламу и получать энергию БЕСПЛАТНО!"
         });
@@ -134,22 +137,22 @@ public class Scenario : MonoBehaviour
     public void Tutorial_ChooseItemToPlant()
     {
         ExecuteTutorialPart("ChooseItemToPlant", activeButtonTag: "TutorialPotato",
-            firstCharacterPhrases: new string[] { "А теперь самое время посадить картошку!" });
+            firstCharacterPhrases: new[] { "А теперь самое время посадить картошку!" });
     }
 
     public void Tutorial_StatPanel()
     {
         ExecuteTutorialPart("StatPanel", activeButtonName: "ProceedButton",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
                 { "На этой панели написана вся нужная информация о семечке. Нажмите на кнопку \"Посадить\"." });
     }
 
     public void Tutorial_WaitForGrowing()
     {
         ExecuteTutorialPart("WaitForGrowing", activeButtonName: "FarmSpot",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
                 { "Ого, картошка нынче быстро растёт! Видимо повлияли хорошие погодные условия." },
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "Первый раз мы ускорили время роста картошки, чтобы вы долго не ждали. " +
                 "Обычные семена прорастают намного медленнее. Каждый раз при посадке семечка тратится 1 единица энергии.",
@@ -160,8 +163,8 @@ public class Scenario : MonoBehaviour
     public void Tutorial_HarvestPlace()
     {
         ExecuteTutorialPart("HarvestPlace", activeButtonName: "AddToInventory",
-            firstCharacterPhrases: new string[] { "Ух ты, сколько картошки выросло! Даже и не знаю, какую выбрать!" },
-            narratorPhrases: new string[]
+            firstCharacterPhrases: new[] { "Ух ты, сколько картошки выросло! Даже и не знаю, какую выбрать!" },
+            narratorPhrases: new[]
             {
                 "На данной панели отображается всё, что выросло из посаженного семечка. Чтобы добавить понравившиеся семена на склад - нажмите на кнопку \"+\"."
             });
@@ -170,7 +173,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_ChooseItemToReplace()
     {
         ExecuteTutorialPart("ChooseItemToReplace", activeButtonTag: "TutorialPotato",
-            narratorPhrases: new string[] { "Нажмите на пакет семян, а затем на кнопку \"Заменить\"." });
+            narratorPhrases: new[] { "Нажмите на пакет семян, а затем на кнопку \"Заменить\"." });
     }
 
     public void Tutorial_ReplaceItem()
@@ -181,21 +184,21 @@ public class Scenario : MonoBehaviour
     public void Tutorial_HarvestPlaceSellAll()
     {
         ExecuteTutorialPart("HarvestPlaceSellAll", activeButtonName: "SellAll",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
                 { "Думаю, что остальную картошку можно продать, сейчас она всё равно мне не понадобится." },
-            narratorPhrases: new string[] { "Нажмите на кнопку \"Продать всё\"." });
+            narratorPhrases: new[] { "Нажмите на кнопку \"Продать всё\"." });
     }
 
     public void Tutorial_FieldEnding()
     {
         ExecuteTutorialPart("FieldEnding", activeButtonName: "ExitScene",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
                 { "Отлично, с урожаем я разобрался, теперь самое время заглянуть к торговцу!" });
     }
 
     public void Tutorial_SideMenu()
     {
-        ExecuteTutorialPart("SideMenu", activeButtonName: "ShopLabel", narratorPhrases: new string[]
+        ExecuteTutorialPart("SideMenu", activeButtonName: "ShopLabel", narratorPhrases: new[]
         {
             "Это боковое меню. Одна из самых важных частей игры. Отсюда ты можешь попасть в четыре места: магазин, задания, склад и выставку."
         });
@@ -204,17 +207,17 @@ public class Scenario : MonoBehaviour
     public void Tutorial_Shop()
     {
         ExecuteTutorialPart("Shop", activeButtonName: "BuyTomato",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
             {
                 "Приветствую, Порфирий! Сколько лет, сколько зим!",
                 "Да ладно тебе, я тут по делу. Мне бы семян томата прикупить."
             },
-            secondCharacterPhrases: new string[]
+            secondCharacterPhrases: new[]
             {
                 "Если быть точным, то 0 лет и 0 зим, мы же только вчера виделись.",
                 "Пожалуйста, выбирай. Всё, что есть - на прилавке."
             },
-            narratorPhrases: new string[] { "Купленные пакеты семян можно найти на складе." });
+            narratorPhrases: new[] { "Купленные пакеты семян можно найти на складе." });
     }
 
     public void Tutorial_BuyItem()
@@ -226,7 +229,7 @@ public class Scenario : MonoBehaviour
     {
         // может быть фейл, если в инвентаре уже заполнено всё место
         ExecuteTutorialPart("AddItem", activeButtonTag: "InventoryPlusBtn",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
                 { "Новый пакет можно не заменять, а просто добавить на склад, если в нём достаточно места." });
     }
 
@@ -243,27 +246,27 @@ public class Scenario : MonoBehaviour
     public void Tutorial_ChooseItemToSell()
     {
         ExecuteTutorialPart("ChooseItemToSell", activeButtonTag: "TutorialPotato",
-            firstCharacterPhrases: new string[] { "Самое время продать выращенную картошку!" });
+            firstCharacterPhrases: new[] { "Самое время продать выращенную картошку!" });
     }
 
     public void Tutorial_SellItem()
     {
         ExecuteTutorialPart("SellItem", activeButtonName: "ProceedButton",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
                 { "После продажи семян вы получаете опыт, благодаря которому прокачивается ваш уровень." });
     }
 
     public void Tutorial_GoToMarket()
     {
         ExecuteTutorialPart("GoToMarket", activeButtonName: "MarketPanel",
-            narratorPhrases: new string[] { "Теперь пройдёмте на биржу!" });
+            narratorPhrases: new[] { "Теперь пройдёмте на биржу!" });
     }
 
     public void Tutorial_Market()
     {
         ExecuteTutorialPart("Market", activeButtonName: "MarketExit",
-            firstCharacterPhrases: new string[] { "Ого! С ценой всё в порядке... У меня первый раз такое!" },
-            narratorPhrases: new string[]
+            firstCharacterPhrases: new[] { "Ого! С ценой всё в порядке... У меня первый раз такое!" },
+            narratorPhrases: new[]
             {
                 "Это биржа. Здесь отображается текущее положение цен на рынке. Цифра справа от семечка означает, насколько изменилась его цена по сравнению с начальной.",
                 "Если цифра меньше единицы - цена уменьшилась, если равна единице - цена не изменилась, если больше единицы - цена увеличилась. " +
@@ -274,7 +277,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_InventoryExit()
     {
         ExecuteTutorialPart("InventoryExit", activeButtonTag: "ExitInventory",
-            firstCharacterPhrases: new string[] { "Теперь можно проведать, как там дела в лаборатории!" });
+            firstCharacterPhrases: new[] { "Теперь можно проведать, как там дела в лаборатории!" });
     }
 
     public void Tutorial_GoToLab()
@@ -285,7 +288,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_HybridPanel()
     {
         ExecuteTutorialPart("HybridPanel", activeButtonName: "FirstButton",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "Это панель для скрещивания. Выберите семечко слева, затем семечко справа. После этого нажмите \"Скрестить\" и наслаждайтесь результатом."
             });
@@ -294,7 +297,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_ChooseItemToCrossFirst()
     {
         ExecuteTutorialPart("ChooseItemToCrossFirst", activeButtonTag: "TutorialTomato",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
                 { "Ага! Не зря покупал семена помидора, сейчас их и испробую в скрещивании!" });
     }
 
@@ -306,13 +309,13 @@ public class Scenario : MonoBehaviour
     public void Tutorial_HybridPanelSecond()
     {
         ExecuteTutorialPart("HybridPanelSecond", activeButtonName: "SecondButton",
-            firstCharacterPhrases: new string[] { "Теперь нужно выбрать второе семечко." });
+            firstCharacterPhrases: new[] { "Теперь нужно выбрать второе семечко." });
     }
 
     public void Tutorial_ChooseItemToCrossSecond()
     {
         ExecuteTutorialPart("ChooseItemToCrossSecond", activeButtonTag: "TutorialTomato",
-            firstCharacterPhrases: new string[] { "Выбор невелик, поэтому придётся взять семечко из того же пакета." });
+            firstCharacterPhrases: new[] { "Выбор невелик, поэтому придётся взять семечко из того же пакета." });
     }
 
     public void Tutorial_ApplyItemToCrossSecond()
@@ -323,13 +326,13 @@ public class Scenario : MonoBehaviour
     public void Tutorial_ApplyCrossing()
     {
         ExecuteTutorialPart("ApplyCrossing", activeButtonName: "StartHybrid",
-            firstCharacterPhrases: new string[] { "Ну, сейчас посмотрим, что получится!" });
+            firstCharacterPhrases: new[] { "Ну, сейчас посмотрим, что получится!" });
     }
 
     public void Tutorial_WaitForCrossing()
     {
         ExecuteTutorialPart("WaitForCrossing", activeButtonName: "Pot",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "Время ожидания значительно ускорено. Обычно оно складывается из времени роста двух выбранных семян."
             });
@@ -338,11 +341,11 @@ public class Scenario : MonoBehaviour
     public void Tutorial_MiniGame()
     {
         ExecuteTutorialPart("MiniGame",
-            firstCharacterPhrases: new string[]
+            firstCharacterPhrases: new[]
             {
                 "Что ж, надеюсь, в этот раз повезёт, ведь вчера мне выпала довольно редкая характеристика. Будет отлично, если это повторится!"
             },
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "На всех карточках содержатся характеристики выросшего семечка. Шанс выпадения характеристик совпадает с тем, что вы видели на панели скрещивания."
             });
@@ -355,20 +358,20 @@ public class Scenario : MonoBehaviour
             GameObject.FindGameObjectWithTag("ExitInventory")?.SetActive(false);
 
         ExecuteTutorialPart("ReplaceOrAddItem",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
                 { "Теперь сами выберите, что сделать с пакетом семян: заменить существующий или добавить новый." });
     }
 
     public void Tutorial_LabEnding()
     {
         ExecuteTutorialPart("LabEnding", activeButtonName: "ExitScene",
-            firstCharacterPhrases: new string[] { "Что ж, в лаборатории я сделал всё, что хотел." });
+            firstCharacterPhrases: new[] { "Что ж, в лаборатории я сделал всё, что хотел." });
     }
 
     public void Tutorial_Quests()
     {
         ExecuteTutorialPart("Quests",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "Это доска объявлений. Здесь появляются задания от жителей, которым нужна помощь. За выполнение заданий вы получите от них награду."
             });
@@ -377,7 +380,7 @@ public class Scenario : MonoBehaviour
     public void Tutorial_Exhibition()
     {
         ExecuteTutorialPart("Exhibition",
-            narratorPhrases: new string[]
+            narratorPhrases: new[]
             {
                 "Это выставка. Здесь можно выставить на всеобщее обозрение свои лучшие продукты. Пусть все знают, кто тут настоящий садовод!"
             });

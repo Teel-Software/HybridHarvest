@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CI.QuickSave;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TaskDetails
@@ -27,7 +28,7 @@ public class Task : MonoBehaviour
     [SerializeField] public Text description;
     [SerializeField] private GameObject getRewardBtn;
     public TaskDetails Details { get; set; }
-    public bool IsComplete = false;
+    public bool IsCompleted = false;
 
     public void FillParameters(string statCategory, string key, int amountToComplete, string fromCharacter)
     {
@@ -61,7 +62,7 @@ public class Task : MonoBehaviour
         if (currentAmount - Details.StartAmount < Details.AmountToComplete) return;
 
         getRewardBtn.GetComponent<Button>().interactable = true;
-        IsComplete = true;
+        IsCompleted = true;
     }
 
     public void ApplyAwards()
@@ -69,8 +70,10 @@ public class Task : MonoBehaviour
         var parent = transform.parent;
         parent.gameObject.GetComponent<Scenario>().FirstCharacterSprite = characterSpritePlace.sprite;
         parent.GetComponent<Scenario>()
-            .CreateTaskEndDialog("Благодарю тебя, путник!",
-                new Award(AwardType.Money, money: Details.AmountToComplete * 10));
+            .CreateTaskEndDialog(TaskTools.GetPhrase(),
+                new Award(AwardType.Money, money: Details.AmountToComplete * 10),
+                new Award(AwardType.Reputation, reputation: Details.AmountToComplete * 15)
+            );
 
         var writer = QuickSaveWriter.Create("Tasks");
         writer.Delete(Details.ID.ToString());
