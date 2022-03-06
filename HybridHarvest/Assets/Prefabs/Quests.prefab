@@ -107,6 +107,7 @@ MonoBehaviour:
   taskPrefab: {fileID: 5180102169158407397, guid: 527d93359f6297e42b5ed8f67c034b9f, type: 3}
   RenderTasksHere: 1
   taskAddPrefab: {fileID: 5286074594401741888, guid: 6315606e20a5228418df1e63fbdc8e80, type: 3}
+  timeLabel: {fileID: 4254241294070544590}
 --- !u!114 &7518887746490589526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +561,7 @@ GameObject:
   - component: {fileID: 4254241294070544590}
   - component: {fileID: 647569316329715988}
   m_Layer: 5
-  m_Name: TimeText
+  m_Name: TimeLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

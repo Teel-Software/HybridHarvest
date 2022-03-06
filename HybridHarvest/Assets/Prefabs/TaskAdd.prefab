@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskPrefab: {fileID: 5180102169158407397, guid: 527d93359f6297e42b5ed8f67c034b9f, type: 3}
+  RenderTasksHere: 0
+  taskAddPrefab: {fileID: 0}
+  timeLabel: {fileID: 0}
 --- !u!1 &7209661442430402035
 GameObject:
   m_ObjectHideFlags: 0

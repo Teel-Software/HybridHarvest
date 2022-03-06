@@ -1,4 +1,6 @@
 using System;
+using CI.QuickSave;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -43,16 +45,56 @@ public class TaskController : MonoBehaviour
     [SerializeField] private GameObject taskPrefab;
     [SerializeField] private bool RenderTasksHere;
     [SerializeField] private GameObject taskAddPrefab;
+    [SerializeField] private Text timeLabel;
+    public int taskCount { get; set; }
+    private bool taskAddBtnIsRendered { get; set; }
+    private DateTime cooldownEnd;
 
+    /// <summary>
+    /// Создаёт новую задачу (вызывается из кнопки добавления задач)
+    /// </summary>
     public void CreateNewTask()
     {
-        var newTask = Instantiate(taskPrefab, transform.parent);
+        var placeForTasks = transform.parent;
+        var newTask = Instantiate(taskPrefab, placeForTasks);
         newTask.GetComponent<Task>().FillParameters(TaskTools.GetStatCategory(), TaskTools.GetKey(),
             TaskTools.GetAmountToComplete(), TaskTools.GetCharacter());
         UpdateTaskView(newTask);
-        transform.SetAsLastSibling();
+
+        var trueTaskController = placeForTasks.GetComponent<TaskController>();
+        trueTaskController.cooldownEnd = DateTime.Now.AddSeconds(10); // время кулдауна
+        trueTaskController.SaveCooldownTime();
+        trueTaskController.taskAddBtnIsRendered = false;
+        trueTaskController.taskCount++;
+
+        Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Загружает сохранённое время окончания кулдауна
+    /// </summary>
+    private void LoadCooldownTime()
+    {
+        var reader = QSReader.Create("Tasks");
+        cooldownEnd = reader.Exists("CooldownEnd")
+            ? reader.Read<DateTime>("CooldownEnd")
+            : DateTime.Now;
+    }
+
+    /// <summary>
+    /// Сохраняет время окончания кулдауна
+    /// </summary>
+    private void SaveCooldownTime()
+    {
+        var writer = QuickSaveWriter.Create("Tasks");
+        writer.Write("CooldownEnd", cooldownEnd);
+        writer.Commit();
+    }
+
+    /// <summary>
+    /// Выводит информацию о задании в соответствии с его параметрами
+    /// </summary>
+    /// <param name="taskObj">Объект, к которому привязано задание</param>
     private static void UpdateTaskView(GameObject taskObj)
     {
         var taskComp = taskObj.GetComponent<Task>();
@@ -85,6 +127,9 @@ public class TaskController : MonoBehaviour
                 new Color(100 / 255f, 1f, 100 / 255f);
     }
 
+    /// <summary>
+    /// Отрисовывыет уже существующие задачи
+    /// </summary>
     private void RenderCurrentTasks()
     {
         var reader = QSReader.Create("Tasks");
@@ -94,24 +139,40 @@ public class TaskController : MonoBehaviour
 
         foreach (var key in allKeys)
         {
-            var details = reader.Read<TaskDetails>(key);
-            if (details.AmountToComplete <= 0) continue;
+            var success = reader.TryRead<TaskDetails>(key, out var details);
+            if (!success || details.AmountToComplete <= 0) continue;
 
             var newTask = Instantiate(taskPrefab, transform);
             var taskComp = newTask.GetComponent<Task>();
             taskComp.Details = details;
             UpdateTaskView(newTask);
+            taskCount++;
 
             if (taskComp.IsCompleted)
                 newTask.transform.SetAsFirstSibling();
         }
-
-        Instantiate(taskAddPrefab, transform);
     }
 
     private void OnEnable()
     {
-        if (RenderTasksHere)
-            RenderCurrentTasks();
+        if (!RenderTasksHere) return;
+
+        RenderCurrentTasks();
+        LoadCooldownTime();
+    }
+
+    private void Update()
+    {
+        if (!RenderTasksHere) return;
+
+        var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
+        timeLabel.text = secondsRemaining >= 0
+            ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"
+            : "Доступно новое задание!";
+
+        if (taskAddBtnIsRendered || !(secondsRemaining < 0)) return;
+
+        Instantiate(taskAddPrefab, transform);
+        taskAddBtnIsRendered = true;
     }
 }

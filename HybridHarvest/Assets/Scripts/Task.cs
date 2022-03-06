@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+/// <summary>
+/// Хранит всю информацию о конкретном задании
+/// </summary>
 public class TaskDetails
 {
     public string StatCategory { get; }
@@ -51,6 +54,13 @@ public class Task : MonoBehaviour
     public TaskDetails Details { get; set; }
     public bool IsCompleted { get; private set; }
 
+    /// <summary>
+    /// Заполняет параметрами пустое задание
+    /// </summary>
+    /// <param name="statCategory">Категория задания</param>
+    /// <param name="key">Ключевой предмет задания</param>
+    /// <param name="amountToComplete">Количество предметов, требуемое для завершения задания</param>
+    /// <param name="fromCharacter">Персонаж, давший задание</param>
     public void FillParameters(string statCategory, string key, int amountToComplete, string fromCharacter)
     {
         Details = new TaskDetails(statCategory, key, amountToComplete, fromCharacter);
@@ -68,6 +78,9 @@ public class Task : MonoBehaviour
         writer.Commit();
     }
 
+    /// <summary>
+    /// Проверяет задачу на завершение
+    /// </summary>
     public void CheckForCompletion()
     {
         if (Details.ProgressAmount < Details.AmountToComplete) return;
@@ -76,11 +89,15 @@ public class Task : MonoBehaviour
         IsCompleted = true;
     }
 
+    /// <summary>
+    /// Запускает конечный диалог и выдаёт награды
+    /// </summary>
     public void ApplyAwards()
     {
-        var parent = transform.parent;
-        parent.gameObject.GetComponent<Scenario>().FirstCharacterSprite = characterSpritePlace.sprite;
-        parent.GetComponent<Scenario>()
+        var placeForTasks = transform.parent;
+        placeForTasks.GetComponent<TaskController>().taskCount--;
+        placeForTasks.gameObject.GetComponent<Scenario>().FirstCharacterSprite = characterSpritePlace.sprite;
+        placeForTasks.GetComponent<Scenario>()
             .CreateTaskEndDialog(TaskTools.GetPhrase(),
                 new Award(AwardType.Money, money: Details.AmountToComplete * 10),
                 new Award(AwardType.Reputation, reputation: Details.AmountToComplete * 15)
