@@ -8,12 +8,12 @@ public class AdInitializer : MonoBehaviour, IUnityAdsInitializationListener
     private string _gameId;
     
     [SerializeField] bool _testMode = true;
-    void Awake()
+    public void Awake()
     {
         InitializeAds();
     }
  
-    public void InitializeAds()
+    private void InitializeAds()
     {
         _gameId = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? _iOSGameId

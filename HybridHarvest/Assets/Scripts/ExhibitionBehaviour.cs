@@ -4,25 +4,27 @@ using UnityEngine.UI;
 
 public class ExhibitionBehaviour : MonoBehaviour
 {
-    [SerializeField] public Button exhButton;
-    DateTime date;
+    [SerializeField] public Button[] exhButtons;
+    private DateTime _date;
 
     void OnEnable()
     {
-        date = DateTime.Now;
-        exhButton.onClick.RemoveAllListeners();
-
-        switch (date.DayOfWeek)
+        _date = DateTime.Now;
+        foreach (var btn in exhButtons)
         {
-            case DayOfWeek.Saturday:
-                exhButton.onClick.AddListener(exhButton.GetComponent<ExhibitionButton>().ExhibitionClick);
-                break;
-            case DayOfWeek.Sunday:
-                exhButton.onClick.AddListener(exhButton.GetComponent<ExhibitionButton>().ResultClick);
-                break;
-            default:
-                exhButton.onClick.AddListener(exhButton.GetComponent<ExhibitionButton>().DefaultClick);
-                break;
+            btn.onClick.RemoveAllListeners();
+            switch (_date.DayOfWeek)
+            {
+                case DayOfWeek.Saturday:
+                    btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().ExhibitionClick);
+                    break;
+                case DayOfWeek.Sunday:
+                    btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().ResultClick);
+                    break;
+                default:
+                    btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().DefaultClick);
+                    break;
+            }   
         }
     }
 }
