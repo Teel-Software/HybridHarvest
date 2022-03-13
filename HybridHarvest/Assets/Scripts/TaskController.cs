@@ -94,7 +94,7 @@ public class TaskController : MonoBehaviour
     /// <summary>
     /// Выводит информацию о задании в соответствии с его параметрами
     /// </summary>
-    /// <param name="taskObj">Объект, к которому привязано задание</param>
+    /// <param name="taskObj">Карточка для отрисовки задания</param>
     private static void UpdateTaskView(GameObject taskObj)
     {
         var taskComp = taskObj.GetComponent<Task>();
@@ -121,6 +121,7 @@ public class TaskController : MonoBehaviour
             $"/{taskComp.Details.AmountToComplete}";
         taskComp.characterSpritePlace.sprite =
             Resources.Load<Sprite>($"Characters\\{taskComp.Details.FromCharacter}");
+        
         taskComp.CheckForCompletion();
         if (taskComp.IsCompleted)
             taskComp.description.transform.parent.parent.GetComponent<Text>().color =
@@ -157,6 +158,7 @@ public class TaskController : MonoBehaviour
     {
         if (!RenderTasksHere) return;
 
+        taskAddBtnIsRendered = false;
         RenderCurrentTasks();
         LoadCooldownTime();
     }
