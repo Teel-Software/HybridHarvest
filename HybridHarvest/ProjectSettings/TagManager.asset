@@ -21,6 +21,7 @@ TagManager:
   - TutorialTomato
   - Seed
   - TaskAddBtn
+  - SendToQuestBtn
   layers:
   - Default
   - TransparentFX

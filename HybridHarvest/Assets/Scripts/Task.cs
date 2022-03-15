@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,35 +8,17 @@ using UnityEngine.UI;
 /// </summary>
 public class TaskDetails
 {
-    public string StatCategory { get; }
+    public string TaskCategory { get; }
     public string Key { get; }
-
-    public int ProgressAmount
-    {
-        get
-        {
-            var seedsInfo = new Dictionary<string, int>();
-            var reader = QSReader.Create("Statistics");
-            var currentAmount = 0;
-
-            if (reader.Exists(StatCategory))
-                seedsInfo = reader.Read<Dictionary<string, int>>(StatCategory);
-
-            if (seedsInfo.ContainsKey(Key))
-                currentAmount = seedsInfo[Key];
-
-            return currentAmount - StartAmount;
-        }
-    }
-
-    public int AmountToComplete { get; }
     public string FromCharacter { get; }
-    public int StartAmount { get; set; }
+    public int AmountToComplete { get; }
+    public bool IsCompleted => ProgressAmount >= AmountToComplete;
     public int ID { get; set; }
+    public int ProgressAmount { get; set; }
 
-    public TaskDetails(string statCategory, string key, int amountToComplete, string fromCharacter)
+    public TaskDetails(string taskCategory, string key, int amountToComplete, string fromCharacter)
     {
-        StatCategory = statCategory;
+        TaskCategory = taskCategory;
         Key = key;
         AmountToComplete = amountToComplete;
         FromCharacter = fromCharacter;
@@ -50,8 +32,8 @@ public class Task : MonoBehaviour
     [SerializeField] private GameObject getRewardBtn;
     [SerializeField] public Text progressLabel;
 
-    public TaskDetails Details { get; set; }
-    public bool IsCompleted { get; private set; }
+    public TaskDetails Details { get; private set; }
+    public Action AddQuestItem { get; set; }
 
     /// <summary>
     /// Заполняет параметрами пустое задание
@@ -60,32 +42,84 @@ public class Task : MonoBehaviour
     /// <param name="key">Ключевой предмет задания</param>
     /// <param name="amountToComplete">Количество предметов, требуемое для завершения задания</param>
     /// <param name="fromCharacter">Персонаж, давший задание</param>
-    public void FillParameters(string statCategory, string key, int amountToComplete, string fromCharacter)
+    public void Create(string statCategory, string key, int amountToComplete, string fromCharacter)
     {
         Details = new TaskDetails(statCategory, key, amountToComplete, fromCharacter);
         Details.ID = Details.GetHashCode();
-        var seedsInfo = new Dictionary<string, int>();
-        var reader = QSReader.Create("Statistics");
 
-        if (reader.Exists(statCategory))
-            seedsInfo = reader.Read<Dictionary<string, int>>(Details.StatCategory);
-        if (seedsInfo.ContainsKey(key))
-            Details.StartAmount = seedsInfo[key];
+        Save();
+    }
 
+    public void Save()
+    {
         var writer = QuickSaveWriter.Create("Tasks");
         writer.Write(Details.ID.ToString(), Details);
         writer.Commit();
     }
 
+    public void Load(TaskDetails details)
+    {
+        Details = details;
+    }
+
     /// <summary>
-    /// Проверяет задачу на завершение
+    /// Обновляет внешний вид карточки задачи
+    /// </summary>
+    public void UpdateView()
+    {
+        var taskName = Details.TaskCategory switch
+        {
+            "Grow" => "вырастить",
+            "Cross" => "получить при скрещивании",
+            "Sell" => "продать",
+            "Buy" => "купить",
+            _ => "приготовить"
+        };
+        var itemName = Details.Key switch
+        {
+            "Tomato" => "помидоров",
+            "Cucumber" => "огурцов",
+            "Potato" => "картофелин",
+            "Pea" => "стручков гороха",
+            _ => "учпочмаков"
+        };
+
+        description.text = $"Нужно {taskName} {Details.AmountToComplete} {itemName}.";
+        progressLabel.text =
+            $"Прогресс: {Math.Min(Details.ProgressAmount, Details.AmountToComplete)}" +
+            $"/{Details.AmountToComplete}";
+        characterSpritePlace.sprite =
+            Resources.Load<Sprite>($"Characters\\{Details.FromCharacter}");
+
+        CheckForCompletion();
+
+        if (taskName == "приготовить"
+            || itemName == "учпочмаков")
+            Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Обновляет внешний вид предпросмотра задачи
+    /// </summary>
+    public void UpdatePreview()
+    {
+        progressLabel.text =
+            $"{Math.Min(Details.ProgressAmount, Details.AmountToComplete)}" +
+            $"/{Details.AmountToComplete}";
+        characterSpritePlace.sprite =
+            Resources.Load<Sprite>($"Characters\\{Details.FromCharacter}");
+    }
+
+    /// <summary>
+    /// Обновляет внешний вид карточки задачи при завершении
     /// </summary>
     public void CheckForCompletion()
     {
-        if (Details.ProgressAmount < Details.AmountToComplete) return;
+        if (!Details.IsCompleted) return;
 
         getRewardBtn.GetComponent<Button>().interactable = true;
-        IsCompleted = true;
+        description.transform.parent.parent.GetComponent<Text>().color =
+            new Color(100 / 255f, 1f, 100 / 255f);
     }
 
     /// <summary>
@@ -107,5 +141,13 @@ public class Task : MonoBehaviour
         writer.Commit();
 
         Destroy(gameObject);
+    }
+
+    public void AddItemAndUpdate()
+    {
+        AddQuestItem.Invoke();
+        Details.ProgressAmount++;
+        UpdatePreview();
+        Save();
     }
 }

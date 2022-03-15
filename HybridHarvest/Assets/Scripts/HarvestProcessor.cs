@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,34 @@ public class HarvestProcessor : MonoBehaviour
                     Statistics.UpdateGrowedSeeds(seed.Name);
                 };
                 Inventory.GetComponent<InventoryDrawer>().targetInventory.AddItem(seed);
+            });
+
+            var sendToQuestBtn = item.transform.Find("SendToQuest").GetComponent<Button>();
+            sendToQuestBtn.onClick.AddListener(() =>
+            {
+                var taskController = GetComponent<TaskController>();
+                var renderPlace = taskController
+                    .OpenQuestsPreview(sendToQuestBtn.GetComponentInChildren<Text>(), seed)
+                    .transform;
+
+                for (var i = 0; i < renderPlace.childCount; i++)
+                {
+                    var task = renderPlace.GetChild(i).GetComponent<Task>();
+                    task.AddQuestItem = () =>
+                    {
+                        seeds.Remove(seed);
+                        seedPlaces.Remove(item);
+                        Destroy(item);
+                        if (seedPlaces.Count == 0) ClearSpace();
+                        Statistics.UpdateGrowedSeeds(seed.Name);
+
+                        taskController.questsPreviewPanel.SetActive(false);
+
+                        // Place.GetChild(0).Find("SendToQuest").GetComponent<Button>().onClick.Invoke();
+                    };
+                }
+
+                // taskController.RenderTaskPreviews();
             });
 
             var label = item.transform.Find("Text");
@@ -107,6 +136,10 @@ public class HarvestProcessor : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<TaskController>()
+            ?.questsPreviewPanel
+            ?.SetActive(false);
+
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
         // тутор для окна сбора урожая
