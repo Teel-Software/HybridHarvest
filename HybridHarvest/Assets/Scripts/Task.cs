@@ -27,10 +27,10 @@ public class TaskDetails
 
 public class Task : MonoBehaviour
 {
-    [SerializeField] public Image characterSpritePlace;
-    [SerializeField] public Text description;
+    [SerializeField] public Image CharacterSpritePlace;
+    [SerializeField] public Text Description;
     [SerializeField] private GameObject getRewardBtn;
-    [SerializeField] public Text progressLabel;
+    [SerializeField] public Text ProgressLabel;
 
     public TaskDetails Details { get; private set; }
     public Action AddQuestItem { get; set; }
@@ -50,13 +50,10 @@ public class Task : MonoBehaviour
         Save();
     }
 
-    public void Save()
-    {
-        var writer = QuickSaveWriter.Create("Tasks");
-        writer.Write(Details.ID.ToString(), Details);
-        writer.Commit();
-    }
-
+    /// <summary>
+    /// Загружает задание из памяти
+    /// </summary>
+    /// <param name="details">Детали задачи</param>
     public void Load(TaskDetails details)
     {
         Details = details;
@@ -84,11 +81,11 @@ public class Task : MonoBehaviour
             _ => "учпочмаков"
         };
 
-        description.text = $"Нужно {taskName} {Details.AmountToComplete} {itemName}.";
-        progressLabel.text =
+        Description.text = $"Нужно {taskName} {Details.AmountToComplete} {itemName}.";
+        ProgressLabel.text =
             $"Прогресс: {Math.Min(Details.ProgressAmount, Details.AmountToComplete)}" +
             $"/{Details.AmountToComplete}";
-        characterSpritePlace.sprite =
+        CharacterSpritePlace.sprite =
             Resources.Load<Sprite>($"Characters\\{Details.FromCharacter}");
 
         CheckForCompletion();
@@ -103,23 +100,11 @@ public class Task : MonoBehaviour
     /// </summary>
     public void UpdatePreview()
     {
-        progressLabel.text =
+        ProgressLabel.text =
             $"{Math.Min(Details.ProgressAmount, Details.AmountToComplete)}" +
             $"/{Details.AmountToComplete}";
-        characterSpritePlace.sprite =
+        CharacterSpritePlace.sprite =
             Resources.Load<Sprite>($"Characters\\{Details.FromCharacter}");
-    }
-
-    /// <summary>
-    /// Обновляет внешний вид карточки задачи при завершении
-    /// </summary>
-    public void CheckForCompletion()
-    {
-        if (!Details.IsCompleted) return;
-
-        getRewardBtn.GetComponent<Button>().interactable = true;
-        description.transform.parent.parent.GetComponent<Text>().color =
-            new Color(100 / 255f, 1f, 100 / 255f);
     }
 
     /// <summary>
@@ -128,8 +113,8 @@ public class Task : MonoBehaviour
     public void ApplyAwards()
     {
         var placeForTasks = transform.parent;
-        placeForTasks.GetComponent<TaskController>().taskCount--;
-        placeForTasks.gameObject.GetComponent<Scenario>().FirstCharacterSprite = characterSpritePlace.sprite;
+        placeForTasks.GetComponent<TaskController>().TaskCount--;
+        placeForTasks.gameObject.GetComponent<Scenario>().FirstCharacterSprite = CharacterSpritePlace.sprite;
         placeForTasks.GetComponent<Scenario>()
             .CreateTaskEndDialog(TaskTools.GetPhrase(),
                 new Award(AwardType.Money, money: Details.AmountToComplete * 10),
@@ -143,11 +128,36 @@ public class Task : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Обновляет прогресс задания
+    /// </summary>
     public void AddItemAndUpdate()
     {
         AddQuestItem.Invoke();
         Details.ProgressAmount++;
         UpdatePreview();
         Save();
+    }
+
+    /// <summary>
+    /// Сохраняет задание
+    /// </summary>
+    private void Save()
+    {
+        var writer = QuickSaveWriter.Create("Tasks");
+        writer.Write(Details.ID.ToString(), Details);
+        writer.Commit();
+    }
+
+    /// <summary>
+    /// Обновляет внешний вид карточки задачи при завершении
+    /// </summary>
+    private void CheckForCompletion()
+    {
+        if (!Details.IsCompleted) return;
+
+        getRewardBtn.GetComponent<Button>().interactable = true;
+        Description.transform.parent.parent.GetComponent<Text>().color =
+            new Color(100 / 255f, 1f, 100 / 255f);
     }
 }

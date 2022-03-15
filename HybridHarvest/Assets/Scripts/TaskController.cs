@@ -48,17 +48,15 @@ public static class TaskTools
 public class TaskController : MonoBehaviour
 {
     [SerializeField] private GameObject taskPrefab;
-    [SerializeField] private bool RenderTasksHere;
+    [SerializeField] private bool renderTasksHere;
     [SerializeField] private GameObject taskAddPrefab;
     [SerializeField] private Text timeLabel;
     [SerializeField] private GameObject previewPrefab;
 
-    public int taskCount { get; set; }
-    [NonSerialized] public GameObject questsPreviewPanel;
+    public int TaskCount { get; set; }
+    public GameObject QuestsPreviewPanel { get; private set; }
     private bool taskAddBtnIsRendered { get; set; }
     private DateTime cooldownEnd;
-    private GameObject placeForPreview;
-    private string lastSeedName;
 
     /// <summary>
     /// Создаёт новую задачу (вызывается из кнопки добавления задач)
@@ -75,7 +73,7 @@ public class TaskController : MonoBehaviour
         trueTaskController.cooldownEnd = DateTime.Now.AddSeconds(10); // время кулдауна
         trueTaskController.SaveCooldownTime();
         trueTaskController.taskAddBtnIsRendered = false;
-        trueTaskController.taskCount++;
+        trueTaskController.TaskCount++;
 
         Destroy(gameObject);
     }
@@ -87,27 +85,27 @@ public class TaskController : MonoBehaviour
     /// <param name="seed">Плод для задания</param>
     public GameObject OpenQuestsPreview(Text openBtnText, Seed seed)
     {
-        if (questsPreviewPanel == null)
+        if (QuestsPreviewPanel == null)
         {
-            questsPreviewPanel = gameObject;
-            questsPreviewPanel = questsPreviewPanel
+            QuestsPreviewPanel = gameObject;
+            QuestsPreviewPanel = QuestsPreviewPanel
                 .transform
                 .Find("QuestsPreview")
                 .gameObject;
         }
 
-        var placeForRender = questsPreviewPanel.GetComponentInChildren<GridLayoutGroup>().gameObject;
-
-        questsPreviewPanel.SetActive(openBtnText.text != "<" || !questsPreviewPanel.activeSelf);
+        QuestsPreviewPanel.SetActive(openBtnText.text == ">" || !QuestsPreviewPanel.activeSelf);
 
         var sendBtns = GameObject.FindGameObjectsWithTag("SendToQuestBtn");
         foreach (var obj in sendBtns)
             obj.GetComponentInChildren<Text>().text = ">";
-
-        if (questsPreviewPanel.activeSelf)
+        if (QuestsPreviewPanel.activeSelf)
             openBtnText.text = "<";
 
-        RenderTaskPreviews(placeForRender, seed.Name);
+        var placeForRender = QuestsPreviewPanel
+            .GetComponentInChildren<GridLayoutGroup>()
+            .gameObject;
+        RenderCurrentTasks(true, placeForRender, seed.Name);
 
         return placeForRender;
     }
@@ -134,45 +132,16 @@ public class TaskController : MonoBehaviour
     }
 
     /// <summary>
-    /// Отрисовывыет уже существующие задачи
+    /// Отрисовывыет существующие задачи
     /// </summary>
-    private void RenderCurrentTasks()
+    /// <param name="isPreview">Указать true, если необходимо отрисовать только предпросмотр задач</param>
+    /// <param name="placeForRender">Место для отрисовки предпросмотра</param>
+    /// <param name="seedName">Название семечка, к которому относится предпросмотр</param>
+    private void RenderCurrentTasks(bool isPreview = false, GameObject placeForRender = null, string seedName = null)
     {
         var reader = QSReader.Create("Tasks");
         var allKeys = reader.GetAllKeys();
-        ClearChildren(gameObject);
-
-        foreach (var key in allKeys)
-        {
-            var success = reader.TryRead<TaskDetails>(key, out var details);
-            if (!success
-                || details.AmountToComplete <= 0
-                || details.TaskCategory == null)
-                continue;
-
-            var newTask = Instantiate(taskPrefab, transform);
-            var taskComp = newTask.GetComponent<Task>();
-            taskComp.Load(details);
-            taskComp.UpdateView();
-            taskCount++;
-
-            if (!taskComp.Details.IsCompleted) continue;
-
-            newTask.transform.SetAsFirstSibling();
-        }
-    }
-
-    public void RenderTaskPreviews(GameObject placeForRender = null, string seedName = null)
-    {
-        if (placeForRender != null)
-            placeForPreview = placeForRender;
-
-        if (seedName != null)
-            lastSeedName = seedName;
-
-        var reader = QSReader.Create("Tasks");
-        var allKeys = reader.GetAllKeys();
-        ClearChildren(placeForPreview);
+        ClearChildren(isPreview ? placeForRender : gameObject);
 
         foreach (var key in allKeys)
         {
@@ -180,41 +149,44 @@ public class TaskController : MonoBehaviour
             if (!success
                 || details.AmountToComplete <= 0
                 || details.TaskCategory == null
-                || details.TaskCategory != "Grow"
-                || details.Key != lastSeedName)
+                || isPreview && (details.TaskCategory != "Grow"
+                                 || details.Key != seedName
+                                 || details.IsCompleted))
                 continue;
 
-            var newPreview = Instantiate(previewPrefab, placeForPreview.transform);
-            var taskComp = newPreview.GetComponent<Task>();
+            var newTask = Instantiate(isPreview ? previewPrefab : taskPrefab,
+                isPreview ? placeForRender.transform : transform);
+            var taskComp = newTask.GetComponent<Task>();
             taskComp.Load(details);
-            taskComp.UpdatePreview();
+            if (isPreview)
+                taskComp.UpdatePreview();
+            else taskComp.UpdateView();
+            TaskCount++;
 
             if (!taskComp.Details.IsCompleted) continue;
 
-            newPreview.GetComponentInChildren<Button>().interactable = false;
-            newPreview.transform.SetAsLastSibling();
+            newTask.transform.SetAsFirstSibling();
         }
     }
 
-    private void ClearChildren(GameObject obj)
-    {
-        var CGD = obj.GetComponent<ClearGameData>()
-                  ?? obj.AddComponent<ClearGameData>();
-        CGD.ClearChildren(obj);
-    }
-
+    /// <summary>
+    /// Отрисовывает сохранённые задачи
+    /// </summary>
     private void OnEnable()
     {
-        if (!RenderTasksHere) return;
+        if (!renderTasksHere) return;
 
         taskAddBtnIsRendered = false;
         RenderCurrentTasks();
         LoadCooldownTime();
     }
 
+    /// <summary>
+    /// Обновляет время, оставшееся до нового задания
+    /// </summary>
     private void Update()
     {
-        if (!RenderTasksHere) return;
+        if (!renderTasksHere) return;
 
         var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
         timeLabel.text = secondsRemaining >= 0
@@ -225,5 +197,16 @@ public class TaskController : MonoBehaviour
 
         Instantiate(taskAddPrefab, transform);
         taskAddBtnIsRendered = true;
+    }
+
+    /// <summary>
+    /// Удаляет все дочерние объекты
+    /// </summary>
+    /// <param name="obj">Родительский объект</param>
+    private static void ClearChildren(GameObject obj)
+    {
+        var CGD = obj.GetComponent<ClearGameData>()
+                  ?? obj.AddComponent<ClearGameData>();
+        ClearGameData.ClearChildren(obj);
     }
 }

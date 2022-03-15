@@ -1,25 +1,22 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HarvestProcessor : MonoBehaviour
 {
-    [SerializeField] GameObject VegItem;
+    [SerializeField] private GameObject VegItem;
     [SerializeField] GameObject Inventory;
-    [SerializeField] RectTransform Place;
+    [SerializeField] private RectTransform Place;
     private List<Seed> seeds;
-    private List<GameObject> seedPlaces = new List<GameObject>();
+    private readonly List<GameObject> seedPlaces = new List<GameObject>();
     private Button Patch;
 
     public void ShowHarvestMenu(List<Seed> ParentSeed, Button patch)
     {
         Patch = patch;
         seeds = ParentSeed;
-        for (var i = 0; i < seeds.Count; i++)
+        foreach (var seed in seeds)
         {
-            var seed = seeds[i];
-
             var item = Instantiate(VegItem, Place);
             seedPlaces.Add(item);
 
@@ -27,15 +24,9 @@ public class HarvestProcessor : MonoBehaviour
             //button.GetComponentInChildren<Text>().text = "Может сохранить?";
             plusButton.onClick.AddListener(() =>
             {
-                Inventory.GetComponent<InventoryDrawer>().SuccessfulAddition = () =>
-                {
-                    seeds.Remove(seed);
-                    seedPlaces.Remove(item);
-                    Destroy(item);
-                    if (seedPlaces.Count == 0) ClearSpace();
-                    Statistics.UpdateGrowedSeeds(seed.Name);
-                };
-                Inventory.GetComponent<InventoryDrawer>().targetInventory.AddItem(seed);
+                var inventoryDrawer = Inventory.GetComponent<InventoryDrawer>();
+                inventoryDrawer.SuccessfulAddition = () => { DeleteUsedItem(seed, item); };
+                inventoryDrawer.targetInventory.AddItem(seed);
             });
 
             var sendToQuestBtn = item.transform.Find("SendToQuest").GetComponent<Button>();
@@ -51,44 +42,25 @@ public class HarvestProcessor : MonoBehaviour
                     var task = renderPlace.GetChild(i).GetComponent<Task>();
                     task.AddQuestItem = () =>
                     {
-                        seeds.Remove(seed);
-                        seedPlaces.Remove(item);
-                        Destroy(item);
-                        if (seedPlaces.Count == 0) ClearSpace();
-                        Statistics.UpdateGrowedSeeds(seed.Name);
-
-                        taskController.questsPreviewPanel.SetActive(false);
-
+                        DeleteUsedItem(seed, item);
+                        taskController.QuestsPreviewPanel.SetActive(false);
                         // Place.GetChild(0).Find("SendToQuest").GetComponent<Button>().onClick.Invoke();
                     };
                 }
-
-                // taskController.RenderTaskPreviews();
             });
 
             var label = item.transform.Find("Text");
             label.GetComponent<Text>().text =
-                $"{seeds[i].NameInRussian} (англ. {seeds[i].Name}, лат. {seeds[i].NameInLatin})\n" +
-                $"Вкус: {seeds[i].Taste}\n" +
-                $"Габитус: {seeds[i].Gabitus}\n" +
-                $"Время роста: {seeds[i].GrowTime}\n" +
-                $"Кол-во плодов: {seeds[i].minAmount} - {seeds[i].maxAmount}\n" +
-                $"Шанс мутации: {seeds[i].MutationPossibility}\n";
+                $"{seed.NameInRussian} (англ. {seed.Name}, лат. {seed.NameInLatin})\n" +
+                $"Вкус: {seed.Taste}\n" +
+                $"Габитус: {seed.Gabitus}\n" +
+                $"Время роста: {seed.GrowTime}\n" +
+                $"Кол-во плодов: {seed.minAmount} - {seed.maxAmount}\n" +
+                $"Шанс мутации: {seed.MutationPossibility}\n";
 
             var img = item.transform.Find("Image");
-            img.GetComponent<Image>().sprite = seeds[i].PlantSprite;
-
+            img.GetComponent<Image>().sprite = seed.PlantSprite;
         }
-    }
-
-    private void Sell(Seed seed)
-    {
-        var inventory = Inventory.GetComponent<InventoryDrawer>().targetInventory;
-        inventory.AddMoney(seed.Price);
-        inventory.ChangeReputation(seed.Gabitus);
-        Statistics.UpdateSoldSeeds(seed.Name);
-        Statistics.UpdateGrowedSeeds(seed.Name);
-        inventory.Save();
     }
 
     public void SellAll()
@@ -125,6 +97,25 @@ public class HarvestProcessor : MonoBehaviour
         Save();
     }
 
+    private void DeleteUsedItem(Seed seed, GameObject item)
+    {
+        seeds.Remove(seed);
+        seedPlaces.Remove(item);
+        Destroy(item);
+        if (seedPlaces.Count == 0) ClearSpace();
+        Statistics.UpdateGrowedSeeds(seed.Name);
+    }
+
+    private void Sell(Seed seed)
+    {
+        var inventory = Inventory.GetComponent<InventoryDrawer>().targetInventory;
+        inventory.AddMoney(seed.Price);
+        inventory.ChangeReputation(seed.Gabitus);
+        Statistics.UpdateSoldSeeds(seed.Name);
+        Statistics.UpdateGrowedSeeds(seed.Name);
+        inventory.Save();
+    }
+
     private void Save()
     {
         if (seeds.Count == 0) return;
@@ -137,7 +128,7 @@ public class HarvestProcessor : MonoBehaviour
     private void OnEnable()
     {
         GetComponent<TaskController>()
-            ?.questsPreviewPanel
+            ?.QuestsPreviewPanel
             ?.SetActive(false);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();

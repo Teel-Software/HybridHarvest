@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ClearGameData : MonoBehaviour
 {
-    [SerializeField] Inventory Inventory;
+    [SerializeField] private Inventory Inventory;
     [SerializeField] InventoryDrawer InventoryFrame;
     [SerializeField] GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
 
@@ -36,18 +36,12 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void DisableRewatchButtons()
     {
-        if (!QSReader.Create("GameState").Exists("GameInitialised") && RewatchButtons != null)
-            foreach (var btn in RewatchButtons)
-                btn.SetActive(false);
+        if (QSReader.Create("GameState").Exists("GameInitialised") || RewatchButtons == null) return;
+
+        foreach (var btn in RewatchButtons)
+            btn.SetActive(false);
     }
 
-    public void ClearExhibition()
-    {
-        GameObject.Find("Exhibition")?.SetActive(false);
-        var writer = QuickSaveWriter.Create("ExhibitionData");
-        writer.Write("ExhSeed", "no");
-        writer.Commit();
-    }
     /// <summary>
     /// Перезапускает туториал
     /// </summary>
@@ -66,7 +60,7 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void ChangeStartSceneOrDisable()
     {
-        var key = "GameInitialised";
+        const string key = "GameInitialised";
 
         if (!QSReader.Create("GameState").Exists(key))
         {
@@ -80,9 +74,17 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
+    /// Закрывает игру
+    /// </summary>
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    /// <summary>
     /// Удаляет все дочерние объекты
     /// </summary>
-    public void ClearChildren(GameObject obj)
+    public static void ClearChildren(GameObject obj)
     {
         var allChildren = new HashSet<GameObject>();
 
@@ -94,17 +96,20 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
-    /// Закрывает игру
+    /// Очищает данные выставки
     /// </summary>
-    public void CloseGame()
+    private static void ClearExhibition()
     {
-        Application.Quit();
+        GameObject.Find("Exhibition")?.SetActive(false);
+        var writer = QuickSaveWriter.Create("ExhibitionData");
+        writer.Write("ExhSeed", "no");
+        writer.Commit();
     }
 
     /// <summary>
     /// Приводит статистику игрока к дефолтным значениям
     /// </summary>
-    private void ClearPlayerStats()
+    private static void ClearPlayerStats()
     {
         PlayerPrefs.SetInt("money", 100);
         PlayerPrefs.SetInt("reputation", 0);
