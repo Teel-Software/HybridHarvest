@@ -306,7 +306,7 @@ public class DialogPanelLogic : MonoBehaviour
         var CGD = gameObject.GetComponent<ClearGameData>() ?? gameObject.AddComponent<ClearGameData>();
 
         textPanel.GetComponent<GridLayoutGroup>().enabled = false;
-        CGD.ClearChildren(textPanel);
+        ClearGameData.ClearChildren(textPanel);
         newText.transform.SetParent(textPanel.transform, false);
 
         var paddingVal = (firstTextComponent.transform.parent.GetComponent<RectTransform>().rect.width

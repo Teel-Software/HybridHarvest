@@ -25,7 +25,7 @@ public class CreateMiniGame : MonoBehaviour
         var panel = transform.Find("Panel").gameObject;
         var textSample = panel.transform.Find("TextSample").gameObject;
         Blocker.SetActive(false);
-        GetComponent<ClearGameData>().ClearChildren(GamingPlace);
+        ClearGameData.ClearChildren(GamingPlace);
 
         for (var i = 0; i < ElementsCount; i++)
         {
