@@ -44,6 +44,9 @@ public class GeneCrossing : MonoBehaviour
         ExitHybridMenu();
     }
 
+    /// <summary>
+    /// clears menue when closed
+    /// </summary>
     public void ExitHybridMenu()
     {
         button2.GetComponent<LabButton>().ClearButton();
@@ -54,6 +57,10 @@ public class GeneCrossing : MonoBehaviour
         GameObject.FindGameObjectWithTag("HybridPanel").SetActive(false); // deactivates hybrid panel
     }
 
+    /// <summary>
+    /// creates new seed, based on two parents
+    /// </summary>
+    /// <returns> new seed</returns>
     public Seed MixTwoParents(Seed first, Seed second)
     {
         chancesIterator = 0;
@@ -100,6 +107,9 @@ public class GeneCrossing : MonoBehaviour
         return newSeed;
     }
 
+    /// <summary>
+    /// count new seed`s parameter based on biological laws
+    /// </summary>
     public (int, Gen) CountParameter(int value1, Gen gen1, int value2, Gen gen2)
     {
         var dominant = Mathf.Min(value1, value2);
@@ -135,6 +145,9 @@ public class GeneCrossing : MonoBehaviour
         return (dominant, newGen);
     }
 
+    /// <summary>
+    /// returns value with possibility
+    /// </summary>
     public int GetNewValueByPossibility(int value1, int value1Chance, int value2)
     {
         var fortune = (int)(Random.value * 100);

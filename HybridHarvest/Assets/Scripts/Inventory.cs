@@ -103,6 +103,7 @@ public class Inventory : MonoBehaviour, ISaveable
         //    || changingAmount > 0)
         //    Reputation += changingAmount / Devider;
         Money += amount;
+        Save();
     }
 
     public void ChangeReputation(int amount)
