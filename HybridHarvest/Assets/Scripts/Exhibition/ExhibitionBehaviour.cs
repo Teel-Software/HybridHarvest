@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public class ExhibitionBehaviour : MonoBehaviour
 {
     [SerializeField] public Button[] exhButtons;
-    private DateTime _date;
+    private DateTime date;
 
     void OnEnable()
     {
-        _date = DateTime.Now;
+        date = DateTime.Now;
         foreach (var btn in exhButtons)
         {
             btn.onClick.RemoveAllListeners();
-            switch (_date.DayOfWeek)
+            switch (date.DayOfWeek)
             {
                 case DayOfWeek.Saturday:
                     btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().ExhibitionClick);
