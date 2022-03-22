@@ -113,7 +113,6 @@ public class Task : MonoBehaviour
     public void ApplyAwards()
     {
         var placeForTasks = transform.parent;
-        placeForTasks.GetComponent<TaskController>().TaskCount--;
         placeForTasks.gameObject.GetComponent<Scenario>().FirstCharacterSprite = CharacterSpritePlace.sprite;
         placeForTasks.GetComponent<Scenario>()
             .CreateTaskEndDialog(TaskTools.GetPhrase(),
@@ -134,7 +133,6 @@ public class Task : MonoBehaviour
     public void AddItemAndUpdate()
     {
         AddQuestItem.Invoke();
-        Details.ProgressAmount++;
         UpdatePreview();
         Save();
     }
