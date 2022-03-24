@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.UI;

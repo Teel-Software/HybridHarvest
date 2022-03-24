@@ -91,7 +91,7 @@ public class ClearGameData : MonoBehaviour
         foreach (Transform child in obj.transform)
             allChildren.Add(child.gameObject);
 
-        foreach (GameObject child in allChildren)
+        foreach (var child in allChildren)
             Destroy(child);
     }
 
