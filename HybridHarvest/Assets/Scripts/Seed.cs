@@ -14,6 +14,8 @@ public class Seed : ScriptableObject
     {
         get
         {
+            if (ShopBuyPrice > 0)
+                return ShopBuyPrice;
             var multiplier =
                 Market.PriceMultipliers.ContainsKey(Name) ?
                 Market.PriceMultipliers[Name] : 1.0f;

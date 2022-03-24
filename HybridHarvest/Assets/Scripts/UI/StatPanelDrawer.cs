@@ -50,12 +50,7 @@ public class StatPanelDrawer : MonoBehaviour
         QualityText.text = $"{qualityTxt}";
         QualityText.color = qualityTxtColor;
 
-        var price = seed.ShopBuyPrice > 0 ? seed.ShopBuyPrice : seed.Price;
-
-        PlantDesc.text = $"Вкус: {seed.Taste}\n\n" +
-                         $"Габитус: {seed.Gabitus}\n\n" +
-                         $"Время роста: {Tools.TimeFormatter.Format(seed.GrowTime)}\n\n" +
-                         $"Цена: {price}<sprite name=\"Money\">\n";
+        PlantDesc.text = Tools.SeedStatFormatter.FormatLarge(seed);
     }
 
     private void OnEnable()

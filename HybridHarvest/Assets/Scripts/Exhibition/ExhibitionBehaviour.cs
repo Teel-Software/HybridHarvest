@@ -22,7 +22,7 @@ public class ExhibitionBehaviour : MonoBehaviour
         }
 
         var date = DateTime.Now;
-        foreach (var btn in exhButtons.Where(btn => btn.IsActive()))
+        foreach (var btn in exhButtons)
         {
             btn.onClick.RemoveAllListeners();
             switch (date.DayOfWeek)

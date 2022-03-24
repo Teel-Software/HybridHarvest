@@ -2,11 +2,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using CI.QuickSave;
+using TMPro;
 
 public class ExhibitionButton : MonoBehaviour
 {
-    [SerializeField] GameObject Inventory;
-    [SerializeField] DialogPanelLogic DialogPanel;
+    [SerializeField] private GameObject Inventory;
+    [SerializeField] private DialogPanelLogic DialogPanel;
+    
+    [SerializeField] private TextMeshProUGUI statText;
+    [SerializeField] private Image plantIcon;
+    [SerializeField] private Sprite plusIcon;
+    
     public Seed NowSelected;
 
     public void DefaultClick()
@@ -37,9 +43,11 @@ public class ExhibitionButton : MonoBehaviour
         }
         else
         {
-            var awards = new List<Award>();
-            awards.Add(new Award(AwardType.Money, money: 100));
-            awards.Add(new Award(AwardType.Reputation, reputation: 100));
+            var awards = new List<Award>
+            {
+                new Award(AwardType.Money, money: 100),
+                new Award(AwardType.Reputation, reputation: 100)
+            };
             gameObject.GetComponent<AwardsCenter>().Show(awards);
 
             gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("InvFrameAdd");
@@ -51,7 +59,8 @@ public class ExhibitionButton : MonoBehaviour
     public void ChooseSeed(Seed seed)
     {
         NowSelected = seed;
-        gameObject.GetComponent<Image>().sprite = seed.PlantSprite;
+        statText.text = Tools.SeedStatFormatter.FormatSmall(seed);
+        plantIcon.sprite = seed.PlantSprite;
     }
 
     private void OnDisable()
@@ -61,8 +70,8 @@ public class ExhibitionButton : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("InvFrameAdd");
-        NowSelected = null;
+        //plantIcon.sprite = plusIcon;
+        //NowSelected = null;
         CollectData();
     }
 
