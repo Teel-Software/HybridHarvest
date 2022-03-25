@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0735d3ee68b4a5942bc9870d5d22611b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpritePlace: {fileID: 4292880244350299214}
-  description: {fileID: 0}
+  CharacterSpritePlace: {fileID: 4292880244350299214}
+  Description: {fileID: 0}
   getRewardBtn: {fileID: 0}
-  progressLabel: {fileID: 5365048896689560339}
+  ProgressLabel: {fileID: 5365048896689560339}
 --- !u!1 &5470722070613501973
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a6e21a10b697b1843880148232d5a3da, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -328,7 +328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2/28
+  m_Text: fail
 --- !u!114 &1257782433469337312
 MonoBehaviour:
   m_ObjectHideFlags: 0

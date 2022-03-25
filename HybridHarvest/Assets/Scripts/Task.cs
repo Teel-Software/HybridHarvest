@@ -78,6 +78,7 @@ public class Task : MonoBehaviour
             "Cucumber" => "огурцов",
             "Potato" => "картофелин",
             "Pea" => "стручков гороха",
+            "Carrot" => "штук моркови",
             _ => "учпочмаков"
         };
 

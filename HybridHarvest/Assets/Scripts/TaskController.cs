@@ -16,7 +16,7 @@ public static class TaskTools
         // "Buy"
     };
 
-    private static readonly string[] Keys = { "Tomato", "Cucumber", "Potato", "Pea" };
+    private static readonly string[] Keys = { "Tomato", "Cucumber", "Potato", "Pea", "Carrot" };
     private static readonly string[] Characters = { "OldMan", "OldLady", "Salesman" };
 
     private static readonly string[] EndPhrases =
@@ -54,6 +54,7 @@ public class TaskController : MonoBehaviour
     [SerializeField] private Text timeLabel;
     [SerializeField] private GameObject previewPrefab;
 
+    private const int CooldownTimeSeconds = 3; // время кулдауна
     public GameObject QuestsPreviewPanel { get; private set; }
     private bool taskAddBtnIsRendered { get; set; }
     private DateTime cooldownEnd;
@@ -70,7 +71,7 @@ public class TaskController : MonoBehaviour
         newTask.UpdateView();
 
         var trueTaskController = placeForTasks.GetComponent<TaskController>();
-        trueTaskController.cooldownEnd = DateTime.Now.AddSeconds(10); // время кулдауна
+        trueTaskController.cooldownEnd = DateTime.Now.AddSeconds(CooldownTimeSeconds);
         trueTaskController.SaveCooldownTime();
         trueTaskController.taskAddBtnIsRendered = false;
 
@@ -139,7 +140,7 @@ public class TaskController : MonoBehaviour
         var reader = QSReader.Create("Tasks");
         var renderedTasks = new List<GameObject>();
         var allKeys = reader.GetAllKeys();
-        
+
         ClearGameData.ClearChildren(isPreview ? placeForRender : gameObject);
 
         foreach (var key in allKeys)
@@ -205,7 +206,7 @@ public class TaskController : MonoBehaviour
 
         var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
         timeLabel.text = secondsRemaining >= 0
-            ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"
+            ? $"До нового задания осталось {TimeFormatter.Format((int)secondsRemaining)}"
             : "Доступно новое задание!";
 
         if (taskAddBtnIsRendered || !(secondsRemaining < 0)) return;
