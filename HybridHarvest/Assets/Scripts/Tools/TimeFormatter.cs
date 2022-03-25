@@ -35,5 +35,11 @@ namespace Tools
             }
             return result;
         }
+
+        public static string FormatTotableView(int seconds)
+        {
+            var timeSpan = TimeSpan.FromSeconds(seconds);
+            return timeSpan.ToString(@"hh\:mm\:ss");
+        }
     }
 }

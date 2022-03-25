@@ -34,12 +34,18 @@ public class GeneCrossing : MonoBehaviour
         var seed2 = button2.GetComponent<LabButton>().NowSelected;
         if (seed1 == null || seed2 == null)
             return;
-        var newSeed = MixTwoParents(seed1, seed2);
-
-        if (SceneManager.GetActiveScene().buildIndex == 4)
+        if (SceneManager.GetActiveScene().buildIndex == 4) {
+            var newSeed = GetQuantumSeed(seed1, seed2);
             CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
+        }
         else
-            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime + seed2.GrowTime);
+        {
+            var newSeed = MixTwoParents(seed1, seed2);
+            if (SceneManager.GetActiveScene().buildIndex == 4)
+                CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
+            else
+                CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime + seed2.GrowTime);
+        }
 
         ExitHybridMenu();
     }
@@ -152,6 +158,34 @@ public class GeneCrossing : MonoBehaviour
     {
         var fortune = (int)(Random.value * 100);
         return fortune <= value1Chance ? value1 : value2;
+    }
+
+    private Seed GetQuantumSeed(Seed parent1, Seed parent2)
+    {
+        var newSeed = ScriptableObject.CreateInstance<Seed>();
+
+        newSeed.Name = parent1.Name + "-" + parent2.Name;
+        newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
+        newSeed.NameInLatin = "";
+
+        newSeed.LevelData = CSVStatsMerger.GetQuantumStatistics(parent1.Name, parent2.Name);
+        newSeed.Taste = newSeed.LevelData.Taste.Keys.ToArray()[0];
+        newSeed.TasteGen = Gen.Mixed;
+
+        newSeed.Gabitus = newSeed.LevelData.Gabitus.Keys.ToArray()[0];
+        newSeed.GabitusGen = Gen.Mixed;
+
+        newSeed.GrowTime = newSeed.LevelData.GrowTime.Keys.ToArray()[0];
+        newSeed.GrowTimeGen = Gen.Mixed;
+
+        newSeed.MutationPossibilityGen = Gen.Mixed;
+        newSeed.MutationPossibility = newSeed.LevelData.MutationChance.Keys.ToArray()[0];
+
+        newSeed.minAmount = newSeed.LevelData.MinAmount.Keys.ToArray()[0];
+        newSeed.maxAmount = newSeed.LevelData.MaxAmount.Keys.ToArray()[0];
+        newSeed.AmountGen = Gen.Mixed;
+
+        return newSeed;
     }
 
     /// <summary>

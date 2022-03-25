@@ -9,9 +9,10 @@ public class QuantumGrowth : MonoBehaviour
     [SerializeField] public Button Pot;
     [FormerlySerializedAs("CrossingPerformer")] 
         [SerializeField] Button CrossingButton;
-    
-    [SerializeField] RectTransform InventoryFrame;
-    
+
+    //[SerializeField] RectTransform InventoryFrame;
+    [SerializeField] GameObject InventoryFrame;
+
     [FormerlySerializedAs("CrossingMenue")] 
         [SerializeField] RectTransform CrossingMenu;
     
@@ -165,9 +166,13 @@ public class QuantumGrowth : MonoBehaviour
 
         if (growingSeed != null)
         {
-            MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
-            MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
-            MiniGamePanel.SetActive(true);
+            //MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
+            //MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
+            //MiniGamePanel.SetActive(true);
+            InventoryFrame.GetComponent<InventoryDrawer>().UpdateActions();
+            InventoryFrame.GetComponent<InventoryDrawer>().targetInventory.AddItem(growingSeed);
+
+            Statistics.UpdateCrossedSeeds(growingSeed.Name);
         }
 
         growingSeed = null;

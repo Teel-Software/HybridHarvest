@@ -111,7 +111,7 @@ public class Seed : ScriptableObject
         //PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[12]);
         //SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
         //GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
-        MutationPossibility = (MutationChance)int.Parse(parameters[15]);
+        MutationPossibility = (MutationChance)int.Parse(parameters[12]);
         //JsonTest();
     }
 
@@ -138,8 +138,8 @@ public class Seed : ScriptableObject
                Taste + "|" + (int)TasteGen + "|" +
                minAmount + "|" + maxAmount +
                "|" + NameInRussian + "|" + NameInLatin +
-               "|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
-               + "|" + (int)MutationPossibility;
+               //"|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
+               "|" + (int)MutationPossibility;
     }
 
     /// <summary>
