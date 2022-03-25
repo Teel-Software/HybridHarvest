@@ -7,6 +7,9 @@ using UnityEngine;
 
 public static class CSVStatsMerger
 {
+    /// <summary>
+    /// Checs if this seedType exists (if not, creates it) and returns statistics
+    /// </summary>
     public static SeedStatistics GetQuantumStatistics(string parent1, string parent2)
     {
         var seedName = parent1 + "-" + parent2;
@@ -21,6 +24,12 @@ public static class CSVStatsMerger
         return stats;
     }
 
+    /// <summary>
+    /// Merges values in existing tables according to plan
+    /// </summary>
+    /// <param name="parent1">name of first table`s seed</param>
+    /// <param name="parent2">name of second table`s seed</param>
+    /// <returns>List of rows for new table</returns>
     private static List<string> MergeExistingTables(string parent1, string parent2)
     {
         List<string> newRows = new List<string>();
@@ -99,6 +108,11 @@ public static class CSVStatsMerger
         return newRows;
     }
 
+    /// <summary>
+    /// Creates new table in app datapath
+    /// </summary>
+    /// <param name="seedName">table`s seed name</param>
+    /// <param name="newRows">string rows for the table</param>
     private static void CreateNewCSV(string seedName, List<string> newRows)
     {
         var folder = Application.persistentDataPath;

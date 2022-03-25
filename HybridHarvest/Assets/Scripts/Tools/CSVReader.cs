@@ -5,6 +5,9 @@ using System.IO;
 
 public static class CSVReader
 {
+    /// <summary>
+    /// Returns SeedStatistics from file seedName.csv
+    /// </summary>
     public static SeedStatistics ParseSeedStats(string seedName)
     {
         var outStats = new SeedStatistics();
@@ -18,7 +21,7 @@ public static class CSVReader
         }
         catch
         {
-            try {
+            try {                 //Вариант для скрещенных
                 using (StreamReader reader = new StreamReader(Path.Combine(Application.persistentDataPath, seedName + ".csv")))
                 {
                     seedData = reader.ReadToEnd().Split('\n');
@@ -92,6 +95,10 @@ public static class CSVReader
         return outStats;
     }
 
+    /// <summary>
+    /// Gets data from file seedName.csv
+    /// </summary>
+    /// <returns>All rows stored in dictionary</returns>
     public static Dictionary<string, int[]> GetRawData(string seedName)
     {
         var data = new Dictionary<string, int[]>();
@@ -167,6 +174,10 @@ public static class CSVReader
         return data;
     }
 
+    /// <summary>
+    /// Converts array to dictionary, compressing equal elements
+    /// </summary>
+    /// <returns>dictionary with key = element, value = number of occurances</returns>
     private static Dictionary<T, int> ConvertToDict<T>(T[] mas)
     {
         var dict = new Dictionary<T, int>();
