@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CI.QuickSave;
 using TMPro;
 
 public class ExhibitionButton : MonoBehaviour
@@ -49,53 +48,16 @@ public class ExhibitionButton : MonoBehaviour
                 new Award(AwardType.Reputation, reputation: 100)
             };
             gameObject.GetComponent<AwardsCenter>().Show(awards);
-
             gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("InvFrameAdd");
             NowSelected = null;
         }
 
     }
 
-    public void ChooseSeed(Seed seed)
+    public void SetSeed(Seed seed)
     {
         NowSelected = seed;
         statText.text = Tools.SeedStatFormatter.FormatSmall(seed);
         plantIcon.sprite = seed.PlantSprite;
-    }
-
-    private void OnDisable()
-    {
-        SaveData();
-    }
-
-    private void OnEnable()
-    {
-        //plantIcon.sprite = plusIcon;
-        //NowSelected = null;
-        CollectData();
-    }
-
-    private void SaveData()
-    {
-        var writer = QuickSaveWriter.Create("ExhibitionData");
-        if (NowSelected != null)
-            writer.Write("ExhSeed", NowSelected.ToString());
-        else
-            writer.Write("ExhSeed", "no");
-        writer.Commit();
-    }
-
-    private void CollectData()
-    {
-        var reader = QSReader.Create("ExhibitionData");
-        if (reader.Exists("ExhSeed"))
-        {
-            var parameters = reader.Read<string>("ExhSeed");
-            if (parameters == "no")
-                return;
-            var newSeed = ScriptableObject.CreateInstance<Seed>();
-            newSeed.SetValues(parameters);
-            ChooseSeed(newSeed);
-        }
     }
 }

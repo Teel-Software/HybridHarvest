@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
-public class ExhibitionBehaviour : MonoBehaviour
+public class ExhibitionBehaviour : MonoBehaviour, ISaveable
 {
     [SerializeField] public Button[] exhButtons;
 
     void OnEnable()
     {
+        Load();
         var epic = false;
         if (epic)
         {
@@ -37,6 +39,41 @@ public class ExhibitionBehaviour : MonoBehaviour
                     btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().DefaultClick);
                     break;
             }   
+        }
+    }
+
+    private void OnDisable()
+    {
+        Save();
+    }
+
+    public void Save()
+    {
+        var writer = QuickSaveWriter.Create("ExhibitionData");
+        var exhSeeds = new List<string>();
+        foreach (var btn in exhButtons)
+        {
+            exhSeeds.Add(btn.GetComponent<ExhibitionButton>().NowSelected is null
+                ? ""
+                : btn.GetComponent<ExhibitionButton>().NowSelected.ToString());
+        }
+        writer.Write("Seeds", exhSeeds);
+        writer.Commit();
+    }
+
+    public void Load()
+    {
+        var reader = QSReader.Create("ExhibitionData");
+        if (reader.TryRead("Seeds", out List<string> exhSeeds))
+        {
+            for (var i = 0; i < exhSeeds.Count; i++)
+            {
+                if (exhSeeds[i] == "")
+                    continue;
+                var seed = ScriptableObject.CreateInstance<Seed>();
+                seed.SetValues(exhSeeds[i]);
+                exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed);   
+            }
         }
     }
 }

@@ -87,7 +87,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         if (!int.TryParse(ItemObject.name, out int index)) return;
 
         var toSend = targetInventory.Elements[index];
-        inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().ChooseSeed(toSend);
+        inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().SetSeed(toSend);
         inventoryDrawer.ToggleGameObject(false);
     }
 
