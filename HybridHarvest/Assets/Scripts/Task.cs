@@ -29,11 +29,14 @@ public class Task : MonoBehaviour
 {
     [SerializeField] public Image CharacterSpritePlace;
     [SerializeField] public Text Description;
-    [SerializeField] private GameObject getRewardBtn;
+    [SerializeField] private Button getRewardBtn;
     [SerializeField] public Text ProgressLabel;
+    [SerializeField] public Text FutureProgressLabel;
+    [SerializeField] private Button sendToQuestBtn;
 
+    public int AmountToAdd { get; set; }
+    public Action AddQuestItems { get; set; }
     public TaskDetails Details { get; private set; }
-    public Action AddQuestItem { get; set; }
 
     /// <summary>
     /// Заполняет параметрами пустое задание
@@ -106,6 +109,15 @@ public class Task : MonoBehaviour
             $"/{Details.AmountToComplete}";
         CharacterSpritePlace.sprite =
             Resources.Load<Sprite>($"Characters\\{Details.FromCharacter}");
+
+        var futureAmount = Details.ProgressAmount + AmountToAdd;
+        FutureProgressLabel.text =
+            $"{futureAmount}" +
+            $"/{Details.AmountToComplete}";
+        FutureProgressLabel.color = futureAmount > Details.AmountToComplete
+            ? new Color(1f, 0.5f, 0.5f)
+            : new Color(0.5f, 1f, 0.5f);
+        sendToQuestBtn.interactable = futureAmount <= Details.AmountToComplete;
     }
 
     /// <summary>
@@ -131,9 +143,9 @@ public class Task : MonoBehaviour
     /// <summary>
     /// Обновляет прогресс задания
     /// </summary>
-    public void AddItemAndUpdate()
+    public void AddItemsAndUpdate()
     {
-        AddQuestItem.Invoke();
+        AddQuestItems.Invoke();
         UpdatePreview();
         Save();
     }
@@ -155,7 +167,7 @@ public class Task : MonoBehaviour
     {
         if (!Details.IsCompleted) return;
 
-        getRewardBtn.GetComponent<Button>().interactable = true;
+        getRewardBtn.interactable = true;
         Description.transform.parent.parent.GetComponent<Text>().color =
             new Color(100 / 255f, 1f, 100 / 255f);
     }

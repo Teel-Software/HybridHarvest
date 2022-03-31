@@ -111,15 +111,6 @@ public class HarvestProcessor : MonoBehaviour
     }
 
     /// <summary>
-    /// Отпраляет выбранные плоды в квест
-    /// </summary>
-    public void SendChosenToQuest()
-    {
-        previewsShouldBeOpen = true;
-        UpdateChosenSeeds();
-    }
-
-    /// <summary>
     /// Приводит окно урожая к начальному состоянию
     /// </summary>
     public void ClearSpace()
@@ -135,28 +126,20 @@ public class HarvestProcessor : MonoBehaviour
     }
 
     /// <summary>
-    /// Отрисовывает превью задач
+    /// Открывает или закрывает панель с активными заданиями
     /// </summary>
-    private void RenderTaskPreviews()
+    public void ToggleQuestPreviewPanel()
     {
         var taskController = GetComponent<TaskController>();
-        var renderPlace = taskController
-            .OpenQuestsPreview(seeds[0].Name, chosenSeeds.Count)
-            .transform;
+        var questPanel = taskController.QuestsPreviewPanel;
 
-        for (var i = 0; i < renderPlace.childCount; i++)
+        if (questPanel == null || !questPanel.activeSelf)
         {
-            var task = renderPlace.GetChild(i).GetComponent<Task>();
-            task.AddQuestItem = () =>
-            {
-                task.Details.ProgressAmount += chosenSeeds.Count;
-                for (var j = 0; j < chosenSeeds.Count; j++)
-                    DeleteUsedSeed(chosenSeeds[j], chosenSeedPlaces[j]);
-
-                DisableQuestPreviewPanel(taskController);
-                UpdateChosenSeeds();
-            };
+            previewsShouldBeOpen = true;
+            UpdateChosenSeeds();
         }
+        else
+            DisableQuestPreviewPanel(taskController);
     }
 
     /// <summary>
@@ -170,9 +153,34 @@ public class HarvestProcessor : MonoBehaviour
     }
 
     /// <summary>
+    /// Отрисовывает превью задач
+    /// </summary>
+    private void RenderTaskPreviews()
+    {
+        var taskController = GetComponent<TaskController>();
+        var renderPlace = taskController
+            .OpenQuestsPreview(seeds[0].Name, chosenSeeds.Count)
+            .transform;
+
+        for (var i = 0; i < renderPlace.childCount; i++)
+        {
+            var task = renderPlace.GetChild(i).GetComponent<Task>();
+            task.AddQuestItems = () =>
+            {
+                task.Details.ProgressAmount += chosenSeeds.Count;
+                for (var j = 0; j < chosenSeeds.Count; j++)
+                    DeleteUsedSeed(chosenSeeds[j], chosenSeedPlaces[j]);
+
+                DisableQuestPreviewPanel(taskController);
+                UpdateChosenSeeds();
+            };
+        }
+    }
+
+    /// <summary>
     /// Обновляет внешний вид окна урожая в зависимости от количества выбранных плодов
     /// </summary>
-    /// <param name="isOn">Toggle переменная</param>
+    /// <param name="isOn">Флаг активации (нужен для корректной работы компонента Toggle)</param>
     private void UpdateChosenSeeds(bool isOn = false)
     {
         if (!gameObject.activeSelf) return;
@@ -189,7 +197,7 @@ public class HarvestProcessor : MonoBehaviour
         }
 
         var seedsAreChosen = chosenSeeds.Count > 0;
-        GameObject.FindGameObjectWithTag("SendToQuestBtn")
+        GameObject.FindGameObjectWithTag("AvailableTasksBtn")
             .GetComponent<Button>()
             .interactable = seedsAreChosen;
         GameObject.FindGameObjectWithTag("SellChosenBtn")

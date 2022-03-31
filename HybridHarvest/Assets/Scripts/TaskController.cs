@@ -8,6 +8,8 @@ using Random = System.Random;
 
 public static class TaskTools
 {
+    private static readonly Random rnd = new Random();
+
     private static readonly string[] StatCategories =
     {
         "Grow",
@@ -28,7 +30,7 @@ public static class TaskTools
     };
 
     private static T GetRandomElement<T>(T[] items) =>
-        items[new Random().Next(0, items.Length)];
+        items[rnd.Next(0, items.Length)];
 
     public static string GetStatCategory() =>
         GetRandomElement(StatCategories);
@@ -37,7 +39,7 @@ public static class TaskTools
         GetRandomElement(Keys);
 
     public static int GetAmountToComplete() =>
-        new Random().Next(5, 11);
+        rnd.Next(5, 11);
 
     public static string GetCharacter() =>
         GetRandomElement(Characters);
@@ -151,7 +153,7 @@ public class TaskController : MonoBehaviour
                 || details.TaskCategory == null
                 || isPreview && (details.TaskCategory != "Grow"
                                  || details.Key != seedName
-                                 || details.ProgressAmount + itemsCount > details.AmountToComplete
+                                 // || details.ProgressAmount + itemsCount > details.AmountToComplete
                                  || details.IsCompleted))
                 continue;
 
@@ -161,6 +163,7 @@ public class TaskController : MonoBehaviour
 
             var taskComp = newTask.GetComponent<Task>();
             taskComp.Load(details);
+            taskComp.AmountToAdd = itemsCount;
             if (isPreview)
                 taskComp.UpdatePreview();
             else taskComp.UpdateView();
@@ -179,7 +182,7 @@ public class TaskController : MonoBehaviour
             renderedTasks[i].transform.SetSiblingIndex(i);
 
         if (!isPreview || renderedTasks.Count != 0) return;
-
+        
         QuestsPreviewPanel.SetActive(false);
         GetComponent<HarvestProcessor>().previewsShouldBeOpen = false;
         GetComponent<NotificationCenter>().Show("Подходящих заданий нет.");
@@ -206,7 +209,7 @@ public class TaskController : MonoBehaviour
 
         var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
         timeLabel.text = secondsRemaining >= 0
-            ? $"До нового задания осталось {TimeFormatter.Format((int)secondsRemaining)}"
+            ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"
             : "Доступно новое задание!";
 
         if (taskAddBtnIsRendered || !(secondsRemaining < 0)) return;

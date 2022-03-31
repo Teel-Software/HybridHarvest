@@ -417,8 +417,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterSpritePlace: {fileID: 8069386802314250674}
   Description: {fileID: 779653899133711656}
-  getRewardBtn: {fileID: 3361955357731821021}
+  getRewardBtn: {fileID: 7464718219231511235}
   ProgressLabel: {fileID: 3683627805487977440}
+  FutureProgressLabel: {fileID: 0}
+  sendToQuestBtn: {fileID: 0}
 --- !u!1 &5373029784649547655
 GameObject:
   m_ObjectHideFlags: 0
