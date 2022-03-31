@@ -8,6 +8,8 @@ public class HarvestProcessor : MonoBehaviour
     [SerializeField] private GameObject VegItem;
     [SerializeField] GameObject Inventory;
     [SerializeField] private RectTransform Place;
+    [SerializeField] private Text chosenSeedsCounter;
+
     public bool previewsShouldBeOpen { get; set; }
     private List<Seed> seeds;
     private readonly List<GameObject> seedPlaces = new List<GameObject>();
@@ -24,6 +26,7 @@ public class HarvestProcessor : MonoBehaviour
     {
         Patch = patch;
         seeds = ParentSeed;
+        chosenSeedsCounter.text = $"0/{seeds.Count}";
 
         foreach (var seed in seeds)
         {
@@ -205,6 +208,7 @@ public class HarvestProcessor : MonoBehaviour
             .interactable = seedsAreChosen;
 
         var taskController = GetComponent<TaskController>();
+        chosenSeedsCounter.text = $"{chosenSeeds.Count}/{seeds.Count}";
 
         if (!seedsAreChosen)
             DisableQuestPreviewPanel(taskController);
