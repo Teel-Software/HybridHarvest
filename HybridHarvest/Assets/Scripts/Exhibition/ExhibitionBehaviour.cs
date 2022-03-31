@@ -7,7 +7,7 @@ using Random = System.Random;
 
 public class ExhibitionBehaviour : MonoBehaviour, ISaveable
 {
-    [SerializeField] public Button[] exhButtons;
+    [SerializeField] private Button[] exhButtons;
 
     void OnEnable()
     {
