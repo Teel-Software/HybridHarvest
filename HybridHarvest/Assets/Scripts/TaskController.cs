@@ -98,7 +98,7 @@ public class TaskController : MonoBehaviour
 
         QuestsPreviewPanel.SetActive(true);
         var placeForRender = QuestsPreviewPanel
-            .GetComponentInChildren<GridLayoutGroup>()
+            .GetComponentInChildren<VerticalLayoutGroup>()
             .gameObject;
         RenderCurrentTasks(true, placeForRender, seedName, itemsCount);
 
