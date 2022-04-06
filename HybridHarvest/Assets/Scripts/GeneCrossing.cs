@@ -164,6 +164,9 @@ public class GeneCrossing : MonoBehaviour
     {
         var newSeed = ScriptableObject.CreateInstance<Seed>();
 
+        // место для создания изображения
+        ImageMerger.MergeParentImages(parent1.Name, parent2.Name);
+
         newSeed.Name = parent1.Name + "-" + parent2.Name;
         newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
         newSeed.NameInLatin = "";

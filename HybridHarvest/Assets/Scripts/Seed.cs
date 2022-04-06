@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.IO;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
 [Serializable]
@@ -26,7 +27,23 @@ public class Seed : ScriptableObject
     public int minAmount;
     public int maxAmount;
     public int ShopBuyPrice;
-    public Sprite PlantSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}");
+    public Sprite PlantSprite
+    {
+        get
+        {
+            var sp = Resources.Load<Sprite>($"SeedsIcons\\{Name}");
+            if (sp == null)
+            {
+                WWW req = new WWW("file://" + Path.Combine(Application.persistentDataPath, Name + ".png"));
+                var myTexture2D = req.texture;
+                myTexture2D.filterMode = FilterMode.Point;
+                sp= Sprite.Create(myTexture2D, new Rect(0.0f, 0.0f, myTexture2D.width, myTexture2D.height), new Vector2(0f, 0f), 1f);
+                
+            }
+            return sp;
+        }
+
+    }
     public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Early");
     public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Sprout");
     public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Young");
