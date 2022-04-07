@@ -113,7 +113,14 @@ public static class CSVReader
         }
         catch
         {
-            return null;
+            try
+            {                 //Вариант для скрещенных
+                using (StreamReader reader = new StreamReader(Path.Combine(Application.persistentDataPath, seedName + ".csv")))
+                {
+                    seedData = reader.ReadToEnd().Split('\n');
+                }
+            }
+            catch { return null; }
         }
 
         foreach (var line in seedData)
