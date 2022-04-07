@@ -2,7 +2,6 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-
 public static class ImageMerger
 {
     public static void MergeParentImages(string parentName1, string parentName2)
@@ -32,7 +31,7 @@ public static class ImageMerger
             im2 = req.texture;
         }        
 
-            var res = im2;
+        var res = im2;
         for(int i = 0; i< im1.width; i++)
         {
             for (int j = 0; j < im1.height; j++)
@@ -46,9 +45,9 @@ public static class ImageMerger
         File.WriteAllBytes(path, res.EncodeToPNG());
     }
 
-    static private Texture2D duplicateTexture(Texture2D source)
+    private static Texture2D duplicateTexture(Texture2D source)
     {
-        RenderTexture renderTex = RenderTexture.GetTemporary(
+        var renderTex = RenderTexture.GetTemporary(
                     source.width,
                     source.height,
                     0,

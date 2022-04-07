@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CI.QuickSave;
+using Exhibition;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -8,6 +9,12 @@ using Random = System.Random;
 public class ExhibitionBehaviour : MonoBehaviour, ISaveable
 {
     [SerializeField] private Button[] exhButtons;
+    [SerializeField] private Image testImage;
+        
+    public void Start()
+    {
+        
+    }   
 
     void OnEnable()
     {

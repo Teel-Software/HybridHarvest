@@ -7,10 +7,8 @@ public class ExhibitionTabSwitcher : MonoBehaviour
     // 0-й элемент в панелях - пустой, т.к. начальная панель всегда должна быть активна
     [SerializeField] private Button[] tabButtons;
     [SerializeField] private GameObject[] tabPanels;
-    private int currentTab;
     void Start()
     {
-        currentTab = 0;
         void disableClickedButton(int index)
         {
             for (var i = 0; i < tabButtons.Length; i++)

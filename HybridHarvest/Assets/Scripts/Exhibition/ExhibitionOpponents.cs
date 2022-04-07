@@ -1,23 +1,60 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Exhibition;
 using UnityEngine;
 using Random = System.Random;
 
 public class ExhibitionOpponents : MonoBehaviour
 {
-    [SerializeField] private Sprite[] portraits;
     [SerializeField] private GameObject[] cards;
-        
-    private void OnEnable()
-    {            
-        var rand = new Random(DateTime.Now.Millisecond);
-        var count = rand.Next(0, 3);
-        foreach (var card in cards)
+    [SerializeField] private Inventory inventory;
+    
+    private Opponent[] opponents;
+    private List<Opponent> possibleOpponents;
+
+    private int opponentCount = 1;
+    public void Awake()
+    {
+        possibleOpponents = new List<Opponent>
         {
-            var port = rand.Next(0, 2);
-            card.SetActive(true);
-            card.GetComponent<ExhibitionCard>().portrait.sprite = portraits[port];
+            new Opponent("Тамара", "Tamara"),
+            new Opponent("Лариса", "Larisa"),
+            new Opponent("Серафима Ивановна", "OldLady"),
+            new Opponent("Дед Максим", "OldMan"),
+        };
+        
+        foreach (var card in cards)
+            card.SetActive(false);
+        
+        var level = inventory.Reputation;
+        //Level 10- => 1 opponent, 10+ => 2, 20+ => 3
+        //opponentCount = level / 10 + 1;
+        var count = opponentCount;
+        opponents = new Opponent[count];
+        
+        var rand = new Random(DateTime.Now.Millisecond);
+        var possible = Enumerable.Range(0, possibleOpponents.Count).ToList();
+        for (var i = 0; i < count; i++)
+        {
+            cards[i].SetActive(true);
+            // Random generation without repetitions
+            var index = rand.Next(0, possible.Count);
+            var opp = possible[index];
+            possible.RemoveAt(index);
+            opponents[i] = possibleOpponents[opp];
+            cards[i].GetComponent<ExhibitionCard>().SetOpponent(opponents[i]);
         }
-        for (var i = 1; i <= count; i++)
-            cards[cards.Length - i].gameObject.SetActive(false);
+
+    }
+
+    public void OnEnable()
+    {            
+
+    }
+
+    public void ChangeCount(int inc)
+    {
+        opponentCount += inc;
     }
 }

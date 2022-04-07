@@ -32,13 +32,16 @@ public class Seed : ScriptableObject
         get
         {
             var sp = Resources.Load<Sprite>($"SeedsIcons\\{Name}");
-            if (sp == null)
+            if (sp is null)
             {
-                WWW req = new WWW("file://" + Path.Combine(Application.persistentDataPath, Name + ".png"));
+                var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, Name + ".png"));
                 var myTexture2D = req.texture;
                 myTexture2D.filterMode = FilterMode.Point;
-                sp= Sprite.Create(myTexture2D, new Rect(0.0f, 0.0f, myTexture2D.width, myTexture2D.height), new Vector2(0f, 0f), 1f);
-                
+                sp = Sprite.Create(
+                    myTexture2D,
+                    new Rect(0.0f, 0.0f, myTexture2D.width, myTexture2D.height),
+                    new Vector2(0f, 0f), 1f
+                );
             }
             return sp;
         }
