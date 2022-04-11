@@ -9,8 +9,8 @@ public class HarvestProcessor : MonoBehaviour
     [SerializeField] GameObject Inventory;
     [SerializeField] private RectTransform Place;
     [SerializeField] private Text chosenSeedsCounter;
+    [SerializeField] private GameObject choseAllCheckmark;
 
-    public bool previewsShouldBeOpen { get; set; }
     private List<Seed> seeds;
     private readonly List<GameObject> seedPlaces = new List<GameObject>();
     private List<Seed> chosenSeeds;
@@ -56,7 +56,9 @@ public class HarvestProcessor : MonoBehaviour
                 $"Кол-во плодов: {seed.minAmount} - {seed.maxAmount}\n" +
                 $"Шанс мутации: {seed.MutationPossibility}\n";
 
-            var img = item.transform.Find("Image");
+            var img = item
+                .transform.Find("Background")
+                .transform.Find("SeedImage");
             img.GetComponent<Image>().sprite = seed.PlantSprite;
         }
     }
@@ -66,11 +68,12 @@ public class HarvestProcessor : MonoBehaviour
     /// </summary>
     public void ChoseAll()
     {
-        var chosenCount = seedPlaces
-            .Count(place => place.GetComponentInChildren<Toggle>().isOn);
+        var chosenCount = chosenSeeds.Count;
 
         foreach (var place in seedPlaces)
             place.GetComponentInChildren<Toggle>().isOn = chosenCount != seedPlaces.Count;
+
+        choseAllCheckmark.SetActive(chosenCount != seedPlaces.Count);
     }
 
     /// <summary>
@@ -129,40 +132,13 @@ public class HarvestProcessor : MonoBehaviour
     }
 
     /// <summary>
-    /// Открывает или закрывает панель с активными заданиями
-    /// </summary>
-    public void ToggleQuestPreviewPanel()
-    {
-        var taskController = GetComponent<TaskController>();
-        var questPanel = taskController.QuestsPreviewPanel;
-
-        if (questPanel == null || !questPanel.activeSelf)
-        {
-            previewsShouldBeOpen = true;
-            UpdateChosenSeeds();
-        }
-        else
-            DisableQuestPreviewPanel(taskController);
-    }
-
-    /// <summary>
-    /// Деактивирует панель просмотра превью квестов
-    /// </summary>
-    /// <param name="taskController"></param>
-    private void DisableQuestPreviewPanel(TaskController taskController)
-    {
-        taskController?.QuestsPreviewPanel?.SetActive(false);
-        previewsShouldBeOpen = false;
-    }
-
-    /// <summary>
     /// Отрисовывает превью задач
     /// </summary>
     private void RenderTaskPreviews()
     {
         var taskController = GetComponent<TaskController>();
         var renderPlace = taskController
-            .OpenQuestsPreview(seeds[0].Name, chosenSeeds.Count)
+            .RenderQuestsPreview(seeds[0].Name, chosenSeeds.Count)
             .transform;
 
         for (var i = 0; i < renderPlace.childCount; i++)
@@ -173,8 +149,8 @@ public class HarvestProcessor : MonoBehaviour
                 task.Details.ProgressAmount += chosenSeeds.Count;
                 for (var j = 0; j < chosenSeeds.Count; j++)
                     DeleteUsedSeed(chosenSeeds[j], chosenSeedPlaces[j]);
+                task.Save();
 
-                DisableQuestPreviewPanel(taskController);
                 UpdateChosenSeeds();
             };
         }
@@ -199,21 +175,14 @@ public class HarvestProcessor : MonoBehaviour
             chosenSeedPlaces.Add(seedPlaces[i]);
         }
 
-        var seedsAreChosen = chosenSeeds.Count > 0;
-        GameObject.FindGameObjectWithTag("AvailableTasksBtn")
-            .GetComponent<Button>()
-            .interactable = seedsAreChosen;
         GameObject.FindGameObjectWithTag("SellChosenBtn")
             .GetComponent<Button>()
-            .interactable = seedsAreChosen;
+            .interactable = chosenSeeds.Count > 0;
 
-        var taskController = GetComponent<TaskController>();
         chosenSeedsCounter.text = $"{chosenSeeds.Count}/{seeds.Count}";
-
-        if (!seedsAreChosen)
-            DisableQuestPreviewPanel(taskController);
-        else if (previewsShouldBeOpen)
-            RenderTaskPreviews();
+        choseAllCheckmark.SetActive(chosenSeeds.Count == seedPlaces.Count);
+        
+        RenderTaskPreviews();
     }
 
     /// <summary>
@@ -261,7 +230,6 @@ public class HarvestProcessor : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        DisableQuestPreviewPanel(GetComponent<TaskController>());
         UpdateChosenSeeds();
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
@@ -269,10 +237,5 @@ public class HarvestProcessor : MonoBehaviour
         // тутор для окна сбора урожая
         if (QSReader.Create("TutorialState").Exists("Tutorial_WaitForGrowing_Played"))
             scenario.Tutorial_HarvestPlace();
-    }
-
-    private void OnDisable()
-    {
-        previewsShouldBeOpen = false;
     }
 }

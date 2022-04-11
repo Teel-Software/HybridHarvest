@@ -22,7 +22,6 @@ TagManager:
   - Seed
   - TaskAddBtn
   - SellChosenBtn
-  - AvailableTasksBtn
   layers:
   - Default
   - TransparentFX

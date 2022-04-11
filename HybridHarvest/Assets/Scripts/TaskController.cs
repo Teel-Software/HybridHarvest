@@ -57,7 +57,7 @@ public class TaskController : MonoBehaviour
     [SerializeField] private GameObject previewPrefab;
 
     private const int CooldownTimeSeconds = 3; // время кулдауна
-    public GameObject QuestsPreviewPanel { get; private set; }
+    private GameObject QuestsPreviewPanel { get; set; }
     private bool taskAddBtnIsRendered { get; set; }
     private DateTime cooldownEnd;
 
@@ -85,18 +85,11 @@ public class TaskController : MonoBehaviour
     /// </summary>
     /// <param name="seedName">Английское название плода для задания</param>
     /// <param name="itemsCount">Количество плодов, которые могут быть добавлены в задачу</param>
-    public GameObject OpenQuestsPreview(string seedName, int itemsCount)
+    public GameObject RenderQuestsPreview(string seedName, int itemsCount)
     {
         if (QuestsPreviewPanel == null)
-        {
-            QuestsPreviewPanel = gameObject;
-            QuestsPreviewPanel = QuestsPreviewPanel
-                .transform
-                .Find("QuestsPreview")
-                .gameObject;
-        }
+            QuestsPreviewPanel = GameObject.Find("QuestsPreview");
 
-        QuestsPreviewPanel.SetActive(true);
         var placeForRender = QuestsPreviewPanel
             .GetComponentInChildren<VerticalLayoutGroup>()
             .gameObject;
@@ -153,10 +146,9 @@ public class TaskController : MonoBehaviour
                 || details.TaskCategory == null
                 || isPreview && (details.TaskCategory != "Grow"
                                  || details.Key != seedName
-                                 // || details.ProgressAmount + itemsCount > details.AmountToComplete
                                  || details.IsCompleted))
                 continue;
-
+            
             var newTask = Instantiate(isPreview ? previewPrefab : taskPrefab,
                 isPreview ? placeForRender.transform : transform);
             renderedTasks.Add(newTask);
@@ -181,11 +173,13 @@ public class TaskController : MonoBehaviour
         for (var i = 0; i < renderedTasks.Count; i++)
             renderedTasks[i].transform.SetSiblingIndex(i);
 
-        if (!isPreview || renderedTasks.Count != 0) return;
+        if (!isPreview) return;
         
-        QuestsPreviewPanel.SetActive(false);
-        GetComponent<HarvestProcessor>().previewsShouldBeOpen = false;
-        GetComponent<NotificationCenter>().Show("Подходящих заданий нет.");
+        QuestsPreviewPanel
+            .transform
+            .Find("EmptyListText")
+            .gameObject
+            .SetActive(renderedTasks.Count == 0);
     }
 
     /// <summary>

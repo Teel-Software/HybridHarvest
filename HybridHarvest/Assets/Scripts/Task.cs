@@ -116,8 +116,10 @@ public class Task : MonoBehaviour
             $"/{Details.AmountToComplete}";
         FutureProgressLabel.color = futureAmount > Details.AmountToComplete
             ? new Color(1f, 0.5f, 0.5f)
-            : new Color(0.5f, 1f, 0.5f);
-        sendToQuestBtn.interactable = futureAmount <= Details.AmountToComplete;
+            : futureAmount == Details.ProgressAmount 
+                ? Color.white
+                : new Color(0.5f, 1f, 0.5f);
+        sendToQuestBtn.interactable = futureAmount <= Details.AmountToComplete && futureAmount != Details.ProgressAmount;
     }
 
     /// <summary>
@@ -147,13 +149,12 @@ public class Task : MonoBehaviour
     {
         AddQuestItems.Invoke();
         UpdatePreview();
-        Save();
     }
 
     /// <summary>
     /// Сохраняет задание
     /// </summary>
-    private void Save()
+    public void Save()
     {
         var writer = QuickSaveWriter.Create("Tasks");
         writer.Write(Details.ID.ToString(), Details);

@@ -33,7 +33,7 @@ public static class CSVStatsMerger
     private static List<string> MergeExistingTables(string parent1, string parent2)
     {
         List<string> newRows = new List<string>();
-        newRows.Add("Уровень,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20");
+        newRows.Add("РЈСЂРѕРІРµРЅСЊ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20");
         var table1 = CSVReader.GetRawData(parent1);
         var table2 = CSVReader.GetRawData(parent2);
         foreach (var key in table1.Keys)
@@ -41,7 +41,7 @@ public static class CSVStatsMerger
             var newRow = new StringBuilder();
             switch (key)
             {
-                case var str when str.Contains("Габитус"):
+                case var str when str.Contains("Р“Р°Р±РёС‚СѓСЃ"):
                     newRow.Append(key);
                     for (int i = 0; i < 20; i++)
                     {
@@ -50,7 +50,7 @@ public static class CSVStatsMerger
                     }
                     newRows.Add(newRow.ToString());
                     break;
-                case var str when str.Contains("Вкус"):
+                case var str when str.Contains("Р’РєСѓСЃ"):
                     newRow.Append(key);
                     for (int i = 0; i < 20; i++)
                     {
@@ -59,7 +59,7 @@ public static class CSVStatsMerger
                     }
                     newRows.Add(newRow.ToString());
                     break;
-                case var str when (str.Contains("Кол") && !str.Contains("min")):
+                case var str when (str.Contains("РљРѕР»") && !str.Contains("min")):
                     newRow.Append(key);
                     for (int i = 0; i < 20; i++)
                     {
@@ -70,7 +70,7 @@ public static class CSVStatsMerger
                     }
                     newRows.Add(newRow.ToString());
                     break;
-                case var str when str.Contains("Мутац"):
+                case var str when str.Contains("РњСѓС‚Р°С†"):
                     newRow.Append(key);
                     for (int i = 0; i < 20; i++)
                     {
@@ -79,22 +79,22 @@ public static class CSVStatsMerger
                         switch (chanse)
                         {
                             case 0:
-                                newRow.Append("Низкий");
+                                newRow.Append("РќРёР·РєРёР№");
                                 break;
                             case 1:
-                                newRow.Append("Средний");
+                                newRow.Append("РЎСЂРµРґРЅРёР№");
                                 break;
                             case 2:
-                                newRow.Append("Высокий");
+                                newRow.Append("Р’С‹СЃРѕРєРёР№");
                                 break;
                             default:
-                                newRow.Append("Очень высокий");
+                                newRow.Append("РћС‡РµРЅСЊ РІС‹СЃРѕРєРёР№");
                                 break;
                         }
                     }
                     newRows.Add(newRow.ToString());
                     break;
-                case "Время":
+                case "Р’СЂРµРјСЏ":
                     newRow.Append(key);
                     for (int i = 0; i < 20; i++)
                     {
