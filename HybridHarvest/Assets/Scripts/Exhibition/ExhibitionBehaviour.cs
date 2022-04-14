@@ -16,7 +16,7 @@ public class ExhibitionBehaviour : MonoBehaviour, ISaveable
         
     }   
 
-    void OnEnable()
+    public void OnEnable()
     {
         Load();
         var epic = false;

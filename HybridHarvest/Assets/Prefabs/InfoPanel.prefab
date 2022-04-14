@@ -2058,7 +2058,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00025202782}
-  m_SizeDelta: {x: -17.37, y: 308.69}
+  m_SizeDelta: {x: -17.37, y: 15}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8509829835161871386
 MonoBehaviour:
@@ -2210,8 +2210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.000015258789}
-  m_SizeDelta: {x: -20, y: -20}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0.000015258789}
+  m_SizeDelta: {x: -0.00003624, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5371670944265485604
 GameObject:
@@ -2735,8 +2735,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: -0.0000047683716, y: 0}
+  m_SizeDelta: {x: -0.00006485, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7303391434443656179
 CanvasRenderer:
@@ -2766,7 +2766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 8d46911c3f89c00449d5775dac6ef65b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!1 &7644297399342029007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,8 +2999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 269.84, y: -19.4}
-  m_SizeDelta: {x: 18.17, y: 269.89}
+  m_AnchoredPosition: {x: 265.32, y: -19.4}
+  m_SizeDelta: {x: 27.21, y: 269.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2410275614979121459
 CanvasRenderer:
@@ -3030,7 +3030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 36c8af552df7d9a438e0fa75ba78c641, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3039,7 +3039,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!114 &363055358205438215
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class ExhibitionOpponents : MonoBehaviour
         //Level 10- => 1 opponent, 10+ => 2, 20+ => 3
         //opponentCount = level / 10 + 1;
         var count = opponentCount;
-        opponents = new Opponent[count];
+        opponents = new Opponent [count];
         
         var rand = new Random(DateTime.Now.Millisecond);
         var possible = Enumerable.Range(0, possibleOpponents.Count).ToList();
