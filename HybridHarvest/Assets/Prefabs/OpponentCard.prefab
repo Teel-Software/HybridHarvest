@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8082573304390473492}
   - component: {fileID: 8686371130243832777}
   m_Layer: 5
-  m_Name: Name
+  m_Name: OpponentName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portrait: {fileID: 6225735831770130262}
-  name: {fileID: 8686371130243832777}
+  opponentName: {fileID: 8686371130243832777}
   showSeedsBtn: {fileID: 8978095042847768809}
 --- !u!1 &6225735831770130256
 GameObject:

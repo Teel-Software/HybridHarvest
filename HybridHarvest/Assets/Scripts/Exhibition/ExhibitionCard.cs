@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ExhibitionCard : MonoBehaviour
 {
     public Image portrait;
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI opponentName;
     public Button showSeedsBtn;
     public void SetOpponent(Opponent opponent)
     {
         portrait.sprite = opponent.Portrait();
-        name.text = opponent.Name;
+        opponentName.text = opponent.Name;
     }
 }
