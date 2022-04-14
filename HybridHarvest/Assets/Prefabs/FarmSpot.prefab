@@ -244,6 +244,12 @@ MonoBehaviour:
   Patch: {fileID: 2017966850703178139}
   InventoryFrame: {fileID: 0}
   HarvestWindow: {fileID: 0}
+  wetGround: {fileID: 21300000, guid: 303aa091334058d4d93c424be318e393, type: 3}
+  dryGround: {fileID: 21300000, guid: 6158e8322ee22c143a39cddd0425a7ed, type: 3}
+  plantImage: {fileID: 2017966851350379695}
+  groundImage: {fileID: 2017966850703178138}
+  textBGImage: {fileID: 2017966851455226497}
+  growthText: {fileID: 2017966849998011222}
   growingSeed: {fileID: 0}
   time: 0
   grownSeeds: []

@@ -7,17 +7,24 @@ using System;
 public class PatchGrowth : MonoBehaviour
 {
     public Button Patch;
-    [SerializeField] RectTransform InventoryFrame;
-    [SerializeField] RectTransform HarvestWindow;
-
+    
+    [SerializeField] private RectTransform InventoryFrame;
+    [SerializeField] private RectTransform HarvestWindow;
+    
+    [SerializeField] private Sprite wetGround;
+    [SerializeField] private Sprite dryGround;
+    
+    [SerializeField] private Image plantImage;
+    [SerializeField] private Image groundImage; 
+    [SerializeField] private Image textBGImage;
+    [SerializeField] private Text growthText;
+    
     bool isOccupied;
     bool timerNeeded;
     public Seed growingSeed;
     public double time; //осталось расти
     public List<Seed> grownSeeds = new List<Seed>();
-    private Image plantImage;
-    private Image textBGImage;
-    private Text growthText;
+    
     private Inventory _inventory;
     private double _timeSpeedBooster = 1;
 
@@ -27,11 +34,6 @@ public class PatchGrowth : MonoBehaviour
     private void Start()
     {
         _inventory ??= GameObject.Find("DataKeeper").GetComponent<Inventory>();
-
-        var imagesInChildren = Patch.GetComponentsInChildren<Image>();
-        plantImage = imagesInChildren[1];
-        textBGImage = imagesInChildren[2];
-        growthText = Patch.GetComponentInChildren<Text>();
 
         if (PlayerPrefs.GetInt(Patch.name + "occupied") == 1)
         {
@@ -73,6 +75,9 @@ public class PatchGrowth : MonoBehaviour
     {
         if (timerNeeded)
         {
+            textBGImage.enabled = true;
+            groundImage.sprite = wetGround;
+            
             if (time > 0)
             {
                 time -= Time.deltaTime * _timeSpeedBooster;
@@ -81,10 +86,15 @@ public class PatchGrowth : MonoBehaviour
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
             }
             else
-                EndGrowthCycle();
-
-            textBGImage.enabled = true;
+            {
+                EndGrowthCycle();            
+            }
         }
+        else
+        {
+            groundImage.sprite = dryGround;     
+        }
+
     }
 
     /// <summary>
