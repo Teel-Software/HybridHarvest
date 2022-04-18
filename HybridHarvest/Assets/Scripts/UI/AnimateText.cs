@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class AnimateText : MonoBehaviour
 {
-    [SerializeField] float frameTimeSeconds;
-    [SerializeField] GameObject TextBlockerPrefab;
+    [SerializeField] private float frameTimeSeconds;
+    [SerializeField] private GameObject TextBlockerPrefab;
 
     private string origText;
     private GameObject activeBlocker;
@@ -36,7 +36,7 @@ public class AnimateText : MonoBehaviour
 
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         activeBlocker = Instantiate(TextBlockerPrefab, canvas.transform, false);
-        activeBlocker.AddComponent<Button>().onClick.AddListener(OnBlockerClicked);
+        activeBlocker.GetComponent<Button>().onClick.AddListener(OnBlockerClicked);
 
         activeCoroutine = StartCoroutine(RenderNextSymbol());
     }

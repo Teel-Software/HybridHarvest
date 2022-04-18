@@ -99,7 +99,7 @@ public static class CSVStatsMerger
                     for (int i = 0; i < 20; i++)
                     {
                         newRow.Append(",");
-                        newRow.Append(TimeFormatter.FormatTotableView(table1[key][i] + table2[key][i]));
+                        newRow.Append(TimeFormatter.FormatToTableView(table1[key][i] + table2[key][i]));
                     }
                     newRows.Add(newRow.ToString());
                     break;
