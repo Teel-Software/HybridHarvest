@@ -12,7 +12,8 @@ public class ShopLogic : MonoBehaviour, ISaveable
 
     [SerializeField] private RectTransform shoppingPlace;
     [SerializeField] private GameObject ItemIcon;
-    public List<string> unlockedSeeds { get; private set; }
+    private List<string> unlockedSeeds { get; set; }
+    
     public void Awake()
     {
         targetInventory ??= GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
@@ -67,7 +68,6 @@ public class ShopLogic : MonoBehaviour, ISaveable
         logicScript.inventoryDrawer = inventoryDrawer;
         yesButton.onClick.AddListener(() => logicScript.Buy(seed));
         logicScript.targetInventory = targetInventory;
-        logicScript.HasPrice = true;
     }
 
     public void Save()

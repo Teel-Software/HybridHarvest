@@ -3,9 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using UnityEngine.Serialization;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -23,26 +20,30 @@ public class PatchGrowth : MonoBehaviour
     [SerializeField] private GameObject blockerPrefab;
     [SerializeField] private GameObject infoContainer;
     [SerializeField] private GameObject cancelButton;
+    [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
 
     [SerializeField] private Image timerBGImage;
     [SerializeField] private Text growthText;
 
-    private static GameObject lastInfoContainer;
-    private static GameObject infoBlocker;
-    private int infoContainerOpenedTimes;
-
     public Seed growingSeed;
     public double time; //осталось расти
     public List<Seed> grownSeeds = new List<Seed>();
+
+    private static GameObject infoBlocker;
+    private static PatchGrowth lastPatchGrowth;
+    private int infoContainerOpenedTimes;
+
     private bool isOccupied;
     private bool timerNeeded;
 
     private Inventory _inventory;
+    private ConfirmationPanelLogic confPanel;
     private double _timeSpeedBooster = 1;
 
     /// <summary>
-    /// plants chosen seed on patch
+    /// Садит семечко на грядку.
     /// </summary>
+    /// <param name="seed">Семечко.</param>
     public void PlantIt(Seed seed)
     {
         if (_inventory.Energy <= 0)
@@ -52,17 +53,17 @@ public class PatchGrowth : MonoBehaviour
             return;
         }
 
-        //Consumes energy for planting (so bad)
         _inventory.ConsumeEnergy(1);
         isOccupied = true;
-        growingSeed = seed;
-        PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
-        PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
-        time = seed.GrowTime;
         timerNeeded = true;
         timerBGImage.enabled = true;
+        infoContainerOpenedTimes = 0;
+        growingSeed = seed;
+        time = seed.GrowTime;
+
         ToggleInfo();
         SpeedUpTutorSeed(seed);
+        SavePlanting(seed);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
@@ -72,28 +73,38 @@ public class PatchGrowth : MonoBehaviour
     }
 
     /// <summary>
-    /// Отменяет посадку растения
+    /// Отменяет посадку растения.
     /// </summary>
     public void CancelPlant()
     {
-        ClearPatch();
-        timerNeeded = false;
-        cancelButton.SetActive(false);
-        ToggleInfo();
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
+        confPanel.SetQuestion($"{growingSeed.NameInRussian}: отменить посадку?",
+            "Потраченная энергия возвращена не будет.");
+        confPanel.SetAction(() =>
+        {
+            ClearPatch();
+            timerNeeded = false;
+            ToggleInfo();
+        });
     }
 
     /// <summary>
-    /// Pocesses clicking
+    /// Вызывается при клике.
     /// </summary>
     public void Clicked()
     {
         ToggleInfo();
 
+        // открывает инвентарь
         if (!isOccupied)
         {
             InventoryFrame.GetComponent<InventoryDrawer>().GrowPlace = Patch;
             InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.Plant);
             InventoryFrame.gameObject.SetActive(true);
+
+            if (lastPatchGrowth != null)
+                lastPatchGrowth.infoContainerOpenedTimes = 0;
         }
         else
         {
@@ -110,97 +121,162 @@ public class PatchGrowth : MonoBehaviour
                 grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
         }
 
+        // открывает меню урожая
         if (grownSeeds.Count != 0 && time <= 0)
         {
             HarvestWindow.GetComponent<HarvestProcessor>().ShowHarvestMenu(grownSeeds, Patch);
             HarvestWindow.gameObject.SetActive(true);
+
+            if (lastPatchGrowth != null)
+                lastPatchGrowth.infoContainerOpenedTimes = 0;
         }
     }
 
+    /// <summary>
+    /// Приводит грядку к начальному виду.
+    /// </summary>
     public void ClearPatch()
     {
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
         timerBGImage.enabled = false;
         growthText.text = "";
         isOccupied = false;
-        if (growingSeed == null) return;
-
         growingSeed = null;
-        PlayerPrefs.SetInt(Patch.name + "occupied", isOccupied ? 1 : 0);
+        SaveClearing();
     }
 
-    private void ShowOnlyTimer()
+    /// <summary>
+    /// Сохраняет информацию о посадке семечка.
+    /// </summary>
+    /// <param name="seed">Семечко.</param>
+    private void SavePlanting(Seed seed)
+    {
+        PlayerPrefs.SetInt(Patch.name + "occupied", 1);
+        PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
+    }
+
+    /// <summary>
+    /// Сохраняет информацию о том, что грядка пуста.
+    /// </summary>
+    private void SaveClearing()
+    {
+        PlayerPrefs.SetInt(Patch.name + "occupied", 0);
+    }
+
+    /// <summary>
+    /// Показывает таймер.
+    /// </summary>
+    private void ShowTimer()
     {
         infoContainer.SetActive(true);
         timerBGImage.enabled = true;
-        cancelButton.SetActive(false);
     }
 
+    /// <summary>
+    /// Показывает информацию о росте.
+    /// </summary>
     private void ShowInfoContainer()
     {
-        var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        infoContainer.transform.SetParent(canvas.transform, true);
+        infoContainer.transform.SetParent(transform.parent.parent, true);
         infoContainer.transform.SetAsLastSibling();
+        infoContainer.SetActive(true);
 
         infoContainerOpenedTimes = 1;
-        infoContainer.SetActive(true);
-        cancelButton.SetActive(timerNeeded);
         infoBlocker.SetActive(true);
+        cancelButton.SetActive(timerNeeded);
     }
 
+    /// <summary>
+    /// Скрывает информацию о росте.
+    /// </summary>
+    private void HideInfoContainer()
+    {
+        infoContainer.SetActive(false);
+        cancelButton.SetActive(false);
+        infoBlocker?.SetActive(false);
+        lastPatchGrowth?.cancelButton.SetActive(false);
+        lastPatchGrowth?.infoContainer.SetActive(false);
+    }
+
+    /// <summary>
+    /// Создаёт инфо блокер.
+    /// </summary>
+    private void SpawnBlocker()
+    {
+        infoBlocker = Instantiate(blockerPrefab, transform.parent.parent, false);
+        infoBlocker.transform.SetAsFirstSibling();
+        infoBlocker.AddComponent<LayoutElement>().ignoreLayout = true;
+    }
+
+    /// <summary>
+    /// Переназначает обработчик кликов на блокер.
+    /// </summary>
+    private void ResetBlockerListener()
+    {
+        var blockerOnClick = infoBlocker.GetComponent<Button>().onClick;
+        blockerOnClick.RemoveAllListeners();
+        blockerOnClick.AddListener(() =>
+        {
+            ToggleInfo();
+
+            if (lastPatchGrowth != null)
+                lastPatchGrowth.infoContainerOpenedTimes = 0;
+        });
+    }
+
+    /// <summary>
+    /// Тоггл для окна информации.
+    /// </summary>
+    /// <param name="isOn">Флаг, отвечающий за активацию окна.</param>
     private void ToggleInfo(bool isOn = false)
     {
         if (infoBlocker == null)
-        {
-            infoBlocker = Instantiate(blockerPrefab, transform.parent.parent, false);
-            infoBlocker.transform.SetAsFirstSibling();
-            infoBlocker.AddComponent<LayoutElement>().ignoreLayout = true;
-        }
+            SpawnBlocker();
 
         if (isOn)
         {
-            if (lastInfoContainer != infoContainer)
+            if (lastPatchGrowth != this)
             {
-                lastInfoContainer?.SetActive(false);
+                if (lastPatchGrowth != null)
+                {
+                    lastPatchGrowth.infoContainer.SetActive(false);
+                    lastPatchGrowth.cancelButton.SetActive(false);
+                }
+
                 ShowInfoContainer();
             }
             else
             {
-                infoContainerOpenedTimes++;
-                if (infoContainerOpenedTimes % 2 == 0)
+                if (++infoContainerOpenedTimes % 2 == 0)
                     ToggleInfo();
                 else
                     ShowInfoContainer();
             }
 
-            lastInfoContainer = infoContainer;
-
-            var blockerOnClick = infoBlocker.GetComponent<Button>().onClick;
-            blockerOnClick.RemoveAllListeners();
-            blockerOnClick.AddListener(() => ToggleInfo());
+            lastPatchGrowth = this;
+            ResetBlockerListener();
         }
         else
-        {
-            infoContainer?.SetActive(false);
-            lastInfoContainer?.SetActive(false);
-            infoBlocker.SetActive(false);
-        }
+            HideInfoContainer();
     }
 
     /// <summary>
-    /// States that plant is ripe
+    /// Завершает рост растения.
     /// </summary>
     private void EndGrowthCycle()
     {
         timerNeeded = false;
         plantImage.sprite = growingSeed.GrownSprite;
-        ShowOnlyTimer();
+        ShowTimer();
         growthText.text = "ГОТОВО";
         cancelButton.SetActive(false);
+
+        if (confPanel != null)
+            confPanel.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Ускоряет рост обучающих семян
+    /// Ускоряет рост обучающих семян.
     /// </summary>
     /// <param name="seed">Семечко</param>
     private void SpeedUpTutorSeed(Seed seed)
@@ -252,10 +328,13 @@ public class PatchGrowth : MonoBehaviour
         if (time <= 0)
             EndGrowthCycle();
 
+        lastPatchGrowth = null;
+        infoBlocker = null;
+        cancelButton.SetActive(false);
     }
 
     /// <summary>
-    /// Используется как таймер
+    /// Используется как таймер.
     /// </summary>
     private void Update()
     {
@@ -281,11 +360,11 @@ public class PatchGrowth : MonoBehaviour
         }
 
         if (isOccupied && time <= 60)
-            ShowOnlyTimer();
+            ShowTimer();
     }
 
     /// <summary>
-    /// Сохраняет данные при закрытии приложения
+    /// Сохраняет данные при закрытии приложения.
     /// </summary>
     private void OnDestroy()
     {

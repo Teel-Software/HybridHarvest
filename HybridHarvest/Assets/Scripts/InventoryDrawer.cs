@@ -3,25 +3,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
-using UnityEngine.Serialization;
 
 public class InventoryDrawer : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
+
     // Место отрисовки
-    [FormerlySerializedAs("Place")]
     [SerializeField] private RectTransform scrollViewContent;
+
     // Префабы
-    [SerializeField] private GameObject ConfirmationPanel;
     [SerializeField] private GameObject StatPanel;
     [SerializeField] private GameObject ItemIcon;
 
-    [SerializeField] Text FreeSpaceCounter;
+    [SerializeField] private Text FreeSpaceCounter;
 
     public Button GrowPlace { get; set; }
     public Action SuccessfulAddition;
     public PurposeOfDrawing Purpose;
-    readonly List<GameObject> alreadyDrawn = new List<GameObject>();
+    private readonly List<GameObject> alreadyDrawn = new List<GameObject>();
     private bool changeItem = false;
     private Seed changingSeed;
 
@@ -72,7 +71,7 @@ public class InventoryDrawer : MonoBehaviour
     /// <param name="purpose"></param>
     public void SetPurpose(int purpose)
     {
-        Purpose = (PurposeOfDrawing)purpose;
+        Purpose = (PurposeOfDrawing) purpose;
     }
 
     /// <summary>
@@ -94,6 +93,7 @@ public class InventoryDrawer : MonoBehaviour
         {
             Destroy(alreadyDrawn[i]);
         }
+
         alreadyDrawn.Clear();
 
         for (var i = 0; i < targetInventory.Elements.Count; i++)
@@ -104,6 +104,7 @@ public class InventoryDrawer : MonoBehaviour
             if (filter_RussianName != null
                 && seed.NameInRussian != filter_RussianName)
                 continue;
+
             /*
             var itemGameObj = new GameObject(i.ToString(), typeof(Button));
             itemGameObj.AddComponent<Image>().sprite = item.PacketSprite;
@@ -132,6 +133,7 @@ public class InventoryDrawer : MonoBehaviour
             };
             alreadyDrawn.Add(itemIcon);
         }
+
         if (changeItem && targetInventory.Elements.Count < targetInventory.MaxItemsAmount)
         {
             var itemIcon = Instantiate(ItemIcon, scrollViewContent);
@@ -155,16 +157,18 @@ public class InventoryDrawer : MonoBehaviour
                     scenario?.Tutorial_ShopExit();
             });
         }
+
         FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
     }
 
     /// <summary>
     /// Called when user clicks on item
     /// </summary>
-    public void ClickedOnItem()
+    private void ClickedOnItem()
     {
         var item = EventSystem.current.currentSelectedGameObject;
         if (item == null) return;
+
         PrepareConfirmation(item);
     }
 
@@ -180,7 +184,7 @@ public class InventoryDrawer : MonoBehaviour
         {
             targetInventory.Elements.Add(changingSeed);
             Redraw();
-            
+
             changeItem = false;
             gameObject.SetActive(false);
             targetInventory.Save();
@@ -188,29 +192,13 @@ public class InventoryDrawer : MonoBehaviour
             return;
         }
 
-        Text text;
-        Button yesButton;
-        ConfirmationPanelLogic logicScript;
+        var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform)
+            .GetComponentInChildren<StatPanelDrawer>();
+        statPanelDrawer.DisplayStats(targetInventory.Elements[index]);
 
-        var needsStats = targetInventory.Elements.Count > index;
-        if (needsStats)
-        {
-            var statPanelDrawer = Instantiate(StatPanel, GameObject.Find("Inventory").transform)
-                .GetComponentInChildren<StatPanelDrawer>();
-            statPanelDrawer.DisplayStats(targetInventory.Elements[index]);
-
-            text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
-            yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
-            logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
-        }
-        else
-        {
-            var confPanelDrawer = Instantiate(ConfirmationPanel, GameObject.Find("Inventory").transform)
-                .GetComponentInChildren<ConfirmationPanelDrawer>();
-            text = confPanelDrawer.QuestionText;
-            yesButton = confPanelDrawer.YesButton.GetComponent<Button>();
-            logicScript = confPanelDrawer.YesButton.GetComponentInChildren<ConfirmationPanelLogic>();
-        }
+        var text = statPanelDrawer.ProceedButton.GetComponentInChildren<Text>();
+        var yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
+        var logicScript = statPanelDrawer.ProceedButton.GetComponent<ConfirmationPanelLogic>();
 
         logicScript.targetInventory = targetInventory;
         logicScript.inventoryDrawer = this;
@@ -220,22 +208,9 @@ public class InventoryDrawer : MonoBehaviour
             case PurposeOfDrawing.Sell: // через кнопку инвентаря в боковом меню
                 text.text = "Продать";
                 yesButton.onClick.AddListener(logicScript.Sell);
-                logicScript.HasPrice = true;
                 break;
             case PurposeOfDrawing.Change: // вызывается из кода инвентаря
-                if (index == targetInventory.Elements.Count)
-                {
-                    // в этот if не заходит из-за условия в самом начале
-                    text.text = "Добавить";
-                    if (!needsStats)
-                    {
-                        text.text += $" ?";
-                    }
-                }
-                else
-                {
-                    text.text = "Заменить";
-                }
+                text.text = "Заменить";
                 yesButton.onClick.AddListener(() =>
                 {
                     logicScript.ChangeItem(changingSeed);

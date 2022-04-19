@@ -1,23 +1,18 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
     [SerializeField] private GameObject parentGameObject;
+    [SerializeField] private Text questionHeader;
+    [SerializeField] private Text questionDescription;
 
     public Inventory targetInventory;
-    [FormerlySerializedAs("drawInventory")]
     public InventoryDrawer inventoryDrawer;
-
-    public bool HasPrice;
-    public string ItemName;
-
     public GameObject ItemObject;
 
-    private GameObject questionObject;
-    private string originalQuestionText;
+    private Action yesAction;
 
     private void Awake()
     {
@@ -25,7 +20,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Покупает семечко
+    /// Покупает семечко.
     /// </summary>
     public void Buy(Seed seed)
     {
@@ -37,11 +32,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Продаёт семечко
+    /// Продаёт семечко.
     /// </summary>
     public void Sell()
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
+        if (!int.TryParse(ItemObject.name, out var index)) return;
 
         var seed = targetInventory.Elements[index];
 
@@ -56,11 +51,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Сажает семечко на грядку
+    /// Сажает семечко на грядку.
     /// </summary>
     public void Plant()
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
+        if (!int.TryParse(ItemObject.name, out var index)) return;
 
         var toPlant = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<PatchGrowth>().PlantIt(toPlant);
@@ -68,11 +63,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет семечко на панель скрещивания
+    /// Добавляет семечко на панель скрещивания.
     /// </summary>
     public void Select()
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
+        if (!int.TryParse(ItemObject.name, out var index)) return;
 
         var toSelect = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<LabButton>().ChosenSeed(toSelect);
@@ -80,11 +75,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавляет семечко на панель выставки
+    /// Добавляет семечко на панель выставки.
     /// </summary>
     public void SendToExhibition()
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
+        if (!int.TryParse(ItemObject.name, out var index)) return;
 
         var toSend = targetInventory.Elements[index];
         inventoryDrawer.GrowPlace.GetComponent<ExhibitionButton>().SetSeed(toSend);
@@ -92,11 +87,11 @@ public class ConfirmationPanelLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Заменяет семечко на другое
+    /// Заменяет семечко на другое.
     /// </summary>   
     public void ChangeItem(Seed newSeed)
     {
-        if (!int.TryParse(ItemObject.name, out int index)) return;
+        if (!int.TryParse(ItemObject.name, out var index)) return;
 
         if (index == targetInventory.Elements.Count)
         {
@@ -108,61 +103,37 @@ public class ConfirmationPanelLogic : MonoBehaviour
             targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
             targetInventory.Elements[index] = newSeed;
         }
+
         inventoryDrawer.Redraw();
         parentGameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Добавляет к основному тексту название растения
-    /// <param name="itemName">Имя растения на английском</param>
+    /// Назначает вопрос.
     /// </summary>
-    public void DefineItem(string itemName)
+    /// <param name="question">Сам вопрос.</param>
+    /// <param name="description">Описание вопроса.</param>
+    public void SetQuestion(string question, string description)
     {
-        ItemName = itemName;
-        var seed = (Seed)Resources.Load("Seeds\\" + itemName);
-        UpdateQuestionText(seed.NameInRussian);
+        questionHeader.text = question;
+        questionDescription.text = description;
     }
 
     /// <summary>
-    /// Добавляет к основному тексту название растения
-    /// <param name="seed">Класс семени растения</param>
+    /// Назначает действие, которое будет выполенно при положительном ответе.
     /// </summary>
-    public void DefineItem(Seed seed)
+    /// <param name="action">Действие.</param>
+    public void SetAction(Action action)
     {
-        UpdateQuestionText(seed.NameInRussian);
-    }
-
-    private void UpdateQuestionText(string itemName)
-    {
-        var questionText = transform.parent.Find("QuestionText").GetComponent<Text>();
-        originalQuestionText ??= questionText.text;
-
-        questionText.text = $"{originalQuestionText} {itemName.ToLower()}";
-        if (!HasPrice) questionText.text += "?";
+        yesAction = action;
     }
 
     /// <summary>
-    /// Добавляет ко второму текстовому объекту цену объекта семени
+    /// Выполняет заданное ранее действие.
     /// </summary>
-    private void SetPrice()
+    public void ExecuteAction()
     {
-        if (!HasPrice) return;
-        var price = 0;
-        //Случай покупки из магазина
-        if (ItemObject is null)
-        {
-            var seed = (Seed)Resources.Load("Seeds\\" + ItemName);
-            price = seed.ShopBuyPrice;
-        }
-        //Случай действия из инвентаря
-        else if (int.TryParse(ItemObject.name, out int index))
-        {
-            price = targetInventory.Elements[index].Price;
-        }
-
-        var ptObj = transform.parent.Find("QuestionText").Find("PriceText");
-        var priceText = ptObj.GetComponent<TextMeshProUGUI>();
-
-        priceText.text = $"за {price} <sprite name=\"Money\"> ?";
+        yesAction.Invoke();
+        gameObject.SetActive(false);
     }
 }
