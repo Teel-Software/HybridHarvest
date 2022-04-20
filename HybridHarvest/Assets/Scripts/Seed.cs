@@ -27,6 +27,7 @@ public class Seed : ScriptableObject
     public int minAmount;
     public int maxAmount;
     public int ShopBuyPrice;
+
     public Sprite PlantSprite
     {
         get

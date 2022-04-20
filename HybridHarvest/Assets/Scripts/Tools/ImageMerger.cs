@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public static class ImageMerger
 {
@@ -16,7 +17,20 @@ public static class ImageMerger
         }
         catch 
         {
-            WWW req = new WWW("file://" + Path.Combine(Application.persistentDataPath, parentName1 + ".png"));
+            //using (var req = UnityWebRequestTexture.GetTexture("file:///" + Path.Combine(Application.persistentDataPath, parentName1 + ".png")))
+            //{
+            //    //req.downloadHandler = new DownloadHandlerTexture();
+            //    Debug.Log(req);
+            //    req.SendWebRequest();
+            //    Debug.Log(req);
+            //    Debug.Log(req.isDone);
+            //    while (!req.isDone)
+            //    {
+            //        Debug.Log(req.downloadProgress);
+            //    }
+            //    im1 = DownloadHandlerTexture.GetContent(req);
+            //}
+            var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, parentName1 + "Texture.png"));
             im1 = req.texture;
         }
         try
@@ -26,7 +40,7 @@ public static class ImageMerger
         }
         catch
         {
-            WWW req = new WWW("file://" + Path.Combine(Application.persistentDataPath, parentName2 + "Texture.png"));
+            var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, parentName2 + "Texture.png"));
             im2 = req.texture;
         }        
 
