@@ -483,6 +483,7 @@ MonoBehaviour:
   portrait: {fileID: 6225735831770130262}
   opponentName: {fileID: 8686371130243832777}
   showSeedsBtn: {fileID: 8978095042847768809}
+  seedPanel: {fileID: 3554415176105395363, guid: f88d551003002c548a8b58c9708f19eb, type: 3}
 --- !u!1 &6225735831770130256
 GameObject:
   m_ObjectHideFlags: 0

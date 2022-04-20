@@ -43,7 +43,8 @@ public class ExhibitionOpponents : MonoBehaviour
             var opp = possible[index];
             possible.RemoveAt(index);
             opponents[i] = possibleOpponents[opp];
-            cards[i].GetComponent<ExhibitionCard>().SetOpponent(opponents[i]);
+            var cardClass = cards[i].GetComponent<ExhibitionCard>();
+            cardClass.SetOpponent(opponents[i], gameObject.transform.parent);
         }
 
     }
