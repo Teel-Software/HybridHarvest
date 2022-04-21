@@ -1,4 +1,6 @@
-﻿using Tools;
+﻿using System.Linq;
+using TMPro;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +14,18 @@ namespace Exhibition
 
         public void Awake()
         {
-            Seeds = new Seed[1];
-            Seeds[0] = ScriptableObject.CreateInstance<Seed>();
-            Seeds[0].SetValues("Pea|_|900|1|1|1|2|1|9|11|Горох|Písum|0");
+            const int testCount = 3;
+            Seeds = new Seed[testCount];
+            foreach (var i in Enumerable.Range(0, testCount))
+            {
+                Seeds[i] = ScriptableObject.CreateInstance<Seed>();
+                Seeds[i].SetValues("Pea|_|900|1|1|1|2|1|9|11|Горох|Písum|0");
+            }
             foreach (var seed in Seeds)
             {
                 var listing = Instantiate(seedListing, scrollContent.transform);
                 // change tp text mesh pro
-                var text = listing.GetComponentInChildren<Text>();
+                var text = listing.GetComponentInChildren<TextMeshProUGUI>();
                 text.text = SeedStatFormatter.FormatSmall(seed);
                 // idk what to call this
                 var listingClass = listing.GetComponentInChildren<OpponentSeedListing>();

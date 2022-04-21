@@ -56,6 +56,8 @@ public class ExhibitionOpponents : MonoBehaviour
 
     public void ChangeCount(int inc)
     {
-        opponentCount += inc;
+        opponentCount = (opponentCount + inc) % 3;
+        if (opponentCount < 0)
+            opponentCount = 0;
     }
 }
