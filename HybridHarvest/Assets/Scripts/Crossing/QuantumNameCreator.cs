@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Globalization;
 using UnityEngine.UI;
 using System.Linq;
 
@@ -18,9 +17,9 @@ public class QuantumNameCreator : MonoBehaviour
     }
 
     public void GenerateName()
-    {   //помидор картошка огурец горох морковь дебаг 
-        Name1 = "помидор";
-        Name2 = "огурец";
+    {   //РїРѕРјРёРґРѕСЂ РєР°СЂС‚РѕС€РєР° РѕРіСѓСЂРµС† РіРѕСЂРѕС… РјРѕСЂРєРѕРІСЊ РґРµР±Р°Рі 
+        Name1 = "РїРѕРјРёРґРѕСЂ";
+        Name2 = "РѕРіСѓСЂРµС†";
         var firstParts = GetSyllables(Name1).ToArray();
         var secondParts = GetSyllables(Name2).ToArray();
         var num = (firstParts.Length + secondParts.Length) / 2;
@@ -92,7 +91,7 @@ public class QuantumNameCreator : MonoBehaviour
     {
         var vowelsArr = english
             ? new[] { 'a', 'e', 'i', 'o', 'u' }
-            : new[] { 'а', 'о', 'у', 'и', 'э', 'ы', 'я', 'ю', 'е', 'ё' };
+            : new[] { 'Р°', 'Рѕ', 'Сѓ', 'Рё', 'СЌ', 'С‹', 'СЏ', 'СЋ', 'Рµ', 'С‘' };
         var vowelsIndexes = new List<int>();
         var result = new HashSet<string>();
         word = word.ToLower();

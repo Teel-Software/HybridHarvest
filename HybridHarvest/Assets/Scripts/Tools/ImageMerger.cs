@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public static class ImageMerger
 {

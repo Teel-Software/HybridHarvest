@@ -19,8 +19,8 @@ public class PatchGrowth : MonoBehaviour
 
     [SerializeField] private GameObject blockerPrefab;
     [SerializeField] private GameObject infoContainer;
-    [SerializeField] private GameObject cancelButton;
     [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
+    [SerializeField] private OptionsMenuHandler optionsMenuPrefab;
 
     [SerializeField] private Image timerBGImage;
     [SerializeField] private Text growthText;
@@ -31,6 +31,8 @@ public class PatchGrowth : MonoBehaviour
 
     private static GameObject infoBlocker;
     private static PatchGrowth lastPatchGrowth;
+    private static OptionsMenuHandler optionsMenu;
+    private Transform startCointainerPlace;
     private int infoContainerOpenedTimes;
 
     private bool isOccupied;
@@ -61,8 +63,7 @@ public class PatchGrowth : MonoBehaviour
         growingSeed = seed;
         time = seed.GrowTime;
 
-        ToggleInfo();
-        SpeedUpTutorSeed(seed);
+        SetSeedSpeed(seed);
         SavePlanting(seed);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
@@ -79,14 +80,16 @@ public class PatchGrowth : MonoBehaviour
     {
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
-        confPanel.SetQuestion($"{growingSeed.NameInRussian}: отменить посадку?",
+        confPanel.SetQuestion($"Выкопать {growingSeed.NameInRussian}?",
             "Потраченная энергия возвращена не будет.");
-        confPanel.SetAction(() =>
+
+        confPanel.SetYesAction(() =>
         {
             ClearPatch();
             timerNeeded = false;
             ToggleInfo();
         });
+        confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
@@ -94,7 +97,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     public void Clicked()
     {
-        ToggleInfo();
+        CloseActiveInfoContainer(false);
 
         // открывает инвентарь
         if (!isOccupied)
@@ -146,6 +149,28 @@ public class PatchGrowth : MonoBehaviour
     }
 
     /// <summary>
+    /// Закрывает активную информацию о росте.
+    /// </summary>
+    public void CloseActiveInfoContainer(bool resetOpenedTimes = true)
+    {
+        HideInfoContainer();
+
+        Destroy(infoBlocker);
+        infoBlocker = null;
+
+        Destroy(optionsMenu?.gameObject);
+        optionsMenu = null;
+
+        if (lastPatchGrowth == null) return;
+
+        if (resetOpenedTimes)
+            lastPatchGrowth.infoContainerOpenedTimes = 0;
+        
+        lastPatchGrowth.infoContainer.SetActive(false);
+        lastPatchGrowth.infoContainer.transform.SetParent(lastPatchGrowth.startCointainerPlace, true);
+    }
+
+    /// <summary>
     /// Сохраняет информацию о посадке семечка.
     /// </summary>
     /// <param name="seed">Семечко.</param>
@@ -177,13 +202,26 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void ShowInfoContainer()
     {
+        if (infoBlocker == null)
+            SpawnBlocker();
+
+        if (startCointainerPlace == null)
+            startCointainerPlace = transform;
+
         infoContainer.transform.SetParent(transform.parent.parent, true);
         infoContainer.transform.SetAsLastSibling();
         infoContainer.SetActive(true);
 
         infoContainerOpenedTimes = 1;
         infoBlocker.SetActive(true);
-        cancelButton.SetActive(timerNeeded);
+
+        if (optionsMenu == null)
+        {
+            var canvas = GameObject.FindGameObjectWithTag("Canvas");
+            optionsMenu = Instantiate(optionsMenuPrefab, canvas.transform, false);
+        }
+
+        optionsMenu.СancelAction = () => CancelPlant();
     }
 
     /// <summary>
@@ -191,11 +229,24 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void HideInfoContainer()
     {
+        if (startCointainerPlace != null)
+            infoContainer.transform.SetParent(startCointainerPlace, true);
+
         infoContainer.SetActive(false);
-        cancelButton.SetActive(false);
-        infoBlocker?.SetActive(false);
-        lastPatchGrowth?.cancelButton.SetActive(false);
-        lastPatchGrowth?.infoContainer.SetActive(false);
+
+        if (lastPatchGrowth == this)
+        {
+            Destroy(infoBlocker);
+            infoBlocker = null;
+
+            Destroy(optionsMenu?.gameObject);
+            optionsMenu = null;
+        }
+
+        // if (lastPatchGrowth == null) return;
+        //
+        // lastPatchGrowth.infoContainer.SetActive(false);
+        // lastPatchGrowth.infoContainer.transform.SetParent(lastPatchGrowth.startCointainerPlace, true);
     }
 
     /// <summary>
@@ -211,17 +262,11 @@ public class PatchGrowth : MonoBehaviour
     /// <summary>
     /// Переназначает обработчик кликов на блокер.
     /// </summary>
-    private void ResetBlockerListener()
+    private void SetBlockerListener()
     {
         var blockerOnClick = infoBlocker.GetComponent<Button>().onClick;
         blockerOnClick.RemoveAllListeners();
-        blockerOnClick.AddListener(() =>
-        {
-            ToggleInfo();
-
-            if (lastPatchGrowth != null)
-                lastPatchGrowth.infoContainerOpenedTimes = 0;
-        });
+        blockerOnClick.AddListener(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
@@ -230,31 +275,26 @@ public class PatchGrowth : MonoBehaviour
     /// <param name="isOn">Флаг, отвечающий за активацию окна.</param>
     private void ToggleInfo(bool isOn = false)
     {
-        if (infoBlocker == null)
-            SpawnBlocker();
-
         if (isOn)
         {
             if (lastPatchGrowth != this)
             {
                 if (lastPatchGrowth != null)
-                {
                     lastPatchGrowth.infoContainer.SetActive(false);
-                    lastPatchGrowth.cancelButton.SetActive(false);
-                }
 
                 ShowInfoContainer();
             }
             else
             {
                 if (++infoContainerOpenedTimes % 2 == 0)
-                    ToggleInfo();
+                    HideInfoContainer();
                 else
                     ShowInfoContainer();
             }
 
             lastPatchGrowth = this;
-            ResetBlockerListener();
+            if (infoBlocker != null)
+                SetBlockerListener();
         }
         else
             HideInfoContainer();
@@ -265,21 +305,21 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void EndGrowthCycle()
     {
+        ToggleInfo();
         timerNeeded = false;
         plantImage.sprite = growingSeed.GrownSprite;
         ShowTimer();
         growthText.text = "ГОТОВО";
-        cancelButton.SetActive(false);
 
         if (confPanel != null)
             confPanel.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Ускоряет рост обучающих семян.
+    /// Задаёт скорость роста семечка в зависимости от названия.
     /// </summary>
     /// <param name="seed">Семечко</param>
-    private void SpeedUpTutorSeed(Seed seed)
+    private void SetSeedSpeed(Seed seed)
     {
         _timeSpeedBooster = seed.NameInRussian switch
         {
@@ -300,7 +340,6 @@ public class PatchGrowth : MonoBehaviour
         {
             isOccupied = true;
             timerNeeded = true;
-            cancelButton.SetActive(true);
         }
         else
         {
@@ -311,7 +350,7 @@ public class PatchGrowth : MonoBehaviour
 
         growingSeed = ScriptableObject.CreateInstance<Seed>();
         growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
-        SpeedUpTutorSeed(growingSeed);
+        SetSeedSpeed(growingSeed);
 
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
         var timePassed = (DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
@@ -325,12 +364,12 @@ public class PatchGrowth : MonoBehaviour
             grownSeeds.Add(seed);
         }
 
-        if (time <= 0)
-            EndGrowthCycle();
-
         lastPatchGrowth = null;
         infoBlocker = null;
-        cancelButton.SetActive(false);
+        optionsMenu = null;
+
+        if (time <= 0)
+            EndGrowthCycle();
     }
 
     /// <summary>

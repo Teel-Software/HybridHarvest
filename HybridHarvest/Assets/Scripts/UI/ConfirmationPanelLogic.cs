@@ -13,6 +13,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public GameObject ItemObject;
 
     private Action yesAction;
+    private Action noAction;
 
     private void Awake()
     {
@@ -123,17 +124,35 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// Назначает действие, которое будет выполенно при положительном ответе.
     /// </summary>
     /// <param name="action">Действие.</param>
-    public void SetAction(Action action)
+    public void SetYesAction(Action action)
     {
         yesAction = action;
     }
+    
+    /// <summary>
+    /// Назначает действие, которое будет выполенно при отрицательном ответе.
+    /// </summary>
+    /// <param name="action">Действие.</param>
+    public void SetNoAction(Action action)
+    {
+        noAction = action;
+    }
 
     /// <summary>
-    /// Выполняет заданное ранее действие.
+    /// Выполняет заданное ранее положительное действие.
     /// </summary>
-    public void ExecuteAction()
+    public void ExecuteYesAction()
     {
         yesAction.Invoke();
+        gameObject.SetActive(false);
+    }
+    
+    /// <summary>
+    /// Выполняет заданное ранее отрицательное действие.
+    /// </summary>
+    public void ExecuteNoAction()
+    {
+        noAction.Invoke();
         gameObject.SetActive(false);
     }
 }
