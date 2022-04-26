@@ -74,25 +74,6 @@ public class PatchGrowth : MonoBehaviour
     }
 
     /// <summary>
-    /// Отменяет посадку растения.
-    /// </summary>
-    public void CancelPlant()
-    {
-        var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
-        confPanel.SetQuestion($"Выкопать {growingSeed.NameInRussian}?",
-            "Потраченная энергия возвращена не будет.");
-
-        confPanel.SetYesAction(() =>
-        {
-            ClearPatch();
-            timerNeeded = false;
-            ToggleInfo();
-        });
-        confPanel.SetNoAction(() => CloseActiveInfoContainer());
-    }
-
-    /// <summary>
     /// Вызывается при клике.
     /// </summary>
     public void Clicked()
@@ -165,9 +146,48 @@ public class PatchGrowth : MonoBehaviour
 
         if (resetOpenedTimes)
             lastPatchGrowth.infoContainerOpenedTimes = 0;
-        
+
         lastPatchGrowth.infoContainer.SetActive(false);
         lastPatchGrowth.infoContainer.transform.SetParent(lastPatchGrowth.startCointainerPlace, true);
+    }
+
+    /// <summary>
+    /// Отменяет посадку растения.
+    /// </summary>
+    private void CancelPlant()
+    {
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
+        confPanel.SetQuestion($"Выкопать {growingSeed.NameInRussian}?",
+            "Потраченная энергия возвращена не будет.");
+
+        confPanel.SetYesAction(() =>
+        {
+            ClearPatch();
+            timerNeeded = false;
+            ToggleInfo();
+        });
+        confPanel.SetNoAction(() => CloseActiveInfoContainer());
+    }
+
+    /// <summary>
+    /// Ускоряет рост семечка.
+    /// </summary>
+    private void SpeedUpSeed()
+    {
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
+        confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в 10 раз?",
+            "Для ускорения нужно будет посмотреть рекламу.");
+
+        var adHandler = confPanel.gameObject.AddComponent<AdHandler>();
+        adHandler.ShowAdButton = confPanel.YesButton;
+        adHandler.ShowAdButton.interactable = false;
+        adHandler.AdPurpose = AdPurpose.SpeedUpSeed;
+
+        confPanel.SetYesAction(() =>
+            adHandler.SpeedUpAction = () => SetSeedSpeed(10));
+        confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
@@ -222,6 +242,7 @@ public class PatchGrowth : MonoBehaviour
         }
 
         optionsMenu.СancelAction = () => CancelPlant();
+        optionsMenu.SpeedUpAction = () => SpeedUpSeed();
     }
 
     /// <summary>
@@ -234,19 +255,13 @@ public class PatchGrowth : MonoBehaviour
 
         infoContainer.SetActive(false);
 
-        if (lastPatchGrowth == this)
-        {
-            Destroy(infoBlocker);
-            infoBlocker = null;
+        if (lastPatchGrowth != this) return;
 
-            Destroy(optionsMenu?.gameObject);
-            optionsMenu = null;
-        }
+        Destroy(infoBlocker);
+        infoBlocker = null;
 
-        // if (lastPatchGrowth == null) return;
-        //
-        // lastPatchGrowth.infoContainer.SetActive(false);
-        // lastPatchGrowth.infoContainer.transform.SetParent(lastPatchGrowth.startCointainerPlace, true);
+        Destroy(optionsMenu?.gameObject);
+        optionsMenu = null;
     }
 
     /// <summary>
@@ -330,6 +345,16 @@ public class PatchGrowth : MonoBehaviour
     }
 
     /// <summary>
+    /// Задаёт скорость роста семечка.
+    /// </summary>
+    /// <param name="coeff">Коэффициент скорости</param>
+    private void SetSeedSpeed(int coeff)
+    {
+        if (coeff > 0)
+            _timeSpeedBooster = coeff;
+    }
+
+    /// <summary>
     /// Organizes plants on patch.
     /// </summary>
     private void Start()
@@ -387,6 +412,9 @@ public class PatchGrowth : MonoBehaviour
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
+                
+                if (optionsMenu != null && lastPatchGrowth == this)
+                    optionsMenu.Timer.text = Tools.TimeFormatter.Format(timeSpan);
             }
             else
             {

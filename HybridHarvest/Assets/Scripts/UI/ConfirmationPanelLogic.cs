@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ConfirmationPanelLogic : MonoBehaviour
 {
+    [SerializeField] public Button YesButton;
     [SerializeField] private GameObject parentGameObject;
     [SerializeField] private Text questionHeader;
     [SerializeField] private Text questionDescription;
@@ -12,8 +13,8 @@ public class ConfirmationPanelLogic : MonoBehaviour
     public InventoryDrawer inventoryDrawer;
     public GameObject ItemObject;
 
-    private Action yesAction;
-    private Action noAction;
+    private Action yesAction = () => { };
+    private Action noAction = () => { };
 
     private void Awake()
     {
@@ -128,7 +129,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         yesAction = action;
     }
-    
+
     /// <summary>
     /// Назначает действие, которое будет выполенно при отрицательном ответе.
     /// </summary>
@@ -146,7 +147,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         yesAction.Invoke();
         gameObject.SetActive(false);
     }
-    
+
     /// <summary>
     /// Выполняет заданное ранее отрицательное действие.
     /// </summary>
