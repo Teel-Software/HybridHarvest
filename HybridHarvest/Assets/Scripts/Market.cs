@@ -74,17 +74,23 @@ public class Market : MonoBehaviour, ISaveable
     public void Load()
     {
         var reader = QSReader.Create("Market");
+        PriceMultipliers = LoadPriceMultipliers(reader);
+        _lastRefreshDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Today;
+    }
 
+    public static Dictionary<string, float> LoadPriceMultipliers(QuickSaveReader reader = null)
+    {
+        reader ??= QSReader.Create("Market");
+        var priceMultipliers = new Dictionary<string, float>();
+        
         if (reader.Exists("Multipliers"))
-            PriceMultipliers = reader.Read<Dictionary<string, float>>("Multipliers");
+            priceMultipliers = reader.Read<Dictionary<string, float>>("Multipliers");
         else
         {
-            PriceMultipliers ??= new Dictionary<string, float>();
             foreach (var seedName in SeedTypesInInventory)
-                if (!PriceMultipliers.ContainsKey(seedName))
-                    PriceMultipliers.Add(seedName, 1.0f);
+                if (!priceMultipliers.ContainsKey(seedName))
+                    priceMultipliers[seedName] = 1.0f;
         }
-
-        _lastRefreshDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Today;
+        return priceMultipliers;
     }
 }

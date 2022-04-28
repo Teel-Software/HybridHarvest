@@ -89,12 +89,12 @@ public class GeneCrossing : MonoBehaviour
         chancesIterator++;
 
         int temp = 0;
-        (temp, newSeed.MutationPossibilityGen) =
-            CountParameter((int)first.MutationPossibility, first.MutationPossibilityGen,
-            (int)second.MutationPossibility, second.MutationPossibilityGen);
-        oppositeSeedStats.Add((int)newSeed.MutationPossibility == (int)first.MutationPossibility ? (int)second.MutationPossibility : (int)first.MutationPossibility);
+        (temp, newSeed.MutationChanceGen) =
+            CountParameter((int)first.MutationChance, first.MutationChanceGen,
+            (int)second.MutationChance, second.MutationChanceGen);
+        oppositeSeedStats.Add((int)newSeed.MutationChance == (int)first.MutationChance ? (int)second.MutationChance : (int)first.MutationChance);
         chancesIterator++;
-        newSeed.MutationPossibility = (MutationChance)temp;
+        newSeed.MutationChance = (MutationChance)temp;
 
         (newSeed.minAmount, newSeed.AmountGen) =
             CountParameter(first.minAmount, first.AmountGen, second.minAmount, second.AmountGen);
@@ -171,21 +171,21 @@ public class GeneCrossing : MonoBehaviour
         newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
         newSeed.NameInLatin = "";
 
-        newSeed.LevelData = CSVStatsMerger.GetQuantumStatistics(parent1.Name, parent2.Name);
-        newSeed.Taste = newSeed.LevelData.Taste.Keys.ToArray()[0];
+        newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Name, parent2.Name);
+        newSeed.Taste = newSeed.SeedStats.Taste.Keys.ToArray()[0];
         newSeed.TasteGen = Gen.Mixed;
 
-        newSeed.Gabitus = newSeed.LevelData.Gabitus.Keys.ToArray()[0];
+        newSeed.Gabitus = newSeed.SeedStats.Gabitus.Keys.ToArray()[0];
         newSeed.GabitusGen = Gen.Mixed;
 
-        newSeed.GrowTime = newSeed.LevelData.GrowTime.Keys.ToArray()[0];
+        newSeed.GrowTime = newSeed.SeedStats.GrowTime.Keys.ToArray()[0];
         newSeed.GrowTimeGen = Gen.Mixed;
 
-        newSeed.MutationPossibilityGen = Gen.Mixed;
-        newSeed.MutationPossibility = newSeed.LevelData.MutationChance.Keys.ToArray()[0];
+        newSeed.MutationChanceGen = Gen.Mixed;
+        newSeed.MutationChance = newSeed.SeedStats.MutationChance.Keys.ToArray()[0];
 
-        newSeed.minAmount = newSeed.LevelData.MinAmount.Keys.ToArray()[0];
-        newSeed.maxAmount = newSeed.LevelData.MaxAmount.Keys.ToArray()[0];
+        newSeed.minAmount = newSeed.SeedStats.MinAmount.Keys.ToArray()[0];
+        newSeed.maxAmount = newSeed.SeedStats.MaxAmount.Keys.ToArray()[0];
         newSeed.AmountGen = Gen.Mixed;
 
         return newSeed;

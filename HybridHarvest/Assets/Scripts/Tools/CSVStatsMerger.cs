@@ -13,14 +13,14 @@ public static class CSVStatsMerger
     public static SeedStatistics GetQuantumStatistics(string parent1, string parent2)
     {
         var seedName = parent1 + "-" + parent2;
-        var stats = CSVReader.ParseSeedStats(seedName);
+        var stats = CSVReader.GetSeedStats(seedName);
         if (stats == null)
         {
             var newRows = MergeExistingTables(parent1, parent2);
             CreateNewCSV(seedName, newRows);
         }
 
-        stats = CSVReader.ParseSeedStats(seedName);
+        stats = CSVReader.GetSeedStats(seedName);
         return stats;
     }
 

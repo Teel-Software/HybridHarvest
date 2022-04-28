@@ -21,7 +21,7 @@ public class SeedStatistics
 
     public override string ToString()
     {
-        StringBuilder encodedData = new StringBuilder();
+        var encodedData = new StringBuilder();
         encodedData.Append(string.Join(" ", Gabitus))
             .Append("/")
             .Append(string.Join(" ", Taste))

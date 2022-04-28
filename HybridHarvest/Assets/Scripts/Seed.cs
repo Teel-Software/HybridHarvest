@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
 [Serializable]
@@ -10,7 +11,8 @@ public class Seed : ScriptableObject
     public string Name;
     public string NameInRussian;
     public string NameInLatin;
-
+    
+    public int ShopBuyPrice;
     public int Price
     {
         get
@@ -23,10 +25,6 @@ public class Seed : ScriptableObject
             return (int)(Taste * multiplier);
         }
     }
-    public Gen AmountGen;
-    public int minAmount;
-    public int maxAmount;
-    public int ShopBuyPrice;
 
     public Sprite PlantSprite
     {
@@ -58,15 +56,15 @@ public class Seed : ScriptableObject
     {
         get
         {
-            LevelData ??= CSVReader.ParseSeedStats(Name);
+            SeedStats ??= CSVReader.GetSeedStats(Name);
             var rating = 0;
             try
             {
-                rating = LevelData.Gabitus[Gabitus]
-                         + LevelData.Taste[Taste]
-                         + LevelData.MutationChance[MutationPossibility]
-                         + LevelData.MinAmount[minAmount]
-                         + LevelData.GrowTime[GrowTime];
+                rating = SeedStats.Gabitus[Gabitus]
+                         + SeedStats.Taste[Taste]
+                         + SeedStats.MutationChance[MutationChance]
+                         + SeedStats.MinAmount[minAmount]
+                         + SeedStats.GrowTime[GrowTime];
             }
             catch
             {
@@ -104,11 +102,17 @@ public class Seed : ScriptableObject
 
     public Gen GrowTimeGen;
     public int GrowTime;
+    
+    public Gen AmountGen;
+    public int minAmount;
+    public int maxAmount;
+    
+    [FormerlySerializedAs("MutationPossibilityGen")]
+    public Gen MutationChanceGen;
+    [FormerlySerializedAs("MutationPossibility")]
+    public MutationChance MutationChance;
 
-    public Gen MutationPossibilityGen;
-    public MutationChance MutationPossibility;
-
-    public SeedStatistics LevelData;
+    public SeedStatistics SeedStats;
 
     /// <summary>
     /// Imports seed data from string
@@ -117,7 +121,7 @@ public class Seed : ScriptableObject
     public void SetValues(string data)
     {
         var parameters = data.Split('|');
-        LevelData = CSVReader.ParseSeedStats(parameters[0]);
+        SeedStats = CSVReader.GetSeedStats(parameters[0]);
         Name = parameters[0];
         GrowTime = int.Parse(parameters[2]);
         GrowTimeGen = (Gen)int.Parse(parameters[3]);
@@ -132,21 +136,9 @@ public class Seed : ScriptableObject
         //PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[12]);
         //SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
         //GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
-        MutationPossibility = (MutationChance)int.Parse(parameters[12]);
-        //JsonTest();
+        MutationChance = (MutationChance)int.Parse(parameters[12]);
     }
 
-    private void JsonTest()
-    {
-        var str = JsonUtility.ToJson(this);
-        Debug.Log(str);
-        
-        var s = (Seed)CreateInstance(typeof(Seed));
-        JsonUtility.FromJsonOverwrite(str, s);
-        Debug.Log(s);
-        Debug.Log(this);
-    }
-    
     /// <summary>
     /// Exports seed data as string
     /// </summary>
@@ -160,9 +152,35 @@ public class Seed : ScriptableObject
                minAmount + "|" + maxAmount +
                "|" + NameInRussian + "|" + NameInLatin +
                //"|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
-               "|" + (int)MutationPossibility;
+               "|" + (int)MutationChance;
     }
+    
+    public static Seed Create(string nameEnglish, int taste, int gabitus, int growTime, int mutationChance, int minAmt, int maxAmt)
+    {
+        var seed = Resources.Load<Seed>($"Seeds\\{nameEnglish}");
+        seed.SeedStats = CSVReader.GetSeedStats(nameEnglish);
+        //pls help
+        //seed.NameInRussian = baselineSeed.NameInRussian;
+        //seed.NameInLatin = baselineSeed.NameInLatin;
 
+        seed.Taste = taste;
+        //seed.TasteGen = baselineSeed.TasteGen;
+
+        seed.Gabitus = gabitus;
+        //seed.GabitusGen = baselineSeed.TasteGen;
+
+        seed.GrowTime = growTime;
+        //seed.GrowTimeGen = baselineSeed.GrowTimeGen;
+
+        seed.MutationChance = (MutationChance)mutationChance;
+        //seed.MutationChanceGen = baselineSeed.MutationChanceGen;
+
+        seed.minAmount = minAmt;
+        seed.maxAmount = maxAmt;
+        
+        return seed;
+    }
+    
     /// <summary>
     /// Получает спрайт растения на стадии роста
     /// </summary>
@@ -179,6 +197,34 @@ public class Seed : ScriptableObject
             return YoungSprite;
         else
             return GrownSprite;
+    }
+
+    public const int MutationToPointsMultiplier = 3;
+    public double ConvertToPoints()
+    {
+        var points = (double)(maxAmount + minAmount) / 2 * 
+            (Taste + Gabitus + MutationToPointsMultiplier * (int)MutationChance) / GrowTime;
+        return points;
+    }
+
+    public static Seed GetRandSeed(double points)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public static void JsonTest(Seed seed)
+    {
+        var str = JsonUtility.ToJson(seed);
+        var s = CreateInstance<Seed>();
+        JsonUtility.FromJsonOverwrite(str, s);
+        Debug.Log($"Initial: {seed}");
+        Debug.Log($"Resulting: {s}");
+        Debug.Log($"Equal: {seed.ToString() == s.ToString()}");
+        Debug.Log(str);
+        Debug.Log(JsonUtility.ToJson(s));
+        Debug.Log($"Equal: {str == JsonUtility.ToJson(s)}");
+        Debug.Log(seed.SeedStats);
+        Debug.Log(s.SeedStats); //null
     }
 }
 

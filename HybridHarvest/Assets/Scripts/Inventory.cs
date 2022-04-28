@@ -4,6 +4,7 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using CI.QuickSave;
+using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour, ISaveable
 {
@@ -20,10 +21,10 @@ public class Inventory : MonoBehaviour, ISaveable
     public int Reputation { get; private set; }
 
     public int ReputationLimit =>
-        (int)Math.Round((0.04 * Math.Pow(ReputationLevel, 3) +
-                         0.8 * Math.Pow(ReputationLevel, 2) +
-                         2 * ReputationLevel) * 15);
-    public int ReputationLevel;
+        (int)Math.Round((0.04 * Math.Pow(Level, 3) +
+                         0.8 * Math.Pow(Level, 2) +
+                         2 * Level) * 15);
+    public int Level;
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
     public int MaxItemsAmount { get; private set; }
@@ -55,7 +56,7 @@ public class Inventory : MonoBehaviour, ISaveable
     private void RedrawInfo()
     {
         if (MoneyInfo != null) MoneyInfo.text = Money.ToString();
-        if (ReputationInfo != null) ReputationInfo.text = $"Уровень {ReputationLevel}";
+        if (ReputationInfo != null) ReputationInfo.text = $"Уровень {Level}";
         if (EnergyInfo != null) EnergyInfo.text = $"{Energy}/{EnergyMax}";
         DrawEnergyTime();
     }
@@ -112,7 +113,7 @@ public class Inventory : MonoBehaviour, ISaveable
         if (Reputation >= ReputationLimit)
         {
             Reputation -= ReputationLimit;
-            ReputationLevel++;
+            Level++;
             // Бонусы за повышение вот здесь
             EnergyMax++;
             Money += 100;
@@ -142,7 +143,7 @@ public class Inventory : MonoBehaviour, ISaveable
         var writer = QuickSaveWriter.Create("PlayerInventoryData");
         writer.Write("money", Money)
             .Write("reputation", Reputation)
-            .Write("reputationLevel", ReputationLevel);
+            .Write("reputationLevel", Level);
         writer.Commit();
 
         writer = QuickSaveWriter.Create("PlayerInventoryItems");
@@ -165,7 +166,7 @@ public class Inventory : MonoBehaviour, ISaveable
         Money = reader.Exists("money") ? reader.Read<int>("money") : 100;
         Reputation = reader.Exists("reputation") ? reader.Read<int>("reputation") : 0;
         // Hачинается с 1 т.к. формула неадекватно реагирует на 0
-        ReputationLevel = reader.Exists("reputationLevel") ? reader.Read<int>("reputationLevel") : 1;
+        Level = reader.Exists("reputationLevel") ? reader.Read<int>("reputationLevel") : 1;
 
         MaxItemsAmount = 10;
         Elements = new List<Seed>();

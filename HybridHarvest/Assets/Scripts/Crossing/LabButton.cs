@@ -41,7 +41,7 @@ public class LabButton : MonoBehaviour
             $"\nГабитус: {seed.Gabitus}" +
             $"\nВремя роста: {seed.GrowTime}" +
             $"\nКол-во: {seed.minAmount}-{seed.maxAmount}" +
-            $"\nШанс мутации: {seed.MutationPossibility}";
+            $"\nШанс мутации: {seed.MutationChance}";
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;
@@ -58,7 +58,7 @@ public class LabButton : MonoBehaviour
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
             $"\nВремя роста:\n {seed.GrowTime} {chance[2]}%"+
             $"\nКол-во: {seed.minAmount}-{seed.maxAmount}  {chance[1]}%" +
-            $"\nШанс мутации: \n{seed.MutationPossibility} {chance[1]}%" ;
+            $"\nШанс мутации: \n{seed.MutationChance} {chance[1]}%" ;
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;

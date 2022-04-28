@@ -53,7 +53,7 @@ public class HarvestProcessor : MonoBehaviour
                 $"Габитус: {seed.Gabitus}\n" +
                 $"Время роста: {seed.GrowTime}\n" +
                 $"Кол-во плодов: {seed.minAmount} - {seed.maxAmount}\n" +
-                $"Шанс мутации: {seed.MutationPossibility}\n";
+                $"Шанс мутации: {seed.MutationChance}\n";
 
             var img = item
                 .transform.Find("Background")

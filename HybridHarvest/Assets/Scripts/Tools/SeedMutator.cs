@@ -7,7 +7,7 @@ public static class SeedMutator
 {
     public static Seed GetMutatedSeed(Seed oldSeed)
     {
-        var changingStatsAmount = getAmountOfChangingStats(oldSeed.MutationPossibility);
+        var changingStatsAmount = getAmountOfChangingStats(oldSeed.MutationChance);
 
         (bool[] index, int alreadyFull) = GetStatsFullness(oldSeed);
         var t = -1;
@@ -32,14 +32,13 @@ public static class SeedMutator
             newSeed.Taste = newStats[1];
             newSeed.GrowTime = newStats[2];
             newSeed.minAmount = newStats[3];
-            newSeed.MutationPossibility = (MutationChance)newStats[4];
+            newSeed.MutationChance = (MutationChance)newStats[4];
             newSeed.maxAmount = newStats[5];
         }
         catch
         {
             Debug.Log($"В мутации ошибка -_- Семечко \"{oldSeed.Name}\".");
         }
-
         return newSeed;
     }
 
@@ -63,12 +62,12 @@ public static class SeedMutator
     private static int[] MutateStats(Seed oldSeed, bool[] index)
     {
         Tuple<int, int[]>[] statsData = {
-        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
-        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
-        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
-        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
-        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
-        Tuple.Create(oldSeed.maxAmount, oldSeed.LevelData.MaxAmount.Keys.ToArray())
+        Tuple.Create(oldSeed.Gabitus, oldSeed.SeedStats.Gabitus.Keys.ToArray()),
+        Tuple.Create(oldSeed.Taste, oldSeed.SeedStats.Taste.Keys.ToArray()),
+        Tuple.Create(oldSeed.GrowTime, oldSeed.SeedStats.GrowTime.Keys.ToArray()),
+        Tuple.Create(oldSeed.minAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
+        Tuple.Create((int)oldSeed.MutationChance, oldSeed.SeedStats.MutationChance.Keys.Select(x => (int)x).ToArray()),
+        Tuple.Create(oldSeed.maxAmount, oldSeed.SeedStats.MaxAmount.Keys.ToArray())
         };
         List<int> stats = new List<int>();
         for (var i = 0; i < statsData.Length - 1; i++)
@@ -99,11 +98,11 @@ public static class SeedMutator
     private static (bool[], int) GetStatsFullness(Seed oldSeed)
     {
         Tuple<int, int[]>[] statsData = {
-        Tuple.Create(oldSeed.Gabitus, oldSeed.LevelData.Gabitus.Keys.ToArray()),
-        Tuple.Create(oldSeed.Taste, oldSeed.LevelData.Taste.Keys.ToArray()),
-        Tuple.Create(oldSeed.GrowTime, oldSeed.LevelData.GrowTime.Keys.ToArray()),
-        Tuple.Create(oldSeed.minAmount, oldSeed.LevelData.MinAmount.Keys.ToArray()),
-        Tuple.Create((int)oldSeed.MutationPossibility, oldSeed.LevelData.MutationChance.Keys.Select(x => (int)x).ToArray()),
+        Tuple.Create(oldSeed.Gabitus, oldSeed.SeedStats.Gabitus.Keys.ToArray()),
+        Tuple.Create(oldSeed.Taste, oldSeed.SeedStats.Taste.Keys.ToArray()),
+        Tuple.Create(oldSeed.GrowTime, oldSeed.SeedStats.GrowTime.Keys.ToArray()),
+        Tuple.Create(oldSeed.minAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
+        Tuple.Create((int)oldSeed.MutationChance, oldSeed.SeedStats.MutationChance.Keys.Select(x => (int)x).ToArray()),
         };
         bool[] index = new bool[5];
         var amount = 0;

@@ -88,7 +88,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
     
     public void CSVTest()
     {
-        var stats = CSVReader.ParseSeedStats("Peas");
+        var stats = CSVReader.GetSeedStats("Peas");
         Debug.Log(string.Join(" ", stats.Gabitus));
         Debug.Log(string.Join(" ", stats.Taste));
         Debug.Log(string.Join(" ", stats.MinAmount));

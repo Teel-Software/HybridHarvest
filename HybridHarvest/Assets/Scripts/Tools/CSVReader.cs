@@ -8,7 +8,7 @@ public static class CSVReader
     /// <summary>
     /// Returns SeedStatistics from file seedName.csv
     /// </summary>
-    public static SeedStatistics ParseSeedStats(string seedName)
+    public static SeedStatistics GetSeedStats(string seedName)
     {
         var outStats = new SeedStatistics();
         var seedData = new string[] { };
@@ -22,7 +22,7 @@ public static class CSVReader
         catch
         {
             try {                 //Вариант для скрещенных
-                using (StreamReader reader = new StreamReader(Path.Combine(Application.persistentDataPath, seedName + ".csv")))
+                using (var reader = new StreamReader(Path.Combine(Application.persistentDataPath, seedName + ".csv")))
                 {
                     seedData = reader.ReadToEnd().Split('\n');
                 }
