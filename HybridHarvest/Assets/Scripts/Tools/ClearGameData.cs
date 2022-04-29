@@ -13,16 +13,11 @@ public class ClearGameData : MonoBehaviour
 
     public void ClearAll()
     {
-        PlayerPrefs.DeleteAll();
-
         var quickSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave");
         if (Directory.Exists(quickSavePath))
             Directory.Delete(quickSavePath, true);
 
-        ClearPlayerStats();
-
-        PlayerPrefs.Save();
-
+        ResetPlayerPrefs();
         ClearExhibition();
 
         if (Inventory != null)
@@ -47,10 +42,8 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void WatchTutorial()
     {
-        var tutorialSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave\\TutorialState.json");
-        if (File.Exists(tutorialSavePath))
-            File.Delete(tutorialSavePath);
-        else Debug.Log($@"Файл {tutorialSavePath} не найден.");
+        ClearAll();
+        ChangeStartSceneOrDisable();
 
         SceneManager.LoadScene(1);
     }
@@ -109,8 +102,10 @@ public class ClearGameData : MonoBehaviour
     /// <summary>
     /// Приводит статистику игрока к дефолтным значениям
     /// </summary>
-    private static void ClearPlayerStats()
+    private static void ResetPlayerPrefs()
     {
+        PlayerPrefs.DeleteAll();
+
         PlayerPrefs.SetInt("money", 100);
         PlayerPrefs.SetInt("reputation", 0);
         PlayerPrefs.SetInt("reputationLimit", 500);
@@ -120,5 +115,7 @@ public class ClearGameData : MonoBehaviour
         PlayerPrefs.SetInt("energy", 0);
         PlayerPrefs.SetFloat("energytimebuffer", 0);
         PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
+        
+        PlayerPrefs.Save();
     }
 }

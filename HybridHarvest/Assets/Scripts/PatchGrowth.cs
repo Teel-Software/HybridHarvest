@@ -175,9 +175,11 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void SpeedUpSeed()
     {
+        const int coeff = 2;
+
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
-        confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в 10 раз?",
+        confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в {coeff} раза?",
             "Для ускорения нужно будет посмотреть рекламу.");
 
         var adHandler = confPanel.gameObject.AddComponent<AdHandler>();
@@ -186,7 +188,7 @@ public class PatchGrowth : MonoBehaviour
         adHandler.AdPurpose = AdPurpose.SpeedUpSeed;
 
         confPanel.SetYesAction(() =>
-            adHandler.SpeedUpAction = () => SetSeedSpeed(10));
+            adHandler.SpeedUpAction = () => SetSeedSpeed((int)(_timeSpeedBooster * coeff)));
         confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
@@ -352,6 +354,8 @@ public class PatchGrowth : MonoBehaviour
     {
         if (coeff > 0)
             _timeSpeedBooster = coeff;
+        
+        Debug.Log(_timeSpeedBooster);
     }
 
     /// <summary>
@@ -412,9 +416,10 @@ public class PatchGrowth : MonoBehaviour
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
-                
+
                 if (optionsMenu != null && lastPatchGrowth == this)
-                    optionsMenu.Timer.text = Tools.TimeFormatter.Format(timeSpan);
+                    optionsMenu.Timer.text =
+                        $"{growingSeed.NameInRussian}: {Tools.TimeFormatter.Format(timeSpan)} осталось.";
             }
             else
             {

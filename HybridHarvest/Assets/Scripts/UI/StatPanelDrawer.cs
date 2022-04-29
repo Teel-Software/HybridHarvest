@@ -69,16 +69,16 @@ public class StatPanelDrawer : MonoBehaviour
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSell_Played"))
             scenario?.Tutorial_SellItem();
 
-        // тутор для покупки пакета семян
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
-            scenario?.Tutorial_BuyItem();
-
         // тутор для замены пакета семян
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToReplace_Played"))
             scenario?.Tutorial_ReplaceItem();
 
         // тутор для панели статистики
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToPlant_Played"))
-            scenario?.Tutorial_StatPanel();
+            scenario?.Tutorial_PlantItem();
+
+        // тутор для покупки пакета семян
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
+            scenario?.Tutorial_BuyItem();
     }
 }

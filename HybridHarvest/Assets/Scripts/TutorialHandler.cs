@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class TutorialHandler : MonoBehaviour
 {
-    void Start()
+    public static void ClearGameAfterTutorial()
     {
-        GetComponent<Scenario>()?.Tutorial_Beginning();
+        var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        inventory.Elements = inventory.Elements
+            .Where(seed => !seed.NameInRussian.Contains("Обучаю"))
+            .ToList();
+        inventory.Save();
+        ShopLogic.UnlockSeeds("Cucumber", "Tomato", "Potato", "Pea", "Carrot", "Debug");
     }
 
     public void SkipTutorial()
@@ -31,16 +36,12 @@ public class TutorialHandler : MonoBehaviour
             scenario?.Tutorial_SideMenuInventory();
 
         // тутор для боковой панели
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
             scenario?.Tutorial_SideMenu();
     }
 
-    public void ClearGameAfterTutorial()
+    private void Start()
     {
-        var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        inventory.Elements = inventory.Elements
-               .Where(seed => !seed.NameInRussian.Contains("Обучаю"))
-               .ToList();
-        inventory.Save();
+        GetComponent<Scenario>()?.Tutorial_Beginning();
     }
 }

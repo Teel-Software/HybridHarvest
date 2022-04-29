@@ -19,48 +19,51 @@ public class AdHandler : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     public Action SpeedUpAction { get; set; }
 
+    private bool _awardIsCollected = false;
     private string _adUnitId;
     private Inventory _inventory;
 
     // If the ad successfully loads, add a listener to the button and enable it:
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
+        if (!adUnitId.Equals(_adUnitId)) return;
+
+        ClearListeners();
         Debug.Log("Ad Loaded: " + adUnitId);
 
-        if (adUnitId.Equals(_adUnitId))
-        {
-            // Configure the button to call the ShowAd() method when clicked:
-            ShowAdButton.onClick.AddListener(ShowAd);
-            // Enable the button for users to click:
-            if (ShowAdButton != null)
-                ShowAdButton.interactable = true;
-        }
+        // Configure the button to call the ShowAd() method when clicked:
+        ShowAdButton.onClick.AddListener(ShowAd);
+        // Enable the button for users to click:
+        if (ShowAdButton != null)
+            ShowAdButton.interactable = true;
     }
 
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        if (!adUnitId.Equals(_adUnitId)
+            || !showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)
+            || _awardIsCollected) return;
+
+        Debug.Log("Unity Ads Rewarded: Ad Completed");
+
+        // Grant a reward.
+        switch (AdPurpose)
         {
-            Debug.Log("Unity Ads Rewarded: Ad Completed");
-
-            // Grant a reward.
-            switch (AdPurpose)
-            {
-                case AdPurpose.AddEnergy:
-                    UpdateEnergy();
-                    break;
-                case AdPurpose.SpeedUpSeed:
-                    SpeedUpAction.Invoke();
-                    break;
-                default:
-                    Debug.Log("Действие за выполнение рекламы не назначено!");
-                    break;
-            }
-
-            // Load another ad:
-            Advertisement.Load(_adUnitId, this);
+            case AdPurpose.AddEnergy:
+                UpdateEnergy();
+                break;
+            case AdPurpose.SpeedUpSeed:
+                SpeedUpAction.Invoke();
+                break;
+            default:
+                Debug.Log("Действие за выполнение рекламы не назначено!");
+                break;
         }
+
+        _awardIsCollected = true;
+        // Load another ad:
+        Advertisement.Load(_adUnitId, this);
     }
 
     // Implement Load and Show Listener error callbacks:
@@ -122,18 +125,28 @@ public class AdHandler : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
             ? _iOSAdUnitId
             : _androidAdUnitId;
         //Disable button until ad is ready to show
+        
         if (ShowAdButton != null)
             ShowAdButton.interactable = false;
     }
 
     private void Start()
     {
-        StartCoroutine(WaitForLoad());
+        _awardIsCollected = false;
+        LoadAd();
+        // StartCoroutine(WaitForLoad());
     }
 
     private void OnDestroy()
     {
+        ClearListeners();
+    }
+
+    private void ClearListeners()
+    {
         // Clean up the button listeners:
+        _awardIsCollected = false;
         ShowAdButton.onClick.RemoveAllListeners();
+        // Debug.Log("Listeners are cleared!");
     }
 }

@@ -31,17 +31,21 @@ public class InventoryDrawer : MonoBehaviour
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
-        // тутор для добавления пакета семян
-        if (QSReader.Create("TutorialState").Exists("Tutorial_BuyItem_Played"))
-            scenario?.Tutorial_AddItem();
-
         // тутор для выбора пакета семян для замены
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
+        if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
             scenario?.Tutorial_ChooseItemToReplace();
 
         // тутор для инвентаря
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
             scenario?.Tutorial_Inventory();
+        
+        // тутор для выбора пакета семян для посадки
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_GoToField_Played"))
+            scenario?.Tutorial_ChooseItemToPlant();
+
+        // тутор для добавления пакета семян
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_BuyItem_Played"))
+            scenario?.Tutorial_AddItem();
     }
 
     private void OnDisable()
