@@ -179,6 +179,22 @@ public class Scenario : MonoBehaviour
         );
     }
 
+    public void Tutorial_ChooseItemToSpeedUp()
+    {
+        ExecuteTutorialPart("ChooseItemToSpeedUp", activeButtonName: "FarmSpot",
+            firstCharacterPhrases: new[] { "Ну-ка, посмотрим, сколько наши огурчики будут рости." });
+    }
+
+    public void Tutorial_SpeedUpItem()
+    {
+        ExecuteTutorialPart("SpeedUpItem", activeButtonName: "SpeedUpBtn",
+            firstCharacterPhrases: new[]
+            {
+                "Ого! Многовато времени, я столько ждать не намерен! ",
+                "Хорошо, что у меня завалялась в кармане баночка с супер жижей. Сейчас я быстренько ускорю рост этих огурчиков."
+            });
+    }
+
     public void Tutorial_Inventory()
     {
         ExecuteTutorialPart("Inventory", activeButtonName: "EnergyPanel", narratorPhrases: new[]

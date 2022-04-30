@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
+using UnityEditor;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class PatchGrowth : MonoBehaviour
 
     [SerializeField] private GameObject blockerPrefab;
     [SerializeField] private GameObject infoContainer;
+    [SerializeField] private GameObject optionsMenu;
     [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
-    [SerializeField] private OptionsMenuHandler optionsMenuPrefab;
 
     [SerializeField] private Image timerBGImage;
     [SerializeField] private Text growthText;
@@ -31,7 +32,6 @@ public class PatchGrowth : MonoBehaviour
 
     private static GameObject infoBlocker;
     private static PatchGrowth lastPatchGrowth;
-    private static OptionsMenuHandler optionsMenu;
     private Transform startCointainerPlace;
     private int infoContainerOpenedTimes;
 
@@ -139,22 +139,20 @@ public class PatchGrowth : MonoBehaviour
         Destroy(infoBlocker);
         infoBlocker = null;
 
-        Destroy(optionsMenu?.gameObject);
-        optionsMenu = null;
-
         if (lastPatchGrowth == null) return;
 
         if (resetOpenedTimes)
             lastPatchGrowth.infoContainerOpenedTimes = 0;
 
         lastPatchGrowth.infoContainer.SetActive(false);
+        lastPatchGrowth.optionsMenu.SetActive(false);
         lastPatchGrowth.infoContainer.transform.SetParent(lastPatchGrowth.startCointainerPlace, true);
     }
 
     /// <summary>
     /// Отменяет посадку растения.
     /// </summary>
-    private void CancelPlant()
+    public void CancelPlant()
     {
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
@@ -167,13 +165,13 @@ public class PatchGrowth : MonoBehaviour
             timerNeeded = false;
             ToggleInfo();
         });
-        confPanel.SetNoAction(() => CloseActiveInfoContainer());
+        // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
     /// Ускоряет рост семечка.
     /// </summary>
-    private void SpeedUpSeed()
+    public void SpeedUpSeed()
     {
         const int coeff = 2;
 
@@ -182,14 +180,14 @@ public class PatchGrowth : MonoBehaviour
         confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в {coeff} раза?",
             "Для ускорения нужно будет посмотреть рекламу.");
 
-        var adHandler = confPanel.gameObject.AddComponent<AdHandler>();
+        var adHandler = optionsMenu.gameObject.GetComponent<AdHandler>();
         adHandler.ShowAdButton = confPanel.YesButton;
         adHandler.ShowAdButton.interactable = false;
-        adHandler.AdPurpose = AdPurpose.SpeedUpSeed;
+        adHandler.Init();
 
         confPanel.SetYesAction(() =>
-            adHandler.SpeedUpAction = () => SetSeedSpeed((int)(_timeSpeedBooster * coeff)));
-        confPanel.SetNoAction(() => CloseActiveInfoContainer());
+            adHandler.SpeedUpAction = () => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
+        // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
@@ -235,16 +233,13 @@ public class PatchGrowth : MonoBehaviour
         infoContainer.SetActive(true);
 
         infoContainerOpenedTimes = 1;
-        infoBlocker.SetActive(true);
-
-        if (optionsMenu == null)
-        {
-            var canvas = GameObject.FindGameObjectWithTag("Canvas");
-            optionsMenu = Instantiate(optionsMenuPrefab, canvas.transform, false);
-        }
-
-        optionsMenu.СancelAction = () => CancelPlant();
-        optionsMenu.SpeedUpAction = () => SpeedUpSeed();
+        optionsMenu.SetActive(timerNeeded);
+        
+        // var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        //
+        // // тутор для нажатия на кнопку ускорения семян
+        // if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSpeedUp_Played"))
+        //     scenario?.Tutorial_SpeedUpItem();
     }
 
     /// <summary>
@@ -256,14 +251,12 @@ public class PatchGrowth : MonoBehaviour
             infoContainer.transform.SetParent(startCointainerPlace, true);
 
         infoContainer.SetActive(false);
+        optionsMenu.SetActive(false);
 
         if (lastPatchGrowth != this) return;
 
         Destroy(infoBlocker);
         infoBlocker = null;
-
-        Destroy(optionsMenu?.gameObject);
-        optionsMenu = null;
     }
 
     /// <summary>
@@ -297,7 +290,10 @@ public class PatchGrowth : MonoBehaviour
             if (lastPatchGrowth != this)
             {
                 if (lastPatchGrowth != null)
+                {
                     lastPatchGrowth.infoContainer.SetActive(false);
+                    lastPatchGrowth.optionsMenu.SetActive(false);
+                }
 
                 ShowInfoContainer();
             }
@@ -327,6 +323,7 @@ public class PatchGrowth : MonoBehaviour
         plantImage.sprite = growingSeed.GrownSprite;
         ShowTimer();
         growthText.text = "ГОТОВО";
+        optionsMenu.SetActive(false);
 
         if (confPanel != null)
             confPanel.gameObject.SetActive(false);
@@ -354,8 +351,8 @@ public class PatchGrowth : MonoBehaviour
     {
         if (coeff > 0)
             _timeSpeedBooster = coeff;
-        
-        Debug.Log(_timeSpeedBooster);
+
+        Debug.Log($"Ускорение: {_timeSpeedBooster}");
     }
 
     /// <summary>
@@ -395,7 +392,7 @@ public class PatchGrowth : MonoBehaviour
 
         lastPatchGrowth = null;
         infoBlocker = null;
-        optionsMenu = null;
+        optionsMenu.SetActive(false);
 
         if (time <= 0)
             EndGrowthCycle();
@@ -416,10 +413,6 @@ public class PatchGrowth : MonoBehaviour
                 var timeSpan = TimeSpan.FromSeconds(math.round(time));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
-
-                if (optionsMenu != null && lastPatchGrowth == this)
-                    optionsMenu.Timer.text =
-                        $"{growingSeed.NameInRussian}: {Tools.TimeFormatter.Format(timeSpan)} осталось.";
             }
             else
             {

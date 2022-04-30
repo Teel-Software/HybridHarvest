@@ -261,7 +261,10 @@ public class InventoryDrawer : MonoBehaviour
             // тутор для продажи урожая
             else if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
                 scenario?.Tutorial_HarvestPlaceSellAll();
-
+            
+            // тутор для ускорения роста
+            else if (QSReader.Create("TutorialState").Exists("Tutorial_PlantItem_Played"))
+                scenario?.Tutorial_ChooseItemToSpeedUp();
         });
         logicScript.ItemObject = item;
 

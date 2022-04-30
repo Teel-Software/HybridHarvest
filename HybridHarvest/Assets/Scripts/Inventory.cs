@@ -4,7 +4,6 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using CI.QuickSave;
-using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour, ISaveable
 {

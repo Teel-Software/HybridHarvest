@@ -23,19 +23,24 @@ public class AdHandler : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     private string _adUnitId;
     private Inventory _inventory;
 
+    // Initialize ad if needed:
+    public void Init()
+    {
+        Start();
+    }
+
     // If the ad successfully loads, add a listener to the button and enable it:
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
-        if (!adUnitId.Equals(_adUnitId)) return;
+        if (!adUnitId.Equals(_adUnitId) || ShowAdButton == null) return;
 
         ClearListeners();
-        Debug.Log("Ad Loaded: " + adUnitId);
-
         // Configure the button to call the ShowAd() method when clicked:
         ShowAdButton.onClick.AddListener(ShowAd);
         // Enable the button for users to click:
-        if (ShowAdButton != null)
-            ShowAdButton.interactable = true;
+        ShowAdButton.interactable = true;
+
+        Debug.Log("Ad Loaded: " + adUnitId);
     }
 
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
@@ -125,7 +130,7 @@ public class AdHandler : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
             ? _iOSAdUnitId
             : _androidAdUnitId;
         //Disable button until ad is ready to show
-        
+
         if (ShowAdButton != null)
             ShowAdButton.interactable = false;
     }
@@ -146,7 +151,7 @@ public class AdHandler : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     {
         // Clean up the button listeners:
         _awardIsCollected = false;
-        ShowAdButton.onClick.RemoveAllListeners();
-        // Debug.Log("Listeners are cleared!");
+        if (ShowAdButton != null)
+            ShowAdButton.onClick.RemoveAllListeners();
     }
 }
