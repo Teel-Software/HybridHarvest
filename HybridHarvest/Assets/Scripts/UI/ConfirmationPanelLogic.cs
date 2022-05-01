@@ -146,6 +146,12 @@ public class ConfirmationPanelLogic : MonoBehaviour
     {
         yesAction.Invoke();
         gameObject.SetActive(false);
+        
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для роста семечка
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ConfirmSpeedUp_Played"))
+            scenario.Tutorial_WaitForGrowing();
     }
 
     /// <summary>

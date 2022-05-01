@@ -174,15 +174,13 @@ public class Scenario : MonoBehaviour
 
     public void Tutorial_PlantItem()
     {
-        ExecuteTutorialPart("PlantItem", activeButtonName: "ProceedButton"
-            // , narratorPhrases: new[] { "На этой панели написана вся нужная информация о семечке. Нажмите на кнопку \"Посадить\"." }
-        );
+        ExecuteTutorialPart("PlantItem", activeButtonName: "ProceedButton");
     }
 
     public void Tutorial_ChooseItemToSpeedUp()
     {
         ExecuteTutorialPart("ChooseItemToSpeedUp", activeButtonName: "FarmSpot",
-            firstCharacterPhrases: new[] { "Ну-ка, посмотрим, сколько наши огурчики будут рости." });
+            firstCharacterPhrases: new[] { "Ну-ка, посмотрим, сколько наши огурчики будут расти." });
     }
 
     public void Tutorial_SpeedUpItem()
@@ -191,54 +189,45 @@ public class Scenario : MonoBehaviour
             firstCharacterPhrases: new[]
             {
                 "Ого! Многовато времени, я столько ждать не намерен! ",
-                "Хорошо, что у меня завалялась в кармане баночка с супер жижей. Сейчас я быстренько ускорю рост этих огурчиков."
+                "Хорошо, что у меня завалялась в кармане баночка с супер жижей. Сейчас я быстро ускорю рост этих огурчиков."
             });
     }
 
-    public void Tutorial_Inventory()
+    public void Tutorial_ConfirmSpeedUp()
     {
-        ExecuteTutorialPart("Inventory", activeButtonName: "EnergyPanel", narratorPhrases: new[]
-        {
-            "Это склад. Здесь хранятся пакеты семян. Следите за заполнением места, ведь склад не бесконечен! Посмотреть, на сколько склад заполнен можно в правом нижнем углу.",
-            "Для начала познакомимся с энергией."
-        });
-    }
-
-    public void Tutorial_Energy()
-    {
-        ExecuteTutorialPart("Energy", activeButtonName: "EnergyExit", narratorPhrases: new[]
-        {
-            "Энергия тратится, когда вы садите растения. Она сама восстанавливается со временем, но если вы хотите - можно смотреть рекламу и получать энергию БЕСПЛАТНО!"
-        });
+        ExecuteTutorialPart("ConfirmSpeedUp", activeButtonName: "YesButton",
+            narratorPhrases: new[]
+            {
+                "Обычно ускорение производится за рекламу, но первый раз мы сделаем это для вас бесплатно."
+            });
     }
 
     public void Tutorial_WaitForGrowing()
     {
         ExecuteTutorialPart("WaitForGrowing", activeButtonName: "FarmSpot",
-            firstCharacterPhrases: new[]
-                { "Ого, картошка нынче быстро растёт! Видимо повлияли хорошие погодные условия." },
-            narratorPhrases: new[]
-            {
-                "Первый раз мы ускорили время роста картошки, чтобы вы долго не ждали. " +
-                "Обычные семена прорастают намного медленнее. Каждый раз при посадке семечка тратится 1 единица энергии.",
-                "Нажмите на картофель, как только он вырастет."
-            });
+            firstCharacterPhrases: new[] { "Вот так-то намного лучше!" });
     }
 
     public void Tutorial_HarvestPlace()
     {
         ExecuteTutorialPart("HarvestPlace", activeButtonName: "AddToInventory",
-            firstCharacterPhrases: new[] { "Ух ты, сколько картошки выросло! Даже и не знаю, какую выбрать!" },
+            firstCharacterPhrases: new[]
+            {
+                "Ух ты, сколько огурчиков выросло! Многовато для меня одного. Из одного я семена получу, а остальные продам."
+            },
             narratorPhrases: new[]
             {
-                "На данной панели отображается всё, что выросло из посаженного семечка. Чтобы добавить понравившиеся семена на склад - нажмите на кнопку \"+\"."
+                "На данной панели отображается ваш урожай. Выросшие огурцы можно превратить в семена для дальнейшего использования или продать."
             });
     }
 
     public void Tutorial_ChooseItemToReplace()
     {
-        ExecuteTutorialPart("ChooseItemToReplace", activeButtonTag: "TutorialPotato",
-            narratorPhrases: new[] { "Нажмите на пакет семян, а затем на кнопку \"Заменить\"." });
+        ExecuteTutorialPart("ChooseItemToReplace", activeButtonName: "0",
+            narratorPhrases: new[]
+            {
+                "Вы можете не добавлять новые семена на склад, а заменить уже имеющиеся. Так на складе останется больше свободного места."
+            });
     }
 
     public void Tutorial_ReplaceItem()
@@ -246,19 +235,45 @@ public class Scenario : MonoBehaviour
         ExecuteTutorialPart("ReplaceItem", activeButtonName: "ProceedButton");
     }
 
-    public void Tutorial_HarvestPlaceSellAll()
+    public void Tutorial_HarvestPlaceChoseAll()
     {
-        ExecuteTutorialPart("HarvestPlaceSellAll", activeButtonName: "SellAll",
+        ExecuteTutorialPart("HarvestPlaceChoseAll", activeButtonName: "ChoseAll",
             firstCharacterPhrases: new[]
-                { "Думаю, что остальную картошку можно продать, сейчас она всё равно мне не понадобится." },
-            narratorPhrases: new[] { "Нажмите на кнопку \"Продать всё\"." });
+            {
+                "Вот так! Оставшиеся огурчики можно продать!"
+            });
+    }
+
+    public void Tutorial_HarvestPlaceSell()
+    {
+        ExecuteTutorialPart("HarvestPlaceSell", activeButtonName: "Sell");
+    }
+
+    public void Tutorial_CheckEnergy()
+    {
+        ExecuteTutorialPart("CheckEnergy", activeButtonName: "EnergyPanel",
+            firstCharacterPhrases: new[]
+            {
+                "Братаха, чё-то подустал я... Пойти бы пивчанского бахнуть за упокой деда."
+            },
+            narratorPhrases: new[] { "Когда вы садите растения, у вас тратится энергия." });
+    }
+
+    public void Tutorial_Energy()
+    {
+        ExecuteTutorialPart("Energy", activeButtonName: "EnergyExit", narratorPhrases: new[]
+        {
+            "Энергия сама восстанавливается со временем, но если вы хотите - можно смотреть рекламу и получать энергию БЕСПЛАТНО!"
+        });
     }
 
     public void Tutorial_FieldEnding()
     {
-        ExecuteTutorialPart("FieldEnding", activeButtonName: "ExitScene",
-            firstCharacterPhrases: new[]
-                { "Отлично, с урожаем я разобрался, теперь самое время заглянуть к торговцу!" });
+        ExecuteTutorialPart("FieldEnding",
+            narratorPhrases: new[]
+            {
+                "Мы встретимся с вами вновь, когда вы достигните 2-ого уровня. Пока что осваивайтесь на поле, выращивайте огурцы и получайте опыт."
+            });
     }
 
     public void Tutorial_SideMenuInventory()
@@ -415,7 +430,9 @@ public class Scenario : MonoBehaviour
     /// <param name="keyPart">Название, по которому идёт сохранение</param>
     /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления</param>
     /// <param name="activeButtonTag">Тег кнопки, которую следует сделать активной после окончания части вступления</param>
+    /// <param name="lastPart"></param>
     /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж</param>
+    /// <param name="secondCharacterPhrases"></param>
     /// <param name="narratorPhrases">Фразы, которые говорит рассказчик</param>
     /// <param name="award">Награда после слов первого персонажа</param>
     private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
@@ -456,7 +473,7 @@ public class Scenario : MonoBehaviour
 
         // добавляет награду после слов первого персонажа
         if (award != null)
-            DialogPanel.AddAward(firstCharacterPhrases == null ? 0 : firstCharacterPhrases.Length, award);
+            DialogPanel.AddAward(firstCharacterPhrases?.Length ?? 0, award);
 
         if (lastPart == false)
             HighlightNextButton(activeButtonName: activeButtonName, activeButtonTag: activeButtonTag);
@@ -478,7 +495,6 @@ public class Scenario : MonoBehaviour
         {
             DialogPanel.LastAction = () =>
             {
-                GameObject fakeBtn = null;
                 GameObject activeButton = null;
 
                 if (activeButtonName != null)
@@ -497,7 +513,7 @@ public class Scenario : MonoBehaviour
 
                 var canvas = GameObject.FindGameObjectWithTag("Canvas");
                 Instantiate(BlockerPrefab, canvas.transform, false);
-                fakeBtn = Instantiate(activeButton, activeButton.transform.parent);
+                var fakeBtn = Instantiate(activeButton, activeButton.transform.parent);
                 fakeBtn.transform.SetSiblingIndex(activeButton.transform.GetSiblingIndex());
                 fakeBtn.name = $"FakeButton_{activeButton.name}";
                 fakeButtons.Add(activeButton, fakeBtn);

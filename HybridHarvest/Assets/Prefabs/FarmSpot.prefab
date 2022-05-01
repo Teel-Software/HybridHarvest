@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf41766da112444f952590598125161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Radius: 80
+  Padding: 30
 --- !u!114 &5482960226480509820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,8 +452,9 @@ MonoBehaviour:
   blockerPrefab: {fileID: 858837118122310719, guid: e8f736c5047e59c4398a1361feefab69, type: 3}
   infoContainer: {fileID: 2391132319206667270}
   optionsMenu: {fileID: 161325085774779939}
+  farmSpotsContainer: {fileID: 0}
   confirmationPanelPrefab: {fileID: 5999152171306563235, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
-  timerBGImage: {fileID: 8252107843899394200}
+  timerBG: {fileID: 8596610390199451168}
   growthText: {fileID: 3872873422083992983}
   growingSeed: {fileID: 0}
   time: 0

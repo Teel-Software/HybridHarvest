@@ -35,10 +35,6 @@ public class InventoryDrawer : MonoBehaviour
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
             scenario?.Tutorial_ChooseItemToReplace();
 
-        // тутор для инвентаря
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"))
-            scenario?.Tutorial_Inventory();
-        
         // тутор для выбора пакета семян для посадки
         else if (QSReader.Create("TutorialState").Exists("Tutorial_GoToField_Played"))
             scenario?.Tutorial_ChooseItemToPlant();
@@ -258,9 +254,9 @@ public class InventoryDrawer : MonoBehaviour
             else if (QSReader.Create("TutorialState").Exists("Tutorial_SellItem_Played"))
                 scenario?.Tutorial_GoToMarket();
 
-            // тутор для продажи урожая
+            // тутор для выбора урожая
             else if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
-                scenario?.Tutorial_HarvestPlaceSellAll();
+                scenario?.Tutorial_HarvestPlaceChoseAll();
             
             // тутор для ускорения роста
             else if (QSReader.Create("TutorialState").Exists("Tutorial_PlantItem_Played"))

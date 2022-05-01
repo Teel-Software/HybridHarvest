@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
 using UnityEditor;
+using UnityEngine.Serialization;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -21,9 +22,10 @@ public class PatchGrowth : MonoBehaviour
     [SerializeField] private GameObject blockerPrefab;
     [SerializeField] private GameObject infoContainer;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private Transform farmSpotsContainer; // место для отрисовки блокера и инфо контейнера
     [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
 
-    [SerializeField] private Image timerBGImage;
+    [SerializeField] private GameObject timerBG;
     [SerializeField] private Text growthText;
 
     public Seed growingSeed;
@@ -58,19 +60,13 @@ public class PatchGrowth : MonoBehaviour
         _inventory.ConsumeEnergy(1);
         isOccupied = true;
         timerNeeded = true;
-        timerBGImage.enabled = true;
+        timerBG.SetActive(true);
         infoContainerOpenedTimes = 0;
         growingSeed = seed;
         time = seed.GrowTime;
 
         SetSeedSpeed(seed);
         SavePlanting(seed);
-
-        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-
-        // тутор для роста семечка
-        if (QSReader.Create("TutorialState").Exists("Tutorial_StatPanel_Played"))
-            scenario.Tutorial_WaitForGrowing();
     }
 
     /// <summary>
@@ -122,7 +118,7 @@ public class PatchGrowth : MonoBehaviour
     public void ClearPatch()
     {
         plantImage.sprite = Resources.Load<Sprite>("Transparent");
-        timerBGImage.enabled = false;
+        timerBG.SetActive(false);
         growthText.text = "";
         isOccupied = false;
         growingSeed = null;
@@ -173,20 +169,46 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     public void SpeedUpSeed()
     {
-        const int coeff = 2;
+        var coeff = 2;
+        var playTutorial = false;
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для подтверждения ускорения
+        if (QSReader.Create("TutorialState").Exists("Tutorial_SpeedUpItem_Played")
+            && !QSReader.Create("TutorialState").Exists("Tutorial_ConfirmSpeedUp_Played", "TutorialSkipped"))
+        {
+            coeff = 60;
+            playTutorial = true;
+        }
+
+        var ending = "";
+        if (coeff % 10 > 1
+            && coeff % 10 < 5
+            && (coeff < 12 || coeff > 14))
+            ending = "а";
 
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
-        confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в {coeff} раза?",
+        confPanel.SetQuestion($"Ускорить {growingSeed.NameInRussian} в {coeff} раз{ending}?",
             "Для ускорения нужно будет посмотреть рекламу.");
 
-        var adHandler = optionsMenu.gameObject.GetComponent<AdHandler>();
-        adHandler.ShowAdButton = confPanel.YesButton;
-        adHandler.ShowAdButton.interactable = false;
-        adHandler.Init();
+        if (!playTutorial)
+        {
+            var adHandler = optionsMenu.gameObject.GetComponent<AdHandler>();
+            adHandler.ShowAdButton = confPanel.YesButton;
+            adHandler.ShowAdButton.interactable = false;
+            adHandler.Init();
+            confPanel.SetYesAction(() =>
+                adHandler.SpeedUpAction = () => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
+        }
+        else
+        {
+            GetComponent<Button>().enabled = false;
+            confPanel.SetYesAction(() => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
+            scenario?.Tutorial_ConfirmSpeedUp();
+        }
 
-        confPanel.SetYesAction(() =>
-            adHandler.SpeedUpAction = () => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
         // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
@@ -214,7 +236,7 @@ public class PatchGrowth : MonoBehaviour
     private void ShowTimer()
     {
         infoContainer.SetActive(true);
-        timerBGImage.enabled = true;
+        timerBG.SetActive(true);
     }
 
     /// <summary>
@@ -228,18 +250,18 @@ public class PatchGrowth : MonoBehaviour
         if (startCointainerPlace == null)
             startCointainerPlace = transform;
 
-        infoContainer.transform.SetParent(transform.parent.parent, true);
+        infoContainer.transform.SetParent(farmSpotsContainer, true);
         infoContainer.transform.SetAsLastSibling();
         infoContainer.SetActive(true);
 
         infoContainerOpenedTimes = 1;
         optionsMenu.SetActive(timerNeeded);
-        
-        // var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-        //
-        // // тутор для нажатия на кнопку ускорения семян
-        // if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSpeedUp_Played"))
-        //     scenario?.Tutorial_SpeedUpItem();
+
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для нажатия на кнопку ускорения семян
+        if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSpeedUp_Played"))
+            scenario?.Tutorial_SpeedUpItem();
     }
 
     /// <summary>
@@ -264,7 +286,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void SpawnBlocker()
     {
-        infoBlocker = Instantiate(blockerPrefab, transform.parent.parent, false);
+        infoBlocker = Instantiate(blockerPrefab, farmSpotsContainer, false);
         infoBlocker.transform.SetAsFirstSibling();
         infoBlocker.AddComponent<LayoutElement>().ignoreLayout = true;
     }
@@ -318,6 +340,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void EndGrowthCycle()
     {
+        GetComponent<Button>().enabled = true;
         ToggleInfo();
         timerNeeded = false;
         plantImage.sprite = growingSeed.GrownSprite;
@@ -370,7 +393,6 @@ public class PatchGrowth : MonoBehaviour
         else
         {
             isOccupied = false;
-            timerBGImage.enabled = false;
             return;
         }
 

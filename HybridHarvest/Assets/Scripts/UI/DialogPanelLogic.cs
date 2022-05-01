@@ -237,6 +237,7 @@ public class DialogPanelLogic : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
+        transform.SetAsLastSibling();
     }
 
     /// <summary>

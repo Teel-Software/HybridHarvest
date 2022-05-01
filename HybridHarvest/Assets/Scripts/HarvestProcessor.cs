@@ -73,6 +73,12 @@ public class HarvestProcessor : MonoBehaviour
             place.GetComponentInChildren<Toggle>().isOn = chosenCount != seedPlaces.Count;
 
         choseAllCheckmark.SetActive(chosenCount != seedPlaces.Count);
+        
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для продажи урожая
+        if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlaceChoseAll_Played"))
+            scenario?.Tutorial_HarvestPlaceSell();
     }
 
     /// <summary>
@@ -109,10 +115,11 @@ public class HarvestProcessor : MonoBehaviour
 
         UpdateChosenSeeds();
 
-        // тутор для выхода из поля на другую сцену
-        GameObject.FindGameObjectWithTag("TutorialHandler")
-            ?.GetComponent<Scenario>()
-            ?.Tutorial_FieldEnding();
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+
+        // тутор для проверки энергии
+        if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlaceChoseAll_Played"))
+            scenario?.Tutorial_CheckEnergy();
     }
 
     /// <summary>
