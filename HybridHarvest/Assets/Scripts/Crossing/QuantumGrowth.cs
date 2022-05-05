@@ -46,8 +46,7 @@ public class QuantumGrowth : MonoBehaviour
             return;
         }
         
-        growingSeed = ScriptableObject.CreateInstance<Seed>();
-        growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
+        growingSeed = Seed.Create(PlayerPrefs.GetString(Pot.name + "grows"));
         plantImage.sprite = growingSeed.PlantSprite;
         
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));

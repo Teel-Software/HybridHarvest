@@ -395,9 +395,8 @@ public class PatchGrowth : MonoBehaviour
             isOccupied = false;
             return;
         }
-
-        growingSeed = ScriptableObject.CreateInstance<Seed>();
-        growingSeed.SetValues(PlayerPrefs.GetString(Patch.name + "grows"));
+        
+        growingSeed = Seed.Create(PlayerPrefs.GetString(Patch.name + "grows"));
         SetSeedSpeed(growingSeed);
 
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
@@ -407,8 +406,7 @@ public class PatchGrowth : MonoBehaviour
         var seedsCount = PlayerPrefs.GetInt(Patch.name + "seedsCount");
         for (var i = 0; i < seedsCount; i++)
         {
-            var seed = ScriptableObject.CreateInstance<Seed>();
-            seed.SetValues(PlayerPrefs.GetString(Patch.name + "grown" + i));
+            var seed = Seed.Create(PlayerPrefs.GetString(Patch.name + "grown" + i));
             grownSeeds.Add(seed);
         }
 

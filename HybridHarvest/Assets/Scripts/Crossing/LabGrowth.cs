@@ -41,8 +41,7 @@ public class LabGrowth : MonoBehaviour
         }
         if (!isOccupied) return;
 
-        growingSeed = ScriptableObject.CreateInstance<Seed>();
-        growingSeed.SetValues(PlayerPrefs.GetString(Pot.name + "grows"));
+        growingSeed = Seed.Create(PlayerPrefs.GetString(Pot.name + "grows"));
         SpeedUpTutorSeed(growingSeed);
 
         var oldDate = DateTime.Parse(PlayerPrefs.GetString(Pot.name + "timeStart"));

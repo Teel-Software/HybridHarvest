@@ -18,8 +18,7 @@ namespace Exhibition
             Seeds = new Seed[testCount];
             foreach (var i in Enumerable.Range(0, testCount))
             {
-                Seeds[i] = ScriptableObject.CreateInstance<Seed>();
-                Seeds[i].SetValues("Pea|_|900|1|1|1|2|1|9|11|Горох|Písum|0");
+                Seeds[i] = Seed.Create("Pea|_|900|1|1|1|2|1|9|11|Горох|Písum|0");
             }
             foreach (var seed in Seeds)
             {

@@ -176,8 +176,7 @@ public class Inventory : MonoBehaviour, ISaveable
             for (var j = 0; j < i; j++)
             {
                 var parameters = reader.Read<string>(j.ToString());
-                var newSeed = ScriptableObject.CreateInstance<Seed>();
-                newSeed.SetValues(parameters);
+                var newSeed = Seed.Create(parameters);
                 Elements.Add(newSeed);
             }
         }

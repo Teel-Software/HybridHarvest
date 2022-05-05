@@ -70,8 +70,7 @@ public class GeneCrossing : MonoBehaviour
     public Seed MixTwoParents(Seed first, Seed second)
     {
         chancesIterator = 0;
-        var newSeed = ScriptableObject.CreateInstance<Seed>();
-        newSeed.SetValues(first.ToString());
+        var newSeed = Seed.Create(first.ToString());
 
         (newSeed.Taste, newSeed.TasteGen) =
             CountParameter(first.Taste, first.TasteGen, second.Taste, second.TasteGen);

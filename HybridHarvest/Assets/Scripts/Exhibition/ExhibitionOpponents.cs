@@ -43,7 +43,7 @@ public class ExhibitionOpponents : MonoBehaviour
         var seedName = "Pea";
         var example = Resources.Load<Seed>($"Seeds\\{seedName}");
         example.SeedStats = CSVReader.GetSeedStats(seedName);
-        Seed.JsonTest(example);
+        //Seed.JsonTest(example);
         var points = example.ConvertToPoints();
         points *= 2;
         Debug.Log(points);

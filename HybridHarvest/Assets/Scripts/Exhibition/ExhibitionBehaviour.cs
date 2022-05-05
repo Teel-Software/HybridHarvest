@@ -76,8 +76,7 @@ public class ExhibitionBehaviour : MonoBehaviour, ISaveable
             {
                 if (exhSeeds[i] == "")
                     continue;
-                var seed = ScriptableObject.CreateInstance<Seed>();
-                seed.SetValues(exhSeeds[i]);
+                var seed = Seed.Create(exhSeeds[i]);
                 exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed);   
             }
         }

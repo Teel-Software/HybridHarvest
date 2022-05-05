@@ -113,12 +113,13 @@ public class Seed : ScriptableObject
     public MutationChance MutationChance;
 
     public SeedStatistics SeedStats;
-
+    
     /// <summary>
+    /// (Deprecated)
     /// Imports seed data from string
     /// </summary>
     /// <param name="data">string with "|" separator</param>
-    public void SetValues(string data)
+    private void setValues(string data)
     {
         var parameters = data.Split('|');
         SeedStats = CSVReader.GetSeedStats(parameters[0]);
@@ -133,17 +134,23 @@ public class Seed : ScriptableObject
         maxAmount = int.Parse(parameters[9]);
         NameInRussian = parameters[10];
         NameInLatin = parameters[11];
-        //PlantSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[12]);
-        //SproutSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[13]);
-        //GrownSprite = Resources.Load<Sprite>("SeedsIcons\\" + parameters[14]);
         MutationChance = (MutationChance)int.Parse(parameters[12]);
     }
-
     /// <summary>
+    /// Exports seed data as a JSON string
+    /// </summary>
+    /// <returns>JSON string</returns>
+    public override string ToString()
+    {
+        return JsonUtility.ToJson(this);
+    }
+    
+    /// <summary>
+    /// (Deprecated)
     /// Exports seed data as string
     /// </summary>
     /// <returns>string with "|" separator</returns>
-    public override string ToString()
+    private string oldToString()
     {
         return Name + "|" + "_" + "|" +
                GrowTime + "|" + (int)GrowTimeGen + "|" +
@@ -151,8 +158,21 @@ public class Seed : ScriptableObject
                Taste + "|" + (int)TasteGen + "|" +
                minAmount + "|" + maxAmount +
                "|" + NameInRussian + "|" + NameInLatin +
-               //"|" + PlantSprite.name + "|" + SproutSprite.name + "|" + GrownSprite.name
                "|" + (int)MutationChance;
+    }
+
+    public static Seed Create(string seedString)
+    {
+        var seed = CreateInstance<Seed>();
+        try
+        {
+            JsonUtility.FromJsonOverwrite(seedString, seed);
+        }
+        catch
+        {
+            seed.setValues(seedString);
+        }
+        return seed;
     }
     
     public static Seed Create(string nameEnglish, int taste, int gabitus, int growTime, int mutationChance, int minAmt, int maxAmt)
@@ -178,6 +198,7 @@ public class Seed : ScriptableObject
         seed.minAmount = minAmt;
         seed.maxAmount = maxAmt;
         
+        seed.ShopBuyPrice = 0;
         return seed;
     }
     
@@ -216,7 +237,14 @@ public class Seed : ScriptableObject
     {
         var str = JsonUtility.ToJson(seed);
         var s = CreateInstance<Seed>();
-        JsonUtility.FromJsonOverwrite(str, s);
+        try
+        {
+            JsonUtility.FromJsonOverwrite("lol", s);
+        }
+        catch
+        {
+            JsonUtility.FromJsonOverwrite(str, s);
+        }
         Debug.Log($"Initial: {seed}");
         Debug.Log($"Resulting: {s}");
         Debug.Log($"Equal: {seed.ToString() == s.ToString()}");
