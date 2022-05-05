@@ -26,10 +26,10 @@ public class ExhibitionOpponents : MonoBehaviour
             new Opponent("Серафима Ивановна", "OldLady"),
             new Opponent("Дед Максим", "OldMan"),
         };
-        
+
         foreach (var card in cards)
             card.SetActive(false);
-        
+
         var level = inventory.Level;
         if (level < 10)
             opponentCount = 1;
@@ -37,60 +37,40 @@ public class ExhibitionOpponents : MonoBehaviour
             opponentCount = 2;
         if (level >= 20)
             opponentCount = 3;
-        opponents = new Opponent [opponentCount];
+        opponents = new Opponent[opponentCount];
 
         exhibitonDifficulty = 5;
-        var seedName = "Pea";
-        var example = Resources.Load<Seed>($"Seeds\\{seedName}");
-        example.SeedStats = CSVReader.GetSeedStats(seedName);
-        //Seed.JsonTest(example);
+        var seedNames = Resources.LoadAll<Seed>("Seeds")
+            .Select(x => x.Name)
+            .Where(x => x != "Debug")
+            .ToList();
+        var example = Seed.LoadFromResources("Cucumber");
         var points = example.ConvertToPoints();
-        points *= 2;
-        Debug.Log(points);
 
-        var stats = example.SeedStats;
-        var picker = new Random(Environment.TickCount);
-        
-        var randGrowTime = stats.GrowTime.ElementAt(picker.Next(stats.GrowTime.Values.Count)).Key;
-        
-        var randIndex = picker.Next(stats.MinAmount.Count);
-        var randMinAmt = stats.MinAmount.ElementAt(randIndex).Key;
-        var randMaxAmt = stats.MaxAmount.ElementAt(randIndex).Key;
-        var avgAmt = (randMaxAmt + randMinAmt) / 2;
-        var remainingPoints = points * randGrowTime / avgAmt;
-        
-        var maxRandMutation = (int)stats.MutationChance.Max(x => x.Key);
-        var randMutationChance = picker.Next(maxRandMutation + 1);
-        remainingPoints -= randMutationChance * Seed.MutationToPointsMultiplier;
-        
-        var randGabitus = picker.Next((int)remainingPoints);
-        if (randGabitus == 0)
-            randGabitus = 1;
-        remainingPoints -= randGabitus;
-        
-        var randTaste = (int)remainingPoints;
-        if (randTaste == 0)
-            randTaste = 1;
-        Debug.Log($"GrowTime {randGrowTime}; Amounts {randMinAmt}-{randMaxAmt}; Average {avgAmt}");
-        Debug.Log($"Muta {randMutationChance}; Gabi {randGabitus}; Taste {randTaste}");
-        var randSeed = Seed.Create(seedName, randTaste, randGabitus, randGrowTime, randMutationChance, randMinAmt, randMaxAmt);
-        Debug.Log(randSeed);
-        Debug.Log(randSeed.ConvertToPoints());
-        
         var rand = new Random(Environment.TickCount);
+        var seedCount = rand.Next(3) + 1;
         var unusedIndexes = Enumerable.Range(0, totalOpponents.Count).ToList();
         for (var i = 0; i < opponentCount; i++)
         {
             cards[i].SetActive(true);
             // Random generation without repetitions
             var index = rand.Next(0, unusedIndexes.Count);
-            var opp = unusedIndexes[index];
+            var baseOpponent = totalOpponents[unusedIndexes[index]];
             unusedIndexes.RemoveAt(index); 
-            opponents[i] = totalOpponents[opp];
-            var cardClass = cards[i].GetComponent<ExhibitionCard>();
-            cardClass.SetOpponent(opponents[i], gameObject.transform.parent);
-        }
 
+            var seeds = new List<Seed>();
+            for (var j = 0; j < seedCount; j++)
+            {
+                var seedName = seedNames[rand.Next(seedNames.Count)];
+                var seed = Seed.CreateRandom(seedName, points);
+                seeds.Add(seed);
+            }
+
+            opponents[i] = new Opponent(baseOpponent.Name, baseOpponent.SpriteName, seeds);
+            
+            var exhibitionCard = cards[i].GetComponent<ExhibitionCard>();
+            exhibitionCard.SetOpponent(opponents[i], gameObject.transform.parent);
+        }
     }
 
     public void funnyTest(object variable, string varName)
