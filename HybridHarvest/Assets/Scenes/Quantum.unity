@@ -1403,7 +1403,7 @@ MonoBehaviour:
   ReputationInfo: {fileID: 1956120680}
   EnergyInfo: {fileID: 1956120683}
   EnergyRegenTime: {fileID: 1956120684}
-  ReputationLevel: 0
+  Level: 0
 --- !u!4 &1940006997
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,6 +1850,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1403440122}
     m_Modifications:
+    - target: {fileID: 1818408190422725818, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: NameGenerator
+      value: 
+      objectReference: {fileID: 5699248950551365728}
     - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: InventoryFrame
       value: 
@@ -1952,6 +1960,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+--- !u!114 &1818408188710786057 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+  m_PrefabInstance: {fileID: 1818408188710786056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128125894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95dd356b909ba014fb8a26240c52f06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5699248950551365727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1959,6 +1978,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1403440122}
     m_Modifications:
+    - target: {fileID: 5699248950863946089, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
+      propertyPath: MiniGame
+      value: 
+      objectReference: {fileID: 1818408188710786057}
     - target: {fileID: 5699248950863946092, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2047,5 +2070,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NameGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 5699248950863946093, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699248951386766612, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
+--- !u!1 &5699248950551365728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5699248950863946093, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
+  m_PrefabInstance: {fileID: 5699248950551365727}
+  m_PrefabAsset: {fileID: 0}

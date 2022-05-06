@@ -52,7 +52,10 @@ public class LabButton : MonoBehaviour
     public void ChosenSeed(Seed seed, int[] chance)
     {
         NowSelected = seed;
-        SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
+        if (SceneManager.GetActiveScene().buildIndex != 4)
+            SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
+        else
+            SelectButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("unknownResult");
         var seedInfo = seed.NameInRussian +
             $"\nВкус: {seed.Taste} {chance[0]}%" +
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
@@ -69,6 +72,8 @@ public class LabButton : MonoBehaviour
     private void DrawResult(Seed seed1)
     {
         var newseed = CrossingPerformer.GetComponent<GeneCrossing>().MixTwoParents(seed1, NowSelected);
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+            newseed.NameInRussian = "???";
         var chance = CrossingPerformer.GetComponent<GeneCrossing>().Chances;
         PlaceForResult.GetComponent<LabButton>().ChosenSeed(newseed, chance);
         PlaceForResult.gameObject.SetActive(true);

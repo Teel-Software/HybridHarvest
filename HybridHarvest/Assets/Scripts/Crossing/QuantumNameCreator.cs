@@ -1,41 +1,79 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Threading;
+using CI.QuickSave;
 
 public class QuantumNameCreator : MonoBehaviour
 {
     public string Name1, Name2;
     [SerializeField] Text TextPlace;
     [SerializeField] InputField UserInput;
+    [SerializeField] CreateMiniGame MiniGame;
 
     private string previous = "";
+    private string result;
 
     public void UserEnterName()
     {
-        TextPlace.text = UserInput.text;
+        result = UserInput.text;
+        result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
+        TextPlace.text = result;
+        UserInput.text = result;
+    }
+
+    public void DefaultFill()
+    {
+        UserInput.text = "твой вариант";
+        TextPlace.text = "Как назовём?";
+        //UserInput.text = "твой вариант";
     }
 
     public void GenerateName()
     {   //помидор картошка огурец горох морковь дебаг 
-        Name1 = "помидор";
-        Name2 = "огурец";
+
+        //Name1 = "помирец";
+        //Name2 = "картошка";
+        if(Name1 == "" || Name2 == "")
+        {
+            var reader = QSReader.Create("QuantumName");
+            if (reader.Exists("name1"))
+                Name1 = reader.Read<string>("name1");
+            if (reader.Exists("name2"))
+                Name2 = reader.Read<string>("name2");
+        }
+
         var firstParts = GetSyllables(Name1).ToArray();
         var secondParts = GetSyllables(Name2).ToArray();
         var num = (firstParts.Length + secondParts.Length) / 2;
         var fromFirst = num / 2 + 1;
         var fromSecond = num - fromFirst;
-        string result;
         do
         {
-            result = string.Join(" ", RandomHalves(firstParts, secondParts, fromFirst, fromSecond));
+            result = string.Join("", RandomHalves(firstParts, secondParts, fromFirst, fromSecond));
         } while (result == previous);
+        result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
         previous = result;
         TextPlace.text = result;
         UserInput.text = result;
 
         //result.Add(string.Join("", RandomHalves(firstParts, secondParts, fromFirst, fromSecond)));
         //result.Add(string.Join("",RandomWord(firstParts, secondParts, num)));
+    }
+
+    public void FinishChoosing()
+    {
+        MiniGame.UpdateRussianName(result);
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus) return;
+        var writer = QuickSaveWriter.Create("QuantumName");
+        writer.Write("name1", Name1)
+            .Write("name2", Name2);
+        writer.Commit();
     }
 
     private List<string> RandomHalves(string[] firstParts, string[] secondParts, int fromFirst, int fromSecond)

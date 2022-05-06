@@ -12,6 +12,7 @@ public class CreateMiniGame : MonoBehaviour
     [SerializeField] GameObject Blocker;
     [SerializeField] Button CrossingPerformer;
     [SerializeField] InventoryDrawer InventoryFrame;
+    [SerializeField] GameObject NameGenerator;
 
     public Button ResultPlace;
     private Seed currentSeed;
@@ -29,26 +30,10 @@ public class CreateMiniGame : MonoBehaviour
 
         for (var i = 0; i < ElementsCount; i++)
         {
-            var card = new GameObject($"Card {i}", typeof(Button));
+            var card = CreateCard(i);
 
-            card.AddComponent<Image>().sprite = CardSprite;
-            card.GetComponent<Image>().type = Image.Type.Sliced;
-            card.GetComponent<Image>().pixelsPerUnitMultiplier = 0.5f;
-            card.GetComponent<Image>().color = new Color(1, 0.8f, 0.5f);
-
-            card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
-            card.GetComponent<Button>().targetGraphic = card.GetComponent<Image>();
-
-            if (SceneManager.GetActiveScene().buildIndex == 4)
-            {
-                currentSeed = ResultPlace.GetComponent<QuantumGrowth>().growingSeed;
-                currentPot = ResultPlace.GetComponent<QuantumGrowth>().Pot;
-            }
-            else
-            {
-                currentSeed = ResultPlace.GetComponent<LabGrowth>().growingSeed;
-                currentPot = ResultPlace.GetComponent<LabGrowth>().Pot;
-            }
+            currentSeed = ResultPlace.GetComponent<LabGrowth>().growingSeed;
+            currentPot = ResultPlace.GetComponent<LabGrowth>().Pot;
 
             var GC = CrossingPerformer.GetComponent<GeneCrossing>();
             var chances = PlayerPrefs.GetString("SelectionChances" + currentPot.name).Split();
@@ -59,11 +44,54 @@ public class CreateMiniGame : MonoBehaviour
                 $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, int.Parse(chances[0]), int.Parse(oppositeStats[0]))}\n" +
                 $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, int.Parse(chances[1]), int.Parse(oppositeStats[1]))}\n" +
                 $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, int.Parse(chances[2]), int.Parse(oppositeStats[2]))}";
-
-            var scaleFactor = 1 / 47.34849f;
-            card.transform.localScale = new Vector2(scaleFactor, scaleFactor);
-            card.transform.SetParent(GamingPlace.transform);
         }
+    }
+
+    public void RestartQuantumGame()
+    {
+        var panel = transform.Find("Panel").gameObject;
+        var textSample = panel.transform.Find("TextSample").gameObject;
+        Blocker.SetActive(false);
+        ClearGameData.ClearChildren(GamingPlace);
+
+        for (var i = 0; i < ElementsCount; i++)
+        {
+            var card = CreateCard(i);
+
+            currentSeed = ResultPlace.GetComponent<QuantumGrowth>().growingSeed;
+            currentPot = ResultPlace.GetComponent<QuantumGrowth>().Pot;
+
+            var cardText = Instantiate(textSample, card.transform);
+            cardText.GetComponent<Text>().text =
+                $"Вкус: {currentSeed.Taste}\n" +
+                $"Габитус: {currentSeed.Gabitus}\n" +
+                $"Время роста: {currentSeed.GrowTime}";
+        }
+    }
+
+    private GameObject CreateCard(int i)
+    {
+        var card = new GameObject($"Card {i}", typeof(Button));
+
+        card.AddComponent<Image>().sprite = CardSprite;
+        card.GetComponent<Image>().type = Image.Type.Sliced;
+        card.GetComponent<Image>().pixelsPerUnitMultiplier = 0.5f;
+        card.GetComponent<Image>().color = new Color(1, 0.8f, 0.5f);
+
+        card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
+        card.GetComponent<Button>().targetGraphic = card.GetComponent<Image>();
+
+        var scaleFactor = 1 / 47.34849f;
+        card.transform.localScale = new Vector2(scaleFactor, scaleFactor);
+        card.transform.SetParent(GamingPlace.transform);
+
+        return card;
+    }
+
+    public void UpdateRussianName(string name)
+    {
+        currentSeed.NameInRussian = name;
+        Blocker.SetActive(true);
     }
 
     /// <summary>
@@ -101,7 +129,13 @@ public class CreateMiniGame : MonoBehaviour
         currentSeed.GrowTime = int.Parse(seedStats[2]);
         //currentSeed.UpdateRating();
 
-        Blocker.SetActive(true);
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            NameGenerator.SetActive(true);
+            NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+        }
+        else
+            Blocker.SetActive(true);
     }
 
     private void OnEnable()

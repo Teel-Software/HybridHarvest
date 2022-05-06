@@ -165,9 +165,9 @@ public class QuantumGrowth : MonoBehaviour
 
         if (growingSeed != null)
         {
-            //MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
-            //MiniGamePanel.GetComponent<CreateMiniGame>().RestartGame();
-            //MiniGamePanel.SetActive(true);
+            MiniGamePanel.GetComponent<CreateMiniGame>().ResultPlace = Pot;
+            MiniGamePanel.GetComponent<CreateMiniGame>().RestartQuantumGame();
+            MiniGamePanel.SetActive(true);
             InventoryFrame.GetComponent<InventoryDrawer>().SuccessfulAddition += () =>
             {
                 isOccupied = false;
@@ -177,10 +177,10 @@ public class QuantumGrowth : MonoBehaviour
                 PlayerPrefs.SetInt(Pot.name + "occupied", isOccupied ? 1 : 0);
                 growthText.text = "";
             };
-            InventoryFrame.GetComponent<InventoryDrawer>().UpdateActions();
-            InventoryFrame.GetComponent<InventoryDrawer>().targetInventory.AddItem(growingSeed);
+            //InventoryFrame.GetComponent<InventoryDrawer>().UpdateActions();
+            //InventoryFrame.GetComponent<InventoryDrawer>().targetInventory.AddItem(growingSeed);
 
-            Statistics.UpdateCrossedSeeds(growingSeed.Name);
+            //Statistics.UpdateCrossedSeeds(growingSeed.Name);
         }
 
         //growingSeed = null;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 using System.Linq;
 using System.Globalization;
+using CI.QuickSave;
 
 public class GeneCrossing : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GeneCrossing : MonoBehaviour
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Sprite defaultSprite;
+    [SerializeField] QuantumNameCreator nameCreator;
 
     private List<int> chances;
     private List<int> oppositeSeedStats;
@@ -35,16 +37,19 @@ public class GeneCrossing : MonoBehaviour
         if (seed1 == null || seed2 == null)
             return;
         if (SceneManager.GetActiveScene().buildIndex == 4) {
+            //nameCreator.Name1 = seed1.NameInRussian;
+            //nameCreator.Name2 = seed2.NameInRussian;
+            var writer = QuickSaveWriter.Create("QuantumName");
+            writer.Write("name1", seed1.NameInRussian)
+                .Write("name2", seed2.NameInRussian);
+            writer.Commit();
             var newSeed = GetQuantumSeed(seed1, seed2);
             CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
         }
         else
         {
             var newSeed = MixTwoParents(seed1, seed2);
-            if (SceneManager.GetActiveScene().buildIndex == 4)
-                CurrentPot.GetComponent<QuantumGrowth>().ApplyLightning(newSeed);
-            else
-                CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime + seed2.GrowTime);
+            CurrentPot.GetComponent<LabGrowth>().PlantIt(newSeed, seed1.GrowTime + seed2.GrowTime);
         }
 
         ExitHybridMenu();
