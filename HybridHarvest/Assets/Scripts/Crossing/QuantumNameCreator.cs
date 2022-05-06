@@ -19,7 +19,7 @@ public class QuantumNameCreator : MonoBehaviour
     {
         result = UserInput.text;
         result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
-        TextPlace.text = result;
+        //TextPlace.text = result;
         UserInput.text = result;
     }
 
@@ -55,7 +55,7 @@ public class QuantumNameCreator : MonoBehaviour
         } while (result == previous);
         result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
         previous = result;
-        TextPlace.text = result;
+        //TextPlace.text = result;
         UserInput.text = result;
 
         //result.Add(string.Join("", RandomHalves(firstParts, secondParts, fromFirst, fromSecond)));
