@@ -3708,6 +3708,10 @@ PrefabInstance:
       propertyPath: InventoryFrame
       value: 
       objectReference: {fileID: 654561917}
+    - target: {fileID: 2799662953909121965, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2799662954025938810, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
       propertyPath: inventory
       value: 

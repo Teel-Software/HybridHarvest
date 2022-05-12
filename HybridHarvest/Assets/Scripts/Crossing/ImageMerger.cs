@@ -43,14 +43,29 @@ public static class ImageMerger
             im2 = req.texture;
         }        
 
-        var res = im2;
-        for(int i = 0; i< im1.width; i++)
+        var res = duplicateTexture(im2);
+        //res.Resize(im2.width + 2, im2.height + 2);
+
+        //for (int i = 0; i < im1.width + 2; i++)
+        //{
+        //    res.SetPixel(i, 0, new Color(0f, 0f, 0f, 0.2f));
+        //    res.SetPixel(i, im1.width + 1, new Color(0f, 0f, 0f, 0.2f));
+        //}
+        //for (int i = 0; i < im1.height + 2; i++)
+        //{
+        //    res.SetPixel(0, i, new Color(0f, 0f, 0f, 0.2f));
+        //    res.SetPixel(im1.height +1, i, new Color(0f, 0f, 0f, 0.2f));
+        //}
+
+        for (int i = 0; i< im1.width; i++)
         {
             for (int j = 0; j < im1.height; j++)
             {
                 var pix = im1.GetPixel(i, j);
                 if (pix.a == 0)
-                    res.SetPixel(i, j, pix);
+                    res.SetPixel(i/*+1*/, j/*+1*/, pix);
+                else
+                    res.SetPixel(i /*+ 1*/, j /*+ 1*/, im2.GetPixel(i, j));
             }
         }
         res.filterMode = FilterMode.Point;

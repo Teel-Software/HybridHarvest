@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class LabButton : MonoBehaviour
 {
@@ -52,16 +53,13 @@ public class LabButton : MonoBehaviour
     public void ChosenSeed(Seed seed, int[] chance)
     {
         NowSelected = seed;
-        if (SceneManager.GetActiveScene().buildIndex != 4)
-            SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
-        else
-            SelectButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("unknownResult");
+        SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian +
             $"\nВкус: {seed.Taste} {chance[0]}%" +
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
-            $"\nВремя роста:\n {seed.GrowTime} {chance[2]}%"+
+            $"\nВремя роста:\n {seed.GrowTime} {chance[2]}%" +
             $"\nКол-во: {seed.MinAmount}-{seed.MaxAmount}  {chance[1]}%" +
-            $"\nШанс мутации: \n{seed.MutationChance} {chance[1]}%" ;
+            $"\nШанс мутации: \n{seed.MutationChance} {chance[1]}%";
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
         var seed1 = SecondButton.GetComponent<LabButton>().NowSelected;
@@ -73,7 +71,11 @@ public class LabButton : MonoBehaviour
     {
         var newseed = CrossingPerformer.GetComponent<GeneCrossing>().MixTwoParents(seed1, NowSelected);
         if (SceneManager.GetActiveScene().buildIndex == 4)
-            newseed.NameInRussian = "???";
+        {
+            //newseed.NameInRussian = "???";
+            //newseed.Name = seed1.Name + "-" + NowSelected.Name;
+            newseed = CrossingPerformer.GetComponent<GeneCrossing>().GetQuantumSeed(seed1, NowSelected);
+        }
         var chance = CrossingPerformer.GetComponent<GeneCrossing>().Chances;
         PlaceForResult.GetComponent<LabButton>().ChosenSeed(newseed, chance);
         PlaceForResult.gameObject.SetActive(true);

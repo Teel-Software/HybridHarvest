@@ -40,7 +40,7 @@ public class Seed : ScriptableObject
                 myTexture2D.filterMode = FilterMode.Point;
                 sp = Sprite.Create(
                     myTexture2D,
-                    new Rect(0.0f, 0.0f, myTexture2D.width, myTexture2D.height),
+                    new Rect(0f, 0f, myTexture2D.width, myTexture2D.height),
                     new Vector2(0f, 0f), 1f
                 );
             }

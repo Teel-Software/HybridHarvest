@@ -164,7 +164,7 @@ public class GeneCrossing : MonoBehaviour
         return fortune <= value1Chance ? value1 : value2;
     }
 
-    private Seed GetQuantumSeed(Seed parent1, Seed parent2)
+    public Seed GetQuantumSeed(Seed parent1, Seed parent2)
     {
         var newSeed = ScriptableObject.CreateInstance<Seed>();
 
@@ -172,7 +172,8 @@ public class GeneCrossing : MonoBehaviour
         ImageMerger.MergeParentImages(parent1.Name, parent2.Name);
 
         newSeed.Name = parent1.Name + "-" + parent2.Name;
-        newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
+        //newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
+        newSeed.NameInRussian = "???";
         newSeed.NameInLatin = "";
 
         newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Name, parent2.Name);

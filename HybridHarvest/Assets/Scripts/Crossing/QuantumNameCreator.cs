@@ -12,7 +12,6 @@ public class QuantumNameCreator : MonoBehaviour
     [SerializeField] InputField UserInput;
     [SerializeField] CreateMiniGame MiniGame;
 
-    private string previous = "";
     private string result;
 
     public void UserEnterName()
@@ -51,10 +50,11 @@ public class QuantumNameCreator : MonoBehaviour
         var fromSecond = num - fromFirst;
         do
         {
+            PlayerPrefs.SetString("QuantPrevName", result);
             result = string.Join("", RandomHalves(firstParts, secondParts, fromFirst, fromSecond));
-        } while (result == previous);
-        result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
-        previous = result;
+            result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
+        } while (result == PlayerPrefs.GetString("QuantPrevName"));
+        PlayerPrefs.SetString("QuantPrevName", result);
         //TextPlace.text = result;
         UserInput.text = result;
 
