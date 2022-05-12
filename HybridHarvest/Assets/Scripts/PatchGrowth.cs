@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
-using UnityEditor;
-using UnityEngine.Serialization;
 
 public class PatchGrowth : MonoBehaviour
 {
@@ -122,6 +120,7 @@ public class PatchGrowth : MonoBehaviour
         growthText.text = "";
         isOccupied = false;
         growingSeed = null;
+        grownSeeds = new List<Seed>();
         SaveClearing();
     }
 

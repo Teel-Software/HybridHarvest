@@ -5,7 +5,17 @@ public class LevelUpSlider : MonoBehaviour
 {
     public Slider LvlSlider;
     private Inventory _inventory;
-    
+
+    public void SetLevel(int level = 2)
+    {
+        _inventory.SetLevel(level);
+    }
+
+    public void LevelUp()
+    {
+        SetLevel(_inventory.Level + 1);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -16,6 +26,6 @@ public class LevelUpSlider : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        LvlSlider.value = (float)_inventory.Reputation / _inventory.ReputationLimit * 100;
+        LvlSlider.value = (float) _inventory.Reputation / _inventory.ReputationLimit * 100;
     }
 }

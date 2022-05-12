@@ -129,7 +129,7 @@ public class CreateMiniGame : MonoBehaviour
         currentSeed.GrowTime = int.Parse(seedStats[2]);
         //currentSeed.UpdateRating();
 
-        if(SceneManager.GetActiveScene().buildIndex == 4)
+        if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             NameGenerator.SetActive(true);
             NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
@@ -141,6 +141,10 @@ public class CreateMiniGame : MonoBehaviour
     private void OnEnable()
     {
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-        scenario?.Tutorial_MiniGame();
+        if (scenario == null) return;
+
+        // тутор для мини-игры
+        if (QSReader.Create("TutorialState").Exists("Tutorial__Played"))
+            scenario.Tutorial_MiniGame();
     }
 }

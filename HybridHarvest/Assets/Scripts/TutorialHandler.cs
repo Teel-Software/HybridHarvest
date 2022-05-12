@@ -30,14 +30,19 @@ public class TutorialHandler : MonoBehaviour
     public void SideMenuTutorial()
     {
         var scenario = GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для захода на склад
-        if (QSReader.Create("TutorialState").Exists("Tutorial_ShopExit_Played"))
-            scenario?.Tutorial_SideMenuInventory();
+        if (QSReader.Create("TutorialState").Exists("Tutorial__Played"))
+            scenario.Tutorial_SideMenuToInventory();
+        
+        // тутор для захода в квесты
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_LevelUp2_Played"))
+            scenario.Tutorial_SideMenuToQuests();
 
         // тутор для боковой панели
         else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
-            scenario?.Tutorial_SideMenu();
+            scenario.Tutorial_SideMenuToShop();
     }
 
     private void Start()

@@ -20,18 +20,22 @@ public class Inventory : MonoBehaviour, ISaveable
     public int Reputation { get; private set; }
 
     public int ReputationLimit =>
-        (int)Math.Round((0.04 * Math.Pow(Level, 3) +
-                         0.8 * Math.Pow(Level, 2) +
-                         2 * Level) * 15);
-    public int Level;
+        (int) Math.Round((0.04 * Math.Pow(Level, 3) +
+                          0.8 * Math.Pow(Level, 2) +
+                          2 * Level) * 15);
+
+    public int Level { get; set; }
     public int Energy { get; private set; }
     public int EnergyMax { get; private set; }
+
     public int MaxItemsAmount { get; private set; }
+
     //The time in *seconds* it take to regenerate 1 energy
     public int EnergyRegenDelay { get; private set; }
     private float energyBuffer;
 
     private Market market;
+
     public void Awake()
     {
         // Preventing null references etc
@@ -113,10 +117,53 @@ public class Inventory : MonoBehaviour, ISaveable
         {
             Reputation -= ReputationLimit;
             Level++;
+
             // Бонусы за повышение вот здесь
             EnergyMax++;
             Money += 100;
+
+            switch (Level)
+            {
+                case 2:
+                    ShopLogic.UnlockSeeds("Tomato");
+                    break;
+            }
+            // Конец бонусов за повышение уровня
+
+            var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+            if (scenario == null) return;
+
+            switch (Level)
+            {
+                // тутор для достижения уровня 2
+                case 2 when QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"):
+                    scenario.Tutorial_LevelUp2();
+                    break;
+            }
         }
+    }
+
+    public void SetLevel(int value)
+    {
+        if (value < 1) return;
+
+        if (value == 1)
+        {
+            Money = 100;
+            Energy = 1;
+            EnergyMax = 10;
+        }
+
+        while (value > Level)
+            ChangeReputation(ReputationLimit);
+
+        if (value < Level)
+        {
+            Level = value;
+            Reputation = 0;
+        }
+
+        Save();
     }
 
     public void ConsumeEnergy(int amount)
@@ -189,8 +236,8 @@ public class Inventory : MonoBehaviour, ISaveable
             ? reader.Read<float>("EnergyBuffer")
             : EnergyRegenDelay;
         var lastDate = reader.Exists("LastDate") ? reader.Read<DateTime>("LastDate") : DateTime.Now;
-        var secondsElapsed = (float)(DateTime.Now - lastDate).TotalSeconds;
-        var regenerated = (int)secondsElapsed / EnergyRegenDelay;
+        var secondsElapsed = (float) (DateTime.Now - lastDate).TotalSeconds;
+        var regenerated = (int) secondsElapsed / EnergyRegenDelay;
         RegenEnergy(regenerated);
         energyBuffer -= secondsElapsed % EnergyRegenDelay;
     }

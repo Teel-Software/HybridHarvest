@@ -40,8 +40,8 @@ public class Speech
         Phrase = phrase;
     }
 
-    public NowTalking Character { get; private set; }
-    public string Phrase { get; private set; }
+    public NowTalking Character { get; }
+    public string Phrase { get; }
 }
 
 /// <summary>
@@ -61,17 +61,16 @@ public class Award
         SeedName = seedName;
     }
 
-    public AwardType CurrentPrize { get; private set; }
-    public string Message { get; private set; }
-    public int Money { get; private set; }
-    public int Reputation { get; private set; }
-    public string SeedName { get; private set; }
+    public AwardType CurrentPrize { get; }
+    public string Message { get; }
+    public int Money { get; }
+    public int Reputation { get; }
+    public string SeedName { get; }
 }
 
 public class DialogPanelLogic : MonoBehaviour
 {
     [SerializeField] Image CharacterSpritePlace;
-    [SerializeField] Inventory targetInventory;
 
     public bool SkipTutorialBtnActive { get; set; }
     public Action LastAction { get; set; } // действие активируется после исчезновения диалога с экрана
@@ -94,7 +93,8 @@ public class DialogPanelLogic : MonoBehaviour
     /// <summary>
     /// Готовит панель к показу диалога, следует вызывать этот метод первым
     /// </summary>
-    public void CreateDialogPanel(Sprite firstCharacterSprite, Sprite secondCharacterSprite, Sprite narratorSprite = default)
+    public void InitDialogPanel(Sprite firstCharacterSprite, Sprite secondCharacterSprite,
+        Sprite narratorSprite = default)
     {
         speechByID = new List<Speech> { new Speech(NowTalking.Narrator, "fill zero slot") };
         IDByPhrase = new Dictionary<string, int>();
@@ -157,7 +157,7 @@ public class DialogPanelLogic : MonoBehaviour
         var skipTutBtn = transform.Find("SkipTutorial").gameObject;
         if (skipTutBtn != null)
             skipTutBtn.SetActive(SkipTutorialBtnActive);
-        else Debug.Log("Кнопку SkipTutorial не нашёл: Active = " + SkipTutorialBtnActive.ToString());
+        else Debug.Log("Кнопку SkipTutorial не нашёл: Active = " + SkipTutorialBtnActive);
 
         LoadNextPhrase();
     }
@@ -181,7 +181,6 @@ public class DialogPanelLogic : MonoBehaviour
         var firstTextComponent = transform.gameObject.GetComponentInChildren<Text>();
         var textPanel = firstTextComponent.transform.parent.gameObject;
         var currentSpeech = new Speech(NowTalking.Narrator, "Ты это не должен был увидеть... Проверь код на баги!");
-        List<Speech> currentAnswers;
 
         if (cleaningIsNeeded)
             firstTextComponent = RedrawMainText(firstTextComponent, textPanel);
@@ -190,11 +189,10 @@ public class DialogPanelLogic : MonoBehaviour
         if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
             || !wasHided && hideTriggers.Contains(lastPhraseID))
         {
-            if (LastAction != null)
-                LastAction.Invoke();
+            LastAction?.Invoke();
             Hide();
             return;
-        };
+        }
 
         if (speechIndex < scenario.Count)
             currentSpeech = scenario[speechIndex];
@@ -202,7 +200,7 @@ public class DialogPanelLogic : MonoBehaviour
         // Выполняется, если у предыдущей фразы есть хотя бы один ответ
         if (lastPhraseID != 0 && answers.ContainsKey(lastPhraseID))
         {
-            currentAnswers = answers[lastPhraseID];
+            var currentAnswers = answers[lastPhraseID];
             currentSpeech = currentAnswers[0];
 
             if (currentAnswers.Count > 1)
@@ -269,23 +267,25 @@ public class DialogPanelLogic : MonoBehaviour
         var gridLay = textPanel.GetComponent<GridLayoutGroup>();
         gridLay.enabled = true;
         var paddingVal = (firstTextComponent.transform.parent.GetComponent<RectTransform>().rect.width
-            - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
+                          - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
 
         for (var i = 0; i < currentAnswers.Count; i++)
         {
-            var newText = Instantiate(firstTextComponent);
+            var newText = Instantiate(firstTextComponent, firstTextComponent.transform.parent, false);
             newText.text = currentAnswers[i].Phrase;
-            newText.transform.SetParent(firstTextComponent.transform.parent, false);
             newText.gameObject.name = $"Text {i + 1}";
 
             newText.gameObject.AddComponent<Button>();
             newText.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             newText.GetComponent<Button>().targetGraphic = newText;
         }
+
         gridLay.cellSize = new Vector2(textPanel.GetComponent<RectTransform>().rect.width - 2 * paddingVal,
             (textPanel.GetComponent<RectTransform>().rect.height - 2 * paddingVal
-            - (currentAnswers.Count - 1) * gridLay.spacing.y) / (currentAnswers.Count > 3
-                ? currentAnswers.Count : 3));
+                                                                 - (currentAnswers.Count - 1) * gridLay.spacing.y) /
+            (currentAnswers.Count > 3
+                ? currentAnswers.Count
+                : 3));
 
         foreach (var animText in textPanel.GetComponentsInChildren<AnimateText>().Reverse())
             animText.RestartAnimation();
@@ -303,15 +303,12 @@ public class DialogPanelLogic : MonoBehaviour
     /// </summary>
     private Text RedrawMainText(Text firstTextComponent, GameObject textPanel)
     {
-        var newText = Instantiate(firstTextComponent);
-        var CGD = gameObject.GetComponent<ClearGameData>() ?? gameObject.AddComponent<ClearGameData>();
-
+        var newText = Instantiate(firstTextComponent, textPanel.transform, false);
         textPanel.GetComponent<GridLayoutGroup>().enabled = false;
         ClearGameData.ClearChildren(textPanel);
-        newText.transform.SetParent(textPanel.transform, false);
 
         var paddingVal = (firstTextComponent.transform.parent.GetComponent<RectTransform>().rect.width
-            - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
+                          - firstTextComponent.GetComponent<RectTransform>().rect.width) / 2;
         var newTextRT = newText.gameObject.GetComponent<RectTransform>();
         newTextRT.anchorMin = Vector2.zero;
         newTextRT.anchorMax = Vector2.one;

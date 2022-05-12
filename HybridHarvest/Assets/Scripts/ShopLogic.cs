@@ -21,6 +21,9 @@ public class ShopLogic : MonoBehaviour, ISaveable
     /// <param name="seedNames">Названия семян на английском.</param>
     public static void UnlockSeeds(params string[] seedNames)
     {
+        if (unlockedSeeds.Count == 0)
+            LoadStatic();
+
         unlockedSeeds = unlockedSeeds
             .Concat(seedNames)
             .Distinct()
@@ -35,10 +38,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
 
     public void Load()
     {
-        var reader = QSReader.Create("Shop");
-        unlockedSeeds = reader.Exists("UnlockedSeeds")
-            ? reader.Read<List<string>>("UnlockedSeeds")
-            : new List<string> { "Cucumber" };
+        LoadStatic();
     }
 
     public void CSVTest()
@@ -57,6 +57,14 @@ public class ShopLogic : MonoBehaviour, ISaveable
         var writer = QuickSaveWriter.Create("Shop");
         writer.Write("UnlockedSeeds", unlockedSeeds);
         writer.Commit();
+    }
+
+    public static void LoadStatic()
+    {
+        var reader = QSReader.Create("Shop");
+        unlockedSeeds = reader.Exists("UnlockedSeeds")
+            ? reader.Read<List<string>>("UnlockedSeeds")
+            : new List<string> { "Cucumber" };
     }
 
     /// <summary>

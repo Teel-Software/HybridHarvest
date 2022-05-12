@@ -192,6 +192,13 @@ public class TaskController : MonoBehaviour
         taskAddBtnIsRendered = false;
         RenderCurrentTasks();
         LoadCooldownTime();
+        
+        var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
+        
+        // тутор для выдачи первого квеста
+        if (QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToQuests_Played"))
+            scenario.Tutorial_GetFirstQuest();
     }
 
     /// <summary>
