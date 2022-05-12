@@ -96,8 +96,8 @@ public class PatchGrowth : MonoBehaviour
         if (grownSeeds.Count == 0 && growingSeed != null)
         {
             var plusSeeds =
-                (int) Math.Round(UnityEngine.Random.value * (growingSeed.maxAmount - growingSeed.minAmount));
-            for (var i = 0; i < growingSeed.minAmount + plusSeeds; i++)
+                (int) Math.Round(UnityEngine.Random.value * (growingSeed.MaxAmount - growingSeed.MinAmount));
+            for (var i = 0; i < growingSeed.MinAmount + plusSeeds; i++)
                 grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
         }
 

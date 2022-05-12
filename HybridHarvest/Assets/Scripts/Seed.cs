@@ -65,7 +65,7 @@ public class Seed : ScriptableObject
                 rating = SeedStats.Gabitus[Gabitus]
                          + SeedStats.Taste[Taste]
                          + SeedStats.MutationChance[MutationChance]
-                         + SeedStats.MinAmount[minAmount]
+                         + SeedStats.MinAmount[MinAmount]
                          + SeedStats.GrowTime[GrowTime];
             }
             catch
@@ -106,8 +106,10 @@ public class Seed : ScriptableObject
     public int GrowTime;
     
     public Gen AmountGen;
-    public int minAmount;
-    public int maxAmount;
+    [FormerlySerializedAs("minAmount")] 
+    public int MinAmount;
+    [FormerlySerializedAs("maxAmount")] 
+    public int MaxAmount;
     
     [FormerlySerializedAs("MutationPossibilityGen")]
     public Gen MutationChanceGen;
@@ -158,8 +160,8 @@ public class Seed : ScriptableObject
         seed.MutationChance = (MutationChance)mutationChance;
         //seed.MutationChanceGen = baselineSeed.MutationChanceGen;
 
-        seed.minAmount = minAmt;
-        seed.maxAmount = maxAmt;
+        seed.MinAmount = minAmt;
+        seed.MaxAmount = maxAmt;
         
         seed.ShopBuyPrice = 0;
         return seed;
@@ -187,7 +189,7 @@ public class Seed : ScriptableObject
     private const int GrowTimePointDiv = 1000;
     public double ConvertToPoints()
     {
-        var points = (double)(maxAmount + minAmount) / 2
+        var points = (double)(MaxAmount + MinAmount) / 2
             * (Taste + Gabitus + (int)MutationChance * MutationPointsMul) 
             - Math.Round((double)GrowTime / GrowTimePointDiv);
         return points;
@@ -272,7 +274,7 @@ public class Seed : ScriptableObject
                GrowTime + "|" + (int)GrowTimeGen + "|" +
                Gabitus + "|" + (int)GabitusGen + "|" +
                Taste + "|" + (int)TasteGen + "|" +
-               minAmount + "|" + maxAmount +
+               MinAmount + "|" + MaxAmount +
                "|" + NameInRussian + "|" + NameInLatin +
                "|" + (int)MutationChance;
     }
@@ -293,8 +295,8 @@ public class Seed : ScriptableObject
         GabitusGen = (Gen)int.Parse(parameters[5]);
         Taste = int.Parse(parameters[6]);
         TasteGen = (Gen)int.Parse(parameters[7]);
-        minAmount = int.Parse(parameters[8]);
-        maxAmount = int.Parse(parameters[9]);
+        MinAmount = int.Parse(parameters[8]);
+        MaxAmount = int.Parse(parameters[9]);
         NameInRussian = parameters[10];
         NameInLatin = parameters[11];
         MutationChance = (MutationChance)int.Parse(parameters[12]);

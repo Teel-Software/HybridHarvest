@@ -480,10 +480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2288d0d8a964c908eb647b83bd44295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 6225735831770130262}
-  opponentName: {fileID: 8686371130243832777}
-  showSeedsBtn: {fileID: 8978095042847768809}
-  seedPanel: {fileID: 3554415176105395363, guid: f88d551003002c548a8b58c9708f19eb, type: 3}
+  Portrait: {fileID: 6225735831770130262}
+  OpponentName: {fileID: 8686371130243832777}
+  ShowSeedsBtn: {fileID: 8978095042847768809}
+  SeedPanel: {fileID: 3554415176105395363, guid: f88d551003002c548a8b58c9708f19eb, type: 3}
 --- !u!1 &6225735831770130256
 GameObject:
   m_ObjectHideFlags: 0

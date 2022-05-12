@@ -100,10 +100,10 @@ public class GeneCrossing : MonoBehaviour
         chancesIterator++;
         newSeed.MutationChance = (MutationChance)temp;
 
-        (newSeed.minAmount, newSeed.AmountGen) =
-            CountParameter(first.minAmount, first.AmountGen, second.minAmount, second.AmountGen);
-        oppositeSeedStats.Add(newSeed.minAmount == first.minAmount ? second.minAmount : first.minAmount);
-        newSeed.maxAmount = newSeed.minAmount == first.minAmount ? first.maxAmount : second.maxAmount;
+        (newSeed.MinAmount, newSeed.AmountGen) =
+            CountParameter(first.MinAmount, first.AmountGen, second.MinAmount, second.AmountGen);
+        oppositeSeedStats.Add(newSeed.MinAmount == first.MinAmount ? second.MinAmount : first.MinAmount);
+        newSeed.MaxAmount = newSeed.MinAmount == first.MinAmount ? first.MaxAmount : second.MaxAmount;
 
         //newSeed.Name = MixTwoNames(first.Name, second.Name, english: true);
         newSeed.NameInRussian = MixTwoNames(first.NameInRussian, second.NameInRussian);
@@ -188,8 +188,8 @@ public class GeneCrossing : MonoBehaviour
         newSeed.MutationChanceGen = Gen.Mixed;
         newSeed.MutationChance = newSeed.SeedStats.MutationChance.Keys.ToArray()[0];
 
-        newSeed.minAmount = newSeed.SeedStats.MinAmount.Keys.ToArray()[0];
-        newSeed.maxAmount = newSeed.SeedStats.MaxAmount.Keys.ToArray()[0];
+        newSeed.MinAmount = newSeed.SeedStats.MinAmount.Keys.ToArray()[0];
+        newSeed.MaxAmount = newSeed.SeedStats.MaxAmount.Keys.ToArray()[0];
         newSeed.AmountGen = Gen.Mixed;
 
         return newSeed;

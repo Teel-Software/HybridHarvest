@@ -31,9 +31,9 @@ public static class SeedMutator
             newSeed.Gabitus = newStats[0];
             newSeed.Taste = newStats[1];
             newSeed.GrowTime = newStats[2];
-            newSeed.minAmount = newStats[3];
+            newSeed.MinAmount = newStats[3];
             newSeed.MutationChance = (MutationChance)newStats[4];
-            newSeed.maxAmount = newStats[5];
+            newSeed.MaxAmount = newStats[5];
         }
         catch
         {
@@ -65,9 +65,9 @@ public static class SeedMutator
             Tuple.Create(oldSeed.Gabitus, oldSeed.SeedStats.Gabitus.Keys.ToArray()),
             Tuple.Create(oldSeed.Taste, oldSeed.SeedStats.Taste.Keys.ToArray()),
             Tuple.Create(oldSeed.GrowTime, oldSeed.SeedStats.GrowTime.Keys.ToArray()),
-            Tuple.Create(oldSeed.minAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
+            Tuple.Create(oldSeed.MinAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
             Tuple.Create((int)oldSeed.MutationChance, oldSeed.SeedStats.MutationChance.Keys.Select(x => (int)x).ToArray()),
-            Tuple.Create(oldSeed.maxAmount, oldSeed.SeedStats.MaxAmount.Keys.ToArray())
+            Tuple.Create(oldSeed.MaxAmount, oldSeed.SeedStats.MaxAmount.Keys.ToArray())
         };
         var stats = new List<int>();
         for (var i = 0; i < statsData.Length - 1; i++)
@@ -82,7 +82,7 @@ public static class SeedMutator
 
         try
         {
-            if (stats[3] != oldSeed.minAmount)
+            if (stats[3] != oldSeed.MinAmount)
                 stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
             else
                 stats.Add(statsData.Last().Item1);
@@ -101,7 +101,7 @@ public static class SeedMutator
         Tuple.Create(oldSeed.Gabitus, oldSeed.SeedStats.Gabitus.Keys.ToArray()),
         Tuple.Create(oldSeed.Taste, oldSeed.SeedStats.Taste.Keys.ToArray()),
         Tuple.Create(oldSeed.GrowTime, oldSeed.SeedStats.GrowTime.Keys.ToArray()),
-        Tuple.Create(oldSeed.minAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
+        Tuple.Create(oldSeed.MinAmount, oldSeed.SeedStats.MinAmount.Keys.ToArray()),
         Tuple.Create((int)oldSeed.MutationChance, oldSeed.SeedStats.MutationChance.Keys.Select(x => (int)x).ToArray()),
         };
         bool[] index = new bool[5];

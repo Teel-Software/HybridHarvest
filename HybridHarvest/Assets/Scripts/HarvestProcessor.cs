@@ -52,7 +52,7 @@ public class HarvestProcessor : MonoBehaviour
                 $"Вкус: {seed.Taste}\n" +
                 $"Габитус: {seed.Gabitus}\n" +
                 $"Время роста: {seed.GrowTime}\n" +
-                $"Кол-во плодов: {seed.minAmount} - {seed.maxAmount}\n" +
+                $"Кол-во плодов: {seed.MinAmount} - {seed.MaxAmount}\n" +
                 $"Шанс мутации: {seed.MutationChance}\n";
 
             var img = item

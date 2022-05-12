@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Exhibition
 {
@@ -8,19 +9,25 @@ namespace Exhibition
     {
         [SerializeField] 
         private TextMeshProUGUI timeTillNext;
+        [SerializeField] 
+        private HorizontalLayoutGroup dayContainer;
+        public void Awake()
+        {
+            var dayIcons = dayContainer.GetComponentsInChildren<DayIcon>();
+            var todayIndex = ((int)DateTime.Today.DayOfWeek + 6) % 7;
+            dayIcons[todayIndex].Background.color = new Color(1, 0, 0, 0.75f);
+        }
 
         public void Update()
         {
             var now = DateTime.Now;
             var today = DateTime.Today;
+#if DEBUG
             var i = 0;
-            if (i != 0)
-            {
-                now = now.AddDays(i);
-                today = today.AddDays(i);
-            }
-            var days = DayOfWeek.Saturday - today.DayOfWeek;
-            var next = today.AddDays(days);
+            now = now.AddDays(i);
+            today = today.AddDays(i);
+#endif
+            var next = today.AddDays(1);
             var timeSpan = next - now;
             if (timeSpan.TotalDays < 1)
             {

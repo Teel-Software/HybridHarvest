@@ -14,11 +14,12 @@ public class ExhibitionButton : MonoBehaviour
     
     public Seed NowSelected;
 
-    public void DefaultClick()
+    public void AddSeed()
     {
         Inventory.GetComponent<InventoryDrawer>().GrowPlace = gameObject.GetComponent<Button>();
         Inventory.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToExhibition);
         Inventory.gameObject.SetActive(true);
+        
         if (NowSelected == null)
         {
             gameObject.GetComponent<NotificationCenter>().Show("Выберите культуру для показа");

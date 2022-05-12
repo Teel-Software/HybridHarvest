@@ -40,7 +40,7 @@ public class LabButton : MonoBehaviour
             $"\nВкус: {seed.Taste}" +
             $"\nГабитус: {seed.Gabitus}" +
             $"\nВремя роста: {seed.GrowTime}" +
-            $"\nКол-во: {seed.minAmount}-{seed.maxAmount}" +
+            $"\nКол-во: {seed.MinAmount}-{seed.MaxAmount}" +
             $"\nШанс мутации: {seed.MutationChance}";
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
@@ -60,7 +60,7 @@ public class LabButton : MonoBehaviour
             $"\nВкус: {seed.Taste} {chance[0]}%" +
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
             $"\nВремя роста:\n {seed.GrowTime} {chance[2]}%"+
-            $"\nКол-во: {seed.minAmount}-{seed.maxAmount}  {chance[1]}%" +
+            $"\nКол-во: {seed.MinAmount}-{seed.MaxAmount}  {chance[1]}%" +
             $"\nШанс мутации: \n{seed.MutationChance} {chance[1]}%" ;
         SelectButton.GetComponentInChildren<Text>().text = seedInfo;
         if (SecondButton == null) return;
