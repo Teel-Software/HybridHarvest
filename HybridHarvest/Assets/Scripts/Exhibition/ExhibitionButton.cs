@@ -7,10 +7,13 @@ public class ExhibitionButton : MonoBehaviour
 {
     [SerializeField] private GameObject Inventory;
     [SerializeField] private DialogPanelLogic DialogPanel;
+    [SerializeField] private Button button;
     
-    [SerializeField] private TextMeshProUGUI statText;
-    [SerializeField] private Image plantIcon;
-    [SerializeField] private Sprite plusIcon;
+    public Image plantIcon; 
+    [SerializeField] 
+    private TextMeshProUGUI statText;
+    [SerializeField] 
+    private Sprite plusIcon;
     
     public Seed NowSelected;
 
@@ -30,16 +33,18 @@ public class ExhibitionButton : MonoBehaviour
         }
     }
 
-    public void ExhibitionClick()
+    public void DisabledClick()
     {
-        gameObject.GetComponent<NotificationCenter>().Show("Выставка в самом разгаре\nПриходите завтра");
+        gameObject.GetComponent<NotificationCenter>()
+            .Show("Выставка в самом разгаре\nПриходите завтра");
     }
 
-    public void ResultClick()
+    public void GetResult()
     {
-        if (NowSelected == null)
+        if (NowSelected is null)
         {
-            gameObject.GetComponent<NotificationCenter>().Show("Нет награды");
+            gameObject.GetComponent<NotificationCenter>()
+                .Show("Нет награды");
         }
         else
         {
@@ -49,8 +54,8 @@ public class ExhibitionButton : MonoBehaviour
                 new Award(AwardType.Reputation, reputation: 100)
             };
             gameObject.GetComponent<AwardsCenter>().Show(awards);
-            gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("InvFrameAdd");
             NowSelected = null;
+            MakeDisabled();
         }
 
     }
@@ -60,5 +65,13 @@ public class ExhibitionButton : MonoBehaviour
         NowSelected = seed;
         statText.text = Tools.SeedStatFormatter.FormatSmall(seed);
         plantIcon.sprite = seed.PlantSprite;
+    }
+
+    public void MakeDisabled()
+    {
+        button.onClick.RemoveAllListeners();
+        plantIcon.sprite = Resources.Load<Sprite>("Transparent");
+        statText.text = "";
+        NowSelected = null;
     }
 }

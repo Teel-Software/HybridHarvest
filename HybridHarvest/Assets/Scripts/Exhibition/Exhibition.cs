@@ -14,34 +14,92 @@ namespace Exhibition
         private Button[] exhButtons;
         [SerializeField] 
         private Image testImage;
-
+        [SerializeField] 
+        private Button beginButton;
+        
         public int SeedCount { get; private set; }
+        public DateTime NextExhibition { get; private set; }
+        
+        private DateTime? rewardDate;
+        private bool isInProgress = false;
+        private int daySkip;
         public void OnEnable()
         {
             Load();
+            var now = DateTime.Now;
+        #if DEBUG
+            now = now.AddDays(daySkip);    
+        #endif
+            if (now > NextExhibition)
+            {
+                InitializeExhibition();
+            }
+            isInProgress = rewardDate > now;
             
             foreach (var btn in exhButtons)
                 btn.gameObject.SetActive(false);
-            foreach (var btn in exhButtons.Take(SeedCount))
-                btn.gameObject.SetActive(true);
             
-            var date = DateTime.Now;
+            if (rewardDate is null || rewardDate < now)
+                foreach (var btn in exhButtons.Take(SeedCount))
+                    btn.gameObject.SetActive(true);
+            
             foreach (var btn in exhButtons)
             {
                 btn.onClick.RemoveAllListeners();
-                switch (date.DayOfWeek)
+                var exhibBtn = btn.GetComponent<ExhibitionButton>();
+                if (rewardDate is null)
                 {
-                    case DayOfWeek.Saturday:
-                        btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().ExhibitionClick);
-                        break;
-                    case DayOfWeek.Sunday:
-                        btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().ResultClick);
-                        break;
-                    default:
-                        btn.onClick.AddListener(btn.GetComponent<ExhibitionButton>().AddSeed);
-                        break;
-                }   
+                    beginButton.gameObject.SetActive(true);
+                    
+                    btn.onClick.AddListener(exhibBtn.AddSeed);      
+                }
+                else if (rewardDate > now)
+                {
+                    beginButton.gameObject.SetActive(false);
+                    
+                    btn.onClick.AddListener(exhibBtn.DisabledClick);
+                }
+                else if (rewardDate < now)
+                {                    
+                    beginButton.gameObject.SetActive(false);
+                    
+                    btn.onClick.AddListener(exhibBtn.GetResult);
+                    if (exhibBtn.NowSelected is null)
+                        exhibBtn.MakeDisabled();
+                }
             }
+        }
+
+        public void Update()
+        {
+            if (isInProgress && rewardDate < DateTime.Now)
+            {
+                OnEnable();
+                isInProgress = false;
+            }
+        }
+
+        public void BeginExhibition()
+        {
+        #if DEBUG
+            rewardDate = DateTime.Now.AddSeconds(3);
+        #else
+            RewardDate = DateTime.Now.AddMinutes(15);
+        #endif
+            OnEnable();
+        }
+        
+        public void AddDaySkip(int days)
+        {
+            daySkip += days;
+        }
+        
+        private void InitializeExhibition()
+        {
+            var rand = new Random();
+            SeedCount = rand.Next(3) + 1;
+            NextExhibition = NextExhibition.AddDays(1);
+            rewardDate = null;
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -49,12 +107,7 @@ namespace Exhibition
             if (!hasFocus)
                 Save();
         }
-
-        public void InitializeExhibition()
-        {
-            
-        }
-
+        
         public void Save()
         {
             var writer = QuickSaveWriter.Create("ExhibitionData");
@@ -67,9 +120,9 @@ namespace Exhibition
             }
             writer.Write("Seeds", exhSeeds);
             writer.Write("SeedCount", SeedCount);
+            writer.Write("NextExhibition", NextExhibition);
             writer.Commit();
         }
-        
 
         public void Load()
         {
@@ -85,15 +138,14 @@ namespace Exhibition
                 }
             }
             
-            if (reader.TryRead<int>("SeedCount", out var count))
-            {
-                SeedCount = count;
-            }
-            else
-            {
-                var rand = new Random();
-                SeedCount = rand.Next(1, 4);
-            }
+            var rand = new Random();
+            SeedCount = reader.TryRead<int>("SeedCount", out var count) 
+                ? count 
+                : rand.Next(3) + 1;
+
+            NextExhibition = reader.TryRead<DateTime>("NextExhibition", out var next)
+                ? next
+                : DateTime.Today.AddDays(1);
         }
     }
 }

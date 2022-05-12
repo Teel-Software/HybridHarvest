@@ -139,8 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 0}
   DialogPanel: {fileID: 0}
-  statText: {fileID: 8945343430156670925}
+  button: {fileID: 7852359107630470005}
   plantIcon: {fileID: 8945343431327467905}
+  statText: {fileID: 8945343430156670925}
   plusIcon: {fileID: 21300000, guid: d3bf3378076f87345b39c91a67813adc, type: 3}
   NowSelected: {fileID: 0}
 --- !u!114 &4973007389134968989

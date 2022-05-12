@@ -38,20 +38,23 @@ namespace Exhibition
                 opponentCount = 2;
             if (level >= 20)
                 opponentCount = 3;
-            if (debugOpponentCount > 0)
+            
+            if (debugOpponentCount > 1)
                 opponentCount = debugOpponentCount;
+            
             opponents = new Opponent[opponentCount];
-
-            exhibitonDifficulty = 5;
+            
             var seedNames = Resources.LoadAll<Seed>("Seeds")
                 .Select(x => x.Name)
                 .Where(x => x != "Debug")
                 .ToList();
+            
+            exhibitonDifficulty = 1;
             var example = Seed.LoadFromResources("Cucumber");
-            var points = example.ConvertToPoints();
+            var points = example.ConvertToPoints() * exhibitonDifficulty;
 
             var rand = new Random(Environment.TickCount);
-            var seedCount = rand.Next(3) + 1;
+            var seedCount = GetComponentInParent<Exhibition>().SeedCount;
             var unusedIndexes = Enumerable.Range(0, totalOpponents.Count).ToList();
             for (var i = 0; i < opponentCount; i++)
             {
@@ -84,7 +87,7 @@ namespace Exhibition
         public void ChangeCount(int inc)
         {
             debugOpponentCount = Math.Min(debugOpponentCount + inc, 3);
-            debugOpponentCount = Math.Max(debugOpponentCount, 0);
+            debugOpponentCount = Math.Max(debugOpponentCount, 1);
         }
     }
 }
