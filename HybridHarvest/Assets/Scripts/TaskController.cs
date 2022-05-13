@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CI.QuickSave;
-using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -62,7 +61,7 @@ public class TaskController : MonoBehaviour
     private DateTime cooldownEnd;
 
     /// <summary>
-    /// Создаёт новую задачу (вызывается из кнопки добавления задач)
+    /// Создаёт новую задачу (вызывается из кнопки добавления задач).
     /// </summary>
     public void CreateNewTask()
     {
@@ -81,10 +80,24 @@ public class TaskController : MonoBehaviour
     }
 
     /// <summary>
-    /// Открывает просмотр доступных заданий
+    /// Создаёт первое задание.
     /// </summary>
-    /// <param name="seedName">Английское название плода для задания</param>
-    /// <param name="itemsCount">Количество плодов, которые могут быть добавлены в задачу</param>
+    public void CreateFirstTask()
+    {
+        var newTask = Instantiate(taskPrefab, transform).GetComponent<Task>();
+        newTask.Create("Grow", "Cucumber", 5, "OldLady", "FirstTaskCucumber");
+        newTask.UpdateView();
+
+        var newTask1 = Instantiate(taskPrefab, transform).GetComponent<Task>();
+        newTask1.Create("Grow", "Tomato", 5, "OldLady", "FirstTaskTomato");
+        newTask1.UpdateView();
+    }
+
+    /// <summary>
+    /// Открывает просмотр доступных заданий.
+    /// </summary>
+    /// <param name="seedName">Английское название плода для задания.</param>
+    /// <param name="itemsCount">Количество плодов, которые могут быть добавлены в задачу.</param>
     public GameObject RenderQuestsPreview(string seedName, int itemsCount)
     {
         if (QuestsPreviewPanel == null)
@@ -148,7 +161,7 @@ public class TaskController : MonoBehaviour
                                  || details.Key != seedName
                                  || details.IsCompleted))
                 continue;
-            
+
             var newTask = Instantiate(isPreview ? previewPrefab : taskPrefab,
                 isPreview ? placeForRender.transform : transform);
             renderedTasks.Add(newTask);
@@ -174,7 +187,7 @@ public class TaskController : MonoBehaviour
             renderedTasks[i].transform.SetSiblingIndex(i);
 
         if (!isPreview) return;
-        
+
         QuestsPreviewPanel
             .transform
             .Find("EmptyListText")
@@ -192,13 +205,17 @@ public class TaskController : MonoBehaviour
         taskAddBtnIsRendered = false;
         RenderCurrentTasks();
         LoadCooldownTime();
-        
+
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
         if (scenario == null) return;
-        
+
         // тутор для выдачи первого квеста
         if (QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToQuests_Played"))
+        {
+            if (!QSReader.Create("TutorialState").Exists("Tutorial_GetFirstQuest_Played", "TutorialSkipped"))
+                CreateFirstTask();
             scenario.Tutorial_GetFirstQuest();
+        }
     }
 
     /// <summary>
@@ -206,16 +223,16 @@ public class TaskController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (!renderTasksHere) return;
-
-        var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
-        timeLabel.text = secondsRemaining >= 0
-            ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"
-            : "Доступно новое задание!";
-
-        if (taskAddBtnIsRendered || !(secondsRemaining < 0)) return;
-
-        Instantiate(taskAddPrefab, transform);
-        taskAddBtnIsRendered = true;
+        // if (!renderTasksHere) return;
+        //
+        // var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
+        // timeLabel.text = secondsRemaining >= 0
+        //     ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"
+        //     : "Доступно новое задание!";
+        //
+        // if (taskAddBtnIsRendered || !(secondsRemaining < 0)) return;
+        //
+        // Instantiate(taskAddPrefab, transform);
+        // taskAddBtnIsRendered = true;
     }
 }

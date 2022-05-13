@@ -102,7 +102,8 @@ public class Scenario : MonoBehaviour
             case 2:
                 ExecuteTutorialPart("BeginningField", activeButtonName: "FarmSpot",
                     narratorPhrases: new[]
-                        { "Это поле. Здесь можно посадить семена, которые есть на складе. Нажмите на грядку." });
+                        { "Это поле. Здесь можно посадить семена, которые есть на складе." },
+                    bottomText: "Нажмите на грядку.");
                 break;
             case 3:
                 // ExecuteTutorialPart("BeginningLab", activeButtonName: "Pot",
@@ -349,6 +350,36 @@ public class Scenario : MonoBehaviour
             narratorPhrases: new[]
                 { "Овощи для заданий отправляются напрямую с грядки, как только вырастут." });
     }
+
+    public void Tutorial_ShopLevel2()
+    {
+        FirstCharacterSprite = Resources.Load<Sprite>("Characters\\Salesman");
+        ExecuteTutorialPart("ShopLevel2",
+            firstCharacterPhrases: new[]
+            {
+                "Приветствую! У меня в продаже недавно появились семена помидора. Цена небольшая, советую купить."
+            });
+    }
+    
+    public void Tutorial_FirstQuestCompleted()
+    {
+        FirstCharacterSprite = Resources.Load<Sprite>("Characters\\OldMan");
+        SecondCharacterSprite = Resources.Load<Sprite>("Characters\\MainHero");
+        
+        ExecuteTutorialPart("FirstQuestCompleted",
+            firstCharacterPhrases: new[]
+            {
+                "Здравствуй, Альберт! Я - староста этой деревни. Спасибо за то, что помог моей супруге.",
+                "Слушай, пойми меня правильно: ты в деревне недавно и я ещё не могу в полной мере доверять тебе. Победи в районной выставке, тогда поговорим."
+            },
+            secondCharacterPhrases: new[]
+            {
+                "Приятно познакомиться!",
+                "Ух ты, выставка! Надеюсь, я справлюсь!"
+            });
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void Tutorial_SideMenuToInventory()
     {

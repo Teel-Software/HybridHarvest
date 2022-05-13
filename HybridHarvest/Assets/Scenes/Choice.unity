@@ -2406,9 +2406,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 189950536}
-        m_TargetAssemblyTypeName: Scenario, Assembly-CSharp
-        m_MethodName: Tutorial_Shop
+      - m_Target: {fileID: 1237089973}
+        m_TargetAssemblyTypeName: TutorialHandler, Assembly-CSharp
+        m_MethodName: ShopTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

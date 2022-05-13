@@ -210,6 +210,14 @@ public class PatchGrowth : MonoBehaviour
 
         // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
+    
+    /// <summary>
+    /// DEBUG
+    /// </summary>
+    public void SkipSeedTime()
+    {
+        time = 0;
+    }
 
     /// <summary>
     /// Сохраняет информацию о посадке семечка.

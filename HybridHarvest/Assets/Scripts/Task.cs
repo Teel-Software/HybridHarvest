@@ -8,20 +8,23 @@ using UnityEngine.UI;
 /// </summary>
 public class TaskDetails
 {
+    public int ID { get; set; }
     public string TaskCategory { get; }
     public string Key { get; }
     public string FromCharacter { get; }
     public int AmountToComplete { get; }
-    public bool IsCompleted => ProgressAmount >= AmountToComplete;
-    public int ID { get; set; }
     public int ProgressAmount { get; set; }
+    public string Tag { get; }
 
-    public TaskDetails(string taskCategory, string key, int amountToComplete, string fromCharacter)
+    public bool IsCompleted => ProgressAmount >= AmountToComplete;
+
+    public TaskDetails(string taskCategory, string key, int amountToComplete, string fromCharacter, string tag = "Default")
     {
         TaskCategory = taskCategory;
         Key = key;
         AmountToComplete = amountToComplete;
         FromCharacter = fromCharacter;
+        Tag = tag;
     }
 }
 
@@ -39,24 +42,25 @@ public class Task : MonoBehaviour
     public TaskDetails Details { get; private set; }
 
     /// <summary>
-    /// Заполняет параметрами пустое задание
+    /// Заполняет параметрами пустое задание.
     /// </summary>
-    /// <param name="statCategory">Категория задания</param>
-    /// <param name="key">Ключевой предмет задания</param>
-    /// <param name="amountToComplete">Количество предметов, требуемое для завершения задания</param>
-    /// <param name="fromCharacter">Персонаж, давший задание</param>
-    public void Create(string statCategory, string key, int amountToComplete, string fromCharacter)
+    /// <param name="statCategory">Категория задания.</param>
+    /// <param name="key">Ключевой предмет задания.</param>
+    /// <param name="amountToComplete">Количество предметов, требуемое для завершения задания.</param>
+    /// <param name="fromCharacter">Персонаж, давший задание.</param>
+    /// <param name="taskTag">Специальный тег для задания (если требуется).</param>
+    public void Create(string statCategory, string key, int amountToComplete, string fromCharacter, string taskTag = "Default")
     {
-        Details = new TaskDetails(statCategory, key, amountToComplete, fromCharacter);
+        Details = new TaskDetails(statCategory, key, amountToComplete, fromCharacter, taskTag);
         Details.ID = Details.GetHashCode();
 
         Save();
     }
 
     /// <summary>
-    /// Загружает задание из памяти
+    /// Загружает задание из памяти.
     /// </summary>
-    /// <param name="details">Детали задачи</param>
+    /// <param name="details">Детали задачи.</param>
     public void Load(TaskDetails details)
     {
         Details = details;
@@ -134,6 +138,23 @@ public class Task : MonoBehaviour
                 new Award(AwardType.Money, money: Details.AmountToComplete * 10),
                 new Award(AwardType.Reputation, reputation: Details.AmountToComplete * 15)
             );
+
+        if (Details.Tag.Contains("FirstTask"))
+        {
+            var tutorWriter = QuickSaveWriter.Create("TutorialState");
+            tutorWriter.Write(Details.Tag + "Completed", true);
+            tutorWriter.Commit();
+
+            if (QSReader.Create("TutorialState").ExistsAll("FirstTaskCucumberCompleted", "FirstTaskTomatoCompleted"))
+            {
+                var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+                if (scenario == null) return;
+                
+                // тутор для выполнения первого задания
+                if (QSReader.Create("TutorialState").Exists("Tutorial_GetFirstQuest_Played"))
+                    scenario.Tutorial_FirstQuestCompleted();
+            }
+        }
 
         var writer = QuickSaveWriter.Create("Tasks");
         writer.Delete(Details.ID.ToString());

@@ -44,6 +44,20 @@ public class TutorialHandler : MonoBehaviour
         else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
             scenario.Tutorial_SideMenuToShop();
     }
+    
+    public void ShopTutorial()
+    {
+        var scenario = GetComponent<Scenario>();
+        if (scenario == null) return;
+
+        // тутор для открытия предметов на уровне 2
+        if (QSReader.Create("TutorialState").Exists("Tutorial_LevelUp2_Played"))
+            scenario.Tutorial_ShopLevel2();
+        
+        // тутор для покупки огурца
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToShop_Played"))
+            scenario.Tutorial_Shop();
+    }
 
     private void Start()
     {

@@ -36,6 +36,19 @@ namespace CI.QuickSave
                     return true;
             return false;
         }
+        
+        /// <summary>
+        /// Determines if all of the specified keys exists
+        /// </summary>
+        /// <param name="keys">The keys to look for</param>
+        /// <returns>Does all of the keys exist</returns>
+        public bool ExistsAll(params string[] keys)
+        {
+            foreach (var key in keys)
+                if (_items[key] == null)
+                    return false;
+            return true;
+        }
 
         /// <summary>
         /// Gets the names of all the keys under this root
