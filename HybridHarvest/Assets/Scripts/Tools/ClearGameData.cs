@@ -105,17 +105,6 @@ public class ClearGameData : MonoBehaviour
     private static void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
-
-        PlayerPrefs.SetInt("money", 100);
-        PlayerPrefs.SetInt("reputation", 0);
-        PlayerPrefs.SetInt("reputationLimit", 500);
-        PlayerPrefs.SetInt("reputationLevel", 1);
-        PlayerPrefs.SetInt("amount", 0);
-        PlayerPrefs.SetInt("energyMax", 10);
-        PlayerPrefs.SetInt("energy", 0);
-        PlayerPrefs.SetFloat("energytimebuffer", 0);
-        PlayerPrefs.SetString("energytime", DateTime.Now.ToString());
-        
         PlayerPrefs.Save();
     }
 }

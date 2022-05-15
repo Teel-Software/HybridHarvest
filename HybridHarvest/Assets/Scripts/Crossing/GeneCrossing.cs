@@ -18,8 +18,15 @@ public class GeneCrossing : MonoBehaviour
     private List<int> chances;
     private List<int> oppositeSeedStats;
 
-    public int[] Chances { get => chances.ToArray(); }
-    public int[] OppositeSeedStats { get => oppositeSeedStats.ToArray(); }
+    public int[] Chances
+    {
+        get => chances.ToArray();
+    }
+
+    public int[] OppositeSeedStats
+    {
+        get => oppositeSeedStats.ToArray();
+    }
 
     int chancesIterator;
     private Image textBGImage;
@@ -36,7 +43,9 @@ public class GeneCrossing : MonoBehaviour
         var seed2 = button2.GetComponent<LabButton>().NowSelected;
         if (seed1 == null || seed2 == null)
             return;
-        if (SceneManager.GetActiveScene().buildIndex == 4) {
+
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
             //nameCreator.Name1 = seed1.NameInRussian;
             //nameCreator.Name2 = seed2.NameInRussian;
             var writer = QuickSaveWriter.Create("QuantumName");
@@ -94,11 +103,13 @@ public class GeneCrossing : MonoBehaviour
 
         int temp = 0;
         (temp, newSeed.MutationChanceGen) =
-            CountParameter((int)first.MutationChance, first.MutationChanceGen,
-            (int)second.MutationChance, second.MutationChanceGen);
-        oppositeSeedStats.Add((int)newSeed.MutationChance == (int)first.MutationChance ? (int)second.MutationChance : (int)first.MutationChance);
+            CountParameter((int) first.MutationChance, first.MutationChanceGen,
+                (int) second.MutationChance, second.MutationChanceGen);
+        oppositeSeedStats.Add((int) newSeed.MutationChance == (int) first.MutationChance
+            ? (int) second.MutationChance
+            : (int) first.MutationChance);
         chancesIterator++;
-        newSeed.MutationChance = (MutationChance)temp;
+        newSeed.MutationChance = (MutationChance) temp;
 
         (newSeed.MinAmount, newSeed.AmountGen) =
             CountParameter(first.MinAmount, first.AmountGen, second.MinAmount, second.AmountGen);
@@ -110,8 +121,10 @@ public class GeneCrossing : MonoBehaviour
 
         if (CurrentPot != null)
         {
-            PlayerPrefs.SetString("SelectionChances" + CurrentPot.name, string.Join(" ", chances));
-            PlayerPrefs.SetString("OppositeSeedStats" + CurrentPot.name, string.Join(" ", oppositeSeedStats));
+            var writer = QuickSaveWriter.Create("MiniGameStats");
+            writer.Write("SelectionChances" + CurrentPot.name, chances)
+                .Write("OppositeSeedStats" + CurrentPot.name, oppositeSeedStats);
+            writer.Commit();
         }
 
         return newSeed;
@@ -135,17 +148,17 @@ public class GeneCrossing : MonoBehaviour
         if (gen1 == Gen.Dominant && gen2 == Gen.Recessive || gen1 == Gen.Recessive && gen2 == Gen.Dominant)
             return (dominant, Gen.Mixed);
         if (gen1 == Gen.Dominant && gen2 == Gen.Mixed || gen2 == Gen.Dominant && gen1 == Gen.Mixed)
-            return (dominant, (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2));
+            return (dominant, (Gen) GetNewValueByPossibility((int) gen1, 50, (int) gen2));
 
         if (value1 != value2)
             chances[chances.Count - 1] = 50;
-        var newGen = (Gen)GetNewValueByPossibility((int)gen1, 50, (int)gen2);
+        var newGen = (Gen) GetNewValueByPossibility((int) gen1, 50, (int) gen2);
         if (gen1 == Gen.Recessive && gen2 == Gen.Mixed || gen2 == Gen.Recessive && gen1 == Gen.Mixed)
             return (newGen == gen1 ? value1 : value2, newGen);
 
         if (value1 != value2)
             chances[chances.Count - 1] = 75;
-        var possibility = (int)Random.value * 100;
+        var possibility = (int) Random.value * 100;
         newGen = possibility <= 25
             ? Gen.Dominant
             : possibility < 75
@@ -160,7 +173,7 @@ public class GeneCrossing : MonoBehaviour
     /// </summary>
     public int GetNewValueByPossibility(int value1, int value1Chance, int value2)
     {
-        var fortune = (int)(Random.value * 100);
+        var fortune = (int) (Random.value * 100);
         return fortune <= value1Chance ? value1 : value2;
     }
 
@@ -204,7 +217,7 @@ public class GeneCrossing : MonoBehaviour
         var firstSyllables = GetSyllables(firstName, english);
         var secondSyllables = GetSyllables(secondName, english);
         var result = string.Join("", firstSyllables.Take(firstSyllables.Count() - 1))
-            + string.Join("", secondSyllables.Skip(secondSyllables.Count() - 1));
+                     + string.Join("", secondSyllables.Skip(secondSyllables.Count() - 1));
 
         return result;
     }
@@ -231,11 +244,13 @@ public class GeneCrossing : MonoBehaviour
         {
             if (vowelsIndexes[i] - vowelsIndexes[i - 1] == 1)
                 continue;
+
             var consonantCount = vowelsIndexes[i] - vowelsIndexes[i - 1] - 1;
             var startIndex = vowelsIndexes[i - 1] + 1 + consonantCount / 2;
             result.Add(word.Substring(startIndex));
             word = word.Remove(startIndex);
         }
+
         result.Add(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(word));
 
         return result.Reverse();

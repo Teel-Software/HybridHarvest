@@ -14,14 +14,14 @@ public class HarvestProcessor : MonoBehaviour
     private readonly List<GameObject> seedPlaces = new List<GameObject>();
     private List<Seed> chosenSeeds;
     private List<GameObject> chosenSeedPlaces;
-    private Button Patch;
+    private PatchGrowth Patch;
 
     /// <summary>
     /// Отрисовывает окно урожая
     /// </summary>
     /// <param name="ParentSeed">Семечко - родитель</param>
     /// <param name="patch">Грядка</param>
-    public void ShowHarvestMenu(List<Seed> ParentSeed, Button patch)
+    public void ShowHarvestMenu(List<Seed> ParentSeed, PatchGrowth patch)
     {
         Patch = patch;
         seeds = ParentSeed;
@@ -108,7 +108,7 @@ public class HarvestProcessor : MonoBehaviour
 
         if (seeds.Count == 0)
         {
-            Patch.GetComponent<PatchGrowth>().ClearPatch();
+            Patch.ClearPatch();
             gameObject.SetActive(false);
             Save();
         }
@@ -128,7 +128,7 @@ public class HarvestProcessor : MonoBehaviour
     public void ClearSpace()
     {
         if (seeds.Count == 0)
-            Patch.GetComponent<PatchGrowth>().ClearPatch();
+            Patch.ClearPatch();
         for (var i = 0; i < seeds.Count; i++)
             Destroy(seedPlaces[i]);
 
@@ -224,11 +224,7 @@ public class HarvestProcessor : MonoBehaviour
     /// </summary>
     private void Save()
     {
-        if (seeds.Count == 0) return;
-
-        PlayerPrefs.SetInt(Patch.name + "seedsCount", seeds.Count);
-        for (var i = 0; i < seeds.Count; i++)
-            PlayerPrefs.SetString(Patch.name + "seedElement" + i, seeds[i].ToString());
+        Patch.Save();
     }
 
     /// <summary>

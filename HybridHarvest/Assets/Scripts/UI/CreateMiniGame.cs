@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,14 +37,15 @@ public class CreateMiniGame : MonoBehaviour
             currentPot = ResultPlace.GetComponent<LabGrowth>().Pot;
 
             var GC = CrossingPerformer.GetComponent<GeneCrossing>();
-            var chances = PlayerPrefs.GetString("SelectionChances" + currentPot.name).Split();
-            var oppositeStats = PlayerPrefs.GetString("OppositeSeedStats" + currentPot.name).Split();
+            var reader = QSReader.Create("MiniGameStats");
+            var chances = reader.Read<List<int>>("SelectionChances" + currentPot.name);
+            var oppositeStats = reader.Read<List<int>>("OppositeSeedStats" + currentPot.name);
 
             var cardText = Instantiate(textSample, card.transform);
             cardText.GetComponent<Text>().text =
-                $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, int.Parse(chances[0]), int.Parse(oppositeStats[0]))}\n" +
-                $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, int.Parse(chances[1]), int.Parse(oppositeStats[1]))}\n" +
-                $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, int.Parse(chances[2]), int.Parse(oppositeStats[2]))}";
+                $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, chances[0], oppositeStats[0])}\n" +
+                $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, chances[1], oppositeStats[1])}\n" +
+                $"Время роста: {GC.GetNewValueByPossibility(currentSeed.GrowTime, chances[2], oppositeStats[2])}";
         }
     }
 

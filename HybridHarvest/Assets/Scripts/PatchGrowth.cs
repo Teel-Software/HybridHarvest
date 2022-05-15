@@ -3,11 +3,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
 using System;
+using CI.QuickSave;
+
+public class PatchDetails
+{
+    public string GrowingSeed { get; set; }
+    public List<string> GrownSeeds { get; set; } = new List<string>();
+    public double SecondsRemaining { get; set; }
+    public DateTime LastCheckedTime { get; set; }
+    public bool IsOccupied { get; set; }
+    public bool TimerNeeded { get; set; }
+    public double TimeSpeedBooster { get; set; } = 1;
+}
 
 public class PatchGrowth : MonoBehaviour
 {
-    public Button Patch;
-
+    [SerializeField] private Button Patch;
     [SerializeField] private RectTransform InventoryFrame;
     [SerializeField] private RectTransform HarvestWindow;
 
@@ -26,21 +37,23 @@ public class PatchGrowth : MonoBehaviour
     [SerializeField] private GameObject timerBG;
     [SerializeField] private Text growthText;
 
-    public Seed growingSeed;
-    public double time; //осталось расти
-    public List<Seed> grownSeeds = new List<Seed>();
+    private PatchDetails details = new PatchDetails();
+
+    private Seed growingSeed;
+    private List<Seed> grownSeeds = new List<Seed>();
+    private double secondsRemaining;
+    private DateTime lastCheckedTime;
+    private bool isOccupied;
+    private bool timerNeeded;
+    private double _timeSpeedBooster = 1;
 
     private static GameObject infoBlocker;
     private static PatchGrowth lastPatchGrowth;
     private Transform startCointainerPlace;
     private int infoContainerOpenedTimes;
 
-    private bool isOccupied;
-    private bool timerNeeded;
-
     private Inventory _inventory;
     private ConfirmationPanelLogic confPanel;
-    private double _timeSpeedBooster = 1;
 
     /// <summary>
     /// Садит семечко на грядку.
@@ -61,10 +74,11 @@ public class PatchGrowth : MonoBehaviour
         timerBG.SetActive(true);
         infoContainerOpenedTimes = 0;
         growingSeed = seed;
-        time = seed.GrowTime;
+        secondsRemaining = seed.GrowTime;
+        lastCheckedTime = DateTime.Now;
 
-        SetSeedSpeed(seed);
-        SavePlanting(seed);
+        CreateGrownSeeds();
+        Save();
     }
 
     /// <summary>
@@ -86,23 +100,15 @@ public class PatchGrowth : MonoBehaviour
         }
         else
         {
-            if (time > 0)
+            if (secondsRemaining > 0)
                 ToggleInfo(true);
         }
 
-        //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
-        if (grownSeeds.Count == 0 && growingSeed != null)
-        {
-            var plusSeeds =
-                (int) Math.Round(UnityEngine.Random.value * (growingSeed.MaxAmount - growingSeed.MinAmount));
-            for (var i = 0; i < growingSeed.MinAmount + plusSeeds; i++)
-                grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
-        }
-
         // открывает меню урожая
-        if (grownSeeds.Count != 0 && time <= 0)
+        if (grownSeeds.Count != 0 && secondsRemaining <= 0)
         {
-            HarvestWindow.GetComponent<HarvestProcessor>().ShowHarvestMenu(grownSeeds, Patch);
+            HarvestWindow.GetComponent<HarvestProcessor>()
+                .ShowHarvestMenu(grownSeeds, Patch.GetComponent<PatchGrowth>());
             HarvestWindow.gameObject.SetActive(true);
 
             if (lastPatchGrowth != null)
@@ -121,7 +127,7 @@ public class PatchGrowth : MonoBehaviour
         isOccupied = false;
         growingSeed = null;
         grownSeeds = new List<Seed>();
-        SaveClearing();
+        Save();
     }
 
     /// <summary>
@@ -160,7 +166,6 @@ public class PatchGrowth : MonoBehaviour
             timerNeeded = false;
             ToggleInfo();
         });
-        // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
 
     /// <summary>
@@ -207,34 +212,69 @@ public class PatchGrowth : MonoBehaviour
             confPanel.SetYesAction(() => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
             scenario?.Tutorial_ConfirmSpeedUp();
         }
-
-        // confPanel.SetNoAction(() => CloseActiveInfoContainer());
     }
-    
+
     /// <summary>
-    /// DEBUG
+    /// DEBUG Пропускает время роста.
     /// </summary>
     public void SkipSeedTime()
     {
-        time = 0;
+        secondsRemaining = 0;
     }
 
     /// <summary>
-    /// Сохраняет информацию о посадке семечка.
+    /// Сохраняет информацию о семечке.
     /// </summary>
-    /// <param name="seed">Семечко.</param>
-    private void SavePlanting(Seed seed)
+    public void Save()
     {
-        PlayerPrefs.SetInt(Patch.name + "occupied", 1);
-        PlayerPrefs.SetString(Patch.name + "grows", seed.ToString());
+        details.IsOccupied = isOccupied;
+        details.TimerNeeded = timerNeeded;
+        details.GrowingSeed = growingSeed != null ? growingSeed.ToString() : null;
+        details.SecondsRemaining = secondsRemaining;
+        details.LastCheckedTime = lastCheckedTime;
+        details.TimeSpeedBooster = _timeSpeedBooster;
+
+        details.GrownSeeds = new List<string>();
+        foreach (var seed in grownSeeds)
+            details.GrownSeeds.Add(seed.ToString());
+
+        var writer = QuickSaveWriter.Create("Field");
+        writer.Write(Patch.name, details);
+        writer.Commit();
     }
 
     /// <summary>
-    /// Сохраняет информацию о том, что грядка пуста.
+    /// Загружает информацию о семечке.
     /// </summary>
-    private void SaveClearing()
+    private void Load()
     {
-        PlayerPrefs.SetInt(Patch.name + "occupied", 0);
+        var reader = QSReader.Create("Field");
+        if (reader.Exists(Patch.name))
+            details = reader.Read<PatchDetails>(Patch.name);
+
+        isOccupied = details.IsOccupied;
+        if (!isOccupied) return;
+
+        timerNeeded = details.TimerNeeded;
+        growingSeed = Seed.Create(details.GrowingSeed);
+        _timeSpeedBooster = details.TimeSpeedBooster;
+        var timePassed = (DateTime.Now.Ticks - details.LastCheckedTime.Ticks) / 10000000;
+        secondsRemaining = details.SecondsRemaining - timePassed * _timeSpeedBooster;
+
+        foreach (var seed in details.GrownSeeds)
+            grownSeeds.Add(Seed.Create(seed));
+    }
+
+    /// <summary>
+    /// Создаёт выращенные семена.
+    /// </summary>
+    private void CreateGrownSeeds()
+    {
+        //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
+        var plusSeeds =
+            (int) Math.Round(UnityEngine.Random.value * (growingSeed.MaxAmount - growingSeed.MinAmount));
+        for (var i = 0; i < growingSeed.MinAmount + plusSeeds; i++)
+            grownSeeds.Add(SeedMutator.GetMutatedSeed(growingSeed));
     }
 
     /// <summary>
@@ -354,23 +394,11 @@ public class PatchGrowth : MonoBehaviour
         ShowTimer();
         growthText.text = "ГОТОВО";
         optionsMenu.SetActive(false);
+        _timeSpeedBooster = 1;
+        Save();
 
         if (confPanel != null)
             confPanel.gameObject.SetActive(false);
-    }
-
-    /// <summary>
-    /// Задаёт скорость роста семечка в зависимости от названия.
-    /// </summary>
-    /// <param name="seed">Семечко</param>
-    private void SetSeedSpeed(Seed seed)
-    {
-        _timeSpeedBooster = seed.NameInRussian switch
-        {
-            "Обучающий картофель" => 30,
-            "Обучающий помидор" => 60,
-            _ => 1,
-        };
     }
 
     /// <summary>
@@ -382,46 +410,20 @@ public class PatchGrowth : MonoBehaviour
         if (coeff > 0)
             _timeSpeedBooster = coeff;
 
-        Debug.Log($"Ускорение: {_timeSpeedBooster}");
+        Save();
+        Debug.Log($"{growingSeed.NameInRussian}. Ускорение: {_timeSpeedBooster}.");
     }
 
-    /// <summary>
-    /// Organizes plants on patch.
-    /// </summary>
     private void Start()
     {
         _inventory ??= GameObject.Find("DataKeeper").GetComponent<Inventory>();
-
-        if (PlayerPrefs.GetInt(Patch.name + "occupied") == 1)
-        {
-            isOccupied = true;
-            timerNeeded = true;
-        }
-        else
-        {
-            isOccupied = false;
-            return;
-        }
-        
-        growingSeed = Seed.Create(PlayerPrefs.GetString(Patch.name + "grows"));
-        SetSeedSpeed(growingSeed);
-
-        var oldDate = DateTime.Parse(PlayerPrefs.GetString(Patch.name + "timeStart"));
-        var timePassed = (DateTime.Now.Ticks - oldDate.Ticks) / 10000000;
-        time = PlayerPrefs.GetInt(Patch.name + "time") - timePassed * _timeSpeedBooster;
-
-        var seedsCount = PlayerPrefs.GetInt(Patch.name + "seedsCount");
-        for (var i = 0; i < seedsCount; i++)
-        {
-            var seed = Seed.Create(PlayerPrefs.GetString(Patch.name + "grown" + i));
-            grownSeeds.Add(seed);
-        }
+        Load();
 
         lastPatchGrowth = null;
         infoBlocker = null;
         optionsMenu.SetActive(false);
 
-        if (time <= 0)
+        if (isOccupied && secondsRemaining <= 0)
             EndGrowthCycle();
     }
 
@@ -434,12 +436,13 @@ public class PatchGrowth : MonoBehaviour
         {
             groundImage.sprite = wetGround;
 
-            if (time > 0)
+            if (secondsRemaining > 0)
             {
-                time -= Time.deltaTime * _timeSpeedBooster;
-                var timeSpan = TimeSpan.FromSeconds(math.round(time));
+                secondsRemaining -= Time.deltaTime * _timeSpeedBooster;
+                var timeSpan = TimeSpan.FromSeconds(math.round(secondsRemaining));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
-                plantImage.sprite = growingSeed.GetGrowthStageSprite(time, growingSeed.GrowTime);
+                plantImage.sprite = growingSeed.GetGrowthStageSprite(secondsRemaining, growingSeed.GrowTime);
+                lastCheckedTime = DateTime.Now;
             }
             else
             {
@@ -451,20 +454,13 @@ public class PatchGrowth : MonoBehaviour
             groundImage.sprite = dryGround;
         }
 
-        if (isOccupied && time <= 60)
+        if (isOccupied && secondsRemaining <= 60)
             ShowTimer();
     }
 
-    /// <summary>
-    /// Сохраняет данные при закрытии приложения.
-    /// </summary>
-    private void OnDestroy()
+    private void OnApplicationFocus(bool hasFocus)
     {
-        PlayerPrefs.SetInt(Patch.name + "time", (int) time);
-        PlayerPrefs.SetString(Patch.name + "timeStart", DateTime.Now.ToString());
-        PlayerPrefs.SetInt(Patch.name + "seedsCount", grownSeeds.Count);
-
-        for (var i = 0; i < grownSeeds.Count; i++)
-            PlayerPrefs.SetString(Patch.name + "grown" + i, grownSeeds[i].ToString());
+        if (!hasFocus)
+            Save();
     }
 }
