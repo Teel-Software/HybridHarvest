@@ -37,6 +37,8 @@ public class PatchGrowth : MonoBehaviour
     [SerializeField] private GameObject timerBG;
     [SerializeField] private Text growthText;
 
+    public bool StopForTutorial;
+
     private PatchDetails details = new PatchDetails();
 
     private Seed growingSeed;
@@ -45,7 +47,7 @@ public class PatchGrowth : MonoBehaviour
     private DateTime lastCheckedTime;
     private bool isOccupied;
     private bool timerNeeded;
-    private double _timeSpeedBooster = 1;
+    private double timeSpeedBooster = 1;
 
     private static GameObject infoBlocker;
     private static PatchGrowth lastPatchGrowth;
@@ -79,6 +81,9 @@ public class PatchGrowth : MonoBehaviour
 
         CreateGrownSeeds();
         Save();
+
+        if (StopForTutorial)
+            timeSpeedBooster = 0;
     }
 
     /// <summary>
@@ -204,12 +209,18 @@ public class PatchGrowth : MonoBehaviour
             adHandler.ShowAdButton.interactable = false;
             adHandler.Init();
             confPanel.SetYesAction(() =>
-                adHandler.SpeedUpAction = () => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
+                adHandler.SpeedUpAction = () => SetSeedSpeed((int) (timeSpeedBooster * coeff)));
         }
         else
         {
             GetComponent<Button>().enabled = false;
-            confPanel.SetYesAction(() => SetSeedSpeed((int) (_timeSpeedBooster * coeff)));
+            confPanel.SetYesAction(() =>
+            {
+                StopForTutorial = false;
+                timeSpeedBooster = 1;
+                SetSeedSpeed(coeff);
+            });
+            
             scenario?.Tutorial_ConfirmSpeedUp();
         }
     }
@@ -232,7 +243,7 @@ public class PatchGrowth : MonoBehaviour
         details.GrowingSeed = growingSeed != null ? growingSeed.ToString() : null;
         details.SecondsRemaining = secondsRemaining;
         details.LastCheckedTime = lastCheckedTime;
-        details.TimeSpeedBooster = _timeSpeedBooster;
+        details.TimeSpeedBooster = timeSpeedBooster;
 
         details.GrownSeeds = new List<string>();
         foreach (var seed in grownSeeds)
@@ -257,9 +268,9 @@ public class PatchGrowth : MonoBehaviour
 
         timerNeeded = details.TimerNeeded;
         growingSeed = Seed.Create(details.GrowingSeed);
-        _timeSpeedBooster = details.TimeSpeedBooster;
+        timeSpeedBooster = details.TimeSpeedBooster;
         var timePassed = (DateTime.Now.Ticks - details.LastCheckedTime.Ticks) / 10000000;
-        secondsRemaining = details.SecondsRemaining - timePassed * _timeSpeedBooster;
+        secondsRemaining = details.SecondsRemaining - timePassed * timeSpeedBooster;
 
         foreach (var seed in details.GrownSeeds)
             grownSeeds.Add(Seed.Create(seed));
@@ -305,10 +316,11 @@ public class PatchGrowth : MonoBehaviour
         optionsMenu.SetActive(timerNeeded);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для нажатия на кнопку ускорения семян
         if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSpeedUp_Played"))
-            scenario?.Tutorial_SpeedUpItem();
+            scenario.Tutorial_SpeedUpItem();
     }
 
     /// <summary>
@@ -394,7 +406,7 @@ public class PatchGrowth : MonoBehaviour
         ShowTimer();
         growthText.text = "ГОТОВО";
         optionsMenu.SetActive(false);
-        _timeSpeedBooster = 1;
+        timeSpeedBooster = 1;
         Save();
 
         if (confPanel != null)
@@ -405,13 +417,13 @@ public class PatchGrowth : MonoBehaviour
     /// Задаёт скорость роста семечка.
     /// </summary>
     /// <param name="coeff">Коэффициент скорости</param>
-    private void SetSeedSpeed(int coeff)
+    private void SetSeedSpeed(double coeff)
     {
         if (coeff > 0)
-            _timeSpeedBooster = coeff;
+            timeSpeedBooster = coeff;
 
         Save();
-        Debug.Log($"{growingSeed.NameInRussian}. Ускорение: {_timeSpeedBooster}.");
+        Debug.Log($"{growingSeed.NameInRussian}. Ускорение: {timeSpeedBooster}.");
     }
 
     private void Start()
@@ -438,7 +450,7 @@ public class PatchGrowth : MonoBehaviour
 
             if (secondsRemaining > 0)
             {
-                secondsRemaining -= Time.deltaTime * _timeSpeedBooster;
+                secondsRemaining -= Time.deltaTime * timeSpeedBooster;
                 var timeSpan = TimeSpan.FromSeconds(math.round(secondsRemaining));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(secondsRemaining, growingSeed.GrowTime);

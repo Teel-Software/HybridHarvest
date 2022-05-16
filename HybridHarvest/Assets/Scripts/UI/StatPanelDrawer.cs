@@ -47,6 +47,7 @@ public class StatPanelDrawer : MonoBehaviour
                 qualityTxt = "Легендарный";
                 break;
         }
+
         QualityText.text = $"{qualityTxt}";
         QualityText.color = qualityTxtColor;
 
@@ -56,29 +57,34 @@ public class StatPanelDrawer : MonoBehaviour
     private void OnEnable()
     {
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для скрещивания семян 2
         if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToCrossSecond_Played"))
-            scenario?.Tutorial_ApplyItemToCrossSecond();
+            scenario.Tutorial_ApplyItemToCrossSecond();
 
         // тутор для скрещивания семян 1
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToCrossFirst_Played"))
-            scenario?.Tutorial_ApplyItemToCrossFirst();
+            scenario.Tutorial_ApplyItemToCrossFirst();
 
         // тутор для продажи пакета семян
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToSell_Played"))
-            scenario?.Tutorial_SellItem();
+            scenario.Tutorial_SellItem();
 
         // тутор для замены пакета семян
         else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToReplace_Played"))
-            scenario?.Tutorial_ReplaceItem();
+            scenario.Tutorial_ReplaceItem();
 
         // тутор для панели статистики
-        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToPlant_Played"))
-            scenario?.Tutorial_PlantItem();
-
+        else if (QSReader.Create("TutorialState").Exists("Tutorial_ChooseItemToPlant_Played")
+                 && !QSReader.Create("TutorialState").Exists("Tutorial_PlantItem_Played", "TutorialSkipped"))
+        {
+            GameObject.Find("FarmSpot").GetComponent<PatchGrowth>().StopForTutorial = true;
+            scenario.Tutorial_PlantItem();
+        }
+        
         // тутор для покупки пакета семян
         else if (QSReader.Create("TutorialState").Exists("Tutorial_Shop_Played"))
-            scenario?.Tutorial_BuyItem();
+            scenario.Tutorial_BuyItem();
     }
 }

@@ -23,14 +23,15 @@ public class LabButton : MonoBehaviour
             InventoryFrame.Redraw(filter_RussianName: SecondButton.GetComponent<LabButton>().NowSelected.NameInRussian);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для выбора семечка 2
         if (QSReader.Create("TutorialState").Exists("Tutorial_HybridPanelSecond_Played"))
-            scenario?.Tutorial_ChooseItemToCrossSecond();
+            scenario.Tutorial_ChooseItemToCrossSecond();
 
         // тутор для выбора семечка 1
         if (QSReader.Create("TutorialState").Exists("Tutorial_HybridPanel_Played"))
-            scenario?.Tutorial_ChooseItemToCrossFirst();
+            scenario.Tutorial_ChooseItemToCrossFirst();
     }
 
     public void ChosenSeed(Seed seed)

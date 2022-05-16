@@ -75,10 +75,11 @@ public class HarvestProcessor : MonoBehaviour
         choseAllCheckmark.SetActive(chosenCount != seedPlaces.Count);
         
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для продажи урожая
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlaceChoseAll_Played"))
-            scenario?.Tutorial_HarvestPlaceSell();
+            scenario.Tutorial_HarvestPlaceSell();
     }
 
     /// <summary>
@@ -116,10 +117,11 @@ public class HarvestProcessor : MonoBehaviour
         UpdateChosenSeeds();
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для проверки энергии
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlaceChoseAll_Played"))
-            scenario?.Tutorial_CheckEnergy();
+            scenario.Tutorial_CheckEnergy();
     }
 
     /// <summary>

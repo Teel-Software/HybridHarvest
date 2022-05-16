@@ -30,18 +30,19 @@ public class InventoryDrawer : MonoBehaviour
         Redraw();
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+        if (scenario == null) return;
 
         // тутор для выбора пакета семян для замены
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
-            scenario?.Tutorial_ChooseItemToReplace();
+            scenario.Tutorial_ChooseItemToReplace();
 
         // тутор для выбора пакета семян для посадки
         else if (QSReader.Create("TutorialState").Exists("Tutorial_GoToField_Played"))
-            scenario?.Tutorial_ChooseItemToPlant();
+            scenario.Tutorial_ChooseItemToPlant();
 
         // тутор для добавления пакета семян
         else if (QSReader.Create("TutorialState").Exists("Tutorial_BuyItem_Played"))
-            scenario?.Tutorial_AddItem();
+            scenario.Tutorial_AddItem();
     }
 
     private void OnDisable()
@@ -147,14 +148,15 @@ public class InventoryDrawer : MonoBehaviour
             itemIconDrawer.Button.onClick.AddListener(() =>
             {
                 var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+                if (scenario == null) return;
 
                 // тутор для выхода из лаборатории
                 if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))
-                    scenario?.Tutorial_LabEnding();
+                    scenario.Tutorial_LabEnding();
 
                 // тутор для выхода из магазина
                 else if (QSReader.Create("TutorialState").Exists("Tutorial_AddItem_Played"))
-                    scenario?.Tutorial_ShopExit();
+                    scenario.Tutorial_ShopExit();
             });
         }
 
@@ -237,30 +239,31 @@ public class InventoryDrawer : MonoBehaviour
         yesButton.onClick.AddListener(() =>
         {
             var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+            if (scenario == null) return;
 
             // тутор для выхода из лаборатории
             if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))
-                scenario?.Tutorial_LabEnding();
+                scenario.Tutorial_LabEnding();
 
             // тутор для окончания скрещивания
             else if (QSReader.Create("TutorialState").Exists("Tutorial_ApplyItemToCrossSecond_Played"))
-                scenario?.Tutorial_ApplyCrossing();
+                scenario.Tutorial_ApplyCrossing();
 
             // тутор для активации кнопки скрещивания 2
             else if (QSReader.Create("TutorialState").Exists("Tutorial_ApplyItemToCrossFirst_Played"))
-                scenario?.Tutorial_HybridPanelSecond();
+                scenario.Tutorial_HybridPanelSecond();
 
             // тутор для захода на биржу
             else if (QSReader.Create("TutorialState").Exists("Tutorial_SellItem_Played"))
-                scenario?.Tutorial_GoToMarket();
+                scenario.Tutorial_GoToMarket();
 
             // тутор для выбора урожая
             else if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceItem_Played"))
-                scenario?.Tutorial_HarvestPlaceChoseAll();
-            
+                scenario.Tutorial_HarvestPlaceChoseAll();
+
             // тутор для ускорения роста
             else if (QSReader.Create("TutorialState").Exists("Tutorial_PlantItem_Played"))
-                scenario?.Tutorial_ChooseItemToSpeedUp();
+                scenario.Tutorial_ChooseItemToSpeedUp();
         });
         logicScript.ItemObject = item;
 

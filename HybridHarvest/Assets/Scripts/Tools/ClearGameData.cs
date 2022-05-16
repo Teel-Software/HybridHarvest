@@ -100,7 +100,7 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
-    /// Приводит статистику игрока к дефолтным значениям
+    /// Очищает PlayerPrefs
     /// </summary>
     private static void ResetPlayerPrefs()
     {
