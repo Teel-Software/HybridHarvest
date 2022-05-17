@@ -149,6 +149,7 @@ public class TaskController : MonoBehaviour
             {
                 new Award(AwardType.Money, amount: 200),
                 new Award(AwardType.Reputation, amount: 300),
+                new Award(AwardType.Seed, seedName: "Cucumber"),
             },
             "FirstTask",
             new SubTask("Grow", "Cucumber", 5),
@@ -242,9 +243,7 @@ public class TaskController : MonoBehaviour
         for (var i = 0; i < renderedTasks.Count; i++)
             renderedTasks[i].transform.SetSiblingIndex(i);
 
-        if (!isPreview)
-            EmptyListText.SetActive(renderedTasks.Count == 0);
-        else
+        if (isPreview)
         {
             QuestsPreviewPanel
                 .transform
@@ -283,8 +282,10 @@ public class TaskController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // if (!renderTasksHere) return;
-        //
+        if (!renderTasksHere) return;
+
+        EmptyListText.SetActive(transform.childCount == 0);
+
         // var secondsRemaining = (cooldownEnd - DateTime.Now).TotalSeconds;
         // timeLabel.text = secondsRemaining >= 0
         //     ? $"До нового задания осталось {TimeFormatter.Format((int) secondsRemaining)}"

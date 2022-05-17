@@ -96,7 +96,7 @@ public class Task : MonoBehaviour
         {
             var stObj = Instantiate(SubTaskPrefab, placeForSubTasks, false);
             stObj.text = $"<sprite=0> {subTask.ProgressAmount}/{subTask.AmountToComplete}";
-            // stObj.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\{subTask.Key}");
+            stObj.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\{subTask.Key}");
         }
 
         CharacterSpritePlace.sprite =

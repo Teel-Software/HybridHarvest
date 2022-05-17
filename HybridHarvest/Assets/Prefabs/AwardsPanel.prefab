@@ -600,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4603317771401224098}
   - component: {fileID: 1467259567886110834}
-  - component: {fileID: 3765700831810018321}
+  - component: {fileID: 5115524796732186691}
   m_Layer: 5
   m_Name: AwardsPlace
   m_TagString: AwardsPlace
@@ -635,7 +635,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8775446985705563778}
   m_CullTransparentMesh: 1
---- !u!114 &3765700831810018321
+--- !u!114 &5115524796732186691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -644,18 +644,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8775446985705563778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 10
-    m_Bottom: 0
+    m_Top: 20
+    m_Bottom: 20
   m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 400, y: 50}
-  m_Spacing: {x: 0, y: 10}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Spacing: 40
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
