@@ -16,17 +16,6 @@ public enum NowTalking
 }
 
 /// <summary>
-/// Определяет возможный приз
-/// </summary>
-public enum AwardType
-{
-    Money,
-    Seed,
-    Achievement,
-    Reputation
-}
-
-/// <summary>
 /// Содержит персонажа и его речь
 /// </summary>
 public class Speech
@@ -42,30 +31,6 @@ public class Speech
 
     public NowTalking Character { get; }
     public string Phrase { get; }
-}
-
-/// <summary>
-/// Содержит приз и его компоненты
-/// </summary>
-public class Award
-{
-    /// <summary>
-    /// Содержит приз и его компоненты
-    /// </summary>
-    public Award(AwardType currentPrize, string message = "", int money = 0, int reputation = 0, string seedName = "")
-    {
-        CurrentPrize = currentPrize;
-        Message = message;
-        Money = money;
-        Reputation = reputation;
-        SeedName = seedName;
-    }
-
-    public AwardType CurrentPrize { get; }
-    public string Message { get; }
-    public int Money { get; }
-    public int Reputation { get; }
-    public string SeedName { get; }
 }
 
 public class DialogPanelLogic : MonoBehaviour

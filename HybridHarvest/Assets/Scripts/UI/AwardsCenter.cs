@@ -2,9 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Определяет возможный приз
+/// </summary>
+public enum AwardType
+{
+    Money,
+    Seed,
+    Achievement,
+    Reputation
+}
+
+/// <summary>
+/// Содержит приз и его компоненты
+/// </summary>
+public class Award
+{
+    /// <summary>
+    /// Содержит приз и его компоненты
+    /// </summary>
+    public Award(AwardType currentPrize, string message = "", int amount = 0, string seedName = "")
+    {
+        CurrentPrize = currentPrize;
+        Message = message;
+        Amount = amount;
+        SeedName = seedName;
+    }
+
+    public AwardType CurrentPrize { get; }
+    public string Message { get; }
+    public int Amount { get; }
+    public string SeedName { get; }
+}
+
 public class AwardsCenter : MonoBehaviour
 {
-    [SerializeField] GameObject awardsPanelPrefab;
+    [SerializeField] private GameObject awardsPanelPrefab;
 
     public GameObject awardPrefab;
     public IEnumerable<Award> currentAwards { get; private set; }
@@ -29,16 +62,16 @@ public class AwardsCenter : MonoBehaviour
             switch (aw.CurrentPrize)
             {
                 case AwardType.Money:
-                    tmPro.text = $"<sprite=0> x {aw.Money}";
-                    tmPro.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\Money");
+                    tmPro.text = $"<sprite=0> x {aw.Amount}";
+                    tmPro.spriteAsset = (TMP_SpriteAsset) Resources.Load($"TMP_Assets\\Money");
+                    break;
+                case AwardType.Reputation:
+                    tmPro.text = $"<sprite=0> x {aw.Amount}";
+                    tmPro.spriteAsset = (TMP_SpriteAsset) Resources.Load($"TMP_Assets\\Reputation");
                     break;
                 case AwardType.Seed:
                     tmPro.text = $"<sprite name=\"{aw.SeedName}\"> x 1";
-                    tmPro.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\Seeds");
-                    break;
-                case AwardType.Reputation:
-                    tmPro.text = $"<sprite=0> x {aw.Reputation}";
-                    tmPro.spriteAsset = (TMP_SpriteAsset)Resources.Load($"TMP_Assets\\Reputation");
+                    tmPro.spriteAsset = (TMP_SpriteAsset) Resources.Load($"TMP_Assets\\Seeds");
                     break;
                 case AwardType.Achievement:
                     tmPro.text = $"Достижение x 1";
@@ -61,16 +94,16 @@ public class AwardsCenter : MonoBehaviour
             switch (aw.CurrentPrize)
             {
                 case AwardType.Money:
-                    targetInventory.AddMoney(aw.Money);
-                    targetInventory.Save();
-                    break;
-                case AwardType.Seed:
-                    var seed = (Seed)Resources.Load("Seeds\\" + aw.SeedName);
-                    targetInventory.AddItem(seed, true);
+                    targetInventory.AddMoney(aw.Amount);
                     targetInventory.Save();
                     break;
                 case AwardType.Reputation:
-                    targetInventory.ChangeReputation(aw.Reputation);
+                    targetInventory.ChangeReputation(aw.Amount);
+                    targetInventory.Save();
+                    break;
+                case AwardType.Seed:
+                    var seed = (Seed) Resources.Load("Seeds\\" + aw.SeedName);
+                    targetInventory.AddItem(seed, true);
                     targetInventory.Save();
                     break;
                 case AwardType.Achievement:

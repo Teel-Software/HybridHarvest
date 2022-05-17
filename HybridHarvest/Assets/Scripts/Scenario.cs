@@ -40,7 +40,7 @@ public class Scenario : MonoBehaviour
         DialogPanel.AddPhrase(NowTalking.Second, "Да, и хороший борщик... Не продаём такое, к сожалению.", 4);
 
         DialogPanel.AddPhrase(NowTalking.First, "2. Вы любите розы?", 3); // ID = 6
-        DialogPanel.AddAward(6, new Award(AwardType.Money, money: 500));
+        DialogPanel.AddAward(6, new Award(AwardType.Money, amount: 500));
         DialogPanel.AddPhrase(NowTalking.Second, "А я на них... не вижу никакого подтекста.", 6);
 
         DialogPanel.AddPhrase(NowTalking.First, "3. Получить огурчик!", 3); // ID = 8
@@ -53,7 +53,7 @@ public class Scenario : MonoBehaviour
 
         DialogPanel.AddPhrase(NowTalking.Narrator, "Хочешь бесплатную репутацию?"); // ID = 12
         DialogPanel.AddPhrase(NowTalking.First, "1. Да!", 12); // ID = 13
-        DialogPanel.AddAward(13, new Award(AwardType.Reputation, reputation: 500));
+        DialogPanel.AddAward(13, new Award(AwardType.Reputation, amount: 500));
         DialogPanel.AddPhrase(NowTalking.First, "2. Нет!", 12);
         DialogPanel.AddPhrase(NowTalking.First, "3. Четыре!", 12);
         DialogPanel.AddPhrase(NowTalking.First, "4. Мне чизбургер без сыра, пожалуйста.", 12);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -119,7 +120,7 @@ public class HarvestProcessor : MonoBehaviour
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
         if (scenario == null) return;
 
-        // тутор для проверки энергии
+        // тутор для энергии
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlaceChoseAll_Played"))
             scenario.Tutorial_CheckEnergy();
     }
@@ -151,14 +152,18 @@ public class HarvestProcessor : MonoBehaviour
 
         for (var i = 0; i < renderPlace.childCount; i++)
         {
-            var task = renderPlace.GetChild(i).GetComponent<Task>();
+            var task = renderPlace.GetChild(i).GetComponent<TaskPreview>();
             task.AddQuestItems = () =>
             {
-                task.Details.ProgressAmount += chosenSeeds.Count;
+                task.Details
+                    .SubTasks
+                    .First(st => st.Key == seeds[0].Name)
+                    .ProgressAmount += chosenSeeds.Count;
+                
                 for (var j = 0; j < chosenSeeds.Count; j++)
                     DeleteUsedSeed(chosenSeeds[j], chosenSeedPlaces[j]);
+                
                 task.Save();
-
                 UpdateChosenSeeds();
             };
         }

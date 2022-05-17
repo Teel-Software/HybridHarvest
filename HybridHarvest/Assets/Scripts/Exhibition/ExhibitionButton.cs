@@ -50,8 +50,8 @@ public class ExhibitionButton : MonoBehaviour
         {
             var awards = new List<Award>
             {
-                new Award(AwardType.Money, money: 100),
-                new Award(AwardType.Reputation, reputation: 100)
+                new Award(AwardType.Money, amount: 100),
+                new Award(AwardType.Reputation, amount: 100)
             };
             gameObject.GetComponent<AwardsCenter>().Show(awards);
             NowSelected = null;

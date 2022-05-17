@@ -4178,6 +4178,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 1377511384627516813, guid: d3109a0e0568d8e43a8477e73bb53bc8, type: 3}
+      propertyPath: DialogPanel
+      value: 
+      objectReference: {fileID: 338724733}
     - target: {fileID: 4113909190920008062, guid: d3109a0e0568d8e43a8477e73bb53bc8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4268,6 +4272,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4113909190920008063, guid: d3109a0e0568d8e43a8477e73bb53bc8, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161162767117203449, guid: d3109a0e0568d8e43a8477e73bb53bc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7518887746490589526, guid: d3109a0e0568d8e43a8477e73bb53bc8, type: 3}
