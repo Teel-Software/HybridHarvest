@@ -6,15 +6,18 @@ namespace Exhibition
 {
     public class TabControls : MonoBehaviour
     {
-        // Каждая кнопка должна соответствовать панели
-        // 0-й элемент в панелях - пустой, т.к. начальная панель всегда должна быть активна
         [SerializeField] 
         private Button[] tabButtons;
         [SerializeField] 
+        private Button mainTabButton;
+        [SerializeField] 
         private GameObject[] tabPanels;
+
+        [SerializeField] 
+        private int defaultActive = 1;
         public void Start()
         {
-            foreach (var panel in tabPanels.Skip(1))
+            foreach (var panel in tabPanels)
             {
                 panel.SetActive(false);
             }
@@ -24,30 +27,37 @@ namespace Exhibition
                 for (var i = 0; i < tabButtons.Length; i++)
                     tabButtons[i].interactable = i != index;
             }
-            void closeTabs() 
+
+            mainTabButton.onClick.AddListener(() =>
             {
-                for (var i = 1; i < tabPanels.Length; i++)
-                    tabPanels[i].SetActive(false);
-            }
-        
-            tabButtons[0].onClick.AddListener(() =>
-            {
-                disableClickedButton(0);
-                closeTabs();
+                mainTabButton.interactable = false;
+                disableClickedButton(-1);
+                CloseAllTabs();
             });
         
-            for (var i = 1; i < tabButtons.Length; i++)
+            for (var i = 0; i < tabButtons.Length; i++)
             {
                 var index = i;
                 tabButtons[index].onClick.AddListener(() =>
                 {
+                    mainTabButton.interactable = true;
                     disableClickedButton(index);
-                    closeTabs();
+                    CloseAllTabs();
                     tabPanels[index].SetActive(true);
                 });
             }
+
+            mainTabButton.interactable = true;
+            tabPanels[defaultActive].SetActive(true);
+            tabButtons[defaultActive].interactable = false;
         }
     
+                    
+        private void CloseAllTabs()
+        {
+            foreach (var panel in tabPanels)
+                panel.SetActive(false);
+        }
         void Update()
         {
             //tabButtons[currentTab].interactable = false;

@@ -23,7 +23,7 @@ namespace Exhibition
         private DateTime? rewardDate;
         private bool isInProgress = false;
         private int daySkip;
-        public void OnEnable()
+        public void Awake()
         {
             Load();
             var now = DateTime.Now;
@@ -56,7 +56,7 @@ namespace Exhibition
                 else if (rewardDate > now)
                 {
                     beginButton.gameObject.SetActive(false);
-                    
+                    // all buttons get hidded by loop above while rewardDate > now
                     btn.onClick.AddListener(exhibBtn.DisabledClick);
                 }
                 else if (rewardDate < now)
@@ -74,8 +74,8 @@ namespace Exhibition
         {
             if (isInProgress && rewardDate < DateTime.Now)
             {
-                OnEnable();
-                isInProgress = false;
+                Awake();
+				isInProgress = false;
             }
         }
 
@@ -84,9 +84,9 @@ namespace Exhibition
         #if DEBUG
             rewardDate = DateTime.Now.AddSeconds(3);
         #else
-            RewardDate = DateTime.Now.AddMinutes(15);
+            rewardDate = DateTime.Now.AddMinutes(15);
         #endif
-            OnEnable();
+            Awake();
         }
         
         public void AddDaySkip(int days)
