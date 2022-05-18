@@ -16,6 +16,11 @@ public class LevelUpSlider : MonoBehaviour
         SetLevel(_inventory.Level + 1);
     }
 
+    public void LevelDown()
+    {
+        SetLevel(_inventory.Level - 1);
+    }
+    
     // Start is called before the first frame update
     private void Start()
     {

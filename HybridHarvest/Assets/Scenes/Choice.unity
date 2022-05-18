@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 74445847}
   - component: {fileID: 74445846}
   - component: {fileID: 74445849}
+  - component: {fileID: 74445850}
   m_Layer: 5
   m_Name: ExhibitionLabel
   m_TagString: Untagged
@@ -649,6 +650,19 @@ MonoBehaviour:
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   useDefaultColor: 1
+--- !u!114 &74445850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74445844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
 --- !u!1001 &172851752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -675,6 +689,22 @@ PrefabInstance:
     - target: {fileID: 8518535141574646292, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -787,6 +817,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8518535141687739275, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
   m_PrefabInstance: {fileID: 172851752}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &172851754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8518535141687739274, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+  m_PrefabInstance: {fileID: 172851752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &172851755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172851754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
 --- !u!114 &189950536 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2146170984949625784, guid: fcb31162402b3fc4fbdf8bff81469d76, type: 3}
@@ -2543,6 +2591,22 @@ PrefabInstance:
       value: "\u041A.\u0412.\u0410.\u041D.\u0422."
       objectReference: {fileID: 0}
     - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518535141687739273, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 4
       objectReference: {fileID: 0}
@@ -2649,6 +2713,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8518535141687739275, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
   m_PrefabInstance: {fileID: 1679812347}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1679812349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8518535141687739274, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+  m_PrefabInstance: {fileID: 1679812347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1679812350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679812349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 10
 --- !u!1 &1727909672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,6 +3016,7 @@ GameObject:
   - component: {fileID: 1891661456}
   - component: {fileID: 1891661455}
   - component: {fileID: 1891661458}
+  - component: {fileID: 1891661459}
   m_Layer: 5
   m_Name: QuestLabel
   m_TagString: Untagged
@@ -3144,6 +3227,19 @@ MonoBehaviour:
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   useDefaultColor: 1
+--- !u!114 &1891661459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891661453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
 --- !u!1 &1971671887
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,15 @@ public class ShopLogic : MonoBehaviour, ISaveable
             .ToList();
         SaveStatic();
     }
+    
+    /// <summary>
+    /// Блокирует все открытые семена, кроме начальных.
+    /// </summary>
+    public static void ResetSeeds()
+    {
+        unlockedSeeds = new List<string> { "Cucumber" };
+        SaveStatic();
+    }
 
     public void Save()
     {

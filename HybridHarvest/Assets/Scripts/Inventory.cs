@@ -32,9 +32,11 @@ public class Inventory : MonoBehaviour, ISaveable
 
     //The time in *seconds* it take to regenerate 1 energy
     public int EnergyRegenDelay { get; private set; }
-    private float energyBuffer;
 
+    private float energyBuffer;
     private Market market;
+    
+    private const int _defaultMaxEnergy = 5;
 
     public void Awake()
     {
@@ -119,13 +121,51 @@ public class Inventory : MonoBehaviour, ISaveable
             Level++;
 
             // Бонусы за повышение вот здесь
-            EnergyMax++;
             Money += 100;
 
             switch (Level)
             {
                 case 2:
                     ShopLogic.UnlockSeeds("Tomato");
+                    break;
+                case 3:
+                    EnergyMax++;
+                    break;
+                case 4:
+                    ShopLogic.UnlockSeeds("Pea");
+                    break;
+                case 5:
+                    EnergyMax++;
+                    break;
+                case 6:
+                    ShopLogic.UnlockSeeds("Potato");
+                    break;
+                case 7:
+                    EnergyMax++;
+                    break;
+                case 8:
+                    ShopLogic.UnlockSeeds("Carrot");
+                    break;
+                case 9:
+                    EnergyMax++;
+                    break;
+                case 10:
+                    EnergyMax++;
+                    break;
+                case 11:
+                    break;
+                case 12:
+                    break;
+                case 13:
+                    EnergyMax++;
+                    break;
+                case 14:
+                    break;
+                case 15:
+                    EnergyMax++;
+                    break;
+                case 20:
+                    ShopLogic.UnlockSeeds("Debug");
                     break;
             }
             // Конец бонусов за повышение уровня
@@ -151,7 +191,8 @@ public class Inventory : MonoBehaviour, ISaveable
         {
             Money = 100;
             Energy = 1;
-            EnergyMax = 10;
+            EnergyMax = _defaultMaxEnergy;
+            ShopLogic.ResetSeeds();
         }
 
         while (value > Level)
@@ -231,7 +272,7 @@ public class Inventory : MonoBehaviour, ISaveable
         EnergyRegenDelay = 20; // time it take to regen (in seconds)
         reader = QSReader.Create("EnergyData");
         Energy = reader.Exists("Energy") ? reader.Read<int>("Energy") : 1;
-        EnergyMax = reader.Exists("EnergyMax") ? reader.Read<int>("EnergyMax") : 10;
+        EnergyMax = reader.Exists("EnergyMax") ? reader.Read<int>("EnergyMax") : _defaultMaxEnergy;
         energyBuffer = reader.Exists("EnergyBuffer")
             ? reader.Read<float>("EnergyBuffer")
             : EnergyRegenDelay;
