@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using CI.QuickSave;
+using TMPro;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -10,38 +12,53 @@ namespace Exhibition
 {
     public class Exhibition : MonoBehaviour, ISaveable
     {
-        [SerializeField] 
-        private Button[] exhButtons;
-        [SerializeField] 
-        private Image testImage;
-        [SerializeField] 
-        private Button beginButton;
+        [SerializeField] private GameObject inProgressContainer;
+        [SerializeField] private GameObject rewardPendingContainer;
+        [SerializeField] private GameObject finishedContainer;
         
+        [SerializeField] private Image testImage;
+        
+        [SerializeField] private Button[] exhButtons;      
+        [SerializeField] private Button beginButton;
         public int SeedCount { get; private set; }
         public DateTime NextExhibition { get; private set; }
         
         private DateTime? rewardDate;
-        private bool isInProgress = false;
-        private int daySkip;
+        private State state;
+        
+        private bool isInProgress;
+        private int _daySkip;
+        
+        public DateTime Now;
         public void Awake()
         {
             Load();
-            var now = DateTime.Now;
+            
+            Now = DateTime.Now;
         #if DEBUG
-            now = now.AddDays(daySkip);    
+            Now = Now.AddDays(_daySkip);    
         #endif
-            if (now > NextExhibition)
+            if (Now > NextExhibition)
             {
                 InitializeExhibition();
             }
-            isInProgress = rewardDate > now;
+            
+            // change to State.InProgress
+            isInProgress = rewardDate > Now;
             
             foreach (var btn in exhButtons)
                 btn.gameObject.SetActive(false);
-            
-            if (rewardDate is null || rewardDate < now)
+
+            if (rewardDate is null)
+            {
+                beginButton.gameObject.SetActive(true);
                 foreach (var btn in exhButtons.Take(SeedCount))
                     btn.gameObject.SetActive(true);
+            }
+            else
+            {
+                beginButton.gameObject.SetActive(false);    
+            }
             
             foreach (var btn in exhButtons)
             {
@@ -49,49 +66,82 @@ namespace Exhibition
                 var exhibBtn = btn.GetComponent<ExhibitionButton>();
                 if (rewardDate is null)
                 {
-                    beginButton.gameObject.SetActive(true);
-                    
                     btn.onClick.AddListener(exhibBtn.AddSeed);      
                 }
-                else if (rewardDate > now)
+                else if (rewardDate > Now)
                 {
-                    beginButton.gameObject.SetActive(false);
-                    // all buttons get hidded by loop above while rewardDate > now
-                    btn.onClick.AddListener(exhibBtn.DisabledClick);
                 }
-                else if (rewardDate < now)
+                else if (rewardDate < Now)
                 {                    
-                    beginButton.gameObject.SetActive(false);
-                    
-                    btn.onClick.AddListener(exhibBtn.GetResult);
-                    if (exhibBtn.NowSelected is null)
-                        exhibBtn.MakeDisabled();
+                    exhibBtn.MakeDisabled();
                 }
+            }
+            
+            if (rewardDate < Now && state != State.Finished)
+            {
+                rewardPendingContainer.SetActive(true);
+                rewardPendingContainer.GetComponentInChildren<Button>()
+                    .onClick.RemoveAllListeners();
+                rewardPendingContainer.GetComponentInChildren<Button>()
+                    .onClick.AddListener(GetAward);
             }
         }
 
         public void Update()
         {
+            Now = DateTime.Now;
+        #if DEBUG
+            Now = Now.AddDays(_daySkip);    
+        #endif
+            
             if (isInProgress && rewardDate < DateTime.Now)
             {
                 Awake();
 				isInProgress = false;
+            }
+            
+            // switch by state here somewhere
+            inProgressContainer.SetActive(rewardDate > DateTime.Now);
+            finishedContainer.SetActive(state == State.Finished);
+            
+            if (rewardDate > DateTime.Now)
+            {
+                inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                    .text = TimeFormatter.Format((DateTime)rewardDate - DateTime.Now);
+            }
+            else if (state == State.Finished)
+            {
+                finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                    .text = TimeFormatter.Format(NextExhibition - DateTime.Now);
             }
         }
 
         public void BeginExhibition()
         {
         #if DEBUG
-            rewardDate = DateTime.Now.AddSeconds(3);
+            rewardDate = DateTime.Now.AddSeconds(7);
         #else
             rewardDate = DateTime.Now.AddMinutes(15);
         #endif
+            Save();
             Awake();
         }
-        
+
+        private void GetAward()
+        {
+            var awards = new List<Award>
+            {
+                new Award(AwardType.Money, amount: 100),
+                new Award(AwardType.Reputation, amount: 100)
+            };
+            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards);
+            rewardPendingContainer.SetActive(false);
+            state = State.Finished;
+        }
+
         public void AddDaySkip(int days)
         {
-            daySkip += days;
+            _daySkip = Math.Max(0, _daySkip + days);
         }
         
         private void InitializeExhibition()
@@ -99,6 +149,7 @@ namespace Exhibition
             var rand = new Random();
             SeedCount = rand.Next(3) + 1;
             NextExhibition = NextExhibition.AddDays(1);
+            state = State.Inactive;
             rewardDate = null;
         }
 
@@ -121,6 +172,11 @@ namespace Exhibition
             writer.Write("Seeds", exhSeeds);
             writer.Write("SeedCount", SeedCount);
             writer.Write("NextExhibition", NextExhibition);
+            if (!(rewardDate is null))
+            {
+                writer.Write("RewardDate", rewardDate);
+            }
+            writer.Write("State", state);
             writer.Commit();
         }
 
@@ -145,7 +201,24 @@ namespace Exhibition
 
             NextExhibition = reader.TryRead<DateTime>("NextExhibition", out var next)
                 ? next
-                : DateTime.Today.AddDays(1);
+                : DateTime.Today;
+
+            rewardDate = reader.TryRead<DateTime>("RewardDate", out var _rewardDate)
+                ? _rewardDate
+                : (DateTime?)null;
+
+            state = reader.TryRead<State>("State", out var _state)
+                ? _state
+                : State.Inactive;
         }
     }
-}
+    
+    public enum State {
+        Inactive,
+        InProgress,
+        RewardPending,
+        Finished
+    }
+}   
+
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using TMPro;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,23 +21,9 @@ namespace Exhibition
 
         public void Update()
         {
-            var now = DateTime.Now;
-            var today = DateTime.Today;
-#if DEBUG
-            var i = 0;
-            now = now.AddDays(i);
-            today = today.AddDays(i);
-#endif
-            var next = today.AddDays(1);
-            var timeSpan = next - now;
-            if (timeSpan.TotalDays < 1)
-            {
-                timeTillNext.text = $"{timeSpan.Hours} ч. {timeSpan.Minutes} мин.";
-            }
-            else
-            {
-                timeTillNext.text = $"{timeSpan.Days} дн. {timeSpan.Hours} ч.";
-            }
+            var next = GetComponentInParent<Exhibition>().NextExhibition;
+            var now = GetComponentInParent<Exhibition>().Now;
+            timeTillNext.text = TimeFormatter.Format(next - now);
         }
     } 
 }

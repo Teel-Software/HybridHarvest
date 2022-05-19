@@ -12,7 +12,6 @@ namespace Exhibition
         private Button mainTabButton;
         [SerializeField] 
         private GameObject[] tabPanels;
-
         [SerializeField] 
         private int defaultActive = 1;
         public void Start()
@@ -22,7 +21,7 @@ namespace Exhibition
                 panel.SetActive(false);
             }
 
-            void disableClickedButton(int index)
+            void disableClickedEnableOthers(int index)
             {
                 for (var i = 0; i < tabButtons.Length; i++)
                     tabButtons[i].interactable = i != index;
@@ -31,7 +30,7 @@ namespace Exhibition
             mainTabButton.onClick.AddListener(() =>
             {
                 mainTabButton.interactable = false;
-                disableClickedButton(-1);
+                disableClickedEnableOthers(-1);
                 CloseAllTabs();
             });
         
@@ -41,15 +40,18 @@ namespace Exhibition
                 tabButtons[index].onClick.AddListener(() =>
                 {
                     mainTabButton.interactable = true;
-                    disableClickedButton(index);
+                    disableClickedEnableOthers(index);
                     CloseAllTabs();
                     tabPanels[index].SetActive(true);
                 });
             }
 
-            mainTabButton.interactable = true;
-            tabPanels[defaultActive].SetActive(true);
-            tabButtons[defaultActive].interactable = false;
+            if (defaultActive >= 0)
+            {
+                mainTabButton.interactable = true;
+                tabPanels[defaultActive].SetActive(true);
+                tabButtons[defaultActive].interactable = false;        
+            }
         }
     
                     
