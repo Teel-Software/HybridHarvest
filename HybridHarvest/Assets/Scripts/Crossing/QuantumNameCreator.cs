@@ -24,7 +24,7 @@ public class QuantumNameCreator : MonoBehaviour
 
     public void DefaultFill()
     {
-        UserInput.text = "твой вариант";
+        //UserInput.text = "твой вариант";
         TextPlace.text = "Как назовём?";
         //UserInput.text = "твой вариант";
     }

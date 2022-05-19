@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine.Serialization;
 using Random = System.Random;
 
@@ -117,6 +118,8 @@ public class Seed : ScriptableObject
     public MutationChance MutationChance;
 
     public SeedStatistics SeedStats;
+
+    public List<string> Parents;
     
     /// <summary>
     /// Exports seed data as a JSON string

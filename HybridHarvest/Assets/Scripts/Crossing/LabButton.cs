@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -53,7 +54,14 @@ public class LabButton : MonoBehaviour
     public void ChosenSeed(Seed seed, int[] chance)
     {
         NowSelected = seed;
-        SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
+        //if(SceneManager.GetActiveScene().buildIndex == 4)
+        //{
+        //    var url = Path.Combine(Application.persistentDataPath, seed.Name + ".png");
+        //    if (File.Exists(url)) SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
+        //    else SelectButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("unknownResult");
+        //}
+        //else
+            SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian +
             $"\nВкус: {seed.Taste} {chance[0]}%" +
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +
@@ -72,8 +80,6 @@ public class LabButton : MonoBehaviour
         var newseed = CrossingPerformer.GetComponent<GeneCrossing>().MixTwoParents(seed1, NowSelected);
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
-            //newseed.NameInRussian = "???";
-            //newseed.Name = seed1.Name + "-" + NowSelected.Name;
             newseed = CrossingPerformer.GetComponent<GeneCrossing>().GetQuantumSeed(seed1, NowSelected);
         }
         var chance = CrossingPerformer.GetComponent<GeneCrossing>().Chances;
