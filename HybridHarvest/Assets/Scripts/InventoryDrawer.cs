@@ -4,6 +4,15 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
+public enum PurposeOfDrawing
+{
+    Sell,
+    Change,
+    Plant,
+    AddToLab,
+    AddToExhibition
+}
+
 public class InventoryDrawer : MonoBehaviour
 {
     [SerializeField] public Inventory targetInventory;
@@ -21,7 +30,7 @@ public class InventoryDrawer : MonoBehaviour
     public Action SuccessfulAddition;
     public PurposeOfDrawing Purpose;
     private readonly List<GameObject> alreadyDrawn = new List<GameObject>();
-    private bool changeItem = false;
+    private bool changeItem;
     private Seed changingSeed;
 
     private void OnEnable()
@@ -91,9 +100,7 @@ public class InventoryDrawer : MonoBehaviour
     public void Redraw(string filter_RussianName = null)
     {
         for (var i = 0; i < alreadyDrawn.Count; i++)
-        {
             Destroy(alreadyDrawn[i]);
-        }
 
         alreadyDrawn.Clear();
 
@@ -159,8 +166,6 @@ public class InventoryDrawer : MonoBehaviour
                     scenario.Tutorial_ShopExit();
             });
         }
-
-        FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
     }
 
     /// <summary>
@@ -175,9 +180,9 @@ public class InventoryDrawer : MonoBehaviour
     }
 
     /// <summary>
-    /// Вызывает панель подтверждения
+    /// Вызывает панель подтверждения.
     /// </summary>
-    /// <param семечко="item"></param>
+    /// <param name="item">Семечко.</param>
     private void PrepareConfirmation(GameObject item)
     {
         if (!int.TryParse(item.name, out var index)) return;
@@ -284,13 +289,9 @@ public class InventoryDrawer : MonoBehaviour
         //gameObject.transform.Find("ChangeSeedPanel").gameObject.SetActive(true);
         changingSeed = newSeed;
     }
-}
 
-public enum PurposeOfDrawing
-{
-    Sell,
-    Change,
-    Plant,
-    AddToLab,
-    AddToExhibition
+    private void Update()
+    {
+        FreeSpaceCounter.text = $"{targetInventory.Elements.Count}/{targetInventory.MaxItemsAmount}";
+    }
 }

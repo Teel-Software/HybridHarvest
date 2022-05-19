@@ -12,7 +12,7 @@ public class TutorialHandler : MonoBehaviour
             .Where(seed => !seed.NameInRussian.Contains("Обучаю"))
             .ToList();
         inventory.Save();
-        ShopLogic.UnlockSeeds("Cucumber", "Tomato", "Potato", "Pea", "Carrot", "Debug");
+        ShopLogic.UnlockSeeds("Cucumber", "Tomato", "Pea", "Potato", "Carrot", "Debug");
     }
 
     public void SkipTutorial()
@@ -35,7 +35,7 @@ public class TutorialHandler : MonoBehaviour
         // тутор для захода на склад
         if (QSReader.Create("TutorialState").Exists("Tutorial__Played"))
             scenario.Tutorial_SideMenuToInventory();
-        
+
         // тутор для захода в квесты
         else if (QSReader.Create("TutorialState").Exists("Tutorial_LevelUp2_Played"))
             scenario.Tutorial_SideMenuToQuests();
@@ -44,7 +44,7 @@ public class TutorialHandler : MonoBehaviour
         else if (QSReader.Create("TutorialState").Exists("Tutorial_BeginningChoice_Played"))
             scenario.Tutorial_SideMenuToShop();
     }
-    
+
     public void ShopTutorial()
     {
         var scenario = GetComponent<Scenario>();
@@ -53,7 +53,7 @@ public class TutorialHandler : MonoBehaviour
         // тутор для открытия предметов на уровне 2
         if (QSReader.Create("TutorialState").Exists("Tutorial_LevelUp2_Played"))
             scenario.Tutorial_ShopLevel2();
-        
+
         // тутор для покупки огурца
         else if (QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToShop_Played"))
             scenario.Tutorial_Shop();

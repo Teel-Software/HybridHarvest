@@ -95,16 +95,13 @@ public class AwardsCenter : MonoBehaviour
             {
                 case AwardType.Money:
                     targetInventory.AddMoney(aw.Amount);
-                    targetInventory.Save();
                     break;
                 case AwardType.Reputation:
                     targetInventory.ChangeReputation(aw.Amount);
-                    targetInventory.Save();
                     break;
                 case AwardType.Seed:
                     var seed = (Seed) Resources.Load("Seeds\\" + aw.SeedName);
                     targetInventory.AddItem(seed, true);
-                    targetInventory.Save();
                     break;
                 case AwardType.Achievement:
                     GetComponent<NotificationCenter>().Show(aw.Message);

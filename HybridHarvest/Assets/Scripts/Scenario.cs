@@ -72,6 +72,21 @@ public class Scenario : MonoBehaviour
         DialogPanel.StartDialog();
     }
 
+    public void CreateFirstTaskDialog(params Award[] awards)
+    {
+        DialogPanel.InitDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
+        DialogPanel.AddPhrase(NowTalking.First,
+            "Большое спасибо, что помог мне с этим делом, вот - держи награду! Сейчас я позову старосту.");
+
+        foreach (var award in awards)
+            DialogPanel.AddAward(1, award);
+
+        DialogPanel.StartDialog();
+
+        // тутор для выполнения первого задания
+        DialogPanel.LastAction = () => Tutorial_FirstQuestCompleted();
+    }
+
     public void Tutorial_Beginning()
     {
         switch (SceneManager.GetActiveScene().buildIndex)
@@ -360,12 +375,12 @@ public class Scenario : MonoBehaviour
                 "Приветствую! У меня в продаже недавно появились семена помидора. Цена небольшая, советую купить."
             });
     }
-    
+
     public void Tutorial_FirstQuestCompleted()
     {
         FirstCharacterSprite = Resources.Load<Sprite>("Characters\\OldMan");
         SecondCharacterSprite = Resources.Load<Sprite>("Characters\\MainHero");
-        
+
         ExecuteTutorialPart("FirstQuestCompleted",
             firstCharacterPhrases: new[]
             {
@@ -378,7 +393,7 @@ public class Scenario : MonoBehaviour
                 "Ух ты, выставка! Надеюсь, я справлюсь!"
             });
     }
-    
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void Tutorial_SideMenuToInventory()

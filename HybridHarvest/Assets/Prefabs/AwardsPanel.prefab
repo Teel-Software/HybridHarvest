@@ -258,7 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0.5019608, g: 1, b: 0.5019608, a: 1}
-  useDefaultColor: 1
+  useDefaultColor: 0
 --- !u!1 &4690167478290183684
 GameObject:
   m_ObjectHideFlags: 0

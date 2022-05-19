@@ -149,7 +149,6 @@ public class TaskController : MonoBehaviour
             {
                 new Award(AwardType.Money, amount: 200),
                 new Award(AwardType.Reputation, amount: 300),
-                new Award(AwardType.Seed, seedName: "Cucumber"),
             },
             "FirstTask",
             new SubTask("Grow", "Cucumber", 5),

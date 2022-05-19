@@ -438,7 +438,6 @@ GameObject:
   - component: {fileID: 74445848}
   - component: {fileID: 74445847}
   - component: {fileID: 74445846}
-  - component: {fileID: 74445849}
   - component: {fileID: 74445850}
   m_Layer: 5
   m_Name: ExhibitionLabel
@@ -635,21 +634,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74445844}
   m_CullTransparentMesh: 1
---- !u!114 &74445849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74445844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  useDefaultColor: 1
 --- !u!114 &74445850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2981,6 +2965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1871862019}
   - component: {fileID: 1871862018}
+  - component: {fileID: 1871862020}
   m_Layer: 0
   m_Name: DataKeeper
   m_TagString: Inventory
@@ -3020,6 +3005,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1871862020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871862017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  useDefaultColor: 1
 --- !u!1 &1891661453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,7 +3032,6 @@ GameObject:
   - component: {fileID: 1891661457}
   - component: {fileID: 1891661456}
   - component: {fileID: 1891661455}
-  - component: {fileID: 1891661458}
   - component: {fileID: 1891661459}
   m_Layer: 5
   m_Name: QuestLabel
@@ -3229,21 +3228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891661453}
   m_CullTransparentMesh: 1
---- !u!114 &1891661458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891661453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a612019a012b6468b787705da90f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  useDefaultColor: 1
 --- !u!114 &1891661459
 MonoBehaviour:
   m_ObjectHideFlags: 0

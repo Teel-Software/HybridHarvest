@@ -113,19 +113,22 @@ public class Task : MonoBehaviour
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler").GetComponent<Scenario>();
         scenario.FirstCharacterSprite = CharacterSpritePlace.sprite;
 
-        if (Details.Awards != null)
-            scenario.CreateTaskEndDialog(TaskTools.GetPhrase(), Details.Awards);
-        else
-            scenario.CreateTaskEndDialog(TaskTools.GetPhrase(),
-                new Award(AwardType.Money, amount: SumAmountToComplete() * 10),
-                new Award(AwardType.Reputation, amount: SumAmountToComplete() * 15)
-            );
-
-        if (Details.Tag.Contains("FirstTask"))
+        switch (Details.Tag)
         {
-             // тутор для выполнения первого задания
-            if (QSReader.Create("TutorialState").Exists("Tutorial_GetFirstQuest_Played"))
-                scenario.Tutorial_FirstQuestCompleted();
+            case "FirstTask":
+                scenario.CreateFirstTaskDialog(Details.Awards);
+                break;
+            default:
+            {
+                if (Details.Awards != null)
+                    scenario.CreateTaskEndDialog(TaskTools.GetPhrase(), Details.Awards);
+                else
+                    scenario.CreateTaskEndDialog(TaskTools.GetPhrase(),
+                        new Award(AwardType.Money, amount: SumAmountToComplete() * 10),
+                        new Award(AwardType.Reputation, amount: SumAmountToComplete() * 15)
+                    );
+                break;
+            }
         }
 
         Delete();

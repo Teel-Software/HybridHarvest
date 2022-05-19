@@ -154,8 +154,8 @@ public class DialogPanelLogic : MonoBehaviour
         if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
             || !wasHided && hideTriggers.Contains(lastPhraseID))
         {
-            LastAction?.Invoke();
             Hide();
+            LastAction?.Invoke();
             return;
         }
 

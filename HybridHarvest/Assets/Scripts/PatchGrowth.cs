@@ -78,12 +78,10 @@ public class PatchGrowth : MonoBehaviour
         growingSeed = seed;
         secondsRemaining = seed.GrowTime;
         lastCheckedTime = DateTime.Now;
+        timeSpeedBooster = StopForTutorial ? 0 : 1;
 
         CreateGrownSeeds();
         Save();
-
-        if (StopForTutorial)
-            timeSpeedBooster = 0;
     }
 
     /// <summary>
