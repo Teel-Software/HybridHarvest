@@ -182,14 +182,14 @@ public class GeneCrossing : MonoBehaviour
         var newSeed = ScriptableObject.CreateInstance<Seed>();
 
         // место для создания изображения
-        ImageMerger.MergeParentImages(parent1.Name, parent2.Name, parent1.Parents, parent2.Parents);
+        ImageMerger.MergeParentImages(parent1.Parents, parent2.Parents);
 
-        newSeed.Name = parent1.Name + "-" + parent2.Name;
+        //newSeed.Name = parent1.Name + "-" + parent2.Name;
         //newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
         newSeed.NameInRussian = "???";
         newSeed.NameInLatin = "";
 
-        newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Name, parent2.Name);
+        newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Parents, parent2.Parents);
         newSeed.Taste = newSeed.SeedStats.Taste.Keys.ToArray()[0];
         newSeed.TasteGen = Gen.Mixed;
 
@@ -206,21 +206,7 @@ public class GeneCrossing : MonoBehaviour
         newSeed.MaxAmount = newSeed.SeedStats.MaxAmount.Keys.ToArray()[0];
         newSeed.AmountGen = Gen.Mixed;
 
-        newSeed.Parents = new List<string>();
-        if (parent1.Parents.Count == 0)
-            newSeed.Parents.Add(parent1.Name);
-        else
-        {
-            for (var i = 0; i < parent1.Parents.Count; i++)
-                newSeed.Parents.Add(parent1.Parents[i]);
-        }
-        if (parent2.Parents.Count == 0)
-            newSeed.Parents.Add(parent2.Name);
-        else
-        {
-            for (var i = 0; i < parent2.Parents.Count; i++)
-                newSeed.Parents.Add(parent2.Parents[i]);
-        }
+        newSeed.Parents = parent1.Parents.Concat(parent2.Parents).ToList();
         newSeed.Parents.Sort();
 
         return newSeed;

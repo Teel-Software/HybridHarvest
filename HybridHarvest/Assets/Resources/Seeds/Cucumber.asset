@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a112785622812904490495f4cb0851a6, type: 3}
   m_Name: Cucumber
   m_EditorClassIdentifier: 
-  Name: Cucumber
   NameInRussian: "\u041E\u0433\u0443\u0440\u0435\u0446"
   NameInLatin: Cucumis sativus
-  AmountGen: 1
-  minAmount: 4
-  maxAmount: 5
   ShopBuyPrice: 20
   GabitusGen: 1
   Gabitus: 2
@@ -25,5 +21,10 @@ MonoBehaviour:
   Taste: 5
   GrowTimeGen: 1
   GrowTime: 180
-  MutationPossibilityGen: 1
-  MutationPossibility: 0
+  AmountGen: 1
+  MinAmount: 4
+  MaxAmount: 5
+  MutationChanceGen: 1
+  MutationChance: 0
+  Parents:
+  - Cucumber

@@ -11,10 +11,13 @@ using Random = System.Random;
 
 public class Seed : ScriptableObject
 {
-    public string Name;
+    public string Name => string.Join("-", Parents.OrderBy(x=>x));
     public string NameInRussian;
     public string NameInLatin;
-    
+    public string GrowSpritesName => Parents[0];
+
+    public List<string> Parents;
+
     public int ShopBuyPrice;
     public int Price
     {
@@ -49,10 +52,10 @@ public class Seed : ScriptableObject
         }
 
     }
-    public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Early");
-    public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Sprout");
-    public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Young");
-    public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{Name}Grown");
+    public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Early");
+    public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Sprout");
+    public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Young");
+    public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Grown");
     public Sprite PacketSprite => Resources.Load<Sprite>($"Packets\\Packet{PacketQuality}");
 
     public int PacketQuality
@@ -118,8 +121,6 @@ public class Seed : ScriptableObject
     public MutationChance MutationChance;
 
     public SeedStatistics SeedStats;
-
-    public List<string> Parents;
     
     /// <summary>
     /// Exports seed data as a JSON string
@@ -291,7 +292,7 @@ public class Seed : ScriptableObject
     {
         var parameters = data.Split('|');
         SeedStats = CSVReader.GetSeedStats(parameters[0]);
-        Name = parameters[0];
+        //Name = parameters[0];
         GrowTime = int.Parse(parameters[2]);
         GrowTimeGen = (Gen)int.Parse(parameters[3]);
         Gabitus = int.Parse(parameters[4]);

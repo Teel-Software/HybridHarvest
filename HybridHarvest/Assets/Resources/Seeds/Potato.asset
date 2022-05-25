@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a112785622812904490495f4cb0851a6, type: 3}
   m_Name: Potato
   m_EditorClassIdentifier: 
-  Name: Potato
   NameInRussian: "\u041A\u0430\u0440\u0442\u043E\u0444\u0435\u043B\u044C"
   NameInLatin: Solanum tuberosum
-  AmountGen: 1
-  minAmount: 5
-  maxAmount: 7
   ShopBuyPrice: 15
   GabitusGen: 1
   Gabitus: 2
@@ -25,5 +21,10 @@ MonoBehaviour:
   Taste: 3
   GrowTimeGen: 1
   GrowTime: 300
-  MutationPossibilityGen: 1
-  MutationPossibility: 0
+  AmountGen: 1
+  MinAmount: 5
+  MaxAmount: 7
+  MutationChanceGen: 1
+  MutationChance: 0
+  Parents:
+  - Potato

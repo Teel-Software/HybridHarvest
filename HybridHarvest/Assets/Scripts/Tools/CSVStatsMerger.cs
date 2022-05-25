@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using System.Text;
 using Tools;
 using System.IO;
@@ -10,13 +10,14 @@ public static class CSVStatsMerger
     /// <summary>
     /// Checs if this seedType exists (if not, creates it) and returns statistics
     /// </summary>
-    public static SeedStatistics GetQuantumStatistics(string parent1, string parent2)
+    public static SeedStatistics GetQuantumStatistics(List<string> parents1, List<string> parents2)
     {
-        var seedName = parent1 + "-" + parent2;
+        var seedName = string.Join("-", parents1.Concat(parents2).OrderBy(x=>x));
         var stats = CSVReader.GetSeedStats(seedName);
         if (stats == null)
         {
-            var newRows = MergeExistingTables(parent1, parent2);
+            var newRows = MergeExistingTables(string.Join("-", parents1.OrderBy(x=>x)),
+                string.Join("-", parents2.OrderBy(x => x)));
             CreateNewCSV(seedName, newRows);
         }
 
@@ -119,7 +120,7 @@ public static class CSVStatsMerger
         var filePath = Path.Combine(folder, seedName + ".csv");
         using (var writer = new StreamWriter(filePath, false))
         {
-            writer.Write(String.Join("\n", newRows));
+            writer.Write(string.Join("\n", newRows));
         }
     }
 }

@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a112785622812904490495f4cb0851a6, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  Name: Tomato
   NameInRussian: "\u041F\u043E\u043C\u0438\u0434\u043E\u0440"
   NameInLatin: Solanum lycopersicum
-  AmountGen: 1
-  minAmount: 3
-  maxAmount: 4
   ShopBuyPrice: 40
   GabitusGen: 1
   Gabitus: 3
@@ -25,5 +21,10 @@ MonoBehaviour:
   Taste: 7
   GrowTimeGen: 1
   GrowTime: 600
-  MutationPossibilityGen: 1
-  MutationPossibility: 1
+  AmountGen: 1
+  MinAmount: 3
+  MaxAmount: 4
+  MutationChanceGen: 1
+  MutationChance: 1
+  Parents:
+  - Tomato
