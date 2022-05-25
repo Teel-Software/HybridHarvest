@@ -573,12 +573,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303469837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 20
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1 &337834836
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,12 +683,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590849539}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 20
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!224 &642364914 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5251126956864642450, guid: 4403239d0e6308d40baf664ec768f54b, type: 3}
@@ -705,12 +707,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680945131}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 13
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1001 &815106330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -857,12 +860,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969920128}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 7
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1001 &986646902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1012,12 +1016,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057806123}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 20
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1001 &1058045230
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -647,6 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1001 &172851752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -819,6 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!114 &189950536 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2146170984949625784, guid: fcb31162402b3fc4fbdf8bff81469d76, type: 3}
@@ -2732,6 +2734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 10
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1 &1727909672
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,6 +3244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1 &1971671887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,7 +3803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2799662953909121954, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -20.546005
+      value: -20.54602
       objectReference: {fileID: 0}
     - target: {fileID: 2799662953909121954, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
       propertyPath: m_AnchoredPosition.y
