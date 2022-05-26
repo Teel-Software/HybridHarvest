@@ -129,14 +129,16 @@ namespace Exhibition
 
         private void GetAward()
         {
+            // TODO remove random
             var rand = new Random();
-            var place = rand.Next(4) + 1;
+            var awardTier = rand.Next(4) + 1;
             var awards = new List<Award>
             {
-                new Award(AwardType.Money, amount: 25 * place),
-                new Award(AwardType.Reputation, amount: 25 * place)
+                new Award(AwardType.Money, amount: 25 * awardTier),
+                new Award(AwardType.Reputation, amount: 25 * awardTier)
             };
-            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards);
+            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
+                $"Вы заняли {5 - awardTier} место!");
             rewardPendingContainer.SetActive(false);
             state = State.Finished;
         }

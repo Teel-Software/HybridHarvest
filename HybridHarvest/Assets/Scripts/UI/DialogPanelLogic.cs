@@ -83,8 +83,8 @@ public class DialogPanelLogic : MonoBehaviour
     /// </summary>
     public void AddPhrase(NowTalking character, string phrase, int answerOnID = 0, bool hideTrigger = false)
     {
-        if (scenario == null)
-            throw new NotImplementedException("Call method \"CreateDialogPanel\" first!");
+        if (scenario is null)
+            throw new MethodAccessException("Call method \"CreateDialogPanel\" first!");
 
         var speech = new Speech(character, phrase);
         speechByID.Add(speech);

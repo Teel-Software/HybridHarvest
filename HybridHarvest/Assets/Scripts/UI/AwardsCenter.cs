@@ -38,7 +38,8 @@ public class Award
 public class AwardsCenter : MonoBehaviour
 {
     [SerializeField] private GameObject awardsPanelPrefab;
-
+    public TextMeshProUGUI awardMessage;
+    
     public GameObject awardPrefab;
     public IEnumerable<Award> currentAwards { get; private set; }
     private GameObject currentAwardsPanel;
@@ -46,7 +47,7 @@ public class AwardsCenter : MonoBehaviour
     /// <summary>
     /// Выводит на панель награды.
     /// </summary>
-    public void Show(IEnumerable<Award> awards)
+    public void Show(IEnumerable<Award> awards, string message = null)
     {
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         currentAwardsPanel = Instantiate(awardsPanelPrefab, canvas.transform, false);
@@ -54,6 +55,11 @@ public class AwardsCenter : MonoBehaviour
         var awPlace = GameObject.FindGameObjectWithTag("AwardsPlace");
         currentAwardsPanel.GetComponent<AwardsCenter>().currentAwards = awards;
 
+        if (!(message is null))
+        {
+            currentAwardsPanel.GetComponent<AwardsCenter>().awardMessage.text = message;
+        }
+        
         foreach (var aw in awards)
         {
             var newAw = Instantiate(awardPrefab, awPlace.transform, false);
@@ -83,7 +89,7 @@ public class AwardsCenter : MonoBehaviour
     /// <summary>
     /// Осуществляет получение наград. Вызывать ТОЛЬКО из самого префаба.
     /// </summary>
-    public void ApplyAwards()
+    private void ApplyAwards()
     {
         var targetInventory = GameObject
             .FindGameObjectWithTag("Inventory")
