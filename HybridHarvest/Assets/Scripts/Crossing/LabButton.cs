@@ -15,11 +15,15 @@ public class LabButton : MonoBehaviour
     public void Clicked()
     {
         InventoryFrame.GetComponent<InventoryDrawer>().GrowPlace = SelectButton;
-        InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToLab);
+
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+            InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToQuant);
+        else
+            InventoryFrame.GetComponent<InventoryDrawer>().SetPurpose(PurposeOfDrawing.AddToLab);
+
         InventoryFrame.gameObject.SetActive(true);
-        if (SceneManager.GetActiveScene().buildIndex != 4
-            && SecondButton.GetComponent<LabButton>().NowSelected != null)
-            InventoryFrame.Redraw(filter_RussianName: SecondButton.GetComponent<LabButton>().NowSelected.NameInRussian);
+        if (SecondButton.GetComponent<LabButton>().NowSelected != null)
+            InventoryFrame.Redraw(filterParents: SecondButton.GetComponent<LabButton>().NowSelected.Parents);
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
         if (scenario == null) return;
@@ -60,7 +64,7 @@ public class LabButton : MonoBehaviour
         //    else SelectButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("unknownResult");
         //}
         //else
-            SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
+        SelectButton.GetComponent<Image>().sprite = seed.PlantSprite;
         var seedInfo = seed.NameInRussian +
             $"\nВкус: {seed.Taste} {chance[0]}%" +
             $"\nГабитус: {seed.Gabitus} {chance[1]}%" +

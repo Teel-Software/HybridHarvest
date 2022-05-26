@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public Text EnergyRegenTime;
 
     public Action<Seed> onInventoryFull;
-    public Action<string> onItemAdded;
+    public Action<List<string>> onItemAdded;
     public int Money { get; private set; }
     public int Reputation { get; private set; }
 

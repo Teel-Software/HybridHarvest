@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 using System;
 
 public enum PurposeOfDrawing
@@ -10,7 +11,8 @@ public enum PurposeOfDrawing
     Change,
     Plant,
     AddToLab,
-    AddToExhibition
+    AddToExhibition,
+    AddToQuant
 }
 
 public class InventoryDrawer : MonoBehaviour
@@ -96,8 +98,8 @@ public class InventoryDrawer : MonoBehaviour
     /// <summary>
     /// Отрисовывает инвентарь
     /// </summary>
-    /// <param name="filter_RussianName">Показывает только предметы с этим русским названием</param>
-    public void Redraw(string filter_RussianName = null)
+    /// <param name="filterParents">Показывает только предметы с этими родителями</param>
+    public void Redraw(List<string> filterParents = null)
     {
         for (var i = 0; i < alreadyDrawn.Count; i++)
             Destroy(alreadyDrawn[i]);
@@ -108,9 +110,17 @@ public class InventoryDrawer : MonoBehaviour
         {
             var seed = targetInventory.Elements[i];
 
-            // фильтрует семена по русскому названию
-            if (filter_RussianName != null
-                && seed.NameInRussian != filter_RussianName)
+            // фильтрует семена по родителям для лаборатории
+            if (Purpose == PurposeOfDrawing.AddToLab && 
+                filterParents != null && 
+                !seed.Parents.SequenceEqual(filterParents))
+                continue;
+
+            // фильтрует семена по родителям для кванта
+            if (Purpose == PurposeOfDrawing.AddToQuant &&
+                filterParents != null &&
+                (seed.Parents.Count + filterParents.Count > 5 ||
+                seed.Parents.Any(x => filterParents.Any(y => y == x))))
                 continue;
 
             /*
@@ -231,13 +241,17 @@ public class InventoryDrawer : MonoBehaviour
                 text.text = "Посадить";
                 yesButton.onClick.AddListener(logicScript.Plant);
                 break;
-            case PurposeOfDrawing.AddToLab: // через код на кнопке лаборатории
+            case PurposeOfDrawing.AddToLab: // через код labButton
                 text.text = "Выбрать";
                 yesButton.onClick.AddListener(logicScript.Select);
                 break;
             case PurposeOfDrawing.AddToExhibition: // через код на кнопке выставки
                 text.text = "Отправить";
                 yesButton.onClick.AddListener(logicScript.SendToExhibition);
+                break;
+            case PurposeOfDrawing.AddToQuant: // через код labButton
+                text.text = "Выбрать";
+                yesButton.onClick.AddListener(logicScript.Select);
                 break;
         }
 

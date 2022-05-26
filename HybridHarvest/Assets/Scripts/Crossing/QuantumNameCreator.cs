@@ -11,22 +11,26 @@ public class QuantumNameCreator : MonoBehaviour
     [SerializeField] Text TextPlace;
     [SerializeField] InputField UserInput;
     [SerializeField] CreateMiniGame MiniGame;
+    [SerializeField] Button SubmitButton;
 
     private string result;
+
+    public void OnEnable()
+    {
+        SubmitButton.GetComponent<Button>().interactable = (UserInput.text != "");
+    }
 
     public void UserEnterName()
     {
         result = UserInput.text;
         result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
-        //TextPlace.text = result;
+        SubmitButton.GetComponent<Button>().interactable = (result != "");
         UserInput.text = result;
     }
 
     public void DefaultFill()
     {
-        //UserInput.text = "твой вариант";
         TextPlace.text = "Как назовём?";
-        //UserInput.text = "твой вариант";
     }
 
     public void GenerateName()
@@ -34,7 +38,7 @@ public class QuantumNameCreator : MonoBehaviour
 
         //Name1 = "помирец";
         //Name2 = "картошка";
-        if(Name1 == "" || Name2 == "")
+        if (Name1 == "" || Name2 == "")
         {
             var reader = QSReader.Create("QuantumName");
             if (reader.Exists("name1"))
@@ -55,7 +59,6 @@ public class QuantumNameCreator : MonoBehaviour
             result = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(result);
         } while (result == PlayerPrefs.GetString("QuantPrevName"));
         PlayerPrefs.SetString("QuantPrevName", result);
-        //TextPlace.text = result;
         UserInput.text = result;
 
         //result.Add(string.Join("", RandomHalves(firstParts, secondParts, fromFirst, fromSecond)));

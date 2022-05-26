@@ -546,6 +546,7 @@ MonoBehaviour:
   TextPlace: {fileID: 5699248951765965701}
   UserInput: {fileID: 3272682178922030788}
   MiniGame: {fileID: 0}
+  SubmitButton: {fileID: 9158308737938683150}
 --- !u!1 &5699248951386766612
 GameObject:
   m_ObjectHideFlags: 0
