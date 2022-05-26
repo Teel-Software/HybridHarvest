@@ -15,7 +15,8 @@ namespace Exhibition
         public void Awake()
         {
             var dayIcons = dayContainer.GetComponentsInChildren<DayIcon>();
-            var todayIndex = ((int)DateTime.Today.DayOfWeek + 6) % 7;
+            var dayOfWeek = GetComponentInParent<Exhibition>().Now.DayOfWeek;
+            var todayIndex = ((int)dayOfWeek + 6) % 7;
             dayIcons[todayIndex].Background.color = new Color(1, 0, 0, 0.75f);
         }
 

@@ -22,107 +22,74 @@ namespace Exhibition
         [SerializeField] private Button beginButton;
         public int SeedCount { get; private set; }
         public DateTime NextExhibition { get; private set; }
+        public DateTime? RewardDate { get; private set; }
+        public ExhibitionState State { get; private set; }
         
-        private DateTime? rewardDate;
-        private State state;
+        private int _daySkip = 0;
         
-        private bool isInProgress;
-        private int _daySkip;
-        
-        public DateTime Now;
+        public DateTime Now { get; private set; }
         public void Awake()
         {
             Load();
+            SetDebugTime();
             
-            Now = DateTime.Now;
-        #if DEBUG
-            Now = Now.AddDays(_daySkip);    
-        #endif
             if (Now > NextExhibition)
             {
                 InitializeExhibition();
             }
-            
-            // change to State.InProgress
-            isInProgress = rewardDate > Now;
-            
-            foreach (var btn in exhButtons)
-                btn.gameObject.SetActive(false);
 
-            if (rewardDate is null)
-            {
-                beginButton.gameObject.SetActive(true);
-                foreach (var btn in exhButtons.Take(SeedCount))
-                    btn.gameObject.SetActive(true);
-            }
-            else
-            {
-                beginButton.gameObject.SetActive(false);    
-            }
-            
+            var isActive = State == ExhibitionState.Inactive;
+            beginButton.gameObject.SetActive(isActive);
             foreach (var btn in exhButtons)
             {
-                btn.onClick.RemoveAllListeners();
-                var exhibBtn = btn.GetComponent<ExhibitionButton>();
-                if (rewardDate is null)
-                {
-                    btn.onClick.AddListener(exhibBtn.AddSeed);      
-                }
-                else if (rewardDate > Now)
-                {
-                }
-                else if (rewardDate < Now)
-                {                    
-                    exhibBtn.MakeDisabled();
-                }
-            }
-            
-            if (rewardDate < Now && state != State.Finished)
-            {
-                rewardPendingContainer.SetActive(true);
-                rewardPendingContainer.GetComponentInChildren<Button>()
-                    .onClick.RemoveAllListeners();
-                rewardPendingContainer.GetComponentInChildren<Button>()
-                    .onClick.AddListener(GetAward);
+                btn.gameObject.SetActive(isActive);
             }
         }
 
         public void Update()
         {
-            Now = DateTime.Now;
-        #if DEBUG
-            Now = Now.AddDays(_daySkip);    
-        #endif
+            SetDebugTime();
             
-            if (isInProgress && rewardDate < DateTime.Now)
+            if (State == ExhibitionState.InProgress && RewardDate < Now)
             {
+                State = ExhibitionState.RewardPending;
+                Save();
                 Awake();
-				isInProgress = false;
             }
             
-            // switch by state here somewhere
-            inProgressContainer.SetActive(rewardDate > DateTime.Now);
-            finishedContainer.SetActive(state == State.Finished);
-            
-            if (rewardDate > DateTime.Now)
+            inProgressContainer.SetActive(State == ExhibitionState.InProgress);
+            rewardPendingContainer.SetActive(State == ExhibitionState.RewardPending);
+            finishedContainer.SetActive(State == ExhibitionState.Finished);
+
+            switch (State)
             {
-                inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
-                    .text = TimeFormatter.Format((DateTime)rewardDate - DateTime.Now);
-            }
-            else if (state == State.Finished)
-            {
-                finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
-                    .text = TimeFormatter.Format(NextExhibition - DateTime.Now);
+                case ExhibitionState.InProgress:
+                    inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                        .text = TimeFormatter.Format((DateTime)RewardDate - Now);
+                    break;
+                
+                case ExhibitionState.RewardPending:
+                    rewardPendingContainer.GetComponentInChildren<Button>()
+                        .onClick.RemoveAllListeners();
+                    rewardPendingContainer.GetComponentInChildren<Button>()
+                        .onClick.AddListener(GetAward);
+                    break;
+                
+                case ExhibitionState.Finished:
+                    finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                        .text = TimeFormatter.Format(NextExhibition - Now);
+                    break;
             }
         }
 
         public void BeginExhibition()
         {
         #if DEBUG
-            rewardDate = DateTime.Now.AddSeconds(7);
+            RewardDate = Now.AddSeconds(7);
         #else
-            rewardDate = DateTime.Now.AddMinutes(15);
+            RewardDate = Now.AddMinutes(15);
         #endif
+            State = ExhibitionState.InProgress;
             Save();
             Awake();
         }
@@ -139,22 +106,30 @@ namespace Exhibition
             };
             rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
                 $"Вы заняли {5 - awardTier} место!");
-            rewardPendingContainer.SetActive(false);
-            state = State.Finished;
+            State = ExhibitionState.Finished;
         }
 
         public void AddDaySkip(int days)
         {
             _daySkip = Math.Max(0, _daySkip + days);
         }
+
+        private void SetDebugTime()
+        {
+            Now = DateTime.Now;
+#if DEBUG
+            Now = Now.AddDays(_daySkip);    
+#endif
+        }
         
         private void InitializeExhibition()
         {
+            // TODO remove random maybe?
             var rand = new Random();
             SeedCount = rand.Next(3) + 1;
-            NextExhibition = DateTime.Today.AddDays(1);
-            state = State.Inactive;
-            rewardDate = null;
+            NextExhibition = Now.Date.AddDays(1);
+            RewardDate = null;
+            State = ExhibitionState.Inactive;
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -176,11 +151,11 @@ namespace Exhibition
             writer.Write("Seeds", exhSeeds);
             writer.Write("SeedCount", SeedCount);
             writer.Write("NextExhibition", NextExhibition);
-            if (!(rewardDate is null))
+            if (!(RewardDate is null))
             {
-                writer.Write("RewardDate", rewardDate);
+                writer.Write("RewardDate", RewardDate);
             }
-            writer.Write("State", state);
+            writer.Write("State", State);
             writer.Commit();
         }
 
@@ -205,19 +180,19 @@ namespace Exhibition
 
             NextExhibition = reader.TryRead<DateTime>("NextExhibition", out var next)
                 ? next
-                : DateTime.Today.AddDays(1);
+                : Now.Date.AddDays(1);
 
-            rewardDate = reader.TryRead<DateTime>("RewardDate", out var _rewardDate)
+            RewardDate = reader.TryRead<DateTime>("RewardDate", out var _rewardDate)
                 ? _rewardDate
                 : (DateTime?)null;
 
-            state = reader.TryRead<State>("State", out var _state)
+            State = reader.TryRead<ExhibitionState>("State", out var _state)
                 ? _state
-                : State.Inactive;
+                : ExhibitionState.Inactive;
         }
     }
     
-    public enum State {
+    public enum ExhibitionState {
         Inactive,
         InProgress,
         RewardPending,

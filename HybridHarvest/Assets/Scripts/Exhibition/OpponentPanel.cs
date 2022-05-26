@@ -26,6 +26,7 @@ namespace Exhibition
                 new Opponent("Лариса", "Larisa"),
                 new Opponent("Серафима Ивановна", "OldLady"),
                 new Opponent("Дед Максим", "OldMan"),
+                new Opponent("Алиса", "Alisa"),
             };
 
             foreach (var card in cards)
@@ -80,8 +81,8 @@ namespace Exhibition
         }
     
         public void OnEnable()
-        {            
-
+        {
+            gameObject.SetActive(GetComponentInParent<Exhibition>().State == ExhibitionState.Inactive);
         }
         
         public void ChangeCount(int inc)

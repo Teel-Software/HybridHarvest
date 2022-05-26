@@ -125,7 +125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4925379291355049955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4442020350073711051}
+        m_TargetAssemblyTypeName: ExhibitionButton, Assembly-CSharp
+        m_MethodName: AddSeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4442020350073711051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   awardsPanelPrefab: {fileID: 3120944475483751061, guid: 60b0c2946d431d14aa0d2d7a56e225c5, type: 3}
+  awardMessage: {fileID: 0}
   awardPrefab: {fileID: 2668108572914083540, guid: eb4796eb4adc96d4a8553c593f18ac0f, type: 3}
 --- !u!1 &5071358756961427205
 GameObject:
