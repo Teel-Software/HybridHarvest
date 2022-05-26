@@ -7,8 +7,22 @@ using UnityEngine.SceneManagement;
 public class ClearGameData : MonoBehaviour
 {
     [SerializeField] private Inventory Inventory;
-    [SerializeField] InventoryDrawer InventoryFrame;
-    [SerializeField] GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
+    [SerializeField] private InventoryDrawer InventoryFrame;
+    [SerializeField] private GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
+
+    /// <summary>
+    /// Удаляет все дочерние объекты
+    /// </summary>
+    public static void ClearChildren(GameObject obj)
+    {
+        var allChildren = new HashSet<GameObject>();
+
+        foreach (Transform child in obj.transform)
+            allChildren.Add(child.gameObject);
+
+        foreach (var child in allChildren)
+            Destroy(child);
+    }
 
     public void ClearAll()
     {
@@ -71,20 +85,6 @@ public class ClearGameData : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
-    }
-
-    /// <summary>
-    /// Удаляет все дочерние объекты
-    /// </summary>
-    public static void ClearChildren(GameObject obj)
-    {
-        var allChildren = new HashSet<GameObject>();
-
-        foreach (Transform child in obj.transform)
-            allChildren.Add(child.gameObject);
-
-        foreach (var child in allChildren)
-            Destroy(child);
     }
 
     /// <summary>

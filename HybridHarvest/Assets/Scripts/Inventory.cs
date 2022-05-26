@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public int MaxItemsAmount { get; private set; }
 
     private int EnergyMax { get; set; }
+
     //The time in *seconds* it take to regenerate 1 energy
     private int EnergyRegenDelay { get; set; }
 
@@ -105,8 +106,8 @@ public class Inventory : MonoBehaviour, ISaveable
             switch (Level)
             {
                 // тутор для достижения уровня 2
-                case 2 when QSReader.Create("TutorialState").Exists("Tutorial_FieldEnding_Played"):
-                    scenario.Tutorial_LevelUp2();
+                case 2:
+                    scenario.LevelUp2();
                     break;
             }
 
@@ -172,7 +173,7 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         Elements.RemoveAt(index);
     }
-    
+
     /// <summary>
     /// Сохраняет данные.
     /// </summary>
@@ -247,7 +248,7 @@ public class Inventory : MonoBehaviour, ISaveable
     /// <returns></returns>
     private int LoadData(QuickSaveReader reader, string key) =>
         reader.Exists(key) ? reader.Read<int>(key) : _defaultAmount[key];
-    
+
     /// <summary>
     /// Выдаёт бонусы за повышение уровня.
     /// </summary>
@@ -304,7 +305,7 @@ public class Inventory : MonoBehaviour, ISaveable
                 break;
         }
     }
-    
+
     /// <summary>
     /// Перерисовывает информаионную панель.
     /// </summary>
@@ -352,7 +353,7 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         RedrawInfo();
     }
-    
+
     private void OnApplicationFocus(bool hasFocus)
     {
         if (!hasFocus)

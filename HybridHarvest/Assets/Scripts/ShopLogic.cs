@@ -39,6 +39,15 @@ public class ShopLogic : MonoBehaviour, ISaveable
         unlockedSeeds = new List<string> { "Cucumber" };
         SaveStatic();
     }
+    
+    /// <summary>
+    /// Разблокирует все семена.
+    /// </summary>
+    public void UnlockAll()
+    {
+        UnlockSeeds("Cucumber", "Tomato", "Pea", "Potato", "Carrot", "Debug");
+        OnEnable();
+    }
 
     public void Save()
     {
@@ -68,7 +77,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
         writer.Commit();
     }
 
-    public static void LoadStatic()
+    private static void LoadStatic()
     {
         var reader = QSReader.Create("Shop");
         unlockedSeeds = reader.Exists("UnlockedSeeds")
@@ -106,6 +115,8 @@ public class ShopLogic : MonoBehaviour, ISaveable
     {
         var shopLogic = GetComponent<ShopLogic>();
         shopLogic.Awake();
+        ClearGameData.ClearChildren(shoppingPlace.gameObject);
+        
         foreach (var seedName in unlockedSeeds)
         {
             var itemIcon = Instantiate(ItemIcon, shoppingPlace.transform);
@@ -122,8 +133,7 @@ public class ShopLogic : MonoBehaviour, ISaveable
 
     private void OnDisable()
     {
-        foreach (Transform child in shoppingPlace.transform)
-            Destroy(child.gameObject);
+        ClearGameData.ClearChildren(shoppingPlace.gameObject);
         Save();
     }
 

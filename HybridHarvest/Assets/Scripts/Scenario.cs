@@ -1,7 +1,6 @@
 ﻿using System;
 using CI.QuickSave;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -13,7 +12,6 @@ public class Scenario : MonoBehaviour
     [SerializeField] public Sprite SecondCharacterSprite;
     [SerializeField] public Sprite NarratorSprite;
     [SerializeField] private DialogPanelLogic DialogPanel;
-    [SerializeField] private DialogPanelLogic DialogPanelPrefab;
     [SerializeField] private GameObject BlockerPrefab;
     [SerializeField] private GameObject BottomTextPrefab;
 
@@ -84,7 +82,7 @@ public class Scenario : MonoBehaviour
         DialogPanel.StartDialog();
 
         // тутор для выполнения первого задания
-        DialogPanel.LastAction = () => Tutorial_FirstQuestCompleted();
+        DialogPanel.LastAction = () => FirstQuestCompleted();
     }
 
     public void Tutorial_Beginning()
@@ -100,9 +98,9 @@ public class Scenario : MonoBehaviour
                 //     });
 
                 // тутор для второго захода в меню выбора
-                if (QSReader.Create("TutorialState").Exists("Tutorial_LevelUp2_Played") &&
-                    !QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToQuests_Played"))
-                    ExecuteTutorialPart("ChoiceSecond", activeButtonName: "SideMenuButton",
+                if (QSReader.Create("StoryState").Exists("Story_LevelUp2_Played") &&
+                    !QSReader.Create("StoryState").Exists("Story_SideMenuToQuests_Played"))
+                    ExecuteStoryPart("ChoiceSecond", activeButtonName: "SideMenuButton",
                         bottomText: "Нажмите на кнопку бокового меню.");
 
                 // тутор для первого захода в меню выбора
@@ -315,7 +313,7 @@ public class Scenario : MonoBehaviour
             });
     }
 
-    public void Tutorial_LevelUp2()
+    public void LevelUp2()
     {
         var buttonName = SceneManager.GetActiveScene().buildIndex switch
         {
@@ -330,7 +328,7 @@ public class Scenario : MonoBehaviour
             _ => ""
         };
 
-        ExecuteTutorialPart("LevelUp2", activeButtonName: buttonName,
+        ExecuteStoryPart("LevelUp2", activeButtonName: buttonName,
             narratorPhrases: new[]
             {
                 "Поздравляем! Вы достигли второго уровня! В награду за повышение уровня открываются новые предметы в магазине, а также улучшается различные характеристики.",
@@ -339,16 +337,16 @@ public class Scenario : MonoBehaviour
             bottomText: bottomText);
     }
 
-    public void Tutorial_SideMenuToQuests()
+    public void SideMenuToQuests()
     {
-        ExecuteTutorialPart("SideMenuToQuests", activeButtonName: "QuestLabel",
+        ExecuteStoryPart("SideMenuToQuests", activeButtonName: "QuestLabel",
             bottomText: "Нажмите на кнопку \"Задания\".");
     }
 
-    public void Tutorial_GetFirstQuest()
+    public void GetFirstQuest()
     {
         SecondCharacterSprite = Resources.Load<Sprite>("Characters\\OldLady");
-        ExecuteTutorialPart("GetFirstQuest", activeButtonName: "",
+        ExecuteStoryPart("GetFirstQuest", activeButtonName: "",
             firstCharacterPhrases: new[]
             {
                 "Ого! Я чувствую, что как будто стал сильнее, что ли...",
@@ -366,22 +364,22 @@ public class Scenario : MonoBehaviour
                 { "Овощи для заданий отправляются напрямую с грядки, как только вырастут." });
     }
 
-    public void Tutorial_ShopLevel2()
+    public void ShopLevel2()
     {
         FirstCharacterSprite = Resources.Load<Sprite>("Characters\\Salesman");
-        ExecuteTutorialPart("ShopLevel2",
+        ExecuteStoryPart("ShopLevel2",
             firstCharacterPhrases: new[]
             {
                 "Приветствую! У меня в продаже недавно появились семена помидора. Цена небольшая, советую купить."
             });
     }
 
-    public void Tutorial_FirstQuestCompleted()
+    public void FirstQuestCompleted()
     {
         FirstCharacterSprite = Resources.Load<Sprite>("Characters\\OldMan");
         SecondCharacterSprite = Resources.Load<Sprite>("Characters\\MainHero");
 
-        ExecuteTutorialPart("FirstQuestCompleted",
+        ExecuteStoryPart("FirstQuestCompleted",
             firstCharacterPhrases: new[]
             {
                 "Здравствуй, Альберт! Я - староста этой деревни. Спасибо за то, что помог моей супруге.",
@@ -538,27 +536,74 @@ public class Scenario : MonoBehaviour
     // }
 
     /// <summary>
+    /// Проигрывает часть сюжета.
+    /// </summary>
+    /// <param name="keyPart">Название, по которому идёт сохранение.</param>
+    /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления.</param>
+    /// <param name="activeButtonTag">Тег кнопки, которую следует сделать активной после окончания части вступления.</param>
+    /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж.</param>
+    /// <param name="secondCharacterPhrases">Фразы, которые говорит второй персонаж.</param>
+    /// <param name="narratorPhrases">Фразы, которые говорит рассказчик.</param>
+    /// <param name="bottomText">Текст, показываемый внизу экрана.</param>
+    /// <param name="award">Награда после слов первого персонажа.</param>
+    private void ExecuteStoryPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
+        string[] firstCharacterPhrases = null, string[] secondCharacterPhrases = null, string[] narratorPhrases = null,
+        string bottomText = null, Award award = null)
+    {
+        var fileNamePart = "Story";
+        var key = $"{fileNamePart}_{keyPart}_Played";
+        if (QSReader.Create($"{fileNamePart}State").Exists(key)) return;
+
+        SavePlayedPart($"{fileNamePart}State", key);
+
+        PrepareDialog(activeButtonName, activeButtonTag, firstCharacterPhrases, secondCharacterPhrases, narratorPhrases,
+            bottomText, award);
+
+        DialogPanel.StartDialog();
+    }
+
+    /// <summary>
     /// Проигрывает часть туториала.
     /// </summary>
     /// <param name="keyPart">Название, по которому идёт сохранение.</param>
     /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления.</param>
     /// <param name="activeButtonTag">Тег кнопки, которую следует сделать активной после окончания части вступления.</param>
-    /// <param name="lastPart">True указывается в случае, если данная часть - последняя.</param>
     /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж.</param>
     /// <param name="secondCharacterPhrases">Фразы, которые говорит второй персонаж.</param>
     /// <param name="narratorPhrases">Фразы, которые говорит рассказчик.</param>
     /// <param name="bottomText">Текст, показываемый внизу экрана.</param>
     /// <param name="award">Награда после слов первого персонажа.</param>
     private void ExecuteTutorialPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
-        bool lastPart = false,
         string[] firstCharacterPhrases = null, string[] secondCharacterPhrases = null, string[] narratorPhrases = null,
         string bottomText = null, Award award = null)
     {
-        var key = $"Tutorial_{keyPart}_Played";
-        if (QSReader.Create("TutorialState").Exists(key, "TutorialSkipped")) return;
+        var fileNamePart = "Tutorial";
+        var key = $"{fileNamePart}_{keyPart}_Played";
+        if (QSReader.Create($"{fileNamePart}State").Exists(key, "TutorialSkipped")) return;
 
-        SaveTutorialData(key);
+        PrepareDialog(activeButtonName, activeButtonTag, firstCharacterPhrases, secondCharacterPhrases, narratorPhrases,
+            bottomText, award, fileNamePart, keyPart);
 
+        DialogPanel.SkipTutorialBtnActive = true;
+        DialogPanel.StartDialog();
+
+        SaveNowPlaying($"{fileNamePart}State", $"Tutorial_{keyPart}");
+    }
+
+    /// <summary>
+    /// Подготавливает и запускает диалог по заданным параметрам.
+    /// </summary>
+    /// <param name="activeButtonName">Название кнопки, которую следует сделать активной после окончания части вступления.</param>
+    /// <param name="activeButtonTag">Тег кнопки, которую следует сделать активной после окончания части вступления.</param>
+    /// <param name="firstCharacterPhrases">Фразы, которые говорит первый персонаж.</param>
+    /// <param name="secondCharacterPhrases">Фразы, которые говорит второй персонаж.</param>
+    /// <param name="narratorPhrases">Фразы, которые говорит рассказчик.</param>
+    /// <param name="bottomText">Текст, показываемый внизу экрана.</param>
+    /// <param name="award">Награда после слов первого персонажа.</param>
+    private void PrepareDialog(string activeButtonName, string activeButtonTag, string[] firstCharacterPhrases,
+        string[] secondCharacterPhrases, string[] narratorPhrases, string bottomText, Award award,
+        string fileName = null, string partName = null)
+    {
         DialogPanel.InitDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
         if (firstCharacterPhrases != null && secondCharacterPhrases != null)
@@ -584,35 +629,32 @@ public class Scenario : MonoBehaviour
         if (award != null)
             DialogPanel.AddAward(firstCharacterPhrases?.Length ?? 0, award);
 
-        if (lastPart == false)
-            HighlightNextButton(activeButtonName: activeButtonName, activeButtonTag: activeButtonTag,
-                bottomText: bottomText);
-        else
-            DialogPanel.LastAction = () =>
-                TutorialHandler.ClearGameAfterTutorial();
-
-        DialogPanel.SkipTutorialBtnActive = true;
-        DialogPanel.StartDialog();
+        HighlightNextButton(activeButtonName, activeButtonTag, bottomText, fileName, partName);
     }
 
     /// <summary>
     /// Подсвечивает нужную кнопку
     /// </summary>
     private void HighlightNextButton(string activeButtonName = null, string activeButtonTag = null,
-        string bottomText = null)
+        string bottomText = null, string fileName = null, string partName = null)
     {
         // создаёт блокер и дублирует нужную кнопку
         if (BlockerPrefab != null)
         {
             DialogPanel.LastAction = () =>
             {
+                SavePlayedPart($"{fileName}State", $"{fileName}_{partName}_Played");
                 GameObject activeButton = null;
 
                 if (activeButtonName != null)
                     activeButton = GameObject.Find(activeButtonName);
                 else if (activeButtonTag != null)
                     activeButton = GameObject.FindGameObjectWithTag(activeButtonTag);
-                if (activeButton == null) return;
+                if (activeButton == null)
+                {
+                    SaveNowPlaying($"{fileName}State");
+                    return;
+                }
 
                 var canvas = GameObject.FindGameObjectWithTag("Canvas");
                 Instantiate(BlockerPrefab, canvas.transform, false);
@@ -635,6 +677,11 @@ public class Scenario : MonoBehaviour
                     {
                         var currentButton = EventSystem.current.currentSelectedGameObject;
                         if (currentButton == null) return;
+
+                        var reader = QSReader.Create($"{fileName}State");
+                        if (reader.Exists("NowPlaying")
+                            && reader.Read<string>("NowPlaying") == $"{fileName}_{partName}")
+                            SaveNowPlaying($"{fileName}State");
 
                         // удаляет блокер и фейковую кнопку
                         GameObject placeholder = null;
@@ -659,31 +706,22 @@ public class Scenario : MonoBehaviour
     }
 
     /// <summary>
-    /// Меняет русское название семечка
+    /// Сохраняет данные о том, какая часть уже проигрывалась.
     /// </summary>
-    /// <param name="nameEnglish">Название семечка на английском</param>
-    /// <param name="nameRussian">Будущее название на русском</param>
-    private static void ChangeSeedName(string nameEnglish, string nameRussian)
+    private static void SavePlayedPart(string fileName, string partName)
     {
-        var tutorSeed = GameObject.FindGameObjectWithTag("Inventory")
-            .GetComponent<Inventory>()
-            .Elements
-            .LastOrDefault(s => s.Name == nameEnglish);
-        if (tutorSeed == null) return;
-
-        tutorSeed.NameInRussian = nameRussian;
-        GameObject.FindGameObjectWithTag("Inventory")
-            .GetComponent<Inventory>()
-            .Save();
+        var writer = QuickSaveWriter.Create(fileName);
+        writer.Write(partName, true);
+        writer.Commit();
     }
 
     /// <summary>
-    /// Сохраняет данные о том, что определённая часть туториала уже проигрывалась
+    /// Сохраняет данные о том, какая часть проигрывается сейчас.
     /// </summary>
-    private static void SaveTutorialData(string key)
+    private static void SaveNowPlaying(string fileName, string partName = "")
     {
-        var writer = QuickSaveWriter.Create("TutorialState");
-        writer.Write(key, true);
+        var writer = QuickSaveWriter.Create(fileName);
+        writer.Write("NowPlaying", partName);
         writer.Commit();
     }
 }

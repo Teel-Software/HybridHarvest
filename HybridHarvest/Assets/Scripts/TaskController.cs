@@ -266,11 +266,11 @@ public class TaskController : MonoBehaviour
         if (scenario == null) return;
 
         // тутор для выдачи первого квеста
-        if (QSReader.Create("TutorialState").Exists("Tutorial_SideMenuToQuests_Played")
-            && !QSReader.Create("TutorialState").Exists("Tutorial_GetFirstQuest_Played", "TutorialSkipped"))
+        if (QSReader.Create("StoryState").Exists("Story_SideMenuToQuests_Played")
+            && !QSReader.Create("StoryState").Exists("Story_GetFirstQuest_Played"))
         {
             CreateFirstTask();
-            scenario.Tutorial_GetFirstQuest();
+            scenario.GetFirstQuest();
         }
 
         RenderCurrentTasks();

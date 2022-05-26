@@ -47,7 +47,7 @@ MonoBehaviour:
   FirstCharacterSprite: {fileID: 21300000, guid: 254ab65fb76ad304d967a240cd0d2677, type: 3}
   SecondCharacterSprite: {fileID: 21300000, guid: a6e21a10b697b1843880148232d5a3da, type: 3}
   NarratorSprite: {fileID: 21300000, guid: 48453772077058143b190c315038583b, type: 3}
-  DialogPanelPrefab: {fileID: 185448005516914737, guid: 545e60fb3f67e5947af588c386824056, type: 3}
+  DialogPanel: {fileID: 0}
   BlockerPrefab: {fileID: 7642040400430658116, guid: 3709cd888402dd14fbfa4e44da4bef7b, type: 3}
   BottomTextPrefab: {fileID: 6423037377260430919, guid: d8c9a4fcc91ba8d44bd9c8c61afb0112, type: 3}
 --- !u!114 &2146170984949625786
@@ -62,3 +62,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06beb41487e5f954589eec62ac0d26a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ContinueTutorialPrefab: {fileID: 2875867791205734338, guid: ae7de23ec1010104f9caefec8e4cffd9, type: 3}

@@ -52,7 +52,7 @@ namespace CI.QuickSave
         {
             if (!Exists(key))
             {
-                throw new QuickSaveException("Key does not exists");
+                throw new QuickSaveException($"Key \"{key}\" does not exists");
             }
 
             try

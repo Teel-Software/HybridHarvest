@@ -218,7 +218,7 @@ public class PatchGrowth : MonoBehaviour
                 timeSpeedBooster = 1;
                 SetSeedSpeed(coeff);
             });
-            
+
             scenario?.Tutorial_ConfirmSpeedUp();
         }
     }
@@ -267,6 +267,10 @@ public class PatchGrowth : MonoBehaviour
         timerNeeded = details.TimerNeeded;
         growingSeed = Seed.Create(details.GrowingSeed);
         timeSpeedBooster = details.TimeSpeedBooster;
+        
+        if (timeSpeedBooster == 0)
+            timeSpeedBooster = 1;
+        
         var timePassed = (DateTime.Now.Ticks - details.LastCheckedTime.Ticks) / 10000000;
         secondsRemaining = details.SecondsRemaining - timePassed * timeSpeedBooster;
 
