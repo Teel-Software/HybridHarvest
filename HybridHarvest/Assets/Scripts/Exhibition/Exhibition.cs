@@ -129,10 +129,12 @@ namespace Exhibition
 
         private void GetAward()
         {
+            var rand = new Random();
+            var place = rand.Next(4) + 1;
             var awards = new List<Award>
             {
-                new Award(AwardType.Money, amount: 100),
-                new Award(AwardType.Reputation, amount: 100)
+                new Award(AwardType.Money, amount: 25 * place),
+                new Award(AwardType.Reputation, amount: 25 * place)
             };
             rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards);
             rewardPendingContainer.SetActive(false);
@@ -148,7 +150,7 @@ namespace Exhibition
         {
             var rand = new Random();
             SeedCount = rand.Next(3) + 1;
-            NextExhibition = NextExhibition.AddDays(1);
+            NextExhibition = DateTime.Today.AddDays(1);
             state = State.Inactive;
             rewardDate = null;
         }
@@ -201,7 +203,7 @@ namespace Exhibition
 
             NextExhibition = reader.TryRead<DateTime>("NextExhibition", out var next)
                 ? next
-                : DateTime.Today;
+                : DateTime.Today.AddDays(1);
 
             rewardDate = reader.TryRead<DateTime>("RewardDate", out var _rewardDate)
                 ? _rewardDate

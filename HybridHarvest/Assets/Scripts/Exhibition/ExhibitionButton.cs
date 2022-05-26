@@ -8,15 +8,17 @@ public class ExhibitionButton : MonoBehaviour
     [SerializeField] private GameObject Inventory;
     [SerializeField] private DialogPanelLogic DialogPanel;
     [SerializeField] private Button button;
+
+    [SerializeField] private TextMeshProUGUI statText;
     
-    public Image plantIcon; 
-    [SerializeField] 
-    private TextMeshProUGUI statText;
-    [SerializeField] 
-    private Sprite plusIcon;
+    [SerializeField] private Image plusIcon;
+    [SerializeField] private GameObject plusIconSlot;
+
+    [SerializeField] private Image plantIcon;
+    [SerializeField] private GameObject plantIconSlot;
     
     public Seed NowSelected;
-
+    
     public void AddSeed()
     {
         Inventory.GetComponent<InventoryDrawer>().GrowPlace = gameObject.GetComponent<Button>();
@@ -63,15 +65,19 @@ public class ExhibitionButton : MonoBehaviour
     public void SetSeed(Seed seed)
     {
         NowSelected = seed;
-        statText.text = Tools.SeedStatFormatter.FormatSmall(seed);
+        plusIconSlot.SetActive(false);
+        plantIconSlot.SetActive(true);
         plantIcon.sprite = seed.PlantSprite;
+        statText.text = Tools.SeedStatFormatter.FormatSmall(seed);
     }
 
     public void MakeDisabled()
     {
-        button.onClick.RemoveAllListeners();
-        plantIcon.sprite = Resources.Load<Sprite>("Transparent");
-        statText.text = "";
         NowSelected = null;
+        button.onClick.RemoveAllListeners();
+        plantIconSlot.SetActive(false);
+        plusIconSlot.SetActive(true);
+        plusIcon.sprite = Resources.Load<Sprite>("Transparent");
+        statText.text = "";
     }
 }
