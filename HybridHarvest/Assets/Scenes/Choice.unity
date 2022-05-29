@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 10
+  level: 5
   placeholderPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1 &1727909672
 GameObject:
@@ -4886,6 +4886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 8518535141574646292, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
+      propertyPath: m_Text
+      value: "\u041F\u043E\u043B\u0435"
+      objectReference: {fileID: 0}
     - target: {fileID: 8518535141687739274, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
       propertyPath: m_Name
       value: SceneButtonField

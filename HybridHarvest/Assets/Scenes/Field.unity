@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 20
+  level: 12
 --- !u!224 &197060018 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4481054497477229999, guid: 8afca9e2f6f06a14a89dfd629a000496, type: 3}
@@ -2273,6 +2273,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670869923}
   m_CullTransparentMesh: 1
+--- !u!1 &679822188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
+  m_PrefabInstance: {fileID: 329233201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &679822193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679822188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 20
 --- !u!1 &688121252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,6 +2868,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812615271}
   m_CullTransparentMesh: 1
+--- !u!1 &845463199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
+  m_PrefabInstance: {fileID: 2017966851735793489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &845463203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845463199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 20
 --- !u!1 &883744446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,7 +3618,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5409413604163463586, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
   m_PrefabInstance: {fileID: 2017966851735793489}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 845463199}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e775e4a3f022941a198e2a3b2cdd70, type: 3}
@@ -4168,19 +4204,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
   m_PrefabInstance: {fileID: 1165559667}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1165559670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165559669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 12
 --- !u!1 &1199887180
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,6 +5990,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656516044}
   m_CullTransparentMesh: 1
+--- !u!1 &1738412633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
+  m_PrefabInstance: {fileID: 1101896119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1738412638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738412633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 20
 --- !u!1 &1743773905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6129,7 +6170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
       propertyPath: m_Name
-      value: FarmSpot (3)
+      value: FarmSpot
       objectReference: {fileID: 0}
     - target: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
       propertyPath: m_IsActive
@@ -6263,19 +6304,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
   m_PrefabInstance: {fileID: 1745037985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1745037988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745037987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 5
 --- !u!1 &1765806660
 GameObject:
   m_ObjectHideFlags: 0
@@ -6776,19 +6804,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
   m_PrefabInstance: {fileID: 1846975403}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1846975406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846975405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 20
 --- !u!1 &1913348654
 GameObject:
   m_ObjectHideFlags: 0
@@ -7345,7 +7360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 20
+  level: 5
 --- !u!114 &2091929291 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4104146255887539194, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
@@ -7697,7 +7712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
       propertyPath: m_Name
-      value: FarmSpot
+      value: FarmSpot (3)
       objectReference: {fileID: 0}
     - target: {fileID: 2017966850703178134, guid: e78f96b1d9a48574991f4cd043372cb0, type: 3}
       propertyPath: m_IsActive
