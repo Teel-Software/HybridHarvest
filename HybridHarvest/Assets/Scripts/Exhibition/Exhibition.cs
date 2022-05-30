@@ -38,9 +38,14 @@ namespace Exhibition
                 InitializeExhibition();
             }
 
+            foreach (var btn in exhButtons)
+            {
+                btn.gameObject.SetActive(false);
+            }
+            
             var isActive = State == ExhibitionState.Inactive;
             beginButton.gameObject.SetActive(isActive);
-            foreach (var btn in exhButtons)
+            foreach (var btn in exhButtons.Take(SeedCount))
             {
                 btn.gameObject.SetActive(isActive);
             }

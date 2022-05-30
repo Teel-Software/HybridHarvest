@@ -33,6 +33,7 @@ namespace Exhibition
                 card.SetActive(false);
 
             var level = inventory.Level;
+            // TODO random here maybe
             if (level < 10)
                 opponentCount = 1;
             if (level >= 10)
