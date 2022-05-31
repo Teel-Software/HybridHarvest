@@ -36,8 +36,6 @@ public class QuantumNameCreator : MonoBehaviour
     public void GenerateName()
     {   //помидор картошка огурец горох морковь дебаг 
 
-        //Name1 = "помирец";
-        //Name2 = "картошка";
         if (Name1 == "" || Name2 == "")
         {
             var reader = QSReader.Create("QuantumName");
@@ -45,6 +43,11 @@ public class QuantumNameCreator : MonoBehaviour
                 Name1 = reader.Read<string>("name1");
             if (reader.Exists("name2"))
                 Name2 = reader.Read<string>("name2");
+        }
+        if (Name1 == "" || Name2 == "")
+        {
+            Name1 = "Эпик";
+            Name2 = "Фэйл";
         }
 
         var firstParts = GetSyllables(Name1).ToArray();

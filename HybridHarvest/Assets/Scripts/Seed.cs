@@ -11,7 +11,7 @@ using Random = System.Random;
 
 public class Seed : ScriptableObject
 {
-    public string Name => string.Join("-", Parents.OrderBy(x=>x));
+    public string Name => string.Join("-", Parents);
     public string NameInRussian;
     public string NameInLatin;
     public string GrowSpritesName => Parents[0];

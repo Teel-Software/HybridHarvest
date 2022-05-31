@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class CreateMiniGame : MonoBehaviour
 {
     [SerializeField] int ElementsCount;
+    [SerializeField] GameObject WholeMinigame;
     [SerializeField] GameObject GamingPlace;
     [SerializeField] Sprite CardSprite;
     [SerializeField] GameObject Blocker;
@@ -18,6 +20,14 @@ public class CreateMiniGame : MonoBehaviour
     public Button ResultPlace;
     private Seed currentSeed;
     private Button currentPot;
+
+    enum QuantumBoost
+    {
+        Fail,
+        Double,
+        Quadriple,
+        None
+    }
 
     /// <summary>
     /// Restarts mini game
@@ -42,6 +52,8 @@ public class CreateMiniGame : MonoBehaviour
             var oppositeStats = reader.Read<List<int>>("OppositeSeedStats" + currentPot.name);
 
             var cardText = Instantiate(textSample, card.transform);
+
+            card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
             cardText.GetComponent<Text>().text =
                 $"Вкус: {GC.GetNewValueByPossibility(currentSeed.Taste, chances[0], oppositeStats[0])}\n" +
                 $"Габитус: {GC.GetNewValueByPossibility(currentSeed.Gabitus, chances[1], oppositeStats[1])}\n" +
@@ -55,20 +67,58 @@ public class CreateMiniGame : MonoBehaviour
         var textSample = panel.transform.Find("TextSample").gameObject;
         Blocker.SetActive(false);
         ClearGameData.ClearChildren(GamingPlace);
+        var boosts = GetBoostsForButtons();
 
         for (var i = 0; i < ElementsCount; i++)
         {
             var card = CreateCard(i);
 
+            card.GetComponent<Button>().onClick.AddListener(QuantumOnButtonClicked);
             currentSeed = ResultPlace.GetComponent<QuantumGrowth>().growingSeed;
             currentPot = ResultPlace.GetComponent<QuantumGrowth>().Pot;
 
             var cardText = Instantiate(textSample, card.transform);
-            cardText.GetComponent<Text>().text =
-                $"Вкус: {currentSeed.Taste}\n" +
-                $"Габитус: {currentSeed.Gabitus}\n" +
-                $"Время роста: {currentSeed.GrowTime}";
+            cardText.GetComponent<Text>().text = ((int)boosts[i]).ToString();
+            switch (boosts[i])
+            {
+                case QuantumBoost.Fail:
+                    cardText.GetComponent<Text>().color = new Color(0.75f, 0f, 0f);
+                    //cardText.GetComponent<Text>().text = QuantumBoost.Fail.ToString();
+                    break;
+                case QuantumBoost.Double:
+                    cardText.GetComponent<Text>().color = new Color(0f, 0.9f, 0f);
+                    //cardText.GetComponent<Text>().text = QuantumBoost.Double.ToString();
+                    break;
+                case QuantumBoost.Quadriple:
+                    cardText.GetComponent<Text>().color = new Color(0f, 0.75f, 0f);
+                    //cardText.GetComponent<Text>().text = QuantumBoost.Qadriple.ToString();
+                    break;
+                case QuantumBoost.None:
+                    //cardText.GetComponent<Text>().text = QuantumBoost.None.ToString();
+                    break;
+            }
         }
+    }
+
+    private QuantumBoost[] GetBoostsForButtons()
+    {
+        if (ElementsCount != 9) Debug.LogError("Возможно вам стоит пересмотреть шансы бонусов");
+        var boosts = new[] { QuantumBoost.Quadriple, QuantumBoost.Double, QuantumBoost.Double,
+                          QuantumBoost.Fail, QuantumBoost.None, QuantumBoost.None,
+                          QuantumBoost.None, QuantumBoost.None, QuantumBoost.None};
+        //var boosts = new[] { QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple,
+        //                  QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple,
+        //                  QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple};
+
+        for (int firstInd = ElementsCount - 1; firstInd >= 1; firstInd--)
+        {
+            var secondInd = (int)((UnityEngine.Random.value * 100) % (firstInd + 1));
+
+            var tmp = boosts[secondInd];
+            boosts[secondInd] = boosts[firstInd];
+            boosts[firstInd] = tmp;
+        }
+        return boosts;
     }
 
     private GameObject CreateCard(int i)
@@ -80,7 +130,6 @@ public class CreateMiniGame : MonoBehaviour
         card.GetComponent<Image>().pixelsPerUnitMultiplier = 0.5f;
         card.GetComponent<Image>().color = new Color(1, 0.8f, 0.5f);
 
-        card.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
         card.GetComponent<Button>().targetGraphic = card.GetComponent<Image>();
 
         var scaleFactor = 1 / 47.34849f;
@@ -103,7 +152,6 @@ public class CreateMiniGame : MonoBehaviour
     {
         InventoryFrame.UpdateActions();
         InventoryFrame.targetInventory.AddItem(currentSeed);
-
         Statistics.UpdateCrossedSeeds(currentSeed.Name);
     }
 
@@ -129,19 +177,101 @@ public class CreateMiniGame : MonoBehaviour
         currentSeed.Taste = int.Parse(seedStats[0]);
         currentSeed.Gabitus = int.Parse(seedStats[1]);
         currentSeed.GrowTime = int.Parse(seedStats[2]);
-        //currentSeed.UpdateRating();
 
-        if (SceneManager.GetActiveScene().buildIndex == 4)
+        Blocker.SetActive(true);
+    }
+
+    private void QuantumOnButtonClicked()
+    {
+        var button = EventSystem.current.currentSelectedGameObject;
+        if (button == null) return;
+
+        foreach (var buttonText in GamingPlace.transform.GetComponentsInChildren<Text>())
+            buttonText.enabled = true;
+        button.GetComponent<Image>().color = new Color(0.5f, 1, 0.5f);
+
+        var booster = (QuantumBoost)int.Parse(button.GetComponentInChildren<Text>().text);
+
+        switch (booster)
         {
-            NameGenerator.SetActive(true);
-            NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+            case QuantumBoost.Fail:
+                InventoryFrame.GetComponent<InventoryDrawer>().SuccessfulAddition.Invoke();
+                Blocker.SetActive(true);
+                return;
+            case QuantumBoost.Double:
+                ChangeSeedDouble();
+                Blocker.GetComponent<Button>().onClick.AddListener(AddGrownSeed);
+                break;
+            case QuantumBoost.Quadriple:
+                ChangeSeedQuadriple();
+                Blocker.GetComponent<Button>().onClick.AddListener(AddGrownSeed);
+                break;
+            case QuantumBoost.None:
+                Blocker.GetComponent<Button>().onClick.AddListener(AddGrownSeed);
+                break;
+        }
+        NameGenerator.SetActive(true);
+        NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+
+    }
+
+    private void ChangeSeedDouble()
+    {
+        var seedData = CSVReader.GetSeedStats(currentSeed.Name);
+        var statsData = new[]{
+            Tuple.Create(currentSeed.Gabitus, seedData.Gabitus.Keys.ToArray()),
+            Tuple.Create(currentSeed.Taste, seedData.Taste.Keys.ToArray())};
+
+        if (UnityEngine.Random.value > 0.5)
+        {
+            var startInd = Array.IndexOf(statsData[0].Item2, statsData[0].Item1);
+            if (startInd * 2 > statsData[0].Item2.Length)
+                currentSeed.Gabitus = statsData[0].Item2.Last();
+            else
+                currentSeed.Gabitus = startInd != 0 ?
+                statsData[0].Item2[startInd * 2] :
+                statsData[0].Item2[1];
         }
         else
-            Blocker.SetActive(true);
+        {
+            var startInd = Array.IndexOf(statsData[1].Item2, statsData[1].Item1);
+            if (startInd * 2 > statsData[1].Item2.Length)
+                currentSeed.Taste = statsData[1].Item2.Last();
+            else
+                currentSeed.Taste = startInd != 0 ?
+                statsData[1].Item2[startInd * 2] :
+                statsData[1].Item2[1];
+        }
+    }
+
+    private void ChangeSeedQuadriple()
+    {
+        var seedData = CSVReader.GetSeedStats(currentSeed.Name);
+        var statsData = new[]{
+            Tuple.Create(currentSeed.Gabitus, seedData.Gabitus.Keys.ToArray()),
+            Tuple.Create(currentSeed.Taste, seedData.Taste.Keys.ToArray())};
+
+        var startInd = Array.IndexOf(statsData[0].Item2, statsData[0].Item1);
+        if (startInd * 2 > statsData[0].Item2.Length)
+            currentSeed.Gabitus = statsData[0].Item2.Last();
+        else
+            currentSeed.Gabitus = startInd != 0 ?
+                statsData[0].Item2[startInd * 2] :
+                statsData[0].Item2[1];
+
+        startInd = Array.IndexOf(statsData[1].Item2, statsData[1].Item1);
+        if (startInd * 2 > statsData[1].Item2.Length)
+            currentSeed.Taste = statsData[1].Item2.Last();
+        else
+            currentSeed.Taste = startInd != 0 ?
+                statsData[1].Item2[startInd * 2] :
+                statsData[1].Item2[1];
     }
 
     private void OnEnable()
     {
+        Blocker.GetComponent<Button>().onClick.RemoveAllListeners();
+
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
         if (scenario == null) return;
 
