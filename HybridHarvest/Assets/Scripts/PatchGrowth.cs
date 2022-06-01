@@ -283,7 +283,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void CreateGrownSeeds()
     {
-        //FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed); //TODO make this shit play later
+        FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed);
         var plusSeeds =
             (int) Math.Round(UnityEngine.Random.value * (growingSeed.MaxAmount - growingSeed.MinAmount));
         for (var i = 0; i < growingSeed.MinAmount + plusSeeds; i++)

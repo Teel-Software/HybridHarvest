@@ -15,7 +15,7 @@ namespace Exhibition
         public void SetOpponent(Opponent opponent, Transform parent)
         {
             opp = opponent;
-            Portrait.sprite = opponent.Portrait();
+            Portrait.sprite = opponent.Portrait;
             OpponentName.text = opponent.Name;
             ShowSeedsBtn.onClick.AddListener(() =>
             {

@@ -24,7 +24,10 @@ namespace Exhibition
         public DateTime NextExhibition { get; private set; }
         public DateTime? RewardDate { get; private set; }
         public ExhibitionState State { get; private set; }
-        
+
+        public Opponent[] Opponents { get; private set; }
+
+        private int _debugOppCount = 0;
         private int _daySkip = 0;
         
         public DateTime Now { get; private set; }
@@ -51,6 +54,66 @@ namespace Exhibition
             }
         }
 
+        private Opponent[] GenerateOpponents()
+        {
+            // TODO figure out how to make this better
+            var possibleOpponents = new List<Opponent>
+            {
+                new Opponent("Тамара", "Tamara"),
+                new Opponent("Лариса", "Larisa"),
+                new Opponent("Серафима Ивановна", "OldLady"),
+                new Opponent("Дед Максим", "OldMan"),
+                new Opponent("Алиса", "Alisa"),
+            };
+            
+            var level = FindObjectOfType<Inventory>().Level;
+            var opponentCount = 0;
+            // TODO random here maybe
+            if (level < 10)
+                opponentCount = 1;
+            if (level >= 10)
+                opponentCount = 2;
+            if (level >= 20)
+                opponentCount = 3;
+            
+            if (_debugOppCount > 1)
+                opponentCount = _debugOppCount;
+            
+            var opponents = new Opponent[opponentCount];
+            
+            var seedNames = Resources.LoadAll<Seed>("Seeds")
+                .Select(x => x.Name)
+                .Where(x => x != "Debug")
+                .ToList();
+            
+            var exhibitonDifficulty = 1;
+            var example = Seed.LoadFromResources("Cucumber");
+            var points = example.ConvertToPoints() * exhibitonDifficulty;
+
+            var rand = new Random(Environment.TickCount);
+            var seedCount = GetComponentInParent<Exhibition>().SeedCount;
+            var unusedIndexes = Enumerable.Range(0, possibleOpponents.Count).ToList();
+            for (var i = 0; i < opponentCount; i++)
+            {
+                // Random generation without repetitions
+                var index = rand.Next(0, unusedIndexes.Count);
+                var baseOpponent = possibleOpponents[unusedIndexes[index]];
+                unusedIndexes.RemoveAt(index); 
+
+                var seeds = new List<Seed>();
+                for (var j = 0; j < seedCount; j++)
+                {
+                    var seedName = seedNames[rand.Next(seedNames.Count)];
+                    var seed = Seed.CreateRandom(seedName, points);
+                    seeds.Add(seed);
+                }
+
+                opponents[i] = new Opponent(baseOpponent.Name, baseOpponent.SpriteName, seeds);
+            }
+
+            return opponents;
+        }
+        
         public void Update()
         {
             SetDebugTime();
@@ -99,11 +162,16 @@ namespace Exhibition
             Awake();
         }
 
+        private const int MAXTier = 4;
+
         private void GetAward()
         {
             // TODO remove random
             var rand = new Random();
-            var awardTier = rand.Next(4) + 1;
+            var awardTier = rand.Next(MAXTier) + 1;
+
+            awardTier = MAXTier;   
+
             var awards = new List<Award>
             {
                 new Award(AwardType.Money, amount: 25 * awardTier),
@@ -117,6 +185,12 @@ namespace Exhibition
         public void AddDaySkip(int days)
         {
             _daySkip = Math.Max(0, _daySkip + days);
+        }
+
+        public void ChangeOppCount(int inc)
+        {
+            _debugOppCount = Math.Min(_debugOppCount + inc, 3);
+            _debugOppCount = Math.Max(_debugOppCount, 1);
         }
 
         private void SetDebugTime()
@@ -135,6 +209,8 @@ namespace Exhibition
             NextExhibition = Now.Date.AddDays(1);
             RewardDate = null;
             State = ExhibitionState.Inactive;
+            
+            
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -146,6 +222,7 @@ namespace Exhibition
         public void Save()
         {
             var writer = QuickSaveWriter.Create("ExhibitionData");
+            
             var exhSeeds = new List<string>();
             foreach (var btn in exhButtons)
             {
@@ -153,14 +230,18 @@ namespace Exhibition
                     ? ""
                     : btn.GetComponent<ExhibitionButton>().NowSelected.ToString());
             }
-            writer.Write("Seeds", exhSeeds);
-            writer.Write("SeedCount", SeedCount);
-            writer.Write("NextExhibition", NextExhibition);
+
             if (!(RewardDate is null))
             {
                 writer.Write("RewardDate", RewardDate);
             }
-            writer.Write("State", State);
+
+            writer.Write("Seeds", exhSeeds)
+                .Write("SeedCount", SeedCount)
+                .Write("NextExhibition", NextExhibition)
+                .Write("State", State)
+                .Write("Opponents", Opponents);
+            
             writer.Commit();
         }
 
@@ -187,13 +268,17 @@ namespace Exhibition
                 ? next
                 : Now.Date.AddDays(1);
 
-            RewardDate = reader.TryRead<DateTime>("RewardDate", out var _rewardDate)
-                ? _rewardDate
+            RewardDate = reader.TryRead<DateTime>("RewardDate", out var rewardDate)
+                ? rewardDate
                 : (DateTime?)null;
 
-            State = reader.TryRead<ExhibitionState>("State", out var _state)
-                ? _state
+            State = reader.TryRead<ExhibitionState>("State", out var state)
+                ? state
                 : ExhibitionState.Inactive;
+
+            Opponents = reader.TryRead<Opponent[]>("Opponents", out var opponents)
+                ? opponents
+                : GenerateOpponents();
         }
     }
     

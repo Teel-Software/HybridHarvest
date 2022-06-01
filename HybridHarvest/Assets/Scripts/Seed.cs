@@ -3,22 +3,24 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine.Serialization;
 using Random = System.Random;
 
 [CreateAssetMenu(fileName = "seeds", menuName = "Seed")]
 [Serializable]
-
 public class Seed : ScriptableObject
 {
-    public string Name => string.Join("-", Parents);
+    [JsonIgnore] public string Name => string.Join("-", Parents);
     public string NameInRussian;
     public string NameInLatin;
-    public string GrowSpritesName => Parents[0];
 
     public List<string> Parents;
+    [JsonIgnore] public string GrowSpritesName => Parents[0];
 
     public int ShopBuyPrice;
+
+    [JsonIgnore]
     public int Price
     {
         get
@@ -26,12 +28,12 @@ public class Seed : ScriptableObject
             if (ShopBuyPrice > 0)
                 return ShopBuyPrice;
             var multiplier =
-                Market.PriceMultipliers.ContainsKey(Name) ?
-                Market.PriceMultipliers[Name] : 1.0f;
+                Market.PriceMultipliers.ContainsKey(Name) ? Market.PriceMultipliers[Name] : 1.0f;
             return (int)(Taste * multiplier);
         }
     }
 
+    [JsonIgnore]
     public Sprite PlantSprite
     {
         get
@@ -48,21 +50,22 @@ public class Seed : ScriptableObject
                     new Vector2(0f, 0f), 1f
                 );
             }
+
             return sp;
         }
-
     }
-    public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Early");
-    public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Sprout");
-    public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Young");
-    public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Grown");
-    public Sprite PacketSprite => Resources.Load<Sprite>($"Packets\\Packet{PacketQuality}");
 
+    [JsonIgnore] public Sprite EarlySprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Early");
+    [JsonIgnore] public Sprite SproutSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Sprout");
+    [JsonIgnore] public Sprite YoungSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Young");
+    [JsonIgnore] public Sprite GrownSprite => Resources.Load<Sprite>($"SeedsIcons\\{GrowSpritesName}Grown");
+    [JsonIgnore] public Sprite PacketSprite => Resources.Load<Sprite>($"Packets\\Packet{PacketQuality}");
+
+    [JsonIgnore]
     public int PacketQuality
     {
         get
         {
-            SeedStats ??= CSVReader.GetSeedStats(Name);
             var rating = 0;
             try
             {
@@ -77,6 +80,7 @@ public class Seed : ScriptableObject
                 // Раскомментируйте строчку ниже для дебага. (Возможен спам)
                 //Debug.Log($"В таблице характеристик не указано одно или несколько значений. Рейтинг семян \"{NameInRussian}\" равен нулю.");
             }
+
             var quality = 0;
             switch (rating)
             {
@@ -96,6 +100,7 @@ public class Seed : ScriptableObject
                     quality = 4;
                     break;
             }
+
             return quality;
         }
     }
@@ -108,19 +113,25 @@ public class Seed : ScriptableObject
 
     public Gen GrowTimeGen;
     public int GrowTime;
-    
+
     public Gen AmountGen;
     [FormerlySerializedAs("minAmount")] 
     public int MinAmount;
     [FormerlySerializedAs("maxAmount")] 
     public int MaxAmount;
-    
+
     [FormerlySerializedAs("MutationPossibilityGen")]
     public Gen MutationChanceGen;
     [FormerlySerializedAs("MutationPossibility")]
     public MutationChance MutationChance;
 
-    public SeedStatistics SeedStats;
+    [JsonIgnore]
+    public SeedStatistics SeedStats
+    {
+        get => seedStats ??= CSVReader.GetSeedStats(Name);
+        set => seedStats = value;
+    }
+    private SeedStatistics seedStats;
     
     /// <summary>
     /// Exports seed data as a JSON string
@@ -142,14 +153,16 @@ public class Seed : ScriptableObject
         {
             seed.setValues(seedString);
         }
+
         return seed;
     }
-    
-    public static Seed Create(string nameEnglish, int taste, int gabitus, int growTime, int mutationChance, int minAmt, int maxAmt)
+
+    public static Seed Create(string nameEnglish, int taste, int gabitus, int growTime, int mutationChance, int minAmt,
+        int maxAmt)
     {
         var seed = LoadFromResources(nameEnglish);
         //pls help
-        //seed.NameInRussian = baselineSeed.NameInRussian;
+        //seed.NameInRussian = baselineSeed.NameInRssian;
         //seed.NameInLatin = baselineSeed.NameInLatin;
 
         seed.Taste = taste;
@@ -166,11 +179,11 @@ public class Seed : ScriptableObject
 
         seed.MinAmount = minAmt;
         seed.MaxAmount = maxAmt;
-        
+
         seed.ShopBuyPrice = 0;
         return seed;
     }
-    
+
     /// <summary>
     /// Получает спрайт растения на стадии роста
     /// </summary>
@@ -191,11 +204,12 @@ public class Seed : ScriptableObject
 
     private const int MutationPointsMul = 3;
     private const int GrowTimePointDiv = 1000;
+
     public double ConvertToPoints()
     {
         var points = (double)(MaxAmount + MinAmount) / 2
-            * (Taste + Gabitus + (int)MutationChance * MutationPointsMul) 
-            - Math.Round((double)GrowTime / GrowTimePointDiv);
+                     * (Taste + Gabitus + (int)MutationChance * MutationPointsMul)
+                     - Math.Round((double)GrowTime / GrowTimePointDiv);
         return points;
     }
 
@@ -206,35 +220,36 @@ public class Seed : ScriptableObject
         var example = LoadFromResources(seedName);
         var stats = example.SeedStats;
         var random = new Random(Environment.TickCount);
-        
+
         var randGrowTime = stats.GrowTime.ElementAt(random.Next(stats.GrowTime.Values.Count)).Key;
         points += Math.Round((double)randGrowTime / GrowTimePointDiv);
-        
+
         var randMinAmt = stats.MinAmount.ElementAt(random.Next(stats.MinAmount.Count)).Key;
         var randMaxAmt = stats.MaxAmount.ElementAt(random.Next(stats.MaxAmount.Count)).Key;
         var avgAmt = (randMaxAmt + randMinAmt) / 2;
         points /= avgAmt;
-        
+
         var maxRandMutation = (int)stats.MutationChance.Max(x => x.Key);
         var randMutationChance = random.Next(maxRandMutation + 1);
         points -= randMutationChance * MutationPointsMul;
-        
+
         var randGabitus = random.Next((int)points);
         if (randGabitus < 1)
             randGabitus = 1;
         points -= randGabitus;
-        
+
         var randTaste = (int)points;
         if (randTaste < 1)
             randTaste = 1;
-        
+
         //Debug.Log($"GrowTime {randGrowTime}; Amounts {randMinAmt}-{randMaxAmt}; Average {avgAmt}");
         //Debug.Log($"Muta {randMutationChance}; Gabi {randGabitus}; Taste {randTaste}");
-        
-        var randSeed = Create(seedName, randTaste, randGabitus, randGrowTime, randMutationChance, randMinAmt, randMaxAmt);
+
+        var randSeed = Create(seedName, randTaste, randGabitus, randGrowTime, randMutationChance, randMinAmt,
+            randMaxAmt);
         //Debug.Log(randSeed);
         //Debug.Log($"{seedName} ; Resulting points: {randSeed.ConvertToPoints()}");
-        
+
         return randSeed;
     }
 
@@ -244,7 +259,7 @@ public class Seed : ScriptableObject
         seed.SeedStats = CSVReader.GetSeedStats(seedName);
         return seed;
     }
-    
+
     public static void JsonTest(Seed seed)
     {
         var str = JsonUtility.ToJson(seed);
@@ -257,6 +272,7 @@ public class Seed : ScriptableObject
         {
             JsonUtility.FromJsonOverwrite(str, s);
         }
+
         Debug.Log($"Initial: {seed}");
         Debug.Log($"Resulting: {s}");
         Debug.Log($"Equal: {seed.ToString() == s.ToString()}");
@@ -266,7 +282,7 @@ public class Seed : ScriptableObject
         Debug.Log(seed.SeedStats);
         Debug.Log(s.SeedStats); //null
     }
-        
+
     /// <summary>
     /// (Deprecated)
     /// Exports seed data as string
@@ -282,7 +298,7 @@ public class Seed : ScriptableObject
                "|" + NameInRussian + "|" + NameInLatin +
                "|" + (int)MutationChance;
     }
-        
+
     /// <summary>
     /// (Deprecated)
     /// Imports seed data from string

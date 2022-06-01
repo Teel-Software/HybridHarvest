@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -25,10 +26,9 @@ public class SFXManager : MonoBehaviour
         var sound = soundEffects.FirstOrDefault(item => item.name.Equals(soundName));
         if (sound is null)
         {
-            Debug.Log("ERROR: Sound " + soundName + " not found");
-            return;
+            throw new KeyNotFoundException("Sound " + soundName + " not found");
         }
-        Source.PlayOneShot(sound?.clip);
+        Source.PlayOneShot(sound.clip);
     }
 
     public void Play(AudioClip soundClip)

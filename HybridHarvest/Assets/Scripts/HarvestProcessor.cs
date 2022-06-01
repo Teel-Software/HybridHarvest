@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,7 +53,7 @@ public class HarvestProcessor : MonoBehaviour
                 $"{seed.NameInRussian} (англ. {seed.Name}, лат. {seed.NameInLatin})\n" +
                 $"Вкус: {seed.Taste}\n" +
                 $"Габитус: {seed.Gabitus}\n" +
-                $"Время роста: {seed.GrowTime}\n" +
+                $"Время роста: {TimeFormatter.Format(seed.GrowTime)}\n" +
                 $"Кол-во плодов: {seed.MinAmount} - {seed.MaxAmount}\n" +
                 $"Шанс мутации: {seed.MutationChance}\n";
 
