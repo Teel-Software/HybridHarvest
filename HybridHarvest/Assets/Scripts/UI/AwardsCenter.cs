@@ -100,7 +100,7 @@ public class AwardsCenter : MonoBehaviour
             switch (aw.CurrentPrize)
             {
                 case AwardType.Money:
-                    targetInventory.AddMoney(aw.Amount);
+                    targetInventory.ChangeMoney(aw.Amount);
                     break;
                 case AwardType.Reputation:
                     targetInventory.ChangeReputation(aw.Amount);

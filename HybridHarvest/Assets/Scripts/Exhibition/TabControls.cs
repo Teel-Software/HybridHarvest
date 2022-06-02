@@ -1,18 +1,18 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Exhibition
 {
     public class TabControls : MonoBehaviour
     {
-        [SerializeField] 
-        private Button[] tabButtons;
-        [SerializeField] 
-        private Button mainTabButton;
-        [SerializeField] 
-        private GameObject[] tabPanels;
-        [SerializeField] 
-        private int defaultActive = 1;
+        [SerializeField] private Button[] tabButtons;
+        [SerializeField] private Button mainTabButton;
+        [SerializeField] private GameObject[] tabPanels;
+        [SerializeField] private int defaultActive = 1;
+        [SerializeField] private bool reloadTabsOnDisable;
+
         public void Start()
         {
             foreach (var panel in tabPanels)
@@ -32,7 +32,7 @@ namespace Exhibition
                 disableClickedEnableOthers(-1);
                 CloseAllTabs();
             });
-        
+
             for (var i = 0; i < tabButtons.Length; i++)
             {
                 var index = i;
@@ -49,16 +49,26 @@ namespace Exhibition
             {
                 mainTabButton.interactable = true;
                 tabPanels[defaultActive].SetActive(true);
-                tabButtons[defaultActive].interactable = false;        
+                tabButtons[defaultActive].interactable = false;
             }
         }
-    
-                    
+
+
         private void CloseAllTabs()
         {
             foreach (var panel in tabPanels)
                 panel.SetActive(false);
         }
+
+        private void OnDisable()
+        {
+            if (!reloadTabsOnDisable) return;
+
+            if (defaultActive >= 0 && defaultActive < tabButtons.Length)
+                tabButtons[defaultActive].onClick.Invoke();
+            else mainTabButton.onClick.Invoke();
+        }
+
         void Update()
         {
             //tabButtons[currentTab].interactable = false;

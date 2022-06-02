@@ -26,7 +26,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void Buy(Seed seed)
     {
-        inventoryDrawer.SuccessfulAddition = () => targetInventory.AddMoney(-seed.ShopBuyPrice);
+        inventoryDrawer.SuccessfulAddition = () => targetInventory.ChangeMoney(-seed.ShopBuyPrice);
         targetInventory.AddItem(seed);
         Statistics.UpdatePurchasedSeeds(seed.Name);
 
@@ -42,7 +42,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
 
         var seed = targetInventory.Elements[index];
 
-        targetInventory.AddMoney(seed.Price);
+        targetInventory.ChangeMoney(seed.Price);
         targetInventory.ChangeReputation(seed.Gabitus);
         targetInventory.RemoveItem(index);
         inventoryDrawer.Redraw();
@@ -101,7 +101,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
         }
         else
         {
-            targetInventory.AddMoney(targetInventory.Elements[index].Price);
+            targetInventory.ChangeMoney(targetInventory.Elements[index].Price);
             targetInventory.ChangeReputation(targetInventory.Elements[index].Gabitus);
             targetInventory.Elements[index] = newSeed;
         }

@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
     public int Level { get; set; }
     public int Energy { get; private set; }
-    public int MaxItemsAmount { get; private set; }
+    public int MaxItemsAmount { get; set; }
 
     private int EnergyMax { get; set; }
 
@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour, ISaveable
     /// Изменяет деньги.
     /// </summary>
     /// <param name="amount">Количество.</param>
-    public void AddMoney(int amount)
+    public void ChangeMoney(int amount)
     {
         //Money += changingAmount > 0
         //    ? changingAmount/* / Devider*/
@@ -130,6 +130,7 @@ public class Inventory : MonoBehaviour, ISaveable
             EnergyMax = _defaultAmount["EnergyMax"];
             MaxItemsAmount = _defaultAmount["MaxItemsAmount"];
             ShopLogic.ResetSeeds();
+            EnhancementLogic.ResetEnhancements();
         }
 
         while (value > Level)
@@ -257,28 +258,28 @@ public class Inventory : MonoBehaviour, ISaveable
         switch (Level)
         {
             case 2:
-                MaxItemsAmount++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace3", EnhancementType.InventorySpace, 100));
                 ShopLogic.UnlockSeeds("Tomato");
                 break;
             case 3:
                 EnergyMax++;
                 break;
             case 4:
-                MaxItemsAmount++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace4", EnhancementType.InventorySpace, 200));
                 ShopLogic.UnlockSeeds("Pea");
                 break;
             case 5:
                 EnergyMax++;
                 break;
             case 6:
-                MaxItemsAmount++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace5", EnhancementType.InventorySpace, 300));
                 ShopLogic.UnlockSeeds("Potato");
                 break;
             case 7:
                 EnergyMax++;
                 break;
             case 8:
-                MaxItemsAmount++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace6", EnhancementType.InventorySpace, 400));
                 ShopLogic.UnlockSeeds("Carrot");
                 break;
             case 9:
@@ -295,7 +296,7 @@ public class Inventory : MonoBehaviour, ISaveable
                 EnergyMax++;
                 break;
             case 14:
-                MaxItemsAmount++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace7", EnhancementType.InventorySpace, 500));
                 break;
             case 15:
                 EnergyMax++;
