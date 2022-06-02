@@ -54,6 +54,42 @@ namespace Exhibition
             }
         }
 
+        public void Update()
+        {
+            SetDebugTime();
+            
+            if (State == ExhibitionState.InProgress && RewardDate < Now)
+            {
+                State = ExhibitionState.RewardPending;
+                Save();
+                Awake();
+            }
+            
+            inProgressContainer.SetActive(State == ExhibitionState.InProgress);
+            rewardPendingContainer.SetActive(State == ExhibitionState.RewardPending);
+            finishedContainer.SetActive(State == ExhibitionState.Finished);
+
+            switch (State)
+            {
+                case ExhibitionState.InProgress:
+                    inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                        .text = TimeFormatter.Format((DateTime)RewardDate - Now);
+                    break;
+                
+                case ExhibitionState.RewardPending:
+                    rewardPendingContainer.GetComponentInChildren<Button>()
+                        .onClick.RemoveAllListeners();
+                    rewardPendingContainer.GetComponentInChildren<Button>()
+                        .onClick.AddListener(GetAward);
+                    break;
+                
+                case ExhibitionState.Finished:
+                    finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
+                        .text = TimeFormatter.Format(NextExhibition - Now);
+                    break;
+            }
+        }
+
         private Opponent[] GenerateOpponents()
         {
             // TODO figure out how to make this better
@@ -68,13 +104,25 @@ namespace Exhibition
             
             var level = FindObjectOfType<Inventory>().Level;
             var opponentCount = 0;
-            // TODO random here maybe
-            if (level < 10)
+            var countRand = new Random();
+            var randRoll = countRand.Next(101);
+            if (level < 5)
+            {
                 opponentCount = 1;
-            if (level >= 10)
-                opponentCount = 2;
-            if (level >= 20)
-                opponentCount = 3;
+            }
+            else if (level < 10)
+            {
+                opponentCount = randRoll <= 30 ? 1 : 2;
+            }
+            else
+            {
+                if (randRoll <= 15)
+                    opponentCount = 1;
+                else if (randRoll <= 30)
+                    opponentCount = 2;
+                else
+                    opponentCount = 3;
+            }
             
             if (_debugOppCount > 1)
                 opponentCount = _debugOppCount;
@@ -112,42 +160,6 @@ namespace Exhibition
             }
 
             return opponents;
-        }
-        
-        public void Update()
-        {
-            SetDebugTime();
-            
-            if (State == ExhibitionState.InProgress && RewardDate < Now)
-            {
-                State = ExhibitionState.RewardPending;
-                Save();
-                Awake();
-            }
-            
-            inProgressContainer.SetActive(State == ExhibitionState.InProgress);
-            rewardPendingContainer.SetActive(State == ExhibitionState.RewardPending);
-            finishedContainer.SetActive(State == ExhibitionState.Finished);
-
-            switch (State)
-            {
-                case ExhibitionState.InProgress:
-                    inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
-                        .text = TimeFormatter.Format((DateTime)RewardDate - Now);
-                    break;
-                
-                case ExhibitionState.RewardPending:
-                    rewardPendingContainer.GetComponentInChildren<Button>()
-                        .onClick.RemoveAllListeners();
-                    rewardPendingContainer.GetComponentInChildren<Button>()
-                        .onClick.AddListener(GetAward);
-                    break;
-                
-                case ExhibitionState.Finished:
-                    finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
-                        .text = TimeFormatter.Format(NextExhibition - Now);
-                    break;
-            }
         }
 
         public void BeginExhibition()
@@ -209,8 +221,7 @@ namespace Exhibition
             NextExhibition = Now.Date.AddDays(1);
             RewardDate = null;
             State = ExhibitionState.Inactive;
-            
-            
+            Opponents = GenerateOpponents();
         }
 
         private void OnApplicationFocus(bool hasFocus)
