@@ -28,7 +28,7 @@ public class TutorialHandler : MonoBehaviour
             scenario.Tutorial_SideMenuToInventory();
 
         // тутор для захода в квесты
-        else if (QSReader.Create("StoryState").Exists("Story_LevelUp2_Played"))
+        else if (QSReader.Create("StoryState").Exists("Story_GetFirstQuest_Played"))
             scenario.SideMenuToQuests();
 
         // тутор для боковой панели

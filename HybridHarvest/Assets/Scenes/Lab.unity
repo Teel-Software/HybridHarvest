@@ -2688,6 +2688,7 @@ GameObject:
   - component: {fileID: 1870327354}
   - component: {fileID: 1870327353}
   - component: {fileID: 1870327355}
+  - component: {fileID: 1870327356}
   m_Layer: 0
   m_Name: DataKeeper
   m_TagString: Inventory
@@ -2742,6 +2743,20 @@ MonoBehaviour:
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   useDefaultColor: 1
+--- !u!114 &1870327356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870327352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69195aab293bd94fb7295623262b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelUpBannerPrefab: {fileID: 5705600622108707443, guid: ac45b810f498af44d9cedc29d3b15994, type: 3}
+  description: {fileID: 0}
 --- !u!1 &2066156358
 GameObject:
   m_ObjectHideFlags: 0

@@ -128,6 +128,15 @@ public class DialogPanelLogic : MonoBehaviour
     }
 
     /// <summary>
+    /// Заканчивает диалог.
+    /// </summary>
+    public void EndDialog()
+    {
+        Hide();
+        LastAction?.Invoke();
+    }
+
+    /// <summary>
     /// Показывает панель наград, либо отображает следующую фразу
     /// </summary>
     public void ExecuteNextMove()
@@ -154,8 +163,7 @@ public class DialogPanelLogic : MonoBehaviour
         if (speechIndex >= scenario.Count && !answers.ContainsKey(lastPhraseID)
             || !wasHided && hideTriggers.Contains(lastPhraseID))
         {
-            Hide();
-            LastAction?.Invoke();
+            EndDialog();
             return;
         }
 

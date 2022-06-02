@@ -4,6 +4,7 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using CI.QuickSave;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour, ISaveable
 {
@@ -103,13 +104,21 @@ public class Inventory : MonoBehaviour, ISaveable
             var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
             if (scenario == null) return;
 
+            var handler = GetComponent<LevelUpHandler>();
+
             switch (Level)
             {
                 // тутор для достижения уровня 2
                 case 2:
-                    scenario.LevelUp2();
+                    handler.LastAction = SceneManager.GetActiveScene().buildIndex switch
+                    {
+                        1 => () => scenario.GetFirstQuest(),
+                        _ => () => { }
+                    };
                     break;
             }
+
+            handler.SpawnLevelUpBanner(Level);
 
             Save();
         }
@@ -309,7 +318,7 @@ public class Inventory : MonoBehaviour, ISaveable
                 for (var i = 6; i <= 10; i++)
                     EnhancementLogic.UnlockEnhancements(
                         new Enhancement($"FarmSpot{i}", EnhancementType.FarmSpot, (i - 3) * 100));
-                
+
                 for (var i = 4; i <= 7; i++)
                     EnhancementLogic.UnlockEnhancements(
                         new Enhancement($"Pot{i}", EnhancementType.Pot, (i - 1) * 100));

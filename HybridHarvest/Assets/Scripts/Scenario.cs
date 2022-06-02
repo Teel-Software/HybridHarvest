@@ -101,10 +101,8 @@ public class Scenario : MonoBehaviour
                 //     });
 
                 // тутор для второго захода в меню выбора
-                if (QSReader.Create("StoryState").Exists("Story_LevelUp2_Played") &&
-                    !QSReader.Create("StoryState").Exists("Story_SideMenuToQuests_Played"))
-                    ExecuteStoryPart("ChoiceSecond", activeButtonName: "SideMenuButton",
-                        bottomText: "Нажмите на кнопку бокового меню.");
+                if (QSReader.Create("LevelState").Exists("LevelUp2"))
+                    GetFirstQuest();
 
                 // тутор для первого захода в меню выбора
                 ExecuteTutorialPart("BeginningChoice", activeButtonName: "SideMenuButton",
@@ -331,42 +329,12 @@ public class Scenario : MonoBehaviour
             });
     }
 
-    public void LevelUp2()
-    {
-        var buttonName = SceneManager.GetActiveScene().buildIndex switch
-        {
-            1 => "SideMenuButton",
-            2 => "ExitScene",
-            _ => ""
-        };
-        var bottomText = SceneManager.GetActiveScene().buildIndex switch
-        {
-            1 => "Нажмите на кнопку бокового меню.",
-            2 => "Нажмите на кнопку выхода с поля.",
-            _ => ""
-        };
-
-        ExecuteStoryPart("LevelUp2", activeButtonName: buttonName,
-            narratorPhrases: new[]
-            {
-                "Поздравляем! Вы достигли второго уровня! В награду за повышение уровня открываются новые предметы в магазине, а также улучшается различные характеристики.",
-                "Для вас открылась возможность получать задания! Перейдите на доску объявлений."
-            },
-            bottomText: bottomText);
-    }
-
-    public void SideMenuToQuests()
-    {
-        ExecuteStoryPart("SideMenuToQuests", activeButtonName: "QuestLabel",
-            bottomText: "Нажмите на кнопку \"Задания\".");
-    }
-
     public void GetFirstQuest()
     {
         FirstCharacterSprite = Resources.Load<Sprite>("Characters\\OldLady");
         SecondCharacterSprite = Resources.Load<Sprite>("Characters\\MainHero");
 
-        ExecuteStoryPart("GetFirstQuest", activeButtonName: "",
+        ExecuteStoryPart("GetFirstQuest", activeButtonName: "SideMenuButton",
             firstCharacterPhrases: new[]
             {
                 "Ох ты, милок, здравствуй! Я тебя искала-искала, а ты как в воду канул.",
@@ -379,11 +347,24 @@ public class Scenario : MonoBehaviour
                 "Добрый вечер, бабушка! Вы наверное меня с кем-то перепутали. Я ведь только недавно сюда приехал.",
                 "Ничего себе, вы моего деда знали?",
                 "Для вас - найдётся! Только подождать немного надо, пока они поспеют."
-            },
+            }, 
+            bottomText: "Нажмите на кнопку бокового меню.");
+    }
+
+    public void SideMenuToQuests()
+    {
+        ExecuteStoryPart("SideMenuToQuests", activeButtonName: "QuestLabel",
+            bottomText: "Нажмите на кнопку \"Задания\".");
+    }
+
+    public void QuestDescription()
+    {
+        ExecuteStoryPart("QuestDescription",
             narratorPhrases: new[]
             {
                 "Чтобы выполнить задание, вам необходимо вырастить огурцы и помидоры и собрать с них урожай. \n(Семена помидора продаются у торговца)"
-            });
+            }, 
+            bottomText: "Нажмите на кнопку \"Задания\".");
     }
 
     public void ShopLevel2()
@@ -430,7 +411,7 @@ public class Scenario : MonoBehaviour
                 "С наилучшими пожеланиями, Teel@Software!"
             });
     }
-    
+
     public void Tutorial_StoryEnd()
     {
         ExecuteStoryPart("StoryEnd",

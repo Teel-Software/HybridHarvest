@@ -509,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot5
 --- !u!224 &197060018 stripped
 RectTransform:
@@ -1430,7 +1429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot7
 --- !u!1 &453041741
 GameObject:
@@ -2292,7 +2290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot10
 --- !u!1 &688121252
 GameObject:
@@ -2888,7 +2885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot6
 --- !u!1 &883744446
 GameObject:
@@ -4220,6 +4216,7 @@ GameObject:
   - component: {fileID: 1199887182}
   - component: {fileID: 1199887181}
   - component: {fileID: 1199887183}
+  - component: {fileID: 1199887184}
   m_Layer: 0
   m_Name: DataKeeper
   m_TagString: Inventory
@@ -4274,6 +4271,20 @@ MonoBehaviour:
   notificationPrefab: {fileID: 4949688225796896207, guid: 24ce00cda3a36d84c862843e37ac3e32, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   useDefaultColor: 1
+--- !u!114 &1199887184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199887180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69195aab293bd94fb7295623262b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelUpBannerPrefab: {fileID: 5705600622108707443, guid: ac45b810f498af44d9cedc29d3b15994, type: 3}
+  description: {fileID: 0}
 --- !u!1 &1271573423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,7 +4903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot9
 --- !u!1 &1444761383
 GameObject:
@@ -6038,7 +6048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot8
 --- !u!1 &1743773905
 GameObject:
@@ -7392,7 +7401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: -1
   enhancementName: FarmSpot4
 --- !u!114 &2091929291 stripped
 MonoBehaviour:

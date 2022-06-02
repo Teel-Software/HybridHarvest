@@ -1210,7 +1210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2727542139434687813, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -6.08107
+      value: -6.0810547
       objectReference: {fileID: 0}
     - target: {fileID: 5699248950863946089, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
       propertyPath: MiniGame
@@ -1737,6 +1737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940006997}
   - component: {fileID: 1940006996}
+  - component: {fileID: 1940006998}
   m_Layer: 0
   m_Name: DataKeeper
   m_TagString: Inventory
@@ -1776,6 +1777,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1940006998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940006995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69195aab293bd94fb7295623262b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelUpBannerPrefab: {fileID: 5705600622108707443, guid: ac45b810f498af44d9cedc29d3b15994, type: 3}
+  description: {fileID: 0}
 --- !u!1001 &1956120679
 PrefabInstance:
   m_ObjectHideFlags: 0

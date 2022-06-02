@@ -40,6 +40,15 @@ public class ClearGameData : MonoBehaviour
     }
 
     /// <summary>
+    /// Перезапускает игру.
+    /// </summary>
+    public void RestartGame()
+    {
+        ClearAll();
+        SceneManager.LoadScene(0);
+    }
+
+    /// <summary>
     /// Выключает кнопки просмотра начальных роликов
     /// </summary>
     public void DisableRewatchButtons()

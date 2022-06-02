@@ -265,12 +265,15 @@ public class TaskController : MonoBehaviour
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
         if (scenario == null) return;
 
-        // тутор для выдачи первого квеста
-        if (QSReader.Create("StoryState").Exists("Story_SideMenuToQuests_Played")
-            && !QSReader.Create("StoryState").Exists("Story_GetFirstQuest_Played"))
+        if (QSReader.Create("StoryState").Exists("Story_GetFirstQuest_Played")
+            && !QSReader.Create("StoryState").Exists("FirstQuestReceived"))
         {
             CreateFirstTask();
-            scenario.GetFirstQuest();
+            scenario.QuestDescription();
+            
+            var writer = QuickSaveWriter.Create("StoryState");
+            writer.Write("FirstQuestReceived", true);
+            writer.Commit();
         }
 
         RenderCurrentTasks();
