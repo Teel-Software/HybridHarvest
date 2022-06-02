@@ -205,7 +205,7 @@ public class Seed : ScriptableObject
     private const int MutationPointsMul = 3;
     private const int GrowTimePointDiv = 1000;
 
-    public double ConvertToPoints()
+    public double ToPoints()
     {
         var points = (double)(MaxAmount + MinAmount) / 2
                      * (Taste + Gabitus + (int)MutationChance * MutationPointsMul)

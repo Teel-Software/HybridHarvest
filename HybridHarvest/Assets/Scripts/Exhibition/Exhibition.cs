@@ -26,6 +26,7 @@ namespace Exhibition
         public ExhibitionState State { get; private set; }
 
         public Opponent[] Opponents { get; private set; }
+        public List<Seed> PlayerSeeds { get; private set; }
 
         private int _debugOppCount = 0;
         private int _daySkip = 0;
@@ -136,7 +137,7 @@ namespace Exhibition
             
             var exhibitonDifficulty = 1;
             var example = Seed.LoadFromResources("Cucumber");
-            var points = example.ConvertToPoints() * exhibitonDifficulty;
+            var points = example.ToPoints() * exhibitonDifficulty;
 
             var rand = new Random(Environment.TickCount);
             var seedCount = GetComponentInParent<Exhibition>().SeedCount;
@@ -178,19 +179,34 @@ namespace Exhibition
 
         private void GetAward()
         {
-            // TODO remove random
-            var rand = new Random();
-            var awardTier = rand.Next(MAXTier) + 1;
-
-            awardTier = MAXTier;   
-
+            var points = Opponents
+                .Select(opp => opp.Seeds)
+                .Select(seeds => seeds.Select(s => s.ToPoints()).Sum())
+                .ToList();
+            points.Sort();
+            var i = 0;
+            foreach (var p in points)
+            {
+                Debug.Log($"Очки противника #{++i}: {p}");
+            }
+            var playerPoints = PlayerSeeds.Select(s => s.ToPoints()).Sum();
+            Debug.Log($"Очки игрока: {playerPoints}");
+            var index = points.BinarySearch(playerPoints);
+            var place = index < 0 // index is negative if element wasn't found
+                ? points.Count + index + 2
+                : points.Count - index;
+            //place = points.Count - ~index - 1;
+            Debug.Log($"{place}-е Место!");
+            
+            var awardTier = MAXTier + 1 - place;
             var awards = new List<Award>
             {
                 new Award(AwardType.Money, amount: 25 * awardTier),
                 new Award(AwardType.Reputation, amount: 25 * awardTier)
             };
             rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
-                $"Вы заняли {5 - awardTier} место!");
+                $"Вы заняли {place} место!");
+            
             State = ExhibitionState.Finished;
         }
 
@@ -258,6 +274,8 @@ namespace Exhibition
 
         public void Load()
         {
+            PlayerSeeds = new List<Seed>();
+            
             var reader = QSReader.Create("ExhibitionData");
             if (reader.TryRead("Seeds", out List<string> exhSeeds))
             {
@@ -266,10 +284,12 @@ namespace Exhibition
                     if (exhSeeds[i] == "")
                         continue;
                     var seed = Seed.Create(exhSeeds[i]);
-                    exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed);   
+                    exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed); 
+                    
+                    PlayerSeeds.Add(seed);
                 }
             }
-            
+
             var rand = new Random();
             SeedCount = reader.TryRead<int>("SeedCount", out var count) 
                 ? count 
