@@ -108,8 +108,14 @@ public class PatchGrowth : MonoBehaviour
         }
 
         // открывает меню урожая
-        if (grownSeeds.Count != 0 && secondsRemaining <= 0)
+        if (secondsRemaining <= 0)
         {
+            if (grownSeeds.Count == 0)
+            {
+                ClearPatch();
+                return;
+            }
+            
             HarvestWindow.GetComponent<HarvestProcessor>()
                 .ShowHarvestMenu(grownSeeds, Patch.GetComponent<PatchGrowth>());
             HarvestWindow.gameObject.SetActive(true);
@@ -283,7 +289,7 @@ public class PatchGrowth : MonoBehaviour
     /// </summary>
     private void CreateGrownSeeds()
     {
-        FindObjectOfType<SFXManager>().Play(SoundEffect.PlantSeed);
+        FindObjectOfType<SFXManager>()?.Play(SoundEffect.PlantSeed);
         var plusSeeds =
             (int) Math.Round(UnityEngine.Random.value * (growingSeed.MaxAmount - growingSeed.MinAmount));
         for (var i = 0; i < growingSeed.MinAmount + plusSeeds; i++)

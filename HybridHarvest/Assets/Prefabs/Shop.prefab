@@ -486,15 +486,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 30
+    m_Left: 0
     m_Right: 0
     m_Top: 15
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 114, y: 139}
-  m_Spacing: {x: 30, y: 15}
+  m_CellSize: {x: 120, y: 120}
+  m_Spacing: {x: 30, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 5
 --- !u!114 &8687460888914231597
@@ -917,7 +917,7 @@ MonoBehaviour:
   - {fileID: 8148147380466475345}
   - {fileID: 4073458662099848107}
   defaultActive: 0
-  loadMainTabOnEnable: 1
+  reloadTabsOnDisable: 0
 --- !u!1 &3608719856076839625
 GameObject:
   m_ObjectHideFlags: 0

@@ -270,6 +270,7 @@ public class Inventory : MonoBehaviour, ISaveable
                 break;
             case 5:
                 EnergyMax++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("FarmSpot4", EnhancementType.FarmSpot, 100));
                 break;
             case 6:
                 EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace5", EnhancementType.InventorySpace, 300));
@@ -277,6 +278,7 @@ public class Inventory : MonoBehaviour, ISaveable
                 break;
             case 7:
                 EnergyMax++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("Pot2", EnhancementType.Pot, 100));
                 break;
             case 8:
                 EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace6", EnhancementType.InventorySpace, 400));
@@ -291,9 +293,11 @@ public class Inventory : MonoBehaviour, ISaveable
             case 11:
                 break;
             case 12:
+                EnhancementLogic.UnlockEnhancements(new Enhancement("FarmSpot5", EnhancementType.FarmSpot, 200));
                 break;
             case 13:
                 EnergyMax++;
+                EnhancementLogic.UnlockEnhancements(new Enhancement("Pot3", EnhancementType.Pot, 200));
                 break;
             case 14:
                 EnhancementLogic.UnlockEnhancements(new Enhancement("InvSpace7", EnhancementType.InventorySpace, 500));
@@ -302,6 +306,14 @@ public class Inventory : MonoBehaviour, ISaveable
                 EnergyMax++;
                 break;
             case 20:
+                for (var i = 6; i <= 10; i++)
+                    EnhancementLogic.UnlockEnhancements(
+                        new Enhancement($"FarmSpot{i}", EnhancementType.FarmSpot, (i - 3) * 100));
+                
+                for (var i = 4; i <= 7; i++)
+                    EnhancementLogic.UnlockEnhancements(
+                        new Enhancement($"Pot{i}", EnhancementType.Pot, (i - 1) * 100));
+
                 ShopLogic.UnlockSeeds("Debug");
                 break;
         }

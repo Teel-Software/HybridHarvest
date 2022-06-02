@@ -3,7 +3,6 @@ using System.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CreateMiniGame : MonoBehaviour

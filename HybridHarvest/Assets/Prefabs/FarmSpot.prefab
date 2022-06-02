@@ -944,8 +944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 7
-  closedAreaPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
+  level: 9
+  placeholderPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
 --- !u!1 &8596610390199451168
 GameObject:
   m_ObjectHideFlags: 0

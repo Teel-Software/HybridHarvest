@@ -5,16 +5,21 @@ using UnityEngine;
 /// </summary>
 public class ActivateOnLevel : MonoBehaviour, IUpdateable
 {
-    [SerializeField] private int level;
-    private Inventory inventory;
+    // [SerializeField] private int level;
+    [SerializeField] private string enhancementName = "";
+
+    // private Inventory inventory;
 
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        // inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+
+        var reader = QSReader.Create("PurchasedEnhancements");
+        gameObject.SetActive(reader.Exists(enhancementName));
     }
 
     public void Update()
     {
-        gameObject.SetActive(inventory.Level >= level);
+        // gameObject.SetActive(inventory.Level >= level);
     }
 }
