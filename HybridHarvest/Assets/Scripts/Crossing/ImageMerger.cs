@@ -17,36 +17,43 @@ public static class ImageMerger
         var parentName2 = string.Join("-", secondParentsList);
 
         var formName = newParentsList[0]; // за форму овоща отвечает первый по алфавиту родитель
-        Texture2D formForTexture;
+        Texture2D shape;
+        Texture2D shadow;
 
-        try
-        {
-            formForTexture = Resources.Load<Texture2D>($"SeedsIcons\\{formName}");
-            formForTexture = duplicateTexture(formForTexture);
-        }
-        catch
-        {
-            var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, formName + ".png"));
-            formForTexture = req.texture;
-        }
+        shadow = Resources.Load<Texture2D>($"SeedsIcons\\{formName}Shadow");
+        shadow = duplicateTexture(shadow);
 
-        var newTexture = mergeTextures(newParentsList.Skip(1).ToList());
-        var newSprite = duplicateTexture(newTexture);
+        shape = Resources.Load<Texture2D>($"SeedsIcons\\{formName}");
+        shape = duplicateTexture(shape);
+        //var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, formName + ".png"));
+        //formForTexture = req.texture;
 
-        for (int i = 0; i < formForTexture.width; i++)
+        var texture = mergeTextures(newParentsList.Skip(1).ToList());
+        var newSprite = duplicateTexture(texture);
+
+        for (int i = 0; i < shape.width; i++)
         {
-            for (int j = 0; j < formForTexture.height; j++)
+            for (int j = 0; j < shape.height; j++)
             {
-                var pix = formForTexture.GetPixel(i, j);
-                if (pix.a == 0)
-                    newSprite.SetPixel(i, j, pix);
-                else                                            //без else не работает(((
-                    newSprite.SetPixel(i, j, newTexture.GetPixel(i, j));
+                var formCol = shape.GetPixel(i, j);
+                var textureCol = texture.GetPixel(i, j);
+                var shadowCol = shadow.GetPixel(i, j);
+                var newColor = new Color((textureCol.r + shadowCol.r) / 2,
+                    (textureCol.g + shadowCol.g) / 2,
+                    (textureCol.b + shadowCol.b) / 2,
+                    textureCol.a);
+
+                if (formCol.a == 0)
+                    newSprite.SetPixel(i, j, formCol);
+                else if(shadowCol.a != 0)
+                    newSprite.SetPixel(i, j, newColor);
+                else                                                                       //без else текстура остаётся неизменённой
+                    newSprite.SetPixel(i, j, textureCol);
             }
         }
         newSprite.filterMode = FilterMode.Point;
         File.WriteAllBytes(spritePath, newSprite.EncodeToPNG());
-        File.WriteAllBytes(texturePath, newTexture.EncodeToPNG());
+        File.WriteAllBytes(texturePath, texture.EncodeToPNG());
     }
 
     /// <summary>
