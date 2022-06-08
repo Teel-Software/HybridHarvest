@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,23 +42,26 @@ public class AwardsCenter : MonoBehaviour
     public TextMeshProUGUI awardMessage;
     
     public GameObject awardPrefab;
-    public IEnumerable<Award> currentAwards { get; private set; }
+    private IEnumerable<Award> currentAwards { get; set; }
     private GameObject currentAwardsPanel;
+    private Action lastAction;
 
     /// <summary>
     /// Выводит на панель награды.
     /// </summary>
-    public void Show(IEnumerable<Award> awards, string message = null)
+    public void Show(IEnumerable<Award> awards, string message = null, Action lastAction = null)
     {
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         currentAwardsPanel = Instantiate(awardsPanelPrefab, canvas.transform, false);
-        awardPrefab = currentAwardsPanel.GetComponent<AwardsCenter>().awardPrefab;
+        var trueComponent = currentAwardsPanel.GetComponent<AwardsCenter>();
+        awardPrefab = trueComponent.awardPrefab;
         var awPlace = GameObject.FindGameObjectWithTag("AwardsPlace");
-        currentAwardsPanel.GetComponent<AwardsCenter>().currentAwards = awards;
+        trueComponent.currentAwards = awards;
+        trueComponent.lastAction = lastAction;
 
         if (!(message is null))
         {
-            currentAwardsPanel.GetComponent<AwardsCenter>().awardMessage.text = message;
+            trueComponent.awardMessage.text = message;
         }
         
         foreach (var aw in awards)
@@ -120,6 +124,8 @@ public class AwardsCenter : MonoBehaviour
         if (dPanel?.activeSelf == true)
             dPanel.GetComponent<DialogPanelLogic>().LoadNextPhrase();
 
+        lastAction?.Invoke();
+        
         // удаляет текущую панель
         Destroy(gameObject);
     }

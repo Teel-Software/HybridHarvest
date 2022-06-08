@@ -374,6 +374,10 @@ public class Scenario : MonoBehaviour
             firstCharacterPhrases: new[]
             {
                 "Приветствую! У меня в продаже недавно появились семена помидора. Цена небольшая, советую купить."
+            },
+            narratorPhrases: new[]
+            {
+                "При повышении уровня у вас появляется возможность покупать различные улучшения, которые находятся в соответствующей вкладке."
             });
     }
 
@@ -411,8 +415,17 @@ public class Scenario : MonoBehaviour
                 "С наилучшими пожеланиями, Teel@Software!"
             });
     }
+    
+    public void ExhibitionWin()
+    {
+        ExecuteStoryPart("ExhibitionWin",
+            narratorPhrases: new[]
+            {
+                "Поздравляем! Вы победили на выставке!"
+            });
+    }
 
-    public void Tutorial_StoryEnd()
+    public void StoryEnd()
     {
         ExecuteStoryPart("StoryEnd",
             narratorPhrases: new[]

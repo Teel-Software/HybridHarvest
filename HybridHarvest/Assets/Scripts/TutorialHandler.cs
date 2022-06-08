@@ -42,7 +42,7 @@ public class TutorialHandler : MonoBehaviour
         if (scenario == null) return;
 
         // тутор для открытия предметов на уровне 2
-        if (QSReader.Create("StoryState").Exists("Story_LevelUp2_Played"))
+        if (QSReader.Create("LevelState").Exists("LevelUp2"))
             scenario.ShopLevel2();
 
         // тутор для покупки огурца

@@ -15,10 +15,10 @@ namespace Exhibition
         [SerializeField] private GameObject inProgressContainer;
         [SerializeField] private GameObject rewardPendingContainer;
         [SerializeField] private GameObject finishedContainer;
-        
+
         [SerializeField] private Image testImage;
-        
-        [SerializeField] private Button[] exhButtons;      
+
+        [SerializeField] private Button[] exhButtons;
         [SerializeField] private Button beginButton;
         public int SeedCount { get; private set; }
         public DateTime NextExhibition { get; private set; }
@@ -30,13 +30,14 @@ namespace Exhibition
 
         private int _debugOppCount = 0;
         private int _daySkip = 0;
-        
+
         public DateTime Now { get; private set; }
+
         public void Awake()
         {
             Load();
             SetDebugTime();
-            
+
             if (Now > NextExhibition)
             {
                 InitializeExhibition();
@@ -46,7 +47,7 @@ namespace Exhibition
             {
                 btn.gameObject.SetActive(false);
             }
-            
+
             var isActive = State == ExhibitionState.Inactive;
             beginButton.gameObject.SetActive(isActive);
             foreach (var btn in exhButtons.Take(SeedCount))
@@ -58,14 +59,14 @@ namespace Exhibition
         public void Update()
         {
             SetDebugTime();
-            
+
             if (State == ExhibitionState.InProgress && RewardDate < Now)
             {
                 State = ExhibitionState.RewardPending;
                 Save();
                 Awake();
             }
-            
+
             inProgressContainer.SetActive(State == ExhibitionState.InProgress);
             rewardPendingContainer.SetActive(State == ExhibitionState.RewardPending);
             finishedContainer.SetActive(State == ExhibitionState.Finished);
@@ -74,16 +75,16 @@ namespace Exhibition
             {
                 case ExhibitionState.InProgress:
                     inProgressContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
-                        .text = TimeFormatter.Format((DateTime)RewardDate - Now);
+                        .text = TimeFormatter.Format((DateTime) RewardDate - Now);
                     break;
-                
+
                 case ExhibitionState.RewardPending:
                     rewardPendingContainer.GetComponentInChildren<Button>()
                         .onClick.RemoveAllListeners();
                     rewardPendingContainer.GetComponentInChildren<Button>()
                         .onClick.AddListener(GetAward);
                     break;
-                
+
                 case ExhibitionState.Finished:
                     finishedContainer.GetComponentsInChildren<TextMeshProUGUI>().Last()
                         .text = TimeFormatter.Format(NextExhibition - Now);
@@ -102,7 +103,7 @@ namespace Exhibition
                 new Opponent("Дед Максим", "OldMan"),
                 new Opponent("Алиса", "Alisa"),
             };
-            
+
             var level = FindObjectOfType<Inventory>().Level;
             var opponentCount = 0;
             var countRand = new Random();
@@ -124,17 +125,17 @@ namespace Exhibition
                 else
                     opponentCount = 3;
             }
-            
+
             if (_debugOppCount > 1)
                 opponentCount = _debugOppCount;
-            
+
             var opponents = new Opponent[opponentCount];
-            
+
             var seedNames = Resources.LoadAll<Seed>("Seeds")
                 .Select(x => x.Name)
                 .Where(x => x != "Debug")
                 .ToList();
-            
+
             var exhibitonDifficulty = 1;
             var example = Seed.LoadFromResources("Cucumber");
             var points = example.ToPoints() * exhibitonDifficulty;
@@ -147,7 +148,7 @@ namespace Exhibition
                 // Random generation without repetitions
                 var index = rand.Next(0, unusedIndexes.Count);
                 var baseOpponent = possibleOpponents[unusedIndexes[index]];
-                unusedIndexes.RemoveAt(index); 
+                unusedIndexes.RemoveAt(index);
 
                 var seeds = new List<Seed>();
                 for (var j = 0; j < seedCount; j++)
@@ -165,11 +166,11 @@ namespace Exhibition
 
         public void BeginExhibition()
         {
-        #if DEBUG
+#if DEBUG
             RewardDate = Now.AddSeconds(7);
-        #else
+#else
             RewardDate = Now.AddMinutes(15);
-        #endif
+#endif
             State = ExhibitionState.InProgress;
             Save();
             Awake();
@@ -189,6 +190,7 @@ namespace Exhibition
             {
                 Debug.Log($"Очки противника #{++i}: {p}");
             }
+
             var playerPoints = PlayerSeeds.Select(s => s.ToPoints()).Sum();
             Debug.Log($"Очки игрока: {playerPoints}");
             var index = points.BinarySearch(playerPoints);
@@ -197,16 +199,26 @@ namespace Exhibition
                 : points.Count - index;
             //place = points.Count - ~index - 1;
             Debug.Log($"{place}-е Место!");
-            
+
             var awardTier = MAXTier + 1 - place;
             var awards = new List<Award>
             {
                 new Award(AwardType.Money, amount: 25 * awardTier),
                 new Award(AwardType.Reputation, amount: 25 * awardTier)
             };
-            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
-                $"Вы заняли {place} место!");
-            
+
+            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards,
+                $"Вы заняли {place} место!", lastAction: () =>
+                {
+                    if (place != 1) return;
+
+                    var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
+                    if (scenario == null) return;
+
+                    // диалог для победы на выставке
+                    scenario.ExhibitionWin();
+                });
+
             State = ExhibitionState.Finished;
         }
 
@@ -225,10 +237,10 @@ namespace Exhibition
         {
             Now = DateTime.Now;
 #if DEBUG
-            Now = Now.AddDays(_daySkip);    
+            Now = Now.AddDays(_daySkip);
 #endif
         }
-        
+
         private void InitializeExhibition()
         {
             // TODO remove random maybe?
@@ -245,11 +257,11 @@ namespace Exhibition
             if (!hasFocus)
                 Save();
         }
-        
+
         public void Save()
         {
             var writer = QuickSaveWriter.Create("ExhibitionData");
-            
+
             var exhSeeds = new List<string>();
             foreach (var btn in exhButtons)
             {
@@ -268,14 +280,14 @@ namespace Exhibition
                 .Write("NextExhibition", NextExhibition)
                 .Write("State", State)
                 .Write("Opponents", Opponents);
-            
+
             writer.Commit();
         }
 
         public void Load()
         {
             PlayerSeeds = new List<Seed>();
-            
+
             var reader = QSReader.Create("ExhibitionData");
             if (reader.TryRead("Seeds", out List<string> exhSeeds))
             {
@@ -283,16 +295,17 @@ namespace Exhibition
                 {
                     if (exhSeeds[i] == "")
                         continue;
+
                     var seed = Seed.Create(exhSeeds[i]);
-                    exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed); 
-                    
+                    exhButtons[i].GetComponent<ExhibitionButton>().SetSeed(seed);
+
                     PlayerSeeds.Add(seed);
                 }
             }
 
             var rand = new Random();
-            SeedCount = reader.TryRead<int>("SeedCount", out var count) 
-                ? count 
+            SeedCount = reader.TryRead<int>("SeedCount", out var count)
+                ? count
                 : rand.Next(3) + 1;
 
             NextExhibition = reader.TryRead<DateTime>("NextExhibition", out var next)
@@ -301,7 +314,7 @@ namespace Exhibition
 
             RewardDate = reader.TryRead<DateTime>("RewardDate", out var rewardDate)
                 ? rewardDate
-                : (DateTime?)null;
+                : (DateTime?) null;
 
             State = reader.TryRead<ExhibitionState>("State", out var state)
                 ? state
@@ -312,13 +325,12 @@ namespace Exhibition
                 : GenerateOpponents();
         }
     }
-    
-    public enum ExhibitionState {
+
+    public enum ExhibitionState
+    {
         Inactive,
         InProgress,
         RewardPending,
         Finished
     }
-}   
-
-
+}
