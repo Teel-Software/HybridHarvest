@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MINECRAFT
+  m_Name: F79-Minecraft
   m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7d59e39bd3477c249b48d899757187e9, type: 3}
+        m_Texture: {fileID: 2800000, guid: e948fb32ef40f2146b8ef47fc68150ff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
