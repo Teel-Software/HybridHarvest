@@ -3675,6 +3675,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1054157851}
     m_Modifications:
+    - target: {fileID: 569984396060707527, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 136.51001
+      objectReference: {fileID: 0}
     - target: {fileID: 1981407255176620886, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
       propertyPath: Inventory
       value: 
@@ -3935,6 +3939,10 @@ PrefabInstance:
       propertyPath: DialogPanel
       value: 
       objectReference: {fileID: 338724733}
+    - target: {fileID: 9147744147085349111, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33.999985
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84e808e8d2693224cb7044f8a798ffaa, type: 3}
 --- !u!1001 &4104146254775732149
@@ -4167,6 +4175,10 @@ PrefabInstance:
     - target: {fileID: 6827712443285308860, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140034438156893967, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7357057009474750832, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4648,6 +4660,54 @@ PrefabInstance:
       propertyPath: targetInventory
       value: 
       objectReference: {fileID: 1871862018}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 303.48148
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.123066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 455.22223
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199705251465709, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.561533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 303.48148
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.123066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 151.74074
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964713311516937376, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.561533
+      objectReference: {fileID: 0}
     - target: {fileID: 6510543788895875491, guid: 6190621ee2baa7047b55e79c79551b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
