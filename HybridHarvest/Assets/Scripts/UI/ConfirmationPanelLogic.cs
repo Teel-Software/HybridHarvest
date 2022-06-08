@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,14 +8,14 @@ public class ConfirmationPanelLogic : MonoBehaviour
     [SerializeField] public Button YesButton;
     [SerializeField] private GameObject parentGameObject;
     [SerializeField] private Text questionHeader;
-    [SerializeField] private Text questionDescription;
+    [SerializeField] private TMP_Text questionDescription;
 
     public Inventory targetInventory;
     public InventoryDrawer inventoryDrawer;
     public GameObject ItemObject;
 
-    private Action yesAction = () => { };
-    private Action noAction = () => { };
+    private Action yesAction;
+    private Action noAction;
 
     private void Awake()
     {
@@ -144,9 +145,9 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void ExecuteYesAction()
     {
-        yesAction.Invoke();
+        yesAction?.Invoke();
         gameObject.SetActive(false);
-        
+
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
 
         // тутор для роста семечка
@@ -159,7 +160,7 @@ public class ConfirmationPanelLogic : MonoBehaviour
     /// </summary>
     public void ExecuteNoAction()
     {
-        noAction.Invoke();
+        noAction?.Invoke();
         gameObject.SetActive(false);
     }
 }

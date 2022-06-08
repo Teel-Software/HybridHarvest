@@ -31,6 +31,7 @@ public class EnhancementLogic : MonoBehaviour
     [SerializeField] private RectTransform placeForRender;
     [SerializeField] private GameObject buyButtonPrefab;
     [SerializeField] private GameObject placeholder;
+    [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
 
     [SerializeField] private Sprite farmSpotSprite;
     [SerializeField] private Sprite potSprite;
@@ -134,13 +135,27 @@ public class EnhancementLogic : MonoBehaviour
             obj.name = $"Buy {enh.Name}";
             obj.GetComponent<Button>().onClick.AddListener(() =>
             {
-                BuyEnhancement(enh);
-                availableEnhs = availableEnhs
-                    .Where(e => e.Name != enh.Name)
-                    .ToList();
-                Save();
+                var canvas = GameObject.FindGameObjectWithTag("Canvas");
+                var confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
+                var title = enh.Type switch
+                {
+                    EnhancementType.Pot => "дополнительный горшок в лаборатории",
+                    EnhancementType.FarmSpot => "дополнительную грядку на поле",
+                    EnhancementType.InventorySpace => "дополнительное место в инвентаре",
+                    _ => "улучшение"
+                };
 
-                Destroy(obj);
+                confPanel.SetQuestion($"Купить {title}?", $"Стоимость: {enh.Price} <sprite=0>");
+                confPanel.SetYesAction(() =>
+                {
+                    BuyEnhancement(enh);
+                    availableEnhs = availableEnhs
+                        .Where(e => e.Name != enh.Name)
+                        .ToList();
+                    Save();
+
+                    Destroy(obj);
+                });
             });
         }
     }

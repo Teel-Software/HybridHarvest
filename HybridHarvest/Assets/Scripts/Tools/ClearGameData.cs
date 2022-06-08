@@ -9,6 +9,7 @@ public class ClearGameData : MonoBehaviour
     [SerializeField] private Inventory Inventory;
     [SerializeField] private InventoryDrawer InventoryFrame;
     [SerializeField] private GameObject[] RewatchButtons; // кнопки просмотра начальных роликов
+    [SerializeField] private ConfirmationPanelLogic confirmationPanelPrefab;
 
     /// <summary>
     /// Удаляет все дочерние объекты
@@ -44,8 +45,15 @@ public class ClearGameData : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
-        ClearAll();
-        SceneManager.LoadScene(0);
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        var confPanel = Instantiate(confirmationPanelPrefab, canvas.transform, false);
+        confPanel.SetQuestion("Перезапустить игру?",
+            "Все игровые данные будут утеряны.");
+        confPanel.SetYesAction(() =>
+        {
+            ClearAll();
+            SceneManager.LoadScene(0);
+        });
     }
 
     /// <summary>

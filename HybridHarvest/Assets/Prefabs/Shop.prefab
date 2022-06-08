@@ -1259,6 +1259,7 @@ MonoBehaviour:
   placeForRender: {fileID: 3825329285698729950}
   buyButtonPrefab: {fileID: 2756200268200245718, guid: e6422b978fd6ac04faebf80365353bdf, type: 3}
   placeholder: {fileID: 3921996862070543737}
+  confirmationPanelPrefab: {fileID: 5999152171306563235, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
   farmSpotSprite: {fileID: 21300000, guid: 6158e8322ee22c143a39cddd0425a7ed, type: 3}
   potSprite: {fileID: 21300000, guid: 906d27e133ceb8148924f23303d4dd08, type: 3}
   inventorySpaceSprite: {fileID: 21300000, guid: 134cbffda1efc1245ae0c68b137b9704, type: 3}

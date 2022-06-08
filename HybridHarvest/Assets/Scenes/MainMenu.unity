@@ -929,6 +929,7 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   InventoryFrame: {fileID: 0}
   RewatchButtons: []
+  confirmationPanelPrefab: {fileID: 0}
 --- !u!1 &332424242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,6 +1993,7 @@ MonoBehaviour:
   RewatchButtons:
   - {fileID: 1451378043}
   - {fileID: 332424242}
+  confirmationPanelPrefab: {fileID: 5999152171306563235, guid: 131e694ac3bda6149ba770680ba9c9dc, type: 3}
 --- !u!114 &675252900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,6 +3074,7 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   InventoryFrame: {fileID: 0}
   RewatchButtons: []
+  confirmationPanelPrefab: {fileID: 0}
 --- !u!114 &1467745616
 MonoBehaviour:
   m_ObjectHideFlags: 0

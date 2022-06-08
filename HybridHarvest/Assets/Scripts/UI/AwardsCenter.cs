@@ -76,11 +76,11 @@ public class AwardsCenter : MonoBehaviour
                     tmPro.spriteAsset = (TMP_SpriteAsset) Resources.Load($"TMP_Assets\\Reputation");
                     break;
                 case AwardType.Seed:
-                    tmPro.text = $"<sprite=0> x 1";
+                    tmPro.text = "<sprite=0> x 1";
                     tmPro.spriteAsset = (TMP_SpriteAsset) Resources.Load($"TMP_Assets\\{aw.SeedName}Packet");
                     break;
                 case AwardType.Achievement:
-                    tmPro.text = $"Достижение x 1";
+                    tmPro.text = "Достижение x 1";
                     break;
             }
         }
