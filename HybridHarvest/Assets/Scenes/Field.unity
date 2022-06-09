@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enhancementName: FarmSpot4
+  enhancementName: FarmSpot5
 --- !u!224 &197060018 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4481054497477229999, guid: 8afca9e2f6f06a14a89dfd629a000496, type: 3}
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enhancementName: FarmSpot6
+  enhancementName: FarmSpot7
 --- !u!1 &453041741
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,7 +2885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enhancementName: FarmSpot5
+  enhancementName: FarmSpot6
 --- !u!1 &883744446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,7 +4590,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 54f9e9a9a7d6fa94aba2df2dee7b6b74, type: 3}
 --- !u!4 &1385564101 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5910006656644790010, guid: 54f9e9a9a7d6fa94aba2df2dee7b6b74, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 1385564100}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1391733083
@@ -6048,7 +6048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enhancementName: FarmSpot7
+  enhancementName: FarmSpot8
 --- !u!1 &1743773905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7401,7 +7401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1cf785c2947c1a65e6de57ecfa40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enhancementName: FarmSpot8
+  enhancementName: FarmSpot4
 --- !u!114 &2091929291 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4104146255887539194, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}

@@ -91,6 +91,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void ChangeReputation(int amount)
     {
         Reputation += amount;
+        
         if (Reputation >= ReputationLimit)
         {
             Reputation -= ReputationLimit;
@@ -120,8 +121,9 @@ public class Inventory : MonoBehaviour, ISaveable
 
             handler.SpawnLevelUpBanner(Level);
 
-            Save();
         }
+
+        Save();
     }
 
     /// <summary>

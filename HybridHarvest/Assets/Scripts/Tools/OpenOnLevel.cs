@@ -8,6 +8,9 @@ public class OpenOnLevel : MonoBehaviour
 {
     [SerializeField] private int level;
     [SerializeField] private Image placeholderPrefab; // картинка, отображающаяся поверх неактивной кнопки
+    [SerializeField] private bool useOpenByName;
+    [SerializeField] private string enhancementName = "";
+    [SerializeField] private string customNotification = "";
 
     private Inventory inventory;
     private Button btnComp;
@@ -23,8 +26,14 @@ public class OpenOnLevel : MonoBehaviour
 
         if (!isButton) return;
 
-        if (inventory.Level < level && placeholderPrefab != null)
+        if ((inventory.Level < level
+             && !useOpenByName
+             || useOpenByName
+             && !QSReader.Create("PurchasedEnhancements").Exists(enhancementName))
+            && placeholderPrefab != null)
+        {
             placeholder = Instantiate(placeholderPrefab, transform, false);
+        }
 
         var notif = GameObject.FindGameObjectWithTag("Inventory").GetComponent<NotificationCenter>();
         originOnClick = btnComp.onClick;
@@ -32,7 +41,10 @@ public class OpenOnLevel : MonoBehaviour
 
         btnComp.onClick.AddListener(() =>
         {
-            if (inventory.Level >= level)
+            if (inventory.Level >= level
+                && !useOpenByName
+                || useOpenByName
+                && QSReader.Create("PurchasedEnhancements").Exists(enhancementName))
             {
                 btnComp.onClick.RemoveAllListeners();
                 btnComp.onClick = originOnClick;
@@ -40,7 +52,9 @@ public class OpenOnLevel : MonoBehaviour
             }
             else
             {
-                notif.Show($"Откроется на уровне {level}.");
+                notif.Show(customNotification == ""
+                    ? $"Откроется на уровне {level}."
+                    : customNotification);
             }
         });
     }
@@ -52,7 +66,10 @@ public class OpenOnLevel : MonoBehaviour
     {
         if (!isButton
             || phIsDestroyed
-            || inventory.Level < level)
+            || inventory.Level < level
+            && !useOpenByName
+            || useOpenByName
+            && !QSReader.Create("PurchasedEnhancements").Exists(enhancementName))
             return;
 
         Destroy(placeholder);

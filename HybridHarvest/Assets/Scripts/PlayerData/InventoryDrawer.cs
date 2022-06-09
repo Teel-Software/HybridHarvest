@@ -122,21 +122,6 @@ public class InventoryDrawer : MonoBehaviour
                 seed.Parents.Concat(filterParents).Distinct().Count() > 5)
                 continue;
 
-            /*
-            var itemGameObj = new GameObject(i.ToString(), typeof(Button));
-            itemGameObj.AddComponent<Image>().sprite = item.PacketSprite;
-
-            var plantIcon = new GameObject("Plant" + i);
-            plantIcon.AddComponent<Image>().sprite = item.PlantSprite;
-            plantIcon.transform.position = new Vector2(0, -35);
-            plantIcon.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-            plantIcon.transform.SetParent(itemGameObj.transform);
-
-            itemGameObj.transform.localScale = new Vector2(0.01f, 0.01f);
-            itemGameObj.GetComponent<Button>().onClick.AddListener(ClickedOnItem);
-            itemGameObj.GetComponent<Button>().targetGraphic = itemGameObj.GetComponent<Image>();
-            itemGameObj.transform.SetParent(Place);
-            */
             var itemIcon = Instantiate(ItemIcon, scrollViewContent);
             itemIcon.name = i.ToString();
             var itemIconDrawer = itemIcon.GetComponent<ItemIconDrawer>();

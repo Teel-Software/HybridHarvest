@@ -86,6 +86,11 @@ public class Scenario : MonoBehaviour
 
         // тутор для выполнения первого задания
         DialogPanel.LastAction = () => FirstQuestCompleted();
+        
+        // активирует кнопку выставки
+        var writer = QuickSaveWriter.Create("PurchasedEnhancements");
+        writer.Write("Exhibition", true);
+        writer.Commit();
     }
 
     public void Tutorial_Beginning()
