@@ -115,7 +115,7 @@ public class PatchGrowth : MonoBehaviour
                 ClearPatch();
                 return;
             }
-            
+
             HarvestWindow.GetComponent<HarvestProcessor>()
                 .ShowHarvestMenu(grownSeeds, Patch.GetComponent<PatchGrowth>());
             HarvestWindow.gameObject.SetActive(true);
@@ -272,13 +272,13 @@ public class PatchGrowth : MonoBehaviour
 
         timerNeeded = details.TimerNeeded;
         growingSeed = Seed.Create(details.GrowingSeed);
-        timeSpeedBooster = details.TimeSpeedBooster;
         
+        secondsRemaining = details.SecondsRemaining;
+        lastCheckedTime = details.LastCheckedTime;
+        timeSpeedBooster = details.TimeSpeedBooster;
+
         if (timeSpeedBooster == 0)
             timeSpeedBooster = 1;
-        
-        var timePassed = (DateTime.Now.Ticks - details.LastCheckedTime.Ticks) / 10000000;
-        secondsRemaining = details.SecondsRemaining - timePassed * timeSpeedBooster;
 
         foreach (var seed in details.GrownSeeds)
             grownSeeds.Add(Seed.Create(seed));
@@ -458,7 +458,9 @@ public class PatchGrowth : MonoBehaviour
 
             if (secondsRemaining > 0)
             {
-                secondsRemaining -= Time.deltaTime * timeSpeedBooster;
+                var timePassed = DateTime.Now - lastCheckedTime;
+                secondsRemaining -= timePassed.TotalSeconds * timeSpeedBooster;
+                // secondsRemaining -= Time.deltaTime * timeSpeedBooster;
                 var timeSpan = TimeSpan.FromSeconds(math.round(secondsRemaining));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(secondsRemaining, growingSeed.GrowTime);

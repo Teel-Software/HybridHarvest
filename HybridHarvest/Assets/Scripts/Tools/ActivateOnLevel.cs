@@ -3,23 +3,16 @@ using UnityEngine;
 /// <summary>
 /// Делает объект кнопки активным при достижении определённого уровня.
 /// </summary>
-public class ActivateOnLevel : MonoBehaviour, IUpdateable
+public class ActivateOnLevel : MonoBehaviour
 {
-    // [SerializeField] private int level;
     [SerializeField] private string enhancementName = "";
 
-    // private Inventory inventory;
-
+    /// <summary>
+    /// Активирует объекты в зависимости от того, куплены ли улучшения для них.
+    /// </summary>
     private void Start()
     {
-        // inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-
         var reader = QSReader.Create("PurchasedEnhancements");
         gameObject.SetActive(reader.Exists(enhancementName));
-    }
-
-    public void Update()
-    {
-        // gameObject.SetActive(inventory.Level >= level);
     }
 }
