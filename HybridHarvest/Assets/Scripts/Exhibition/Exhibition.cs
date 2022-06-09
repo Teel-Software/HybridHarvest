@@ -40,16 +40,13 @@ namespace Exhibition
             Load();
             SetDebugTime();
 
-            WeeklyPlacements = new int[7];
-            var rand = new Random();
-            for (var i = 0; i < WeeklyPlacements.Length; i++)
-            {
-                WeeklyPlacements[i] = rand.Next(5);
-            }
-            
             if (Now > NextExhibition)
             {
                 InitializeExhibition();
+                if (DayIndex == 0)
+                {
+                    WeeklyPlacements = new int[7];
+                }
             }
 
             foreach (var btn in exhButtons)
@@ -184,7 +181,7 @@ namespace Exhibition
         public void StartExhibition()
         {
 #if DEBUG
-            RewardDate = Now.AddSeconds(7);
+            RewardDate = Now.AddSeconds(3);
 #else
             RewardDate = Now.AddMinutes(15);
 #endif
@@ -224,18 +221,20 @@ namespace Exhibition
                 new Award(AwardType.Reputation, amount: 25 * awardTier)
             };
 
-            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards,
-                $"Вы заняли {place} место!", lastAction: () =>
+            rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
+                $"Вы заняли {place} место!", lastAction: () => 
                 {
                     if (place != 1) return;
 
                     var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-                    if (scenario == null) return;
-
+                    if (scenario is null) return;
+                    
                     // диалог для победы на выставке
                     scenario.ExhibitionWin();
                 });
 
+            WeeklyPlacements[DayIndex] = place;
+            
             State = ExhibitionState.Finished;
         }
 
@@ -288,7 +287,8 @@ namespace Exhibition
                 .Write("SeedCount", SeedCount)
                 .Write("NextExhibition", NextExhibition)
                 .Write("State", State)
-                .Write("Opponents", Opponents);
+                .Write("Opponents", Opponents)
+                .Write("WeeklyPlacements", WeeklyPlacements);
 
             writer.Commit();
         }
@@ -332,6 +332,10 @@ namespace Exhibition
             Opponents = reader.TryRead<Opponent[]>("Opponents", out var opponents)
                 ? opponents
                 : GenerateOpponents();
+
+            WeeklyPlacements = reader.TryRead<int[]>("WeeklyPlacements", out var placements)
+                ? placements
+                : new int[7];
         }
     }
 
