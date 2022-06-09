@@ -181,8 +181,10 @@ public class GeneCrossing : MonoBehaviour
     {
         var newSeed = ScriptableObject.CreateInstance<Seed>();
 
+        newSeed.Parents = parent1.Parents.Concat(parent2.Parents).Distinct().ToList();
+
         // место для создания изображения
-        ImageMerger.MergeParentImages(parent1.Parents, parent2.Parents);
+        ImageMerger.MergeParentImages(newSeed.Parents);
 
         //newSeed.Name = parent1.Name + "-" + parent2.Name;
         //newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
@@ -205,9 +207,6 @@ public class GeneCrossing : MonoBehaviour
         newSeed.MinAmount = newSeed.SeedStats.MinAmount.Keys.ToArray()[0];
         newSeed.MaxAmount = newSeed.SeedStats.MaxAmount.Keys.ToArray()[0];
         newSeed.AmountGen = Gen.Mixed;
-
-        newSeed.Parents = parent1.Parents.Concat(parent2.Parents).ToList();
-        newSeed.Parents.Sort();
 
         return newSeed;
     }

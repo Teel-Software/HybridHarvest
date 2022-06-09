@@ -12,12 +12,12 @@ public static class CSVStatsMerger
     /// </summary>
     public static SeedStatistics GetQuantumStatistics(List<string> parents1, List<string> parents2)
     {
-        var seedName = string.Join("-", parents1.Concat(parents2).OrderBy(x=>x));
+        var seedName = string.Join("-", parents1.Concat(parents2).Distinct());
         var stats = CSVReader.GetSeedStats(seedName);
         if (stats == null)
         {
-            var newRows = MergeExistingTables(string.Join("-", parents1.OrderBy(x=>x)),
-                string.Join("-", parents2.OrderBy(x => x)));
+            var newRows = MergeExistingTables(string.Join("-", parents1),
+                string.Join("-", parents2));
             CreateNewCSV(seedName, newRows);
         }
 

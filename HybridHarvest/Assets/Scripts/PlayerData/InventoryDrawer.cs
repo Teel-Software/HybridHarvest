@@ -119,8 +119,7 @@ public class InventoryDrawer : MonoBehaviour
             // фильтрует семена по родителям для кванта
             if (Purpose == PurposeOfDrawing.AddToQuant &&
                 filterParents != null &&
-                (seed.Parents.Count + filterParents.Count > 5 ||
-                seed.Parents.Any(x => filterParents.Any(y => y == x))))
+                seed.Parents.Concat(filterParents).Distinct().Count() > 5)
                 continue;
 
             /*

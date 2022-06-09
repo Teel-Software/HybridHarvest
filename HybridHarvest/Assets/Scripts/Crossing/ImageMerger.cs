@@ -5,27 +5,23 @@ using System.Linq;
 
 public static class ImageMerger
 {
-    public static void MergeParentImages(List<string> firstParentsList, List<string> secondParentsList)
+    public static void MergeParentImages(List<string> parents)
     {
-        var newParentsList = firstParentsList.Concat(secondParentsList).OrderBy(x => x).ToList();
-        var newName = string.Join("-", newParentsList);
+        var newName = string.Join("-", parents);
         var spritePath = Path.Combine(Application.persistentDataPath, newName + ".png");
         if (File.Exists(spritePath)) return;
-        firstParentsList.Sort(); secondParentsList.Sort();
-        var parentName1 = string.Join("-", firstParentsList);
-        var parentName2 = string.Join("-", secondParentsList);
 
-        var formName = newParentsList[0]; // за форму овоща отвечает первый по алфавиту родитель
+        var shapeName = parents[newName.ToCharArray().Length % parents.Count]; // за форму овоща отвечает (кол-во букв % кол-во родителей)
 
-         var shadow = Resources.Load<Texture2D>($"SeedsIcons\\{formName}Shadow");
+        var shadow = Resources.Load<Texture2D>($"SeedsIcons\\{shapeName}Shadow");
         shadow = duplicateTexture(shadow);
 
-        var shape = Resources.Load<Texture2D>($"SeedsIcons\\{formName}");
+        var shape = Resources.Load<Texture2D>($"SeedsIcons\\{shapeName}");
         shape = duplicateTexture(shape);
         //var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, formName + ".png"));
         //formForTexture = req.texture;
 
-        var texture = mergeTextures(newParentsList.Skip(1).ToList());
+        var texture = mergeTextures(parents.Where(x => x != shapeName).ToList());
         var newSprite = duplicateTexture(texture);
 
         for (int i = 0; i < shape.width; i++)
@@ -42,7 +38,7 @@ public static class ImageMerger
 
                 if (formCol.a == 0)
                     newSprite.SetPixel(i, j, formCol);
-                else if(shadowCol.a != 0)
+                else if (shadowCol.a != 0)
                     newSprite.SetPixel(i, j, newColor);
                 else                                                                       //без else текстура остаётся неизменённой
                     newSprite.SetPixel(i, j, textureCol);
