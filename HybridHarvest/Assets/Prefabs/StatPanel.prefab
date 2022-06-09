@@ -1419,9 +1419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864d4c45f268f8d469b0de1d638d7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  YesButton: {fileID: 0}
   parentGameObject: {fileID: 225713377576896546}
+  questionHeader: {fileID: 0}
+  questionDescription: {fileID: 0}
   targetInventory: {fileID: 0}
   inventoryDrawer: {fileID: 0}
-  HasPrice: 0
-  ItemName: 
   ItemObject: {fileID: 0}

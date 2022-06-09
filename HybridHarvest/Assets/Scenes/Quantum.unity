@@ -2420,6 +2420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1632421282}
     - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: SeedInfoPanel
+      value: 
+      objectReference: {fileID: 2301670581727499010, guid: 3149eb2d174764e43ac61b917179af7b, type: 3}
+    - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: WholeMinigame
       value: 
       objectReference: {fileID: 2128125894}
@@ -2427,6 +2431,10 @@ PrefabInstance:
       propertyPath: InventoryFrame
       value: 
       objectReference: {fileID: 1077512519}
+    - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
+      propertyPath: InfoPanelPrefab
+      value: 
+      objectReference: {fileID: 2301670581727499010, guid: 3149eb2d174764e43ac61b917179af7b, type: 3}
     - target: {fileID: 1818408190813670336, guid: e0cdf72411c67304385993a24a0ecd44, type: 3}
       propertyPath: CrossingPerformer
       value: 

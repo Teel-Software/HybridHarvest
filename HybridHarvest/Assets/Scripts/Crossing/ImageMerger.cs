@@ -10,20 +10,17 @@ public static class ImageMerger
         var newParentsList = firstParentsList.Concat(secondParentsList).OrderBy(x => x).ToList();
         var newName = string.Join("-", newParentsList);
         var spritePath = Path.Combine(Application.persistentDataPath, newName + ".png");
-        var texturePath = Path.Combine(Application.persistentDataPath, newName + "Texture.png");
         if (File.Exists(spritePath)) return;
         firstParentsList.Sort(); secondParentsList.Sort();
         var parentName1 = string.Join("-", firstParentsList);
         var parentName2 = string.Join("-", secondParentsList);
 
         var formName = newParentsList[0]; // за форму овоща отвечает первый по алфавиту родитель
-        Texture2D shape;
-        Texture2D shadow;
 
-        shadow = Resources.Load<Texture2D>($"SeedsIcons\\{formName}Shadow");
+         var shadow = Resources.Load<Texture2D>($"SeedsIcons\\{formName}Shadow");
         shadow = duplicateTexture(shadow);
 
-        shape = Resources.Load<Texture2D>($"SeedsIcons\\{formName}");
+        var shape = Resources.Load<Texture2D>($"SeedsIcons\\{formName}");
         shape = duplicateTexture(shape);
         //var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, formName + ".png"));
         //formForTexture = req.texture;
@@ -53,7 +50,6 @@ public static class ImageMerger
         }
         newSprite.filterMode = FilterMode.Point;
         File.WriteAllBytes(spritePath, newSprite.EncodeToPNG());
-        File.WriteAllBytes(texturePath, texture.EncodeToPNG());
     }
 
     /// <summary>

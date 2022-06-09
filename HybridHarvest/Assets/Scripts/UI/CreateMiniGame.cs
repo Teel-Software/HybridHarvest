@@ -15,10 +15,12 @@ public class CreateMiniGame : MonoBehaviour
     [SerializeField] Button CrossingPerformer;
     [SerializeField] InventoryDrawer InventoryFrame;
     [SerializeField] GameObject NameGenerator;
+    [SerializeField] GameObject InfoPanelPrefab;
 
     public Button ResultPlace;
     private Seed currentSeed;
     private Button currentPot;
+    private GameObject infoPanel;
 
     enum QuantumBoost
     {
@@ -102,17 +104,14 @@ public class CreateMiniGame : MonoBehaviour
     private QuantumBoost[] GetBoostsForButtons()
     {
         if (ElementsCount != 9) Debug.LogError("Возможно вам стоит пересмотреть шансы бонусов");
+
         var boosts = new[] { QuantumBoost.Quadriple, QuantumBoost.Double, QuantumBoost.Double,
                           QuantumBoost.Fail, QuantumBoost.None, QuantumBoost.None,
                           QuantumBoost.None, QuantumBoost.None, QuantumBoost.None};
-        //var boosts = new[] { QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple,
-        //                  QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple,
-        //                  QuantumBoost.Quadriple, QuantumBoost.Quadriple, QuantumBoost.Quadriple};
 
         for (int firstInd = ElementsCount - 1; firstInd >= 1; firstInd--)
         {
             var secondInd = (int)((UnityEngine.Random.value * 100) % (firstInd + 1));
-
             var tmp = boosts[secondInd];
             boosts[secondInd] = boosts[firstInd];
             boosts[firstInd] = tmp;
@@ -138,8 +137,12 @@ public class CreateMiniGame : MonoBehaviour
         return card;
     }
 
+    /// <summary>
+    /// завершение и закрытие
+    /// </summary>
     public void UpdateRussianName(string name)
     {
+        Destroy(infoPanel);
         currentSeed.NameInRussian = name;
         Blocker.SetActive(true);
     }
@@ -180,6 +183,9 @@ public class CreateMiniGame : MonoBehaviour
         Blocker.SetActive(true);
     }
 
+    /// <summary>
+    /// нажатие на кнопку, но в кванте
+    /// </summary>
     private void QuantumOnButtonClicked()
     {
         var button = EventSystem.current.currentSelectedGameObject;
@@ -209,8 +215,10 @@ public class CreateMiniGame : MonoBehaviour
                 Blocker.GetComponent<Button>().onClick.AddListener(AddGrownSeed);
                 break;
         }
-        NameGenerator.SetActive(true);
-        NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+
+        ShowInfoPanel();
+        //NameGenerator.SetActive(true);
+        //NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
 
     }
 
@@ -278,4 +286,21 @@ public class CreateMiniGame : MonoBehaviour
         if (QSReader.Create("TutorialState").Exists("Tutorial__Played"))
             scenario.Tutorial_MiniGame();
     }
+
+    private void ShowInfoPanel()
+    {
+        infoPanel = Instantiate(InfoPanelPrefab, GameObject.Find("MiniGamePanel").transform);
+        var statPanelDrawer = infoPanel.GetComponentInChildren<StatPanelDrawer>();
+        statPanelDrawer.DisplayQuantumStats(currentSeed);
+
+        var yesButton = statPanelDrawer.ProceedButton.GetComponent<Button>();
+
+        yesButton.onClick.AddListener(() =>
+        {
+            NameGenerator.SetActive(true);
+            NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+        });
+
+    }
 }
+

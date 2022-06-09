@@ -54,6 +54,44 @@ public class StatPanelDrawer : MonoBehaviour
         PlantDesc.text = Tools.SeedStatFormatter.FormatLarge(seed);
     }
 
+    public void DisplayQuantumStats(Seed seed)
+    {
+        PlantName.text = "???";
+        PlantImage.sprite = seed.PlantSprite;
+
+        QualityColor.sprite = Resources.Load<Sprite>("Packets\\Quality" + seed.PacketQuality);
+
+        var qualityTxt = "";
+        var qualityTxtColor = Color.black;
+        switch (seed.PacketQuality)
+        {
+            case 0:
+                qualityTxt = "Обычный";
+                ColorUtility.TryParseHtmlString("#D7D7EF", out qualityTxtColor);
+                break;
+            case 1:
+                qualityTxt = "Особый";
+                ColorUtility.TryParseHtmlString("#73A9F4", out qualityTxtColor);
+                break;
+            case 2:
+                qualityTxt = "Удивительный";
+                ColorUtility.TryParseHtmlString("#C768ED", out qualityTxtColor);
+                break;
+            case 3:
+                qualityTxt = "Мифический";
+                ColorUtility.TryParseHtmlString("#FF0043", out qualityTxtColor);
+                break;
+            case 4:
+                qualityTxt = "Легендарный";
+                break;
+        }
+
+        QualityText.text = $"{qualityTxt}";
+        QualityText.color = qualityTxtColor;
+
+        PlantDesc.text = Tools.SeedStatFormatter.FormatLarge(seed);
+    }
+
     private void OnEnable()
     {
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();

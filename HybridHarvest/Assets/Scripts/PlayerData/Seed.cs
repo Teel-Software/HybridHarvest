@@ -115,9 +115,9 @@ public class Seed : ScriptableObject
     public int GrowTime;
 
     public Gen AmountGen;
-    [FormerlySerializedAs("minAmount")] 
+    [FormerlySerializedAs("minAmount")]
     public int MinAmount;
-    [FormerlySerializedAs("maxAmount")] 
+    [FormerlySerializedAs("maxAmount")]
     public int MaxAmount;
 
     [FormerlySerializedAs("MutationPossibilityGen")]
@@ -132,7 +132,7 @@ public class Seed : ScriptableObject
         set => seedStats = value;
     }
     private SeedStatistics seedStats;
-    
+
     /// <summary>
     /// Exports seed data as a JSON string
     /// </summary>
@@ -145,14 +145,9 @@ public class Seed : ScriptableObject
     public static Seed Create(string seedString)
     {
         var seed = CreateInstance<Seed>();
-        try
-        {
-            JsonUtility.FromJsonOverwrite(seedString, seed);
-        }
-        catch
-        {
-            seed.setValues(seedString);
-        }
+
+        JsonUtility.FromJsonOverwrite(seedString, seed);
+
 
         return seed;
     }
@@ -281,45 +276,6 @@ public class Seed : ScriptableObject
         Debug.Log($"Equal: {str == JsonUtility.ToJson(s)}");
         Debug.Log(seed.SeedStats);
         Debug.Log(s.SeedStats); //null
-    }
-
-    /// <summary>
-    /// (Deprecated)
-    /// Exports seed data as string
-    /// </summary>
-    /// <returns>string with "|" separator</returns>
-    private string toString()
-    {
-        return Name + "|" + "_" + "|" +
-               GrowTime + "|" + (int)GrowTimeGen + "|" +
-               Gabitus + "|" + (int)GabitusGen + "|" +
-               Taste + "|" + (int)TasteGen + "|" +
-               MinAmount + "|" + MaxAmount +
-               "|" + NameInRussian + "|" + NameInLatin +
-               "|" + (int)MutationChance;
-    }
-
-    /// <summary>
-    /// (Deprecated)
-    /// Imports seed data from string
-    /// </summary>
-    /// <param name="data">string with "|" separator</param>
-    private void setValues(string data)
-    {
-        var parameters = data.Split('|');
-        SeedStats = CSVReader.GetSeedStats(parameters[0]);
-        //Name = parameters[0];
-        GrowTime = int.Parse(parameters[2]);
-        GrowTimeGen = (Gen)int.Parse(parameters[3]);
-        Gabitus = int.Parse(parameters[4]);
-        GabitusGen = (Gen)int.Parse(parameters[5]);
-        Taste = int.Parse(parameters[6]);
-        TasteGen = (Gen)int.Parse(parameters[7]);
-        MinAmount = int.Parse(parameters[8]);
-        MaxAmount = int.Parse(parameters[9]);
-        NameInRussian = parameters[10];
-        NameInLatin = parameters[11];
-        MutationChance = (MutationChance)int.Parse(parameters[12]);
     }
 }
 
