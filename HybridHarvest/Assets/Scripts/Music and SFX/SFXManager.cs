@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
@@ -21,14 +20,24 @@ public class SFXManager : MonoBehaviour
         Source = gameObject.GetComponent<AudioSource>();
     }
 
-    public void Play(SoundEffect soundName)
+    public AudioClip GetClip(SoundEffect soundID)
     {
-        var sound = soundEffects.FirstOrDefault(item => item.name.Equals(soundName));
-        if (sound is null)
+        return soundEffects[(int)soundID].Clip;
+    }
+
+    public void Play(SoundEffect soundID)
+    {
+        Sound sound;
+        try
         {
-            throw new KeyNotFoundException("Sound " + soundName + " not found");
+            sound = soundEffects[(int)soundID];
         }
-        Source.PlayOneShot(sound.clip);
+        catch (IndexOutOfRangeException)
+        {
+            Debug.LogError("Sound " + soundID + " not found");
+            return;
+        }
+        Source.PlayOneShot(sound.Clip);
     }
 
     public void Play(AudioClip soundClip)

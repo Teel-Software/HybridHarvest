@@ -3,6 +3,6 @@
 [System.Serializable]
 public class Sound
 {
-    public SoundEffect name;
-    public AudioClip clip;
+    public SoundEffect ID;
+    public AudioClip Clip;
 }
