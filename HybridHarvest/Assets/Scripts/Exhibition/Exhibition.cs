@@ -27,17 +27,26 @@ namespace Exhibition
 
         public Opponent[] Opponents { get; private set; }
         public List<Seed> PlayerSeeds { get; private set; }
-
+        public int[] WeeklyPlacements { get; private set; }
+        
         private int _debugOppCount = 0;
         private int _daySkip = 0;
 
         public DateTime Now { get; private set; }
+        public int DayIndex => ((int)Now.DayOfWeek + 6) % 7;
 
         public void Awake()
         {
             Load();
             SetDebugTime();
 
+            WeeklyPlacements = new int[7];
+            var rand = new Random();
+            for (var i = 0; i < WeeklyPlacements.Length; i++)
+            {
+                WeeklyPlacements[i] = rand.Next(5);
+            }
+            
             if (Now > NextExhibition)
             {
                 InitializeExhibition();
@@ -54,6 +63,14 @@ namespace Exhibition
             {
                 btn.gameObject.SetActive(isActive);
             }
+        }
+
+        private void SetDebugTime()
+        {
+            Now = DateTime.Now;
+#if DEBUG
+            Now = Now.AddDays(_daySkip);
+#endif
         }
 
         public void Update()
@@ -164,7 +181,7 @@ namespace Exhibition
             return opponents;
         }
 
-        public void BeginExhibition()
+        public void StartExhibition()
         {
 #if DEBUG
             RewardDate = Now.AddSeconds(7);
@@ -231,14 +248,6 @@ namespace Exhibition
         {
             _debugOppCount = Math.Min(_debugOppCount + inc, 3);
             _debugOppCount = Math.Max(_debugOppCount, 1);
-        }
-
-        private void SetDebugTime()
-        {
-            Now = DateTime.Now;
-#if DEBUG
-            Now = Now.AddDays(_daySkip);
-#endif
         }
 
         private void InitializeExhibition()
