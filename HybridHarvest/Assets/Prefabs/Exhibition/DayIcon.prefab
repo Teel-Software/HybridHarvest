@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 8323875232197182423}
   - component: {fileID: 4621828031248590218}
   - component: {fileID: 1050905716007369872}
-  - component: {fileID: 138074024997813890}
   m_Layer: 5
   m_Name: MedalIcon
   m_TagString: Untagged
@@ -295,18 +294,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &138074024997813890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6094135358613753176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6bdd8dc3bb69849aa4e83d95dc5202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7718108815846544989
 GameObject:
   m_ObjectHideFlags: 0
