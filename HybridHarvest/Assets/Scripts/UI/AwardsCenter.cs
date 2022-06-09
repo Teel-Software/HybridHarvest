@@ -44,7 +44,7 @@ public class AwardsCenter : MonoBehaviour
     public GameObject awardPrefab;
     private IEnumerable<Award> currentAwards { get; set; }
     private GameObject currentAwardsPanel;
-    private Action lastAction;
+    private Action _lastAction;
 
     /// <summary>
     /// Выводит на панель награды.
@@ -57,7 +57,7 @@ public class AwardsCenter : MonoBehaviour
         awardPrefab = trueComponent.awardPrefab;
         var awPlace = GameObject.FindGameObjectWithTag("AwardsPlace");
         trueComponent.currentAwards = awards;
-        trueComponent.lastAction = lastAction;
+        trueComponent._lastAction = lastAction;
 
         if (!(message is null))
         {
@@ -124,7 +124,7 @@ public class AwardsCenter : MonoBehaviour
         if (dPanel?.activeSelf == true)
             dPanel.GetComponent<DialogPanelLogic>().LoadNextPhrase();
 
-        lastAction?.Invoke();
+        _lastAction?.Invoke();
         
         // удаляет текущую панель
         Destroy(gameObject);

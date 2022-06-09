@@ -17,6 +17,10 @@ public class LevelUpHandler : MonoBehaviour
         panel = Instantiate(LevelUpBannerPrefab, canvas.transform, false);
         panel.description.text = $"Вы достигли уровня {level}!\n";
 
+        var dialogPanel = GameObject.FindGameObjectWithTag("DialogPanel");
+        if (dialogPanel != null)
+            panel.transform.SetSiblingIndex(dialogPanel.transform.GetSiblingIndex());
+
         var addition = level switch
         {
             2 => "Вам открыты:" +

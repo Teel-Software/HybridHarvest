@@ -272,7 +272,7 @@ public class PatchGrowth : MonoBehaviour
 
         timerNeeded = details.TimerNeeded;
         growingSeed = Seed.Create(details.GrowingSeed);
-        
+
         secondsRemaining = details.SecondsRemaining;
         lastCheckedTime = details.LastCheckedTime;
         timeSpeedBooster = details.TimeSpeedBooster;
@@ -431,7 +431,16 @@ public class PatchGrowth : MonoBehaviour
             timeSpeedBooster = coeff;
 
         Save();
-        Debug.Log($"{growingSeed.NameInRussian}. Ускорение: {timeSpeedBooster}.");
+
+        var ending = "";
+        if (coeff % 10 > 1
+            && coeff % 10 < 5
+            && (coeff < 12 || coeff > 14))
+            ending = "а";
+
+        GameObject.FindGameObjectWithTag("Inventory")
+            ?.GetComponent<NotificationCenter>()
+            ?.Show($"{growingSeed.NameInRussian}: ускорено в {timeSpeedBooster} раз{ending}.");
     }
 
     private void Start()
@@ -460,11 +469,12 @@ public class PatchGrowth : MonoBehaviour
             {
                 var timePassed = DateTime.Now - lastCheckedTime;
                 secondsRemaining -= timePassed.TotalSeconds * timeSpeedBooster;
-                // secondsRemaining -= Time.deltaTime * timeSpeedBooster;
+                lastCheckedTime = DateTime.Now;
+
                 var timeSpan = TimeSpan.FromSeconds(math.round(secondsRemaining));
                 growthText.text = Tools.TimeFormatter.Format(timeSpan);
+
                 plantImage.sprite = growingSeed.GetGrowthStageSprite(secondsRemaining, growingSeed.GrowTime);
-                lastCheckedTime = DateTime.Now;
             }
             else
             {

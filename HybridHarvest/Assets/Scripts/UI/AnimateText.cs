@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AnimateText : MonoBehaviour
@@ -14,70 +13,60 @@ public class AnimateText : MonoBehaviour
 
     private int textIndex;
     private bool renderNeeded;
-    private Coroutine activeCoroutine;
+    private DateTime lastCheckedTime;
 
     /// <summary>
-    /// Перезапускает анимацию
+    /// Перезапускает анимацию.
     /// </summary>
     public void RestartAnimation()
     {
-        if (activeCoroutine != null)
-        {
-            StopCoroutine(activeCoroutine);
-            if (activeBlocker != null)
-                Destroy(activeBlocker);
-        }
-
         currentTextComp = GetComponent<Text>();
         origText = currentTextComp.text;
         currentTextComp.text = "";
         textIndex = 0;
         renderNeeded = true;
-
+        lastCheckedTime = DateTime.Now;
+        
+        if (activeBlocker != null)
+            Destroy(activeBlocker);
+        
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         activeBlocker = Instantiate(TextBlockerPrefab, canvas.transform, false);
-        activeBlocker.GetComponent<Button>().onClick.AddListener(OnBlockerClicked);
-
-        activeCoroutine = StartCoroutine(RenderNextSymbol());
+        activeBlocker.GetComponent<Button>().onClick.AddListener(SkipText);
+        activeBlocker.name = $"AnimTextBlocker: {origText.Substring(0, Math.Min(7, origText.Length))}";
     }
 
     /// <summary>
-    /// Рисует следующий символ текущей строки
+    /// Выводит текст без анимации.
     /// </summary>
-    private IEnumerator RenderNextSymbol()
-    {
-        while (renderNeeded)
-        {
-            if (textIndex > origText.Length - 1)
-            {
-                Destroy(activeBlocker);
-                break;
-            }
-            currentTextComp.text += origText[textIndex++];
-            yield return new WaitForSeconds(frameTimeSeconds);
-        }
-    }
-
-    // Выводит текст без анимации
     private void SkipText()
     {
         currentTextComp.text = origText;
         renderNeeded = false;
+        Destroy(activeBlocker);
     }
 
     /// <summary>
-    /// Вызывается при нажатии на блокер
+    /// Рисует следующий символ текущей строки.
     /// </summary>
-    private void OnBlockerClicked()
+    private void Update()
     {
-        var blocker = EventSystem.current.currentSelectedGameObject;
-        if (blocker == null) return;
+        if (!renderNeeded) return;
 
-        Destroy(blocker);
-        SkipText();
+        if (textIndex > origText.Length - 1)
+        {
+            Destroy(activeBlocker);
+            renderNeeded = false;
+        }
+
+        var timePassed = DateTime.Now - lastCheckedTime;
+        if (timePassed.TotalSeconds < frameTimeSeconds) return;
+
+        currentTextComp.text += origText[textIndex++];
+        lastCheckedTime = DateTime.Now;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         RestartAnimation();
     }

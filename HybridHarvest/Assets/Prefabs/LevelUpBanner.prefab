@@ -79,8 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u0430\u043C \u043E\u0442\u043A\u0440\u044B\u0442\u044B \u0448\u0442\u0443\u043A\u0438
-    \u0432\u0441\u044F\u043A\u0438\u0435 \u0440\u0430\u0437\u043D\u044B\u0435"
+  m_Text: fail
 --- !u!114 &2392650615004405461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 7642040400430658116, guid: 3709cd888402dd14fbfa4e44da4bef7b, type: 3}
       propertyPath: m_Name
       value: LevelUpBlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642040400430658116, guid: 3709cd888402dd14fbfa4e44da4bef7b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7642040400430658117, guid: 3709cd888402dd14fbfa4e44da4bef7b, type: 3}
       propertyPath: m_Pivot.x

@@ -347,7 +347,7 @@ public class Scenario : MonoBehaviour
                 "Добрый вечер, бабушка! Вы наверное меня с кем-то перепутали. Я ведь только недавно сюда приехал.",
                 "Ничего себе, вы моего деда знали?",
                 "Для вас - найдётся! Только подождать немного надо, пока они поспеют."
-            }, 
+            },
             bottomText: "Нажмите на кнопку бокового меню.");
     }
 
@@ -363,7 +363,7 @@ public class Scenario : MonoBehaviour
             narratorPhrases: new[]
             {
                 "Чтобы выполнить задание, вам необходимо вырастить огурцы и помидоры и собрать с них урожай. \n(Семена помидора продаются у торговца)"
-            }, 
+            },
             bottomText: "Нажмите на кнопку \"Задания\".");
     }
 
@@ -407,22 +407,16 @@ public class Scenario : MonoBehaviour
                 "Приятно познакомиться! Я - Альберт. Родители назвали меня так в честь одного великого учёного!",
                 "Всегда рад помочь! Если ещё что нужно будет - обращайтесь, помогу с радостью!",
                 "Выставки? То, что надо! Я как раз хотел всем показать, какие чудо-растения можно получить с помощью научного подхода!"
-            },
-            narratorPhrases: new[]
-            {
-                "Поздравляем! Вам удалось добраться до конца сюжета в этой версии игры. Но не беспокойтесь, история Альберта на этом не заканчивается.",
-                "Ждите новых заданий и персонажей в следующем обновлении! \nP.S. Вы можете и дальше скрещивать и выращивать новые удивительные растения!",
-                "С наилучшими пожеланиями, Teel@Software!"
             });
     }
-    
+
     public void ExhibitionWin()
     {
         ExecuteStoryPart("ExhibitionWin",
             narratorPhrases: new[]
             {
                 "Поздравляем! Вы победили на выставке!"
-            });
+            }, isLastPhrase: true);
     }
 
     public void StoryEnd()
@@ -592,7 +586,7 @@ public class Scenario : MonoBehaviour
     /// <param name="award">Награда после слов первого персонажа.</param>
     private void ExecuteStoryPart(string keyPart, string activeButtonName = null, string activeButtonTag = null,
         string[] firstCharacterPhrases = null, string[] secondCharacterPhrases = null, string[] narratorPhrases = null,
-        string bottomText = null, Award award = null)
+        string bottomText = null, Award award = null, bool isLastPhrase = false)
     {
         var fileNamePart = "Story";
         var key = $"{fileNamePart}_{keyPart}_Played";
@@ -601,7 +595,7 @@ public class Scenario : MonoBehaviour
         SavePlayedPart($"{fileNamePart}State", key);
 
         PrepareDialog(activeButtonName, activeButtonTag, firstCharacterPhrases, secondCharacterPhrases, narratorPhrases,
-            bottomText, award);
+            bottomText, award, isLastPhrase: isLastPhrase);
 
         DialogPanel.StartDialog();
     }
@@ -646,7 +640,7 @@ public class Scenario : MonoBehaviour
     /// <param name="award">Награда после слов первого персонажа.</param>
     private void PrepareDialog(string activeButtonName, string activeButtonTag, string[] firstCharacterPhrases,
         string[] secondCharacterPhrases, string[] narratorPhrases, string bottomText, Award award,
-        string fileName = null, string partName = null)
+        string fileName = null, string partName = null, bool isLastPhrase = false)
     {
         DialogPanel.InitDialogPanel(FirstCharacterSprite, SecondCharacterSprite, NarratorSprite);
 
@@ -674,6 +668,9 @@ public class Scenario : MonoBehaviour
             DialogPanel.AddAward(firstCharacterPhrases?.Length ?? 0, award);
 
         HighlightNextButton(activeButtonName, activeButtonTag, bottomText, fileName, partName);
+
+        if (isLastPhrase)
+            DialogPanel.LastAction = StoryEnd;
     }
 
     /// <summary>
@@ -701,7 +698,7 @@ public class Scenario : MonoBehaviour
                 }
 
                 var canvas = GameObject.FindGameObjectWithTag("Canvas");
-                Instantiate(BlockerPrefab, canvas.transform, false);
+                var blocker = Instantiate(BlockerPrefab, canvas.transform, false);
                 var fakeBtn = Instantiate(activeButton, activeButton.transform.parent);
                 fakeBtn.transform.SetSiblingIndex(activeButton.transform.GetSiblingIndex());
                 fakeBtn.name = $"FakeButton_{activeButton.name}";
@@ -731,7 +728,6 @@ public class Scenario : MonoBehaviour
                         GameObject placeholder = null;
                         if (fakeButtons.ContainsKey(currentButton))
                             placeholder = fakeButtons[currentButton];
-                        var blocker = GameObject.FindGameObjectWithTag("Blocker");
 
                         if (placeholder != null)
                         {
