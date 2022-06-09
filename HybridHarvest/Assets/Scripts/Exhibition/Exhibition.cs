@@ -266,6 +266,11 @@ namespace Exhibition
                 Save();
         }
 
+        private void OnDestroy()
+        {
+            Save();
+        }
+
         public void Save()
         {
             var writer = QuickSaveWriter.Create("ExhibitionData");
