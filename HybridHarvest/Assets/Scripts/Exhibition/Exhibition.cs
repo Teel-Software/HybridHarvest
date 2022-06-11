@@ -214,6 +214,11 @@ namespace Exhibition
             //place = points.Count - ~index - 1;
             Debug.Log($"{place}-е Место!");
 
+            if (place > Opponents.Length)
+            {
+                place = 4;
+            }
+            
             var awardTier = MAXTier + 1 - place;
             var awards = new List<Award>
             {
@@ -222,7 +227,7 @@ namespace Exhibition
             };
 
             rewardPendingContainer.GetComponent<AwardsCenter>().Show(awards, 
-                $"Вы заняли {place} место!", lastAction: () => 
+                $"Вы заняли {(place == 4 ? "последнее" : place.ToString())} место!", lastAction: () => 
                 {
                     if (place != 1) return;
 
