@@ -27,9 +27,10 @@ public class ClearGameData : MonoBehaviour
 
     public void ClearAll()
     {
-        var quickSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave");
-        if (Directory.Exists(quickSavePath))
-            Directory.Delete(quickSavePath, true);
+        // var quickSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave");
+        var savePath = QuickSaveGlobalSettings.StorageLocation;
+        if (Directory.Exists(savePath))
+            Directory.Delete(savePath, true);
 
         ResetPlayerPrefs();
         ClearExhibition();
