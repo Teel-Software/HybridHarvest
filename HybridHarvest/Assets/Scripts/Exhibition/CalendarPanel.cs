@@ -10,18 +10,15 @@ namespace Exhibition
         [SerializeField] private TextMeshProUGUI timeTillNext;
         [SerializeField] private HorizontalLayoutGroup dayContainer;
         [SerializeField] private Button startBossButton;
-        
-        public void Awake()
-        {
-            var dayIcons = dayContainer.GetComponentsInChildren<DayIcon>();
-            var todayIndex = GetComponentInParent<Exhibition>().DayIndex;
-            dayIcons[todayIndex].Background.color = new Color(1, 0, 0, 0.75f);
-            startBossButton.gameObject.SetActive(todayIndex > 4);
-        }
 
         public void OnEnable()
         {
             var dayIcons = dayContainer.GetComponentsInChildren<DayIcon>();
+            
+            var todayIndex = GetComponentInParent<Exhibition>().DayIndex;
+            dayIcons[todayIndex].Background.color = new Color(1, 0, 0, 0.75f);
+            startBossButton.gameObject.SetActive(todayIndex > 4);
+            
             var placements = GetComponentInParent<Exhibition>().WeeklyPlacements;
             for (var i = 0; i < dayIcons.Length; i++)
             {
