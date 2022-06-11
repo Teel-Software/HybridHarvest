@@ -41,7 +41,8 @@ public class InventoryDrawer : MonoBehaviour
         Redraw();
 
         var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-        if (scenario == null) return;
+        if (scenario is null)
+            return;
 
         // тутор для выбора пакета семян для замены
         if (QSReader.Create("TutorialState").Exists("Tutorial_HarvestPlace_Played"))
@@ -83,7 +84,7 @@ public class InventoryDrawer : MonoBehaviour
     /// <param name="purpose"></param>
     public void SetPurpose(int purpose)
     {
-        Purpose = (PurposeOfDrawing) purpose;
+        Purpose = (PurposeOfDrawing)purpose;
     }
 
     /// <summary>
@@ -106,21 +107,28 @@ public class InventoryDrawer : MonoBehaviour
 
         alreadyDrawn.Clear();
 
+        var exhibition = FindObjectOfType<Exhibition.Exhibition>();
         for (var i = 0; i < targetInventory.Elements.Count; i++)
         {
             var seed = targetInventory.Elements[i];
 
             // фильтрует семена по родителям для лаборатории
-            if (Purpose == PurposeOfDrawing.AddToLab && 
-                filterParents != null && 
-                !seed.Parents.SequenceEqual(filterParents))
+            if (Purpose == PurposeOfDrawing.AddToLab
+                && filterParents != null
+                && !seed.Parents.SequenceEqual(filterParents))
                 continue;
 
             // фильтрует семена по родителям для кванта
-            if (Purpose == PurposeOfDrawing.AddToQuant &&
-                filterParents != null &&
-                seed.Parents.Concat(filterParents).Distinct().Count() > 5)
+            if (Purpose == PurposeOfDrawing.AddToQuant
+                && filterParents != null
+                && seed.Parents.Concat(filterParents).Distinct().Count() > 5)
                 continue;
+
+            if (Purpose == PurposeOfDrawing.AddToExhibition
+                && exhibition.PlayerSeeds.Contains(seed))
+            {
+                continue;
+            }
 
             var itemIcon = Instantiate(ItemIcon, scrollViewContent);
             itemIcon.name = i.ToString();
@@ -149,7 +157,7 @@ public class InventoryDrawer : MonoBehaviour
             itemIconDrawer.Button.onClick.AddListener(() =>
             {
                 var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-                if (scenario == null) return;
+                if (scenario is null) return;
 
                 // тутор для выхода из лаборатории
                 if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))
@@ -168,7 +176,8 @@ public class InventoryDrawer : MonoBehaviour
     private void ClickedOnItem()
     {
         var item = EventSystem.current.currentSelectedGameObject;
-        if (item == null) return;
+        if (item is null)
+            return;
 
         PrepareConfirmation(item);
     }
@@ -242,7 +251,8 @@ public class InventoryDrawer : MonoBehaviour
         yesButton.onClick.AddListener(() =>
         {
             var scenario = GameObject.FindGameObjectWithTag("TutorialHandler")?.GetComponent<Scenario>();
-            if (scenario == null) return;
+            if (scenario is null)
+                return;
 
             // тутор для выхода из лаборатории
             if (QSReader.Create("TutorialState").Exists("Tutorial_ReplaceOrAddItem_Played"))

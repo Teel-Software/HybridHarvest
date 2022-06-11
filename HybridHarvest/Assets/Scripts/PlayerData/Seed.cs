@@ -255,6 +255,11 @@ public class Seed : ScriptableObject
         return seed;
     }
 
+    public override bool Equals(object other)
+    {
+        return !(other is null) && this.ToString().Equals(other.ToString());
+    }
+
     public static void JsonTest(Seed seed)
     {
         var str = JsonUtility.ToJson(seed);
