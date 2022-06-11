@@ -32,13 +32,12 @@ namespace Exhibition
         private int _debugOppCount = 0;
         private int _daySkip = 0;
 
-        public DateTime Now { get; private set; }
+        public DateTime Now => DateTime.Now.AddDays(_daySkip);
         public int DayIndex => ((int)Now.DayOfWeek + 6) % 7;
 
         public void Awake()
         {
             Load();
-            SetDebugTime();
 
             if (Now > NextExhibition)
             {
@@ -62,18 +61,8 @@ namespace Exhibition
             }
         }
 
-        private void SetDebugTime()
-        {
-            Now = DateTime.Now;
-#if DEBUG
-            Now = Now.AddDays(_daySkip);
-#endif
-        }
-
         public void Update()
         {
-            SetDebugTime();
-
             if (State == ExhibitionState.InProgress && RewardDate < Now)
             {
                 State = ExhibitionState.RewardPending;
