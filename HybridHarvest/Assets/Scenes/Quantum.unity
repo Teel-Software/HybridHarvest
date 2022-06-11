@@ -1073,6 +1073,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564395844722619186, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3564395844722619191, guid: 3e80125574b5246438fac9eecf3b15b9, type: 3}
       propertyPath: CurrentPot
       value: 
@@ -1338,7 +1342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5699248950863946092, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -22.00003
+      value: -21.99997
       objectReference: {fileID: 0}
     - target: {fileID: 5699248950863946092, guid: 6a0876010956c144d86902fbb52404f3, type: 3}
       propertyPath: m_AnchoredPosition.y

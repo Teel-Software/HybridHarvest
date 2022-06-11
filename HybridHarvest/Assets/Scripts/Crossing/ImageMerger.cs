@@ -5,6 +5,7 @@ using System.Linq;
 
 public static class ImageMerger
 {
+    private static Texture2D reserve;
     public static void MergeParentImages(List<string> parents)
     {
         var newName = string.Join("-", parents);
@@ -21,8 +22,12 @@ public static class ImageMerger
         //var req = new WWW("file://" + Path.Combine(Application.persistentDataPath, formName + ".png"));
         //formForTexture = req.texture;
 
+        reserve = Resources.Load<Texture2D>($"SeedsIcons\\{shapeName}Texture");
+        reserve = duplicateTexture(reserve);
         var texture = mergeTextures(parents.Where(x => x != shapeName).ToList());
         var newSprite = duplicateTexture(texture);
+     
+
 
         for (int i = 0; i < shape.width; i++)
         {
@@ -78,7 +83,7 @@ public static class ImageMerger
         if (parents.Count < 1 || parents.Count > 4)
         {
             Debug.LogError("wth, man!? tis aint right");  //Лучшее в мире оповещение об ошибке
-            return null;
+            return reserve;
         }
 
         var texturesToUse = new List<Texture2D>();
