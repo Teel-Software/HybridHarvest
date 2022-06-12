@@ -1,3 +1,4 @@
+using System;
 using CI.QuickSave;
 using System.Collections.Generic;
 using System.IO;
@@ -29,8 +30,34 @@ public class ClearGameData : MonoBehaviour
     {
         // var quickSavePath = Path.Combine(QuickSaveGlobalSettings.StorageLocation, "QuickSave");
         var savePath = QuickSaveGlobalSettings.StorageLocation;
-        if (Directory.Exists(savePath))
-            Directory.Delete(savePath, true);
+        var childDirectories = Directory.GetDirectories(savePath);
+        var childFiles = Directory.GetFiles(savePath);
+
+        foreach (var dir in childDirectories)
+        {
+            try
+            {
+                Directory.Delete(dir, true);
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Ошибка при удалении директории {dir}!");
+                Debug.Log(e.Message);
+            }
+        }
+
+        foreach (var file in childFiles)
+        {
+            try
+            {
+                File.Delete(file);
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Ошибка при удалении файла {file}!");
+                Debug.Log(e.Message);
+            }
+        }
 
         ResetPlayerPrefs();
         ClearExhibition();
