@@ -82,8 +82,13 @@ public static class SeedMutator
 
         try
         {
-            if (stats[3] != oldSeed.MinAmount)
-                stats.Add(statsData.Last().Item2[Array.IndexOf(statsData.Last().Item2, statsData.Last().Item1) + 1]);
+            if (stats[3] != oldSeed.MinAmount) {
+                var allVariants = CSVReader.GetAmountDataString(oldSeed.Name);
+                var current = oldSeed.MinAmount.ToString() + "-" + oldSeed.MaxAmount.ToString();
+                var newAmountStats = allVariants[Array.IndexOf(allVariants, current)+1];
+                stats[3] = int.Parse(newAmountStats.Split('-')[0]);
+                stats.Add(int.Parse(newAmountStats.Split('-')[1])); 
+            }
             else
                 stats.Add(statsData.Last().Item1);
         }

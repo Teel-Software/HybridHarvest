@@ -82,9 +82,9 @@ public static class CSVReader
                             var spl = str.Split(':');
                             int seconds;
                             if(spl.Length>2)
-                             seconds = int.Parse(spl[0]) * 3600 + int.Parse(spl[1])*60 + int.Parse(spl[0]);
+                             seconds = int.Parse(spl[0]) * 3600 + int.Parse(spl[1])*60 + int.Parse(spl[2]);
                             else
-                                seconds = int.Parse(spl[0]) * 60 + int.Parse(spl[0]);
+                                seconds = int.Parse(spl[0]) * 60 + int.Parse(spl[1]);
                             return seconds;
                         })
                         .ToArray());
@@ -162,9 +162,9 @@ public static class CSVReader
                             var spl = str.Split(':');
                             int seconds;
                             if (spl.Length > 2)
-                                seconds = int.Parse(spl[0]) * 3600 + int.Parse(spl[1]) * 60 + int.Parse(spl[0]);
+                                seconds = int.Parse(spl[0]) * 3600 + int.Parse(spl[1]) * 60 + int.Parse(spl[2]); //hh:mm:ss
                             else
-                                seconds = int.Parse(spl[0]) * 60 + int.Parse(spl[0]);
+                                seconds = int.Parse(spl[0]) * 60 + int.Parse(spl[1]);
                             return seconds;
                         })
                         .ToArray();
@@ -179,6 +179,43 @@ public static class CSVReader
         }
 
         return data;
+    }
+
+    public static string[] GetAmountDataString(string seedName)
+    {
+        var seedData = new string[] { };
+
+        try
+        {
+            seedData = Resources
+            .Load<TextAsset>($@"SeedStats\{seedName}")
+            .text
+            .Split('\n');
+        }
+        catch
+        {
+            try
+            {                 //Вариант для скрещенных
+                using (StreamReader reader = new StreamReader(Path.Combine(Application.persistentDataPath, seedName + ".csv")))
+                {
+                    seedData = reader.ReadToEnd().Split('\n');
+                }
+            }
+            catch { return null; }
+        }
+
+        foreach (var line in seedData)
+        {
+            var splited = line
+                .Split(',')
+                .ToArray();
+
+            if (splited[0].Contains("Кол"))
+                return splited.Skip(1).Distinct().ToArray();
+        }
+
+        Debug.LogError("А где колличество? CSVReader 217");
+        return null;
     }
 
     /// <summary>
