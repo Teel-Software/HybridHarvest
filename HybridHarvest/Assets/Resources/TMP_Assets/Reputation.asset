@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reputation
   m_EditorClassIdentifier: 
   hashCode: 1446232987
-  material: {fileID: 7230774815582079413}
+  material: {fileID: 3328624092843804389}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -48,22 +48,22 @@ MonoBehaviour:
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 14
+      m_Width: 11
       m_Height: 14
       m_HorizontalBearingX: 0
       m_HorizontalBearingY: 12
-      m_HorizontalAdvance: 14
+      m_HorizontalAdvance: 11
     m_GlyphRect:
       m_X: 0
       m_Y: 0
-      m_Width: 14
+      m_Width: 11
       m_Height: 14
     m_Scale: 1
     m_AtlasIndex: 0
     sprite: {fileID: 21300000, guid: b2e6408a58ba00741bd1348dabc16a48, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
---- !u!21 &7230774815582079413
+--- !u!21 &3328624092843804389
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1

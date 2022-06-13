@@ -74,12 +74,6 @@ public class Inventory : MonoBehaviour, ISaveable
     /// <param name="amount">Количество.</param>
     public void ChangeMoney(int amount)
     {
-        //Money += changingAmount > 0
-        //    ? changingAmount/* / Devider*/
-        //    : changingAmount;
-        //if (Money <= -100 && changingAmount < 0
-        //    || changingAmount > 0)
-        //    Reputation += changingAmount / Devider;
         Money += amount;
         Save();
     }
@@ -91,7 +85,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void ChangeReputation(int amount)
     {
         Reputation += amount;
-        
+
         if (Reputation >= ReputationLimit)
         {
             Reputation -= ReputationLimit;
@@ -120,7 +114,6 @@ public class Inventory : MonoBehaviour, ISaveable
             }
 
             handler.SpawnLevelUpBanner(Level);
-
         }
 
         Save();
@@ -163,6 +156,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void ConsumeEnergy(int amount)
     {
         Energy -= amount;
+        Save();
     }
 
     /// <summary>
@@ -175,6 +169,8 @@ public class Inventory : MonoBehaviour, ISaveable
             Energy = EnergyMax;
         else
             Energy += amount;
+
+        Save();
     }
 
     /// <summary>
@@ -184,6 +180,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void RemoveItem(int index)
     {
         Elements.RemoveAt(index);
+        Save();
     }
 
     /// <summary>
@@ -348,7 +345,8 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         if (Energy == EnergyMax)
         {
-            EnergyRegenTime.text = "--:--";
+            if (EnergyRegenTime != null)
+                EnergyRegenTime.text = "--:--";
             return;
         }
 
@@ -359,6 +357,8 @@ public class Inventory : MonoBehaviour, ISaveable
             RegenEnergy(1);
         }
 
+        if (EnergyRegenTime == null) return;
+
         var minutes = Math.Floor(energyBuffer / 60).ToString(CultureInfo.InvariantCulture);
         var seconds = Math.Floor(energyBuffer % 60).ToString(CultureInfo.InvariantCulture);
         EnergyRegenTime.text = $"{minutes.PadLeft(2, '0')}:{seconds.PadLeft(2, '0')}";
@@ -367,7 +367,6 @@ public class Inventory : MonoBehaviour, ISaveable
     public void Awake()
     {
         // Preventing null references etc
-        EnergyRegenTime ??= GameObject.Find("RegenTime").GetComponent<Text>();
         ReputationInfo ??= GameObject.Find("ReputationInfo").GetComponent<Text>();
         Load();
         RedrawInfo();
@@ -375,6 +374,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
     private void Update()
     {
+        EnergyRegenTime ??= GameObject.Find("RegenTime")?.GetComponent<Text>();
         RedrawInfo();
     }
 
@@ -382,5 +382,10 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         if (!hasFocus)
             Save();
+    }
+
+    private void OnDisable()
+    {
+        Save();
     }
 }

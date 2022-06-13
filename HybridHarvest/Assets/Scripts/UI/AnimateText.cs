@@ -26,10 +26,10 @@ public class AnimateText : MonoBehaviour
         textIndex = 0;
         renderNeeded = true;
         lastCheckedTime = DateTime.Now;
-        
+
         if (activeBlocker != null)
             Destroy(activeBlocker);
-        
+
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
         activeBlocker = Instantiate(TextBlockerPrefab, canvas.transform, false);
         activeBlocker.GetComponent<Button>().onClick.AddListener(SkipText);
@@ -62,8 +62,16 @@ public class AnimateText : MonoBehaviour
         var timePassed = DateTime.Now - lastCheckedTime;
         if (timePassed.TotalSeconds < frameTimeSeconds) return;
 
-        currentTextComp.text += origText[textIndex++];
-        lastCheckedTime = DateTime.Now;
+        try
+        {
+            currentTextComp.text += origText[textIndex++];
+            lastCheckedTime = DateTime.Now;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Ошибка анимации текста: {origText}. textIndex {textIndex - 1}");
+            Console.WriteLine(e.Message);
+        }
     }
 
     private void OnEnable()

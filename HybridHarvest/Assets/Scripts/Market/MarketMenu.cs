@@ -3,11 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MarketMenu : MonoBehaviour
-{ 
+{
     [SerializeField] public GridLayoutGroup ScrollList;
     [SerializeField] public GameObject Listing;
 
-    public void OnEnable()
+    public void CloseMenu()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnEnable()
     {
         foreach (var seedName in Market.PriceMultipliers.Keys)
         {
@@ -20,21 +25,20 @@ public class MarketMenu : MonoBehaviour
             var txtComponent = listing.GetComponentInChildren<Text>();
             var multiplier = Market.PriceMultipliers[seedName];
             txtComponent.text = $"x {multiplier}";
-            txtComponent.color = multiplier == 1.0f 
-                            ? new Color(0,0,0) 
-                            : multiplier > 1.0f 
-                                ? new Color(0f, 0.76f, 0.02f) 
-                                : new Color(0.75f, 0.16f, 0.13f);
+            txtComponent.color = multiplier == 1.0f
+                ? new Color(0, 0, 0)
+                : multiplier > 1.0f
+                    ? new Color(0f, 0.76f, 0.02f)
+                    : new Color(0.75f, 0.16f, 0.13f);
             // Plant name
             var plantName = listing.GetComponentInChildren<TextMeshProUGUI>();
-            var seed = (Seed)Resources.Load("Seeds\\" + seedName);
+            var seed = (Seed) Resources.Load("Seeds\\" + seedName);
             plantName.text = seed.NameInRussian;
         }
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
-        foreach (Transform child in ScrollList.transform)
-            Destroy(child.gameObject); 
+        ClearGameData.ClearChildren(ScrollList.gameObject);
     }
 }
