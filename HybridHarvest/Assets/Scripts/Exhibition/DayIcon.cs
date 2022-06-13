@@ -16,7 +16,7 @@ namespace Exhibition
             MedalIcon.gameObject.SetActive(place > 0);
             if (place > 0)
             {
-                PlacementText.text = place == 4 ? "П" : place.ToString();
+                PlacementText.text = place == 4 ? "" : place.ToString();
                 MedalIcon.sprite = Resources.Load<Sprite>($"Medals/Medal{place}");
             }
             else
