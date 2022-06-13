@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Tools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,16 +18,18 @@ public class HarvestProcessor : MonoBehaviour
     private List<Seed> chosenSeeds;
     private List<GameObject> chosenSeedPlaces;
     private PatchGrowth Patch;
+    private Seed parent;
 
     /// <summary>
     /// Отрисовывает окно урожая
     /// </summary>
-    /// <param name="ParentSeed">Семечко - родитель</param>
+    /// <param name="seedsList">Список семян</param>
     /// <param name="patch">Грядка</param>
-    public void ShowHarvestMenu(List<Seed> ParentSeed, PatchGrowth patch)
+    public void ShowHarvestMenu(List<Seed> seedsList, PatchGrowth patch, Seed parentSeed)
     {
+        parent = parentSeed;
         Patch = patch;
-        seeds = ParentSeed;
+        seeds = seedsList;
         chosenSeedsCounter.text = $"0/{seeds.Count}";
 
         foreach (var seed in seeds)
@@ -48,14 +51,8 @@ public class HarvestProcessor : MonoBehaviour
 
             item.GetComponentInChildren<Toggle>().onValueChanged.AddListener(UpdateChosenSeeds);
 
-            var label = item.transform.Find("Text");
-            label.GetComponent<Text>().text =
-                $"{seed.NameInRussian} (англ. {seed.Name}, лат. {seed.NameInLatin})\n" +
-                $"Вкус: {seed.Taste}\n" +
-                $"Габитус: {seed.Gabitus}\n" +
-                $"Время роста: {TimeFormatter.Format(seed.GrowTime)}\n" +
-                $"Кол-во плодов: {seed.MinAmount} - {seed.MaxAmount}\n" +
-                $"Шанс мутации: {seed.MutationChance}\n";
+            var label = item.transform.Find("TextMesh");
+            label.GetComponent<TextMeshProUGUI>().text = SeedStatFormatter.FormatToHarvestMenue(seed, parent);
 
             var img = item
                 .transform.Find("Background")

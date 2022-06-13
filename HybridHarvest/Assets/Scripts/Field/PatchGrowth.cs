@@ -117,7 +117,7 @@ public class PatchGrowth : MonoBehaviour
             }
 
             HarvestWindow.GetComponent<HarvestProcessor>()
-                .ShowHarvestMenu(grownSeeds, Patch.GetComponent<PatchGrowth>());
+                .ShowHarvestMenu(grownSeeds, Patch.GetComponent<PatchGrowth>(), growingSeed);
             HarvestWindow.gameObject.SetActive(true);
 
             if (lastPatchGrowth != null)
