@@ -118,7 +118,8 @@ public class QuantumGrowth : MonoBehaviour
         // 24 hour delay
         cooldownEnd = DateTime.Now.AddHours(24);
         Save();
-      
+
+        Clicked();
         //CooldownSign.SetActive(true);
         //UpdateSign(cooldownEnd.TimeOfDay);
     }

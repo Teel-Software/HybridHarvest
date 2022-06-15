@@ -216,9 +216,9 @@ public class CreateMiniGame : MonoBehaviour
                 break;
         }
 
-        ShowInfoPanel();
-        //NameGenerator.SetActive(true);
-        //NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
+        //ShowInfoPanel();
+        NameGenerator.SetActive(true);
+        NameGenerator.GetComponent<QuantumNameCreator>().DefaultFill();
 
     }
 

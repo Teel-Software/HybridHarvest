@@ -52,7 +52,7 @@ public class HarvestProcessor : MonoBehaviour
             item.GetComponentInChildren<Toggle>().onValueChanged.AddListener(UpdateChosenSeeds);
 
             var label = item.transform.Find("TextMesh");
-            label.GetComponent<TextMeshProUGUI>().text = SeedStatFormatter.FormatToHarvestMenue(seed, parent);
+            label.GetComponent<TextMeshProUGUI>().text = SeedStatFormatter.FormatToHarvestMenue2(seed, parent);
 
             var img = item
                 .transform.Find("Background")

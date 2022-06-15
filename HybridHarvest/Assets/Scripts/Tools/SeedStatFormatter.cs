@@ -69,31 +69,31 @@ namespace Tools
 
             formatedString.Append($"Вкус: ");
             if (seed.Taste > parent.Taste)
-                formatedString.Append($"<color=green>{seed.Taste}</color>\n");
+                formatedString.Append($"<color=green>{seed.Taste}</color>   <sprite=0>\n");
             else
                 formatedString.Append($"{seed.Taste}\n");
 
             formatedString.Append($"Габитус: ");
             if (seed.Gabitus > parent.Gabitus)
-                formatedString.Append($"<color=green>{seed.Gabitus}</color>\n");
+                formatedString.Append($"<color=green>{seed.Gabitus}</color>    <sprite=0>\n");
             else
                 formatedString.Append($"{seed.Gabitus}\n");
 
             formatedString.Append($"Время роста: ");
             if (seed.GrowTime < parent.GrowTime)
-                formatedString.Append($"<color=green>{TimeFormatter.Format(seed.GrowTime)}</color>\n");
+                formatedString.Append($"<color=green>{TimeFormatter.Format(seed.GrowTime)}</color>    <sprite=0>\n");
             else
                 formatedString.Append($"{TimeFormatter.Format(seed.GrowTime)}\n");
 
             formatedString.Append($"Кол-во плодов: ");
             if (seed.MinAmount > parent.MinAmount || seed.MaxAmount > parent.MaxAmount)
-                formatedString.Append($"<color=green>{seed.MinAmount} - {seed.MaxAmount}</color>\n");
+                formatedString.Append($"<color=green>{seed.MinAmount} - {seed.MaxAmount}</color>    <sprite=0>\n");
             else
                 formatedString.Append($"{seed.MinAmount} - {seed.MaxAmount}\n");
 
             formatedString.Append($"Шанс мутации: ");
             if (seed.MutationChance > parent.MutationChance)
-                formatedString.Append($"<color=green>{MutationTranslations[seed.MutationChance]}</color>\n");
+                formatedString.Append($"<color=green>{MutationTranslations[seed.MutationChance]}</color>    <sprite=0>\n");
             else
                 formatedString.Append($"{MutationTranslations[seed.MutationChance]}\n");
 
