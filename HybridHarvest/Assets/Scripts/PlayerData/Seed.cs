@@ -11,7 +11,7 @@ using Random = System.Random;
 [Serializable]
 public class Seed : ScriptableObject
 {
-    [JsonIgnore] public string Name => string.Join("-", Parents);
+    [JsonIgnore] public string Name => string.Join("-", Parents.OrderBy(x=>x));
     public string NameInRussian;
     public string NameInLatin;
 

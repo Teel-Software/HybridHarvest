@@ -9,6 +9,10 @@ public static class ImageMerger
     public static void MergeParentImages(List<string> parents)
     {
         var newName = string.Join("-", parents);
+
+        var check = Resources.Load<Texture2D>($"SeedsIcons\\{newName}");
+        if (check != null) return;
+
         var spritePath = Path.Combine(Application.persistentDataPath, newName + ".png");
         if (File.Exists(spritePath)) return;
 

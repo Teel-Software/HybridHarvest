@@ -108,6 +108,9 @@ public class CreateMiniGame : MonoBehaviour
         var boosts = new[] { QuantumBoost.Quadriple, QuantumBoost.Double, QuantumBoost.Double,
                           QuantumBoost.Fail, QuantumBoost.None, QuantumBoost.None,
                           QuantumBoost.None, QuantumBoost.None, QuantumBoost.None};
+        //var boosts = new[] { QuantumBoost.Double, QuantumBoost.Double, QuantumBoost.Double,
+        //                  QuantumBoost.Double, QuantumBoost.Double, QuantumBoost.Double,
+        //                  QuantumBoost.Double, QuantumBoost.Double, QuantumBoost.Double};
 
         for (int firstInd = ElementsCount - 1; firstInd >= 1; firstInd--)
         {

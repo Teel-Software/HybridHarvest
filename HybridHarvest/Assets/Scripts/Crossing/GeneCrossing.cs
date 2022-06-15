@@ -181,17 +181,17 @@ public class GeneCrossing : MonoBehaviour
     {
         var newSeed = ScriptableObject.CreateInstance<Seed>();
 
-        newSeed.Parents = parent1.Parents.Concat(parent2.Parents).Distinct().ToList();
+        newSeed.Parents = parent1.Parents.Concat(parent2.Parents).Distinct().OrderBy(x => x).ToList();
 
         // место для создания изображения
-        ImageMerger.MergeParentImages(newSeed.Parents);
+        ImageMerger.MergeParentImages(newSeed.Parents.OrderBy(x => x).ToList());
 
         //newSeed.Name = parent1.Name + "-" + parent2.Name;
         //newSeed.NameInRussian = MixTwoNames(parent1.NameInRussian, parent2.NameInRussian);
         newSeed.NameInRussian = "???";
         newSeed.NameInLatin = "";
 
-        newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Parents, parent2.Parents);
+        newSeed.SeedStats = CSVStatsMerger.GetQuantumStatistics(parent1.Parents.OrderBy(x=>x).ToList(), parent2.Parents.OrderBy(x => x).ToList());
         newSeed.Taste = newSeed.SeedStats.Taste.Keys.ToArray()[0];
         newSeed.TasteGen = Gen.Mixed;
 

@@ -46,8 +46,8 @@ public class QuantumNameCreator : MonoBehaviour
         }
         if (Name1 == "" || Name2 == "")
         {
-            Name1 = "Эпик";
-            Name2 = "Фэйл";
+            Name1 = "Помидор";
+            Name2 = "огурец";
         }
 
         var firstParts = GetSyllables(Name1).ToArray();
