@@ -659,28 +659,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8518535141687739275, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
   m_PrefabInstance: {fileID: 172851752}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &172851754 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8518535141687739274, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
-  m_PrefabInstance: {fileID: 172851752}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &172851755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172851754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 3
-  placeholderPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
-  useOpenByName: 0
-  enhancementName: 
-  customNotification: 
 --- !u!114 &189950536 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2146170984949625784, guid: fcb31162402b3fc4fbdf8bff81469d76, type: 3}
@@ -2565,28 +2543,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8518535141687739275, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
   m_PrefabInstance: {fileID: 1679812347}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1679812349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8518535141687739274, guid: 3f6553580f9e06b4292a5b9c5d53b9ea, type: 3}
-  m_PrefabInstance: {fileID: 1679812347}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1679812350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679812349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d28c9780d66b93448995914b3ac7ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 5
-  placeholderPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
-  useOpenByName: 0
-  enhancementName: 
-  customNotification: 
 --- !u!1 &1727909672
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,6 +3879,10 @@ PrefabInstance:
     - target: {fileID: 4104146255198764263, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4904355407645871102, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.1000004
       objectReference: {fileID: 0}
     - target: {fileID: 5468953798737048156, guid: bb8f37f306e561f4b8433d3b9e6f24ce, type: 3}
       propertyPath: m_AnchorMax.y

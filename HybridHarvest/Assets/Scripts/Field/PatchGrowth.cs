@@ -208,12 +208,7 @@ public class PatchGrowth : MonoBehaviour
 
         if (!playTutorial)
         {
-            var adHandler = optionsMenu.gameObject.GetComponent<AdHandler>();
-            adHandler.ShowAdButton = confPanel.YesButton;
-            adHandler.ShowAdButton.interactable = false;
-            adHandler.Init();
-            confPanel.SetYesAction(() =>
-                adHandler.SpeedUpAction = () => SetSeedSpeed((int) (timeSpeedBooster * coeff)));
+            confPanel.SetYesAction(() => SetSeedSpeed((int) (timeSpeedBooster * coeff)));
         }
         else
         {

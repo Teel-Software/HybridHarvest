@@ -15,7 +15,7 @@ public class InitEnergy : MonoBehaviour
         {
             var canvas = GameObject.FindGameObjectWithTag("Canvas");
             currentMenu = Instantiate(EnergyWindowPrefab, canvas.transform, false);
-            
+
             var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
             inventory.EnergyRegenTime = GameObject.Find("RegenTime")?.GetComponent<Text>();
         }
@@ -23,5 +23,17 @@ public class InitEnergy : MonoBehaviour
         {
             currentMenu.SetActive(true);
         }
+    }
+
+    public void DebugResetEnergy()
+    {
+        var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        inventory.ConsumeEnergy(inventory.Energy);
+    }
+
+    public void RegenEnergy()
+    {
+        var inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        inventory.RegenEnergy(1);
     }
 }
