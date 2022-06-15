@@ -12,7 +12,7 @@ public static class CSVStatsMerger
     /// </summary>
     public static SeedStatistics GetQuantumStatistics(List<string> parents1, List<string> parents2)
     {
-        var seedName = string.Join("-", parents1.Concat(parents2).Distinct());
+        var seedName = string.Join("-", parents1.Concat(parents2).OrderBy(x=>x).Distinct());
         var stats = CSVReader.GetSeedStats(seedName);
         if (stats == null)
         {
