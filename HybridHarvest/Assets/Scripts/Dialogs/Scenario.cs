@@ -86,7 +86,7 @@ public class Scenario : MonoBehaviour
 
         // тутор для выполнения первого задания
         DialogPanel.LastAction = () => FirstQuestCompleted();
-        
+
         // активирует кнопку выставки
         var writer = QuickSaveWriter.Create("PurchasedEnhancements");
         writer.Write("Exhibition", true);
@@ -296,7 +296,7 @@ public class Scenario : MonoBehaviour
             {
                 "Вот так! Оставшиеся огурчики можно продать!"
             },
-            bottomText: "Поставьте галочку в квадрате, чтобы выбрать все семена.");
+            bottomText: "Поставьте галочку в квадрате рядом с кнопкой \"Продать выбранное\".");
     }
 
     public void Tutorial_HarvestPlaceSell()
@@ -382,7 +382,7 @@ public class Scenario : MonoBehaviour
             },
             narratorPhrases: new[]
             {
-                "При повышении уровня у вас появляется возможность покупать различные улучшения, которые находятся в соответствующей вкладке."
+                "При повышении уровня у вас появляется возможность покупать различные улучшения, которые находятся во вкладке \"Улучшения\". (Она расположена справа снизу)"
             });
     }
 
