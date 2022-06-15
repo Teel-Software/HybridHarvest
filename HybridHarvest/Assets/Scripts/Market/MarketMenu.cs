@@ -16,6 +16,13 @@ public class MarketMenu : MonoBehaviour
     {
         foreach (var seedName in Market.PriceMultipliers.Keys)
         {
+            var seed = (Seed) Resources.Load("Seeds\\" + seedName);
+            if (seed == null)
+            {
+                Debug.Log($"Биржа: в ресурсах не найдено семечко \"{seedName}\".");
+                return;
+            }
+
             var objName = $"{seedName}Multiplier";
             var listing = Instantiate(Listing, ScrollList.transform);
             listing.name = objName;
@@ -32,7 +39,6 @@ public class MarketMenu : MonoBehaviour
                     : new Color(0.75f, 0.16f, 0.13f);
             // Plant name
             var plantName = listing.GetComponentInChildren<TextMeshProUGUI>();
-            var seed = (Seed) Resources.Load("Seeds\\" + seedName);
             plantName.text = seed.NameInRussian;
         }
     }

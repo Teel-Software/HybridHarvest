@@ -450,6 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   placeholderPrefab: {fileID: 7941146567305704190, guid: 2f904858ce3dc0b458ce914cb5a91755, type: 3}
+  useOpenByName: 0
+  enhancementName: 
+  customNotification: 
 --- !u!1 &1588908725898474354
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +935,7 @@ MonoBehaviour:
   - {fileID: 8148147380466475345}
   - {fileID: 4073458662099848107}
   defaultActive: 0
-  reloadTabsOnDisable: 0
+  reloadTabsOnDisable: 1
 --- !u!1 &3608719856076839625
 GameObject:
   m_ObjectHideFlags: 0
